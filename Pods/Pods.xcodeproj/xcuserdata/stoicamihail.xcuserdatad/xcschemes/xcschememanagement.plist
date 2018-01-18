@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>KVOController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Pods-VivreABerlin-OneSignalNotificationServiceExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Pods-VivreABerlin.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-VivreABerlinTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-VivreABerlinUITests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>726FCE7C04E7C3DC6C6B4D0692C10168</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74F66BD7F23DE4AB1B43655077810848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9C2D3327264C1DB785EADD89D3242323</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ACC65323233CC8ECF91697818204A19C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0E1B229939BC8FE5369165822F8B90C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

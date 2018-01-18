@@ -1,0 +1,24 @@
+PODS:
+  - FBAudienceNetwork (4.26.0):
+    - KVOController
+  - Google-Mobile-Ads-SDK (7.24.1)
+  - KVOController (1.2.0)
+  - Mapbox-iOS-SDK (3.6.4)
+  - OneSignal (2.5.6)
+
+DEPENDENCIES:
+  - FBAudienceNetwork
+  - Google-Mobile-Ads-SDK
+  - Mapbox-iOS-SDK (~> 3.6)
+  - OneSignal (< 3.0, >= 2.5.2)
+
+SPEC CHECKSUMS:
+  FBAudienceNetwork: c3488041a9aa3f716d2edb3ceec8929e54c8f95a
+  Google-Mobile-Ads-SDK: ed8004a7265b424568dc84f3d2bbe3ea3fff958f
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  Mapbox-iOS-SDK: 47847dd44285477e0dfffd0130f65c8a52823ada
+  OneSignal: 9ec286d9156b86b3975f45d928e70f46c74ef4b7
+
+PODFILE CHECKSUM: 9f6f67b82d5755cc0ab15056a9e8dc7f4d6933a2
+
+COCOAPODS: 1.4.0.beta.1

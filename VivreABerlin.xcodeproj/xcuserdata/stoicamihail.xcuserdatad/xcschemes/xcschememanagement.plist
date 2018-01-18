@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OneSignalNotificationServiceExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>VivreABerlin.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>8D3D5ED71EA7864900DA4778</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F44D79DA1FA34BC50024FB17</key>
 		<dict>
 			<key>primary</key>
 			<true/>

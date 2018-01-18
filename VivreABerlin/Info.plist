@@ -16,18 +16,79 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>prefs</string>
+			</array>
+		</dict>
+		<dict/>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.4.3</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiZ3VpZGVtb292IiwiYSI6ImNqMmJuZmY5OTAwMmgyeW8wYWx3dDRiOTYifQ.Fpm5RQPNLQP5qlyD2NAX_w</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>En autorisant l’app à utiliser l’appareil photo, vous pourrez prendre des photos ou en choisir dans votre photothèque</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Merci d’autoriser la géolocalisation pour profiter pleinement de l’app ! Celle-ci restera privée, ne vous inquiétez pas</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>L’accès à votre bibliothèque photo est indispensable si vous souhaitez sauvegarder des images de l’app ou si vous souhaitez publier une annonce. Rien ne sera publié sans votre accord.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.otf</string>
+		<string>Montserrat-Bold.otf</string>
+		<string>Montserrat-ExtraBold.otf</string>
+		<string>Montserrat-ExtraLight.otf</string>
+		<string>Montserrat-Light.otf</string>
+		<string>Montserrat-Medium.otf</string>
+		<string>Montserrat-Regular.otf</string>
+		<string>Montserrat-SemiBold.otf</string>
+		<string>Montserrat-Thin.otf</string>
+		<string>MontserratAlternates-Black.otf</string>
+		<string>MontserratAlternates-Bold.otf</string>
+		<string>MontserratAlternates-ExtraBold.otf</string>
+		<string>MontserratAlternates-ExtraLight.otf</string>
+		<string>MontserratAlternates-Light.otf</string>
+		<string>MontserratAlternates-Medium.otf</string>
+		<string>MontserratAlternates-Regular.otf</string>
+		<string>MontserratAlternates-SemiBold.otf</string>
+		<string>MontserratAlternates-Thin.otf</string>
+		<string>Montserrat-Italic.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
+	<string>MainiPhoneX</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>MainIPad</string>
+	<key>UIMainStoryboardFile~iphone</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
