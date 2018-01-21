@@ -379,20 +379,24 @@
                                         text = [[[NSString stringWithFormat:@"%@",[postInfo valueForKey:@"post_content"]] stringByReplacingOccurrencesOfString:@"GOOGLE MAP" withString:@""] stringByReplacingOccurrencesOfString:@"<img" withString:@"<p></p><img"];
                                     
                                     
-                                    
+                                    if([text containsString:@"<figcaption>"]){
+                                        NSLog(@"figcaption");
+                                    }
+                                          
                                     if([text containsString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]])
                                         
                                         text = [text stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]] withString:[NSString stringWithFormat:@"<p><a href=\"https://www.youtu%@\">Youtube Link</a></p>",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]];
                                     
                                     
-                                    
+                                  
+                                        NSLog(@"figcaption");
                                     if([text containsString:@"<h2>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h2>" withString:@"<br></br><h2>"];
                                     if([text containsString:@"<h3>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h3>" withString:@"<br></br><h3>"];
                                     if([text containsString:@"<h4>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h4>" withString:@"<br></br><h4>"];
-                                    
+                                 
                                     
                                     
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
@@ -768,18 +772,7 @@
                                     
                                     
                                     
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                   
+                        
                                     
                                     [self.tableView reloadData];
                                     if(arrayUsedInTable.count > 0) {

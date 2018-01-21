@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CatsSubCatsCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *articleImage;
-@property (weak, nonatomic) IBOutlet UILabel *articleTitle;
-@property (weak, nonatomic) IBOutlet UILabel *articleContent;
-@property (weak, nonatomic) IBOutlet UIImageView *didSelectImage;
-@property (weak, nonatomic) IBOutlet UIView *separatorView;
+@property (strong, nonatomic) IBOutlet UIImageView *articleImage;
+@property (strong, nonatomic) IBOutlet UILabel *articleTitle;
+@property (strong, nonatomic) IBOutlet UILabel *articleContent;
+@property (strong, nonatomic) IBOutlet UIImageView *didSelectImage;
+@property (strong, nonatomic) IBOutlet UIView *separatorView;
 
 @end

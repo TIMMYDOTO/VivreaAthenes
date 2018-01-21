@@ -80,7 +80,7 @@
     
     
     if(hour >= 20){
-        self.thumbnailBackground.image =[UIImage imageNamed:@"BackgroundNight.png"];
+        self.thumbnailBackground.image = [UIImage imageNamed:@"BackgroundNight.png"];
         if (self.thumbnailBackground.image == nil){
             self.thumbnailBackground.image = [UIImage imageNamed:@"BackgroundDay.png"];
         }
@@ -140,7 +140,7 @@
                 firstTitle.font = [UIFont fontWithName:@"Montserrat-SemiBold" size:16];
                 if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
                     firstTitle.font = [UIFont fontWithName:@"Montserrat-SemiBold" size:20];
-                else{
+                else {
                     CGRect frame = firstTitle.frame;
                     frame.origin.x = 10;
                     firstTitle.frame = frame;
@@ -235,11 +235,12 @@
             
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                
-                for(int i = 0 ; i < [[Dictionary valueForKey:@"results"] count]; i++)
+                ////////////////////////////////////
+            NSLog(@"[Dictionaryyy %lu",[[Dictionary valueForKey:@"results"] count]);
+                for(int i = 0 ; i < [[Dictionary valueForKey:@"results"] count]; i++){
+              
                     [arrayUsedInTable addObject:[Dictionary valueForKey:@"results"][i]];
-                
+                }
                 [self.ticketTable reloadData];
                 
                 [spinnerview endRefreshing];
@@ -251,7 +252,7 @@
                 
                 self.ticketsScroll.contentSize = CGSizeMake(self.view.frame.size.width, self.ticketTable.frame.origin.y + self.ticketTable.frame.size.height);
                 
-                
+                Page ++;
                 
                 
             });
@@ -276,12 +277,13 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
+        
+      
                     
                     if([[Dictionary valueForKey:@"results"] count] > 0){
+                        NSLog(@"Dictionary count %lu", [[Dictionary valueForKey:@"results"] count]);
                         for(int i = 0 ; i < [[Dictionary valueForKey:@"results"] count]; i++){
-                            
                             [arrayUsedInTable addObject:[Dictionary valueForKey:@"results"][i]];
-                            
                         }
                         
                         [self.ticketTable reloadData];
@@ -535,6 +537,7 @@ finish:
     animation.fromValue = [NSNumber numberWithFloat:0.0f];
     animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
     animation.duration = 10.0f;
+  
     animation.repeatCount = INFINITY;
     [self.rainbow.layer addAnimation:animation forKey:@"SpinAnimation"];
     
@@ -614,7 +617,7 @@ finish:
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [GlobalVariables getInstance].idOfPost =[arrayUsedInTable[indexPath.row] valueForKey:@"id"];
+    [GlobalVariables getInstance].idOfPost = [arrayUsedInTable[indexPath.row] valueForKey:@"id"];
     [GlobalVariables getInstance].comingFromViewController = @"TicketsViewController";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
 }
@@ -627,8 +630,7 @@ finish:
     NSLog(@"indexPath: %ld", (long)indexPath.row);
     static NSString *CellIdentifier = @"CatsSubCatsCell";
     
-    CatsSubCatsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    CatsSubCatsCell *cell = [self.ticketTable dequeueReusableCellWithIdentifier:CellIdentifier];
     
     
     [cell.articleImage loadImageFromURL: [NSURL URLWithString:[arrayUsedInTable[indexPath.row ] valueForKey:@"thumbnail_url"]] placeholderImage: [UIImage imageNamed:@"PlaceHolderImage.png"] cachingKey:[NSString stringWithFormat:@"%@Thumbnail",[arrayUsedInTable[indexPath.row ] valueForKey:@"id"]]];
@@ -652,7 +654,7 @@ finish:
 -(void)sendingAnHTTGETTRequestCategoryClicked: (NSString *)url{
     
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
-    
+       NSLog(@"url:%@", jsonFileUrl);
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
     NSURLResponse *response = NULL;
@@ -668,7 +670,7 @@ finish:
     
     Dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError];
     
-    
+    NSLog(@"getting dictionary %@", Dictionary);
     
     
     
@@ -676,7 +678,7 @@ finish:
 
 -(NSDictionary *)makingRequestForAds:(NSString *)url
 {
-    
+ 
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
     
     

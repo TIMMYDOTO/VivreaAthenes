@@ -17,7 +17,10 @@
 #import "GlobalVariables.h"
 #import "OLGhostAlertView.h"
 #import "Header.h"
-@interface AnnouncementsViewController ()
+@interface AnnouncementsViewController (){
+    
+   
+}
 
 @end
 
@@ -31,8 +34,10 @@
     BOOL changeFrameOnce;
     UIRefreshControl *refreshControl;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
     changeFrameOnce = true;
     self.noAnnouncement.hidden = true;
     spinnerview = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(self.view.center.x - 22, self.view.center.y + 22, 45, 45)];
@@ -327,10 +332,7 @@
 
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

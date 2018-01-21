@@ -2541,7 +2541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSC-PP-8Pa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3130.5" y="-1166.5"/>
+            <point key="canvasLocation" x="3131" y="-1340"/>
         </scene>
         <!--Add Announcement-->
         <scene sceneID="3v4-Ir-fsv">
@@ -2552,15 +2552,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" id="aaZ-2n-CBg">
-                                <rect key="frame" x="28" y="65" width="318" height="550"/>
+                                <rect key="frame" x="28" y="65" width="318" height="530"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" id="vuN-Ss-FdF">
-                                        <rect key="frame" x="19" y="30" width="280" height="59"/>
+                                        <rect key="frame" x="17" y="28" width="280" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9di-95-awW">
-                                                <rect key="frame" x="0.0" y="1" width="281" height="59"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="59"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <string key="text">Utilisez le formulaire ci-dessous pour publier votre annonce.
 </string>
@@ -2572,7 +2572,7 @@
                                         <color key="backgroundColor" red="0.81972211599349976" green="0.94485580921173096" blue="0.98700755834579468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VLC-2F-let">
-                                        <rect key="frame" x="19" y="114" width="275" height="21"/>
+                                        <rect key="frame" x="17" y="111" width="276" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">Titre de la liste d'annonces*
 </string>
@@ -2581,11 +2581,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" id="WjW-q6-vTb">
-                                        <rect key="frame" x="19" y="138" width="265" height="39"/>
+                                        <rect key="frame" x="17" y="135" width="268" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="cpN-Aj-WY7">
-                                                <rect key="frame" x="17" y="4" width="248" height="30"/>
+                                                <rect key="frame" x="20" y="4" width="248" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <nil key="textColor"/>
@@ -2596,25 +2596,25 @@
                                         <color key="backgroundColor" red="0.8502238392829895" green="0.87451094388961792" blue="0.88283723592758179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nom du contact*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yxw-8G-ozm">
-                                        <rect key="frame" x="19" y="189" width="275" height="21"/>
+                                        <rect key="frame" x="17" y="187" width="276" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email du contact* " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8do-br-cA1">
-                                        <rect key="frame" x="19" y="258" width="275" height="21"/>
+                                        <rect key="frame" x="17" y="251" width="276" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" id="FuT-CK-xSl">
-                                        <rect key="frame" x="19" y="210" width="265" height="39"/>
+                                        <rect key="frame" x="17" y="207" width="268" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="A18-pu-zi5">
-                                                <rect key="frame" x="17" y="5" width="248" height="30"/>
+                                                <rect key="frame" x="20" y="4" width="248" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <nil key="textColor"/>
@@ -2625,7 +2625,7 @@
                                         <color key="backgroundColor" red="0.85022383930000001" green="0.87451094389999995" blue="0.88283723589999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dNa-yp-tgl" userLabel="Veuillez indiquer une adresse valide. Le code d'accès à la  gestion de votre annonce sera expédié à cette adresse.">
-                                        <rect key="frame" x="19" y="274" width="280" height="30"/>
+                                        <rect key="frame" x="17" y="267" width="280" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">Veuillez indiquer une adresse valide. Le code d'accès à la 
 gestion de votre annonce sera expédié à cette adresse.</string>
@@ -2634,29 +2634,29 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" id="xOX-v2-Fsl">
-                                        <rect key="frame" x="19" y="304" width="265" height="39"/>
+                                        <rect key="frame" x="17" y="295" width="268" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="aL5-L8-1u3">
-                                                <rect key="frame" x="17" y="4" width="248" height="30"/>
+                                                <rect key="frame" x="20" y="2" width="248" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.85022383930000001" green="0.87451094389999995" blue="0.88283723589999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Texte de l'annonce*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5SM-zW-fEp">
-                                        <rect key="frame" x="19" y="359" width="275" height="21"/>
+                                        <rect key="frame" x="17" y="347" width="276" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" id="ShC-pO-hL1">
-                                        <rect key="frame" x="19" y="382" width="280" height="116"/>
+                                        <rect key="frame" x="17" y="369" width="280" height="111"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" id="ASQ-rB-0pB">
@@ -2670,7 +2670,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <color key="backgroundColor" red="0.85022383930000001" green="0.87451094389999995" blue="0.88283723589999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="MbY-f8-uji">
-                                        <rect key="frame" x="18" y="509" width="144" height="28"/>
+                                        <rect key="frame" x="17" y="492" width="144" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
@@ -2694,7 +2694,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="vBR-xW-u92">
-                                        <rect key="frame" x="161" y="509" width="149" height="30"/>
+                                        <rect key="frame" x="161" y="492" width="148" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
@@ -2729,6 +2729,9 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                     </view>
                     <connections>
                         <outlet property="addannouncementView" destination="aaZ-2n-CBg" id="bk2-fU-htD"/>
+                        <outlet property="arrowDown" destination="syt-ka-UDB" id="11L-sA-KFK"/>
+                        <outlet property="arrowUp" destination="DS3-oy-PVo" id="iyr-02-XY8"/>
+                        <outlet property="arrowsView" destination="Q2a-Oa-OLh" id="yNa-x7-9Ml"/>
                         <outlet property="bigTitleview" destination="vuN-Ss-FdF" id="d8n-g5-c3x"/>
                         <outlet property="bittitle" destination="9di-95-awW" id="cOx-Ob-3Xr"/>
                         <outlet property="contaNameView" destination="FuT-CK-xSl" id="SKr-uJ-lNg"/>
@@ -2750,6 +2753,38 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSw-8x-pCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" misplaced="YES" id="Q2a-Oa-OLh">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DS3-oy-PVo" userLabel="upButton">
+                            <rect key="frame" x="17" y="8" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="arrow up"/>
+                            <connections>
+                                <action selector="upButtonPressed:" destination="bSu-0h-POC" eventType="touchUpInside" id="S6H-Ig-idO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="syt-ka-UDB" userLabel="downButton">
+                            <rect key="frame" x="64" y="8" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="arrow down"/>
+                            <connections>
+                                <action selector="downButtonPressed:" destination="bSu-0h-POC" eventType="touchUpInside" id="Q9d-Va-TCf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cav-Al-fwT">
+                            <rect key="frame" x="315" y="8" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="OK"/>
+                            <connections>
+                                <action selector="okButtonPressed:" destination="bSu-0h-POC" eventType="touchUpInside" id="bgN-zX-43F"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="3130.5" y="-451.5"/>
         </scene>
@@ -3694,7 +3729,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewb-d0-OO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267" y="-451"/>
+            <point key="canvasLocation" x="2266.5" y="-451.5"/>
         </scene>
         <!--Edit Announcement-->
         <scene sceneID="zEh-bw-4cP">
@@ -4521,6 +4556,8 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="announcementEdit.png" width="60" height="60"/>
         <image name="announcementLogo.png" width="45" height="57"/>
         <image name="announcementSearch.png" width="60" height="60"/>
+        <image name="arrow down" width="225" height="225"/>
+        <image name="arrow up" width="225" height="225"/>
         <image name="backButtonImage.png" width="74" height="66"/>
         <image name="backTodistrict.png" width="100" height="100"/>
         <image name="buyButtonBackground.png" width="301" height="94"/>

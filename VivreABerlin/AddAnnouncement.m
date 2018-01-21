@@ -13,7 +13,10 @@
 #import "AddAnnouncementNextStep.h"
 #import "Header.h"
 #import "OLGhostAlertView.h"
-@interface AddAnnouncement ()
+@interface AddAnnouncement (){
+    
+    __weak IBOutlet UIView *arrowsView;
+}
 
 @end
 
@@ -32,11 +35,21 @@
     int cases;
     int CASES2;
     NSMutableArray *textFields;
+    __weak IBOutlet UIButton *arrowUp;
+    __weak IBOutlet UIButton *arrowDown;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//     
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
+   
+    self.contentTextview.inputAccessoryView = arrowsView;
+    self.contactNameField.inputAccessoryView = arrowsView;
+    self.emailField.inputAccessoryView = arrowsView;
+    self.titleField.inputAccessoryView = arrowsView;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     if([GlobalVariables getInstance].editerClicked == NO){
         self.deleteAd.enabled = false;
@@ -92,15 +105,17 @@
     
     
 }
+- (void)keyboardDidHide:(NSNotification*)notification {
+    NSLog(@"keyboardDidHide");
+     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+
+}
+
+
 -(void)viewDidAppear:(BOOL)animated{
     
-    
-    
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -117,6 +132,7 @@
     
     if(self.keyboardIsShowing == YES)
     {
+       
         [self.contentTextview resignFirstResponder];
         [self.contactNameField resignFirstResponder];
         [self.emailField resignFirstResponder];
@@ -130,7 +146,7 @@
     
 }
 - (IBAction)SUIVANT:(id)sender {
-    
+   
     [self.contentTextview resignFirstResponder];
     [self.contactNameField resignFirstResponder];
     [self.emailField resignFirstResponder];
@@ -377,6 +393,8 @@
 }
 - (void)keyboardWillShow:(NSNotification*)aNotification
 {
+    NSLog(@"keyboardWillShow");
+   
     self.keyboardIsShowing = YES;
 }
 
@@ -401,6 +419,7 @@
 
 
 - (void)doneWithKeyboard{
+    
     [self.contentTextview resignFirstResponder];
     [self.contactNameField resignFirstResponder];
     [self.emailField resignFirstResponder];
@@ -416,6 +435,7 @@
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
+//       [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //    [UIView animateWithDuration:0.15 animations:^{
 //        self.addannouncementView.frame = frameOfPopUp;
 //        self.exitView.frame = exitButtonOrigin;
@@ -423,7 +443,7 @@
     
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    
+//       [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //    [UIView animateWithDuration:0.15 animations:^{
 //        self.addannouncementView.frame = frameOfPopUp;
 //        self.exitView.frame = exitButtonOrigin;
@@ -530,6 +550,32 @@
         [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
     }
 }
+- (IBAction)upButtonPressed:(UIButton *)sender {
+    
+    if (self.contactNameField.isFirstResponder ) { [self.titleField becomeFirstResponder];
+//        [arrowUp setBackgroundImage:[UIImage imageNamed:@"arrow up gray"] forState:UIControlStateNormal];
+        return;}
+    if (self.emailField.isFirstResponder ) { [self.contactNameField becomeFirstResponder]; return;}
+    if (self.contentTextview.isFirstResponder ) { [self.emailField becomeFirstResponder];
+//        [arrowDown setBackgroundImage:[UIImage imageNamed:@"arrow down"] forState:UIControlStateNormal];
+          return;}
+}
+- (IBAction)downButtonPressed:(UIButton *)sender {
+    if (self.titleField.isFirstResponder ) { [self.contactNameField becomeFirstResponder];
+//        [arrowUp setBackgroundImage:[UIImage imageNamed:@"arrow up"] forState:UIControlStateNormal];
+        return;}
+    if (self.contactNameField.isFirstResponder ) { [self.emailField becomeFirstResponder]; return;}
+    if (self.emailField.isFirstResponder ) { [self.contentTextview becomeFirstResponder];
+//         [arrowDown setBackgroundImage:[UIImage imageNamed:@"arrow down gray"] forState:UIControlStateNormal];
+        return;}
+
+}
+
+- (IBAction)okButtonPressed:(UIButton *)sender {
+    
+   [self.view endEditing:YES];
+}
+
 -(void)sendingAnHTTPPOSTRequestOnPostAnn: (NSString *)contact_name withEmail: (NSString *)email withTitle:(NSString *)title withDetails:(NSString *)details{
     if([self isInternet] == YES){
         NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -832,8 +878,14 @@
 
 
 - (void)keyboardOnScreen: (NSNotification *)notification {
-    
+    NSLog(@"keyboardOnScreen");
+       [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//      [arrowUp setBackgroundImage:[UIImage imageNamed:@"arrow up gray"]
+//                         forState:UIControlStateNormal];
+//      [arrowDown setBackgroundImage:[UIImage imageNamed:@"arrow down"]
+//                           forState:UIControlStateNormal];
     self.keyboardIsShowing = YES;
+
     
     NSDictionary *info  = notification.userInfo;
     NSValue      *value = info[UIKeyboardFrameEndUserInfoKey];
