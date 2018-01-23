@@ -49,7 +49,7 @@
     self.emailField.inputAccessoryView = arrowsView;
     self.titleField.inputAccessoryView = arrowsView;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+  
     
     if([GlobalVariables getInstance].editerClicked == NO){
         self.deleteAd.enabled = false;
@@ -105,11 +105,7 @@
     
     
 }
-- (void)keyboardDidHide:(NSNotification*)notification {
-    NSLog(@"keyboardDidHide");
-     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
-}
 
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -160,15 +156,50 @@
     
     if([self isInternet] == NO)
         [self showMessage:@"Connexion internet requise"];
-    else if(self.contentTextview.text.length == 0 || self.contactNameField.text.length == 0 || self.emailField.text.length == 0 || self.titleField.text.length == 0){
-        self.bittitle.text = @"Attention : merci de remplir tous les champs pour valider";
-        self.bigTitleview.backgroundColor = [self colorWithHexString:@"FF5260"];
-    }
-    else if([self NSStringIsValidEmail:self.emailField.text] == NO){
-        [self showMessage:@"Invalid Email"];
-    }
-    else if([GlobalVariables getInstance].editerClicked == NO && [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer == nil && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementsViewController"] && [[GlobalVariables getInstance].currentPopUpAnnouncementScreen isEqualToString:@"AnnouncementSearchView"]){
+    if (self.contentTextview.text.length == 0 || self.contentTextview.text.length == 0 || self.contactNameField.text.length == 0 || self.titleField.text.length == 0 || [self NSStringIsValidEmail:self.emailField.text] == NO || self.emailField.text.length == 0) {
+        if(self.contentTextview.text.length == 0){
+            self.bittitle.text = @"Attention : merci de remplir tous les champs pour valider";
+            self.bigTitleview.backgroundColor = [self colorWithHexString:@"FF5260"];
+            [self.contentView.layer setBorderColor:[UIColor redColor].CGColor];
+            [self.contentView.layer setBorderWidth:1.5f];
+        }
+        else {
+                [self.contentView.layer setBorderWidth:0.f];
+            }
+             if (self.contactNameField.text.length == 0){
+                self.bittitle.text = @"Attention : merci de remplir tous les champs pour valider";
+                self.bigTitleview.backgroundColor = [self colorWithHexString:@"FF5260"];
+                [self.contaNameView.layer setBorderColor:[UIColor redColor].CGColor];
+                [self.contaNameView.layer setBorderWidth:1.5f];
+            }
+             else {
+                 [self.contaNameView.layer setBorderWidth:0.f];
+             }
+            if (self.titleField.text.length == 0){
+                self.bittitle.text = @"Attention : merci de remplir tous les champs pour valider";
+                self.bigTitleview.backgroundColor = [self colorWithHexString:@"FF5260"];
+                [self.titleSearchfieldView.layer setBorderColor:[UIColor redColor].CGColor];
+                [self.titleSearchfieldView.layer setBorderWidth:1.5f];
+            }
+            else {
+                [self.titleSearchfieldView.layer setBorderWidth:0.f];
+            }
+            if([self NSStringIsValidEmail:self.emailField.text] == NO || self.emailField.text.length == 0){
         
+        
+                [self.emailView.layer setBorderColor:[UIColor redColor].CGColor];
+                [self.emailView.layer setBorderWidth:1.5f];
+
+            }
+            else{
+                 [self.emailView.layer setBorderWidth:0.f];
+            }
+    }
+
+   
+   
+    else if([GlobalVariables getInstance].editerClicked == NO && [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer == nil && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementsViewController"] && [[GlobalVariables getInstance].currentPopUpAnnouncementScreen isEqualToString:@"AnnouncementSearchView"]){
+       
         
         
       //  NSLog(@"Am dat click pe add Announcement de pe pagina principala din meniul search");
@@ -460,6 +491,7 @@
     return [emailTest evaluateWithObject:checkString];
 }
 - (IBAction)DeleteAD:(id)sender {
+    
     if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"editAnnClickedOnHomePage"]){
         
        // NSLog(@"Am dat click pe delete din Ecranul principal");
@@ -864,7 +896,7 @@
 - (void)addNotificationsOnScreen {
     
     
-    
+   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardOnScreen:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardOffScreen:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -909,7 +941,7 @@
 
 
 -  (void)keyboardOffScreen: (NSNotification *)notification {
-    
+     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [UIView animateWithDuration:0.15 animations:^{
         self.addannouncementView.frame = frameOfPopUp;
         self.exitView.frame = exitButtonOrigin;

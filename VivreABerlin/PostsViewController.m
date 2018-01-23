@@ -67,10 +67,10 @@
     
     NSLog(@"%@   id OF POST",[GlobalVariables getInstance].idOfPost);
     
-  //  [GlobalVariables getInstance].idOfPost = @"36599";
+    //  [GlobalVariables getInstance].idOfPost = @"36599";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"InfoPratiquesTableViewCell" bundle:nil] forCellReuseIdentifier:@"InfoPratiquesTableViewCell"];
-   
+    
     
     self.tableView.scrollEnabled = false;
     arrayUsedInTable = [[NSMutableArray alloc] init];
@@ -145,21 +145,21 @@
     //    [loadingScreen bringSubviewToFront: loadingText];
     //    [self updateLoadingLabel];
     
-     dispatch_async(dispatch_get_main_queue(), ^{
-    initialpozitionOfOpenMenuButton = self.view.frame.size.height/12;
-    initialpozitionOfBackButton = self.view.frame.size.height/5;
-    changeFrameOnce = true;
-    changeFrameOnce1 = true;
-    
-    CGRect frame = self.backButton.frame;
-    frame.origin.y = initialpozitionOfBackButton;
-    self.backButton.frame = frame;
-    
-    CGRect frame1 = self.menuButton.frame;
-    frame1.origin.y = initialpozitionOfOpenMenuButton;
-    self.menuButton.frame = frame1;
-    
-     });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        initialpozitionOfOpenMenuButton = self.view.frame.size.height/12;
+        initialpozitionOfBackButton = self.view.frame.size.height/5;
+        changeFrameOnce = true;
+        changeFrameOnce1 = true;
+        
+        CGRect frame = self.backButton.frame;
+        frame.origin.y = initialpozitionOfBackButton;
+        self.backButton.frame = frame;
+        
+        CGRect frame1 = self.menuButton.frame;
+        frame1.origin.y = initialpozitionOfOpenMenuButton;
+        self.menuButton.frame = frame1;
+        
+    });
     
     
     imagespinner = [[JTMaterialSpinner alloc] init];
@@ -181,13 +181,13 @@
     
     
     
-   // NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts allKeys]);
+    // NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts allKeys]);
     //  NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost]);
     
     [GlobalVariables getInstance].DictionaryWithAllPosts = [[NSMutableDictionary alloc] initWithDictionary:[(NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"DictionaryWithAllPosts"]] mutableCopy]];
     //   NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts allKeys]);
     
-   // NSLog(@"%@ CONTINUTUL POSTULUi",[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost]);
+    // NSLog(@"%@ CONTINUTUL POSTULUi",[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost]);
     
     if([[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] != nil || [self isInternet] == YES){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -198,14 +198,14 @@
                 
                 [self makingRequestForPostDetails:[NSString stringWithFormat:postDetailLink,[GlobalVariables getInstance].idOfPost]];
                 
-          //      NSLog(@"Cu request");
+                //      NSLog(@"Cu request");
                 withrequest = true;
                 
                 
             }
             else {
                 withrequest = false;
-         //       NSLog(@"FARA REQUEST");
+                //       NSLog(@"FARA REQUEST");
                 
                 postInfo = [[NSMutableDictionary alloc]initWithDictionary:[[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] mutableCopy]];
                 
@@ -263,7 +263,7 @@
                 
                 
                 
-             //   NSLog(@"IDOFPOST : %@,  CAROUSELIDS: %@",[GlobalVariables getInstance].idOfPost, [GlobalVariables getInstance].CarouselOfPostIds);
+                //   NSLog(@"IDOFPOST : %@,  CAROUSELIDS: %@",[GlobalVariables getInstance].idOfPost, [GlobalVariables getInstance].CarouselOfPostIds);
                 
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ViewPostOnHomeTapBar"];
@@ -375,28 +375,28 @@
                                     
                                     
                                     NSString *text;
-                                   
-                                        text = [[[NSString stringWithFormat:@"%@",[postInfo valueForKey:@"post_content"]] stringByReplacingOccurrencesOfString:@"GOOGLE MAP" withString:@""] stringByReplacingOccurrencesOfString:@"<img" withString:@"<p></p><img"];
+                                    
+                                    text = [[[NSString stringWithFormat:@"%@",[postInfo valueForKey:@"post_content"]] stringByReplacingOccurrencesOfString:@"GOOGLE MAP" withString:@""] stringByReplacingOccurrencesOfString:@"<img" withString:@"<p></p><img"];
                                     
                                     
-                                    if([text containsString:@"<figcaption>"]){
+                                    if([text containsString:@"<caption>"]){
                                         NSLog(@"figcaption");
                                     }
-                                          
+                                    
                                     if([text containsString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]])
                                         
                                         text = [text stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]] withString:[NSString stringWithFormat:@"<p><a href=\"https://www.youtu%@\">Youtube Link</a></p>",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]];
                                     
                                     
-                                  
-                                        NSLog(@"figcaption");
+                                    
+                                    NSLog(@"figcaption");
                                     if([text containsString:@"<h2>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h2>" withString:@"<br></br><h2>"];
                                     if([text containsString:@"<h3>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h3>" withString:@"<br></br><h3>"];
                                     if([text containsString:@"<h4>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h4>" withString:@"<br></br><h4>"];
-                                 
+                                    
                                     
                                     
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
@@ -442,10 +442,10 @@
                                     }
                                     
                                     
-                 
-                                               //else
-                                               //    NSLog(@" KEY : %@", key);
-     
+                                    
+                                    //else
+                                    //    NSLog(@" KEY : %@", key);
+                                    
                                     [attributedString enumerateAttribute:NSAttachmentAttributeName
                                                                  inRange:NSMakeRange(0, [attributedString length])
                                                                  options:0
@@ -474,9 +474,9 @@
                                                  attachment.bounds = CGRectMake(0, 8, size.width, size.height);
                                                  
                                                  attachment.image = image;
-                    
+                                                 
                                              }
-
+                                             
                                          }
                                          
                                          
@@ -487,9 +487,9 @@
                                     }
                                     else{
                                         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-                                            [GlobalVariables getInstance].fontsize = 14;
+                                            [GlobalVariables getInstance].fontsize = 17;
                                         else
-                                        [GlobalVariables getInstance].fontsize = 18;
+                                            [GlobalVariables getInstance].fontsize = 18;
                                         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",[GlobalVariables getInstance].fontsize] forKey:@"fontSize"];
                                     }
                                     
@@ -506,7 +506,7 @@
                                             if((int)[GlobalVariables getInstance].fontsize == 0){
                                                 
                                                 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-                                                   
+                                                    
                                                     
                                                     if([[NSString stringWithFormat:@"%@",oldFont.fontName] isEqualToString:@"TimesNewRomanPS-BoldMT"])
                                                         newFont = [UIFont fontWithName:@"Montserrat-Bold" size:17];
@@ -528,7 +528,7 @@
                                                     
                                                 }
                                                 else {
-                                                //oldFont.pointSize
+                                                    //oldFont.pointSize
                                                     
                                                     if([[NSString stringWithFormat:@"%@",oldFont.fontName] isEqualToString:@"TimesNewRomanPS-BoldMT"])
                                                         newFont = [UIFont fontWithName:@"Montserrat-Bold" size:21];
@@ -547,7 +547,7 @@
                                                     
                                                     
                                                     self.fontSizeNumber.text = @"18";
-                                                
+                                                    
                                                 }
                                                 
                                             }
@@ -640,10 +640,10 @@
                                     }
                                     if ([NSString stringWithFormat:@"%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"text"]].length >3) {
                                         if ([NSString stringWithFormat:@"%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"link"]].length >3)
-                                        [arrayUsedInTable addObject:[NSString stringWithFormat:@"%@XYZ%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"text"],[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"link"]]];
+                                            [arrayUsedInTable addObject:[NSString stringWithFormat:@"%@XYZ%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"text"],[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"link"]]];
                                         else
                                             [arrayUsedInTable addObject:[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"place"] valueForKey:@"text"]];
-                                            
+                                        
                                         [arrayWithImagesUsedInTable addObject:@"places"];
                                         
                                     }
@@ -655,24 +655,24 @@
                                         [arrayUsedInTable addObject:[[postInfo valueForKey:@"practical_infos"] valueForKey:@"date_extra"]];
                                         [arrayWithImagesUsedInTable addObject:@"0"];
                                     }
-                                  
+                                    
                                     if([[[postInfo valueForKey:@"practical_infos"] valueForKey:@"schedule"] isKindOfClass:[NSDictionary class]])
                                         for(NSString *key in [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"schedule"] allKeys])
                                             if([[[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"schedule"] valueForKey:key]  valueForKey:@"status"] isEqualToString:@"opened"]) {
                                                 if([key isEqualToString:@"monday"])
                                                     schedule = [schedule stringByAppendingString: @" lundi"];
                                                 else if([key isEqualToString:@"tuesday"])
-                                                     schedule = [schedule stringByAppendingString: @", mardi"];
+                                                    schedule = [schedule stringByAppendingString: @", mardi"];
                                                 else if([key isEqualToString:@"wednesday"])
-                                                     schedule = [schedule stringByAppendingString: @", mercredi"];
+                                                    schedule = [schedule stringByAppendingString: @", mercredi"];
                                                 else if([key isEqualToString:@"thursday"])
-                                                     schedule = [schedule stringByAppendingString: @", jeudi"];
+                                                    schedule = [schedule stringByAppendingString: @", jeudi"];
                                                 else if([key isEqualToString:@"friday"])
                                                     schedule = [schedule stringByAppendingString: @", vendredi"];
                                                 else if([key isEqualToString:@"saturday"])
-                                                     schedule = [schedule stringByAppendingString: @", samedi"];
+                                                    schedule = [schedule stringByAppendingString: @", samedi"];
                                                 else if([key isEqualToString:@"sunday"])
-                                                     schedule = [schedule stringByAppendingString: @", dimanche"];
+                                                    schedule = [schedule stringByAppendingString: @", dimanche"];
                                             }
                                     if(schedule.length>8) {
                                         [arrayUsedInTable addObject:schedule];
@@ -745,11 +745,11 @@
                                     for (int i = 0 ; i < [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"types_of_resturant"] count]; i++)
                                         typeOfResto = [typeOfResto stringByAppendingString:[NSString stringWithFormat:@" %@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"types_of_resturant"][i] valueForKey:@"name"]]];
                                     if(typeOfResto.length>18) {
-                                    [arrayUsedInTable addObject:typeOfResto];
+                                        [arrayUsedInTable addObject:typeOfResto];
                                         [arrayWithImagesUsedInTable addObject:@"0"];
                                         
                                     }
-                                   
+                                    
                                     
                                     
                                     else if ([[NSString stringWithFormat:@"%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"cb_accepted"] valueForKey:@"value"]] isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"cb_accepted"] valueForKey:@"field_is_visible"]] isEqualToString:@"1"]) {
@@ -772,17 +772,17 @@
                                     
                                     
                                     
-                        
+                                    
                                     
                                     [self.tableView reloadData];
                                     if(arrayUsedInTable.count > 0) {
                                         CGRect newFrame = self.tableView.frame;
                                         newFrame.origin.y = postContent.frame.size.height + postContent.frame.origin.y;
                                         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-                                             newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/15;
+                                            newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/15;
                                         else
-                                        newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
-                                       // newFrame.size.height = self.tableView.contentSize.height;
+                                            newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
+                                        // newFrame.size.height = self.tableView.contentSize.height;
                                         self.tableView.frame = newFrame;
                                     }
                                     else {
@@ -796,7 +796,7 @@
                                     
                                 } completion:nil];
                 
- 
+                
                 if(withrequest == true && ([[[NSUserDefaults standardUserDefaults] valueForKey:@"CanAddObjectToCarousel"] isEqualToString:@"YES"])){
                     
                     
@@ -810,7 +810,7 @@
                 }
                 
                 
-               self.tableView.backgroundColor = [UIColor clearColor];
+                self.tableView.backgroundColor = [UIColor clearColor];
                 
                 self.fontSizeImage.contentMode = UIViewContentModeScaleAspectFit;
                 
@@ -857,7 +857,7 @@
                 
                 if([[postInfo valueForKey:@"location"] count] == 0){
                     [self.postMapView removeFromSuperview];
-                    self.postMapView.frame =CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height, 0 , 0);
+                    self.postMapView.frame = CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height, 0 , 0);
                     
                 }
                 else{
@@ -871,7 +871,7 @@
                     else{
                         point.subtitle = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
                     }
-                   // point.subtitle = [NSString stringWithFormat:@"%@ -> %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"], [[postInfo valueForKey:@"category"] valueForKey:@"name"]];
+                    // point.subtitle = [NSString stringWithFormat:@"%@ -> %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"], [[postInfo valueForKey:@"category"] valueForKey:@"name"]];
                     [self.postMapView addAnnotation:point];
                     
                     if([self isInternet] == NO){
@@ -887,7 +887,7 @@
                             
                         });
                     }
-
+                    
                     
                     
                     double delayInSeconds = 1.5;
@@ -937,11 +937,11 @@
                 }
                 
                 
-                 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-                self.savedPostView.frame = CGRectMake(self.view.frame.size.width * 0.012, self.tagsScrollView.frame.size.height + self.tagsScrollView.frame.origin.y , self.view.frame.size.width * 0.97, self.savedPostView.frame.size.height);
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                    self.savedPostView.frame = CGRectMake(self.view.frame.size.width * 0.012, self.tagsScrollView.frame.size.height + self.tagsScrollView.frame.origin.y , self.view.frame.size.width * 0.97, self.savedPostView.frame.size.height);
                 else
                     self.savedPostView.frame = CGRectMake(self.view.frame.size.width * 0.012, self.tagsScrollView.frame.size.height + self.tagsScrollView.frame.origin.y + 20 , self.view.frame.size.width * 0.97, self.savedPostView.frame.size.height);
-                    
+                
                 
                 
                 CGFloat heightOfView = 0;
@@ -1164,98 +1164,98 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && screenSize.height == 812.0f) {
             
             
-                if(changeFrameOnce1 == true && scrollView.contentOffset.y >= initialpozitionOfOpenMenuButton -37) {
-                    
-                    self.menuButton.frame = CGRectMake(self.backButton.frame.origin.x, 37, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
-                    
-                    [self.view addSubview:self.menuButton];
-                    [self.view bringSubviewToFront:self.menuButton];
-                    
-                    
-                    changeFrameOnce1 = false;
-                }
-                else if(changeFrameOnce1 == false && scrollView.contentOffset.y < initialpozitionOfOpenMenuButton - 37) {
-                    
-                    self.menuButton.frame = CGRectMake(self.menuButton.frame.origin.x, initialpozitionOfOpenMenuButton, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
-                    
-                    [self.postScrollView addSubview:self.menuButton];
-                    [self.postScrollView bringSubviewToFront:self.menuButton];
-                    
-                    changeFrameOnce1 = true;
-                }
+            if(changeFrameOnce1 == true && scrollView.contentOffset.y >= initialpozitionOfOpenMenuButton -37) {
+                
+                self.menuButton.frame = CGRectMake(self.backButton.frame.origin.x, 37, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
+                
+                [self.view addSubview:self.menuButton];
+                [self.view bringSubviewToFront:self.menuButton];
                 
                 
-                
-                if(changeFrameOnce == true && scrollView.contentOffset.y  + self.menuButton.frame.size.height >= initialpozitionOfBackButton - self.backButton.frame.size.height ) {
-                    
-                    self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, self.menuButton.frame.origin.y + self.menuButton.frame.size.height + 5, self.backButton.frame.size.width, self.backButton.frame.size.height);
-                    
-                    [self.view addSubview:self.backButton];
-                    [self.view bringSubviewToFront:self.backButton];
-                    
-                    changeFrameOnce = false;
-                    
-                }
-                else if(changeFrameOnce == false && scrollView.contentOffset.y < self.backButton.frame.origin.y - self.backButton.frame.size.height + 25) {
-                    
-                    self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, initialpozitionOfBackButton, self.backButton.frame.size.width, self.backButton.frame.size.height);
-                    
-                    [self.postScrollView addSubview:self.backButton];
-                    [self.postScrollView bringSubviewToFront:self.backButton];
-                    
-                    changeFrameOnce = true;
-                    
-                }
+                changeFrameOnce1 = false;
             }
-            else{
-                if(changeFrameOnce1 == true && scrollView.contentOffset.y >= initialpozitionOfOpenMenuButton ) {
-                    
-                    self.menuButton.frame = CGRectMake(self.backButton.frame.origin.x, 0, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
-                    
-                    [self.view addSubview:self.menuButton];
-                    [self.view bringSubviewToFront:self.menuButton];
-                    
-                    
-                    changeFrameOnce1 = false;
-                }
-                else if(changeFrameOnce1 == false && scrollView.contentOffset.y < initialpozitionOfOpenMenuButton) {
-                    
-                    self.menuButton.frame = CGRectMake(self.menuButton.frame.origin.x, initialpozitionOfOpenMenuButton, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
-                    
-                    [self.postScrollView addSubview:self.menuButton];
-                    [self.postScrollView bringSubviewToFront:self.menuButton];
-                    
-                    changeFrameOnce1 = true;
-                }
+            else if(changeFrameOnce1 == false && scrollView.contentOffset.y < initialpozitionOfOpenMenuButton - 37) {
                 
+                self.menuButton.frame = CGRectMake(self.menuButton.frame.origin.x, initialpozitionOfOpenMenuButton, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
                 
+                [self.postScrollView addSubview:self.menuButton];
+                [self.postScrollView bringSubviewToFront:self.menuButton];
                 
-                if(changeFrameOnce == true && scrollView.contentOffset.y >= initialpozitionOfBackButton - self.backButton.frame.size.height - 6) {
-                    
-                    self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, self.menuButton.frame.size.height + 3, self.backButton.frame.size.width, self.backButton.frame.size.height);
-                    
-                    [self.view addSubview:self.backButton];
-                    [self.view bringSubviewToFront:self.backButton];
-                    
-                    changeFrameOnce = false;
-                    
-                }
-                else if(changeFrameOnce == false && scrollView.contentOffset.y < initialpozitionOfBackButton - self.backButton.frame.size.height - 6) {
-                    
-                    self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, initialpozitionOfBackButton, self.backButton.frame.size.width, self.backButton.frame.size.height);
-                    
-                    [self.postScrollView addSubview:self.backButton];
-                    [self.postScrollView bringSubviewToFront:self.backButton];
-                    
-                    changeFrameOnce = true;
-                    
-                }
+                changeFrameOnce1 = true;
             }
             
+            
+            
+            if(changeFrameOnce == true && scrollView.contentOffset.y  + self.menuButton.frame.size.height >= initialpozitionOfBackButton - self.backButton.frame.size.height ) {
+                
+                self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, self.menuButton.frame.origin.y + self.menuButton.frame.size.height + 5, self.backButton.frame.size.width, self.backButton.frame.size.height);
+                
+                [self.view addSubview:self.backButton];
+                [self.view bringSubviewToFront:self.backButton];
+                
+                changeFrameOnce = false;
+                
+            }
+            else if(changeFrameOnce == false && scrollView.contentOffset.y < self.backButton.frame.origin.y - self.backButton.frame.size.height + 25) {
+                
+                self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, initialpozitionOfBackButton, self.backButton.frame.size.width, self.backButton.frame.size.height);
+                
+                [self.postScrollView addSubview:self.backButton];
+                [self.postScrollView bringSubviewToFront:self.backButton];
+                
+                changeFrameOnce = true;
+                
+            }
+        }
+        else{
+            if(changeFrameOnce1 == true && scrollView.contentOffset.y >= initialpozitionOfOpenMenuButton ) {
+                
+                self.menuButton.frame = CGRectMake(self.backButton.frame.origin.x, 0, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
+                
+                [self.view addSubview:self.menuButton];
+                [self.view bringSubviewToFront:self.menuButton];
+                
+                
+                changeFrameOnce1 = false;
+            }
+            else if(changeFrameOnce1 == false && scrollView.contentOffset.y < initialpozitionOfOpenMenuButton) {
+                
+                self.menuButton.frame = CGRectMake(self.menuButton.frame.origin.x, initialpozitionOfOpenMenuButton, self.menuButton.frame.size.width, self.menuButton.frame.size.height);
+                
+                [self.postScrollView addSubview:self.menuButton];
+                [self.postScrollView bringSubviewToFront:self.menuButton];
+                
+                changeFrameOnce1 = true;
+            }
+            
+            
+            
+            if(changeFrameOnce == true && scrollView.contentOffset.y >= initialpozitionOfBackButton - self.backButton.frame.size.height - 6) {
+                
+                self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, self.menuButton.frame.size.height + 3, self.backButton.frame.size.width, self.backButton.frame.size.height);
+                
+                [self.view addSubview:self.backButton];
+                [self.view bringSubviewToFront:self.backButton];
+                
+                changeFrameOnce = false;
+                
+            }
+            else if(changeFrameOnce == false && scrollView.contentOffset.y < initialpozitionOfBackButton - self.backButton.frame.size.height - 6) {
+                
+                self.backButton.frame = CGRectMake(self.backButton.frame.origin.x, initialpozitionOfBackButton, self.backButton.frame.size.width, self.backButton.frame.size.height);
+                
+                [self.postScrollView addSubview:self.backButton];
+                [self.postScrollView bringSubviewToFront:self.backButton];
+                
+                changeFrameOnce = true;
+                
+            }
         }
         
-        
-
+    }
+    
+    
+    
     
     
     
@@ -1651,11 +1651,11 @@ finish:
     
     UILabel *commentContent = [[UILabel alloc] initWithFrame:CGRectMake(self.titleOfThePost.frame.origin.x + 5, commentAuthor.frame.size.height + 2, self.titleOfThePost.frame.size.width - self.titleOfThePost.frame.origin.x/2 , 30)];
     commentContent.text = content;
-       if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-           commentContent.font = [UIFont fontWithName:@"Montserrat-Light" size:13.0 ];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        commentContent.font = [UIFont fontWithName:@"Montserrat-Light" size:13.0 ];
     
-           else
-               commentContent.font = [UIFont fontWithName:@"Montserrat-Light" size:17.0 ];
+    else
+        commentContent.font = [UIFont fontWithName:@"Montserrat-Light" size:17.0 ];
     
     commentContent.textColor = [self colorWithHexString:@"6d7986"];
     commentContent.numberOfLines = 0;
@@ -1733,8 +1733,8 @@ finish:
     UILabel *contentSuggested = [[UILabel alloc]initWithFrame:CGRectMake(titleSuggested.frame.origin.x, titleSuggested.frame.origin.y + titleSuggested.frame.size.height + 2, self.suggestedPostContent.frame.size.width, self.suggestedPostContent.frame.size.height)];
     contentSuggested.backgroundColor = [UIColor clearColor];
     contentSuggested.text = [NSString stringWithFormat:@"%@", content];
-     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    contentSuggested.font = [UIFont fontWithName:@"Montserrat-Regular" size:13];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        contentSuggested.font = [UIFont fontWithName:@"Montserrat-Regular" size:13];
     else
         contentSuggested.font = [UIFont fontWithName:@"Montserrat-Regular" size:17];
     contentSuggested.textColor = self.suggestedPostContent.textColor;
@@ -1835,12 +1835,12 @@ finish:
             [UIView animateWithDuration:0.15 animations:^{
                 self.twittertw.transform = CGAffineTransformIdentity;
                 
-  
-                    SLComposeViewController *tweetSheet = [SLComposeViewController
-                                                           composeViewControllerForServiceType:SLServiceTypeTwitter];
-                    [tweetSheet setInitialText:[NSString stringWithFormat:@"%@ - Vivre à %@ %@",[postInfo valueForKey:@"post_title" ],nameOfTheCity,[postInfo valueForKey:@"post_url"]]];
-                    [self presentViewController:tweetSheet animated:YES completion:nil];
-
+                
+                SLComposeViewController *tweetSheet = [SLComposeViewController
+                                                       composeViewControllerForServiceType:SLServiceTypeTwitter];
+                [tweetSheet setInitialText:[NSString stringWithFormat:@"%@ - Vivre à %@ %@",[postInfo valueForKey:@"post_title" ],nameOfTheCity,[postInfo valueForKey:@"post_url"]]];
+                [self presentViewController:tweetSheet animated:YES completion:nil];
+                
                 
             }];
             
@@ -1976,7 +1976,7 @@ finish:
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"%@", [GlobalVariables getInstance].comingFromViewController]];
     }
     else {
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"%@", [GlobalVariables getInstance].comingFromViewController]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"%@", [GlobalVariables getInstance].comingFromViewController]];
     }
     
 }
@@ -2012,11 +2012,11 @@ finish:
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
         return self.view.frame.size.width/15;
     else
-    return self.view.frame.size.width/7;
+        return self.view.frame.size.width/7;
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -2052,9 +2052,9 @@ finish:
             cell.textView.frame = CGRectMake(cell.myImage.frame.origin.x, cell.textView.frame.origin.y, cell.textView.frame.size.width, cell.textView.frame.size.height);
         
         if([[arrayUsedInTable objectAtIndex:indexPath.row-1] containsString:@"XYZ"]) {
-        NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arrayUsedInTable objectAtIndex:indexPath.row-1] componentsSeparatedByString:@"XYZ"] objectAtIndex:0]];
-        [attributedString addAttribute: NSLinkAttributeName value: [[[arrayUsedInTable objectAtIndex:indexPath.row-1] componentsSeparatedByString:@"XYZ"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
-        cell.textView.attributedText = attributedString;
+            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arrayUsedInTable objectAtIndex:indexPath.row-1] componentsSeparatedByString:@"XYZ"] objectAtIndex:0]];
+            [attributedString addAttribute: NSLinkAttributeName value: [[[arrayUsedInTable objectAtIndex:indexPath.row-1] componentsSeparatedByString:@"XYZ"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
+            cell.textView.attributedText = attributedString;
         }
         else
             cell.textView.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[arrayUsedInTable objectAtIndex:indexPath.row-1]]];
@@ -2066,9 +2066,9 @@ finish:
             cell.textView.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
         
         if(postContent.font.pointSize < 16)
-        cell.textView.font = [UIFont fontWithName:@"Montserrat-Regular" size:postContent.font.pointSize];
+            cell.textView.font = [UIFont fontWithName:@"Montserrat-Regular" size:postContent.font.pointSize];
         else
-          cell.textView.font = [UIFont fontWithName:@"Montserrat-Regular" size:16];;
+            cell.textView.font = [UIFont fontWithName:@"Montserrat-Regular" size:16];;
         
         if(indexPath.row == 2) {
             if(postContent.font.pointSize < 16)
@@ -2084,14 +2084,14 @@ finish:
         }
         else
             cell.textView.textColor = [UIColor darkGrayColor];
-            
+        
         //[cell.textView sizeToFit];
     }
-   // cell.textView.numberOfLines = 1;
-   // cell.textView.adjustsFontSizeToFitWidth = true;
+    // cell.textView.numberOfLines = 1;
+    // cell.textView.adjustsFontSizeToFitWidth = true;
     
-   
-  
+    
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
