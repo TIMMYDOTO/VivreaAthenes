@@ -382,6 +382,15 @@
                                     if([text containsString:@"<caption>"]){
                                         NSLog(@"figcaption");
                                     }
+//                                    NSArray *x = [text componentsSeparatedByString:@"©"];
+                                    if([text containsString:@"<caption>"]){
+                                    NSString *y = [text stringByReplacingOccurrencesOfString:@"<caption>" withString:@"</caption><br />"];
+                                        NSLog(@"ytext = %@\n", y);
+                                    }
+//                                    id z = [y componentsSeparatedByString:@"</caption>"];
+//                                    id r = [z objectAtIndex:0];
+//                                    NSLog(@"x = %@\n y = %@\nz = %@\n r = %@", x, y, z, r);
+                                    NSLog(@"text1 = %@", text);
                                     
                                     if([text containsString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]])
                                         

@@ -231,12 +231,14 @@
             if([GlobalVariables getInstance].sectionTagNameTickets != nil)
             self.ticketsSlug.text = [GlobalVariables getInstance].sectionTagNameTickets;
             [self sendingAnHTTGETTRequestCategoryClicked:[NSString stringWithFormat:postsFromTag,[GlobalVariables getInstance].sectionTagTickets,[NSString stringWithFormat:@"%d",Page]]];
+            NSLog(@"u %@", [NSString stringWithFormat:postsFromTag,[GlobalVariables getInstance].sectionTagTickets,[NSString stringWithFormat:@"%d",Page]]);
+            NSLog(@"url %@",[GlobalVariables getInstance].sectionTagTickets);
             
             
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 ////////////////////////////////////
-            NSLog(@"[Dictionaryyy %lu",[[Dictionary valueForKey:@"results"] count]);
+//            NSLog(@"[Dictionaryyy %lu",[[Dictionary valueForKey:@"results"] count]);
                 for(int i = 0 ; i < [[Dictionary valueForKey:@"results"] count]; i++){
               
                     [arrayUsedInTable addObject:[Dictionary valueForKey:@"results"][i]];
@@ -523,8 +525,7 @@
     }
     while (![scanner isAtEnd]);
     
-finish:
-    return result;
+finish: return result;
 }
 
 - (IBAction)openSideBar:(id)sender {
@@ -680,9 +681,10 @@ finish:
 {
  
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
-    
+    NSLog(@"url %@",url);
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
+    
     NSURLResponse *response = NULL;
     NSError *requestError = NULL;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];

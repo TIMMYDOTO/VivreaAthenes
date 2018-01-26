@@ -251,7 +251,7 @@
             [GlobalVariables getInstance].sectionTagTickets = [[NSUserDefaults standardUserDefaults] objectForKey:@"SectionTAGONCE"];
             [GlobalVariables getInstance].sectionTagNameTickets = [[NSUserDefaults standardUserDefaults] objectForKey:@"sectionTagNameTickets"];
             
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             
             
             [self makingRequest:HomePageLink];
@@ -300,8 +300,8 @@
                 
                 
             });
-            
-        });
+        
+//        });
     }
         else {
          
@@ -918,7 +918,7 @@
 {
     
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
-    
+    NSLog(@"jsonFileUrl %@", jsonFileUrl);
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
     NSURLResponse *response = NULL;

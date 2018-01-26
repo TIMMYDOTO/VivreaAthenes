@@ -52,7 +52,7 @@
   
     
     if([GlobalVariables getInstance].editerClicked == NO){
-        self.deleteAd.enabled = false;
+//        self.deleteAd.enabled = false;
       //  NSLog(@"NU Vin din editer");
     }
     else{
