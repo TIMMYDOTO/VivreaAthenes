@@ -106,7 +106,7 @@
                             <view contentMode="scaleToFill" misplaced="YES" id="CHY-e8-CRr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.2196078431372549" green="0.68627450980392157" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21960784310000001" green="0.68627450980000004" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="M5H-IT-pcP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -165,6 +165,7 @@
                         <outlet property="progresslabel" destination="29H-eH-eKX" id="vhC-Wk-dh5"/>
                         <outlet property="secondTabBarImg" destination="iOs-NG-Dxa" id="thy-My-Crp"/>
                         <outlet property="secondTabBarItem" destination="hwj-b0-gL4" id="soX-D4-NaN"/>
+                        <outlet property="statusView" destination="CHY-e8-CRr" id="hG1-Bg-63a"/>
                         <outlet property="thirdTabBarImg" destination="mDb-xa-kXI" id="h9J-5R-rX9"/>
                         <outlet property="thirdTabBarItem" destination="jT7-JN-nXF" id="QnO-wF-y60"/>
                     </connections>
@@ -290,7 +291,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="284" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="I9G-S5-8oV">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="I9G-S5-8oV">
                                         <rect key="frame" x="15" y="19" width="46" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -555,11 +556,11 @@
                                             <action selector="openiAPController:" destination="Eba-lK-hCY" eventType="touchUpInside" id="pGl-SU-1JM"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="cL8-aE-mBk">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="cL8-aE-mBk">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="ybT-bw-Cdy">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="ybT-bw-Cdy">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -732,11 +733,11 @@
                                         <color key="textColor" red="0.96048861742019653" green="0.5988040566444397" blue="0.017176084220409393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="gVV-49-iAo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="gVV-49-iAo">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo.png" id="Fij-cX-i4V">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="Fij-cX-i4V">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -994,7 +995,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.1137254902" green="0.22352941179999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="vKc-TX-xpC">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="vKc-TX-xpC">
                                         <rect key="frame" x="148" y="186" width="81" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1012,7 +1013,7 @@
                                         <color key="textColor" red="0.23137254901960785" green="0.66274509803921566" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="CoE-3n-EOb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="CoE-3n-EOb">
                                         <rect key="frame" x="148" y="186" width="81" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1806,6 +1807,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="checkAll" destination="O3I-lk-8EZ" id="Z32-xA-U2W"/>
                         <outlet property="checkAllImage" destination="2JT-YU-sPM" id="tUU-lD-2ao"/>
                         <outlet property="checkAllText" destination="nTt-3S-KkL" id="mnv-Qc-3b4"/>
                         <outlet property="filterTable" destination="Xyy-PL-p4Z" id="83E-ZI-NuZ"/>
@@ -1832,11 +1834,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="p8g-BY-7Qy">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="p8g-BY-7Qy">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="vOq-Qu-o5n">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="vOq-Qu-o5n">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -2904,11 +2906,11 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo.png" id="KrS-kO-Ohi">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="KrS-kO-Ohi">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="PMQ-gn-hvL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="PMQ-gn-hvL">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -3077,11 +3079,11 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="kCn-yc-vSW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo1" id="kCn-yc-vSW">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainbow.png" id="g0C-Az-zbZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainbow" id="g0C-Az-zbZ">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -3563,7 +3565,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <!--Announcements View Controller-->
         <scene sceneID="e5Q-qd-Vei">
             <objects>
-                <viewController storyboardIdentifier="AnnouncementsViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rv1-cX-gP7" customClass="AnnouncementsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnnouncementsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rv1-cX-gP7" customClass="AnnouncementsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3vO-rZ-kLj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3576,11 +3578,11 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="vVx-az-AeD">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="vVx-az-AeD">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="XD7-Ta-nrP">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="XD7-Ta-nrP">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -3652,6 +3654,14 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="233" y="222" width="133" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Bn-0j-28r">
+                                                <rect key="frame" x="0.0" y="0.0" width="41" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="announcementAdd.png"/>
+                                                <connections>
+                                                    <action selector="addAnnouncement:" destination="rv1-cX-gP7" eventType="touchUpInside" id="IbT-n4-WVh"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y6b-GC-HPA">
                                                 <rect key="frame" x="46" y="0.0" width="41" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -3668,14 +3678,6 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                 </state>
                                                 <connections>
                                                     <action selector="searchAnnouncement:" destination="rv1-cX-gP7" eventType="touchUpInside" id="iUW-P4-hZ8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Bn-0j-28r">
-                                                <rect key="frame" x="0.0" y="0.0" width="41" height="46"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="announcementAdd.png"/>
-                                                <connections>
-                                                    <action selector="addAnnouncement:" destination="rv1-cX-gP7" eventType="touchUpInside" id="IbT-n4-WVh"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -4412,11 +4414,11 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="r4v-YM-Dz1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="r4v-YM-Dz1">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow.png" id="rWL-ev-uxJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="rWL-ev-uxJ">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -4553,7 +4555,6 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="AddImage.png" width="352" height="352"/>
         <image name="Back.png" width="398" height="452"/>
         <image name="ChangeFont.png" width="300" height="300"/>
-        <image name="Logo.png" width="924" height="907"/>
         <image name="PopUpBackground.png" width="601" height="760"/>
         <image name="SeparatorCategoryPage.png" width="49" height="49"/>
         <image name="addAnn.png" width="159" height="60"/>
@@ -4580,6 +4581,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="iPhone" width="200" height="376"/>
         <image name="instagram.png" width="31" height="31"/>
         <image name="loadinView.png" width="595" height="330"/>
+        <image name="logo1" width="1848" height="1814"/>
         <image name="lupa.png" width="19" height="19"/>
         <image name="map.png" width="31" height="31"/>
         <image name="mapMenuButton.png" width="97" height="113"/>
@@ -4592,7 +4594,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="newsletter" width="226" height="137"/>
         <image name="offlinePic.png" width="144" height="140"/>
         <image name="openiAPButton.png" width="65" height="66"/>
-        <image name="rainbow.png" width="924" height="907"/>
+        <image name="rainbow" width="1848" height="1814"/>
         <image name="rectangle5" width="332" height="591"/>
         <image name="roundedRect.png" width="411" height="87"/>
         <image name="savedPost.png" width="380" height="70"/>

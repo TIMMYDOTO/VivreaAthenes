@@ -18,5 +18,8 @@
 - (IBAction)continue:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 
+@property (assign, nonatomic) BOOL isGoodResponce;
+
+-(void)sendingAnHTTPPOSTRequestEditAnnWithToken: (NSString *)token withEmail:(NSString *)email completionHandler:(void (^)(NSDictionary *resp))completionHandler;
 
 @end

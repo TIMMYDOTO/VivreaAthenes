@@ -15,7 +15,8 @@
 #import <Social/Social.h>
 #import "SimpleFilesCache.h"
 #import "OLGhostAlertView.h"
-
+#import "EditAnnouncement.h"
+#import "AddAnnouncement.h"
 @interface AnnouncementArticleView ()
 
 @end
@@ -53,13 +54,14 @@
     
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
+     [self.annScrollView bringSubviewToFront:self.logo];
     [self.annScrollView bringSubviewToFront:self.rainbow];
-    [self.annScrollView bringSubviewToFront:self.logo];
+   
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Spin)
@@ -571,16 +573,61 @@ finish:
     [GlobalVariables getInstance].currentPopUpAnnouncementScreen = @"AnnouncementArticleView";
       [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"SearchAnnouncement"]];
 }
-- (IBAction)editerAnn:(id)sender {
+- (IBAction)editerAnn:(UIButton *)sender {
     if([self isInternet] == YES){
-    [GlobalVariables getInstance].editerClicked = YES;
-    [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer = @"EditAnnClickedOnArtcilePage";
-    [GlobalVariables getInstance].currentPopUpAnnouncementScreen = @"AnnouncementArticleView";
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"]];
+        [GlobalVariables getInstance].editerClicked = YES;
+        [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer = @"editAnnClickedOnHomePage";
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(sender.frame.size.width/2-10, sender.frame.size.height/2-10, 20, 20)];
+        
+        [activityView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        [sender addSubview:activityView];
+        
+        [activityView startAnimating];
+        //
+        [sender setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self.editAnn setText:@""];
+        EditAnnouncement * editAnnoucm = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAnnouncement"];
+        
+        AddAnnouncement *addAnnocment = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        [editAnnoucm sendingAnHTTPPOSTRequestEditAnnWithToken:[userDefaults objectForKey:@"token"] withEmail:[userDefaults objectForKey:@"email"] completionHandler:^(NSDictionary *resp){
+            if ([resp count]){
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"editAdAnnouncement"] userInfo: resp];
+                [activityView removeFromSuperview];
+                [sender setBackgroundImage:[UIImage imageNamed:@"editer"] forState:UIControlStateNormal];
+                [self.editAnn setText:@"Editer"];
+         
+              
+                
+                
+            }
+            else{
+                [activityView removeFromSuperview];
+                [sender setBackgroundImage:[UIImage imageNamed:@"editer"] forState:UIControlStateNormal];
+               [self.editAnn setText:@"Editer"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"]];
+            }
+            //             if ([[userDefaults objectForKey:@"isGoodResponce"] isEqualToString:@"badResponce"] || [userDefaults objectForKey:@"isGoodResponce"] == nil){
+            //
+            //             }
+        }];
     }
+    
     else{
         [self showMessage:@"Please connect to the internet"];
     }
+//    if([self isInternet] == YES){
+//    [GlobalVariables getInstance].editerClicked = YES;
+//    [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer = @"EditAnnClickedOnArtcilePage";
+//    [GlobalVariables getInstance].currentPopUpAnnouncementScreen = @"AnnouncementArticleView";
+//     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"]];
+//    }
+//    else{
+//        [self showMessage:@"Please connect to the internet"];
+//    }
 }
 - (IBAction)addAnno:(id)sender {
     if([self isInternet] == YES){

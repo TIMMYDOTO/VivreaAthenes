@@ -65,7 +65,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    NSLog(@"Viewcontroller12");
     allimages = [[NSMutableArray alloc]init];
     allDescriptions = [[NSMutableArray alloc]init];
     allTitles = [[NSMutableArray alloc]init];
@@ -89,13 +89,14 @@
    // [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
-    self.logoIcon.image = [UIImage imageNamed:@"Logo.png"];
+    self.logoIcon.image = [UIImage imageNamed:@"logo1"];
     self.logoIcon.contentMode = UIViewContentModeScaleAspectFit;
     self.logoIcon.clipsToBounds = true;
     self.rainbowHome.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbowHome.clipsToBounds = true;
+     [self.viewControllerSrollView bringSubviewToFront:self.logoIcon];
     [self.viewControllerSrollView bringSubviewToFront:self.rainbowHome];
-    [self.viewControllerSrollView bringSubviewToFront:self.logoIcon];
+   
     
     self.newsLetter.contentMode = UIViewContentModeScaleAspectFill;
     self.newsLetter.clipsToBounds = true;
@@ -115,15 +116,15 @@
     
     
     if(hour >=20){
-        self.changeableBackground.image =[UIImage imageNamed:@"BackgroundNight.png"];
+        self.changeableBackground.image =[UIImage imageNamed:@"BackgroundNight"];
         if (self.changeableBackground.image == nil){
-            self.changeableBackground.image = [UIImage imageNamed:@"BackgroundDay.png"];
+            self.changeableBackground.image = [UIImage imageNamed:@"BackgroundDay"];
         }
     }
     else {
-        self.changeableBackground.image = [UIImage imageNamed:@"BackgroundDay.png"];
+        self.changeableBackground.image = [UIImage imageNamed:@"BackgroundDay"];
         if (self.changeableBackground.image == nil){
-            self.changeableBackground.image = [UIImage imageNamed:@"BackgroundNight.png"];
+            self.changeableBackground.image = [UIImage imageNamed:@"BackgroundNight"];
         }
     }
     
@@ -157,8 +158,8 @@
         
     }
     
-    for(int i = 0 ; i <8 ;i++) {
-        
+    for(int i = 0; i < [[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_content"] count]; i++) {
+//        NSLog(@"%d", [[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_content"][i]);
         [lastPostContent addObject:[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_content"][i]];
         [lastPostCategoryName addObject:[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"name"][i]];
         [lastPostCategoryTitleName addObject:[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_title"][i]];
@@ -266,6 +267,7 @@
                 if([[[resultForSlugsAndBoolForAds objectForKey:@"ads"] objectForKey:@"active"] intValue] == 1){
                     [GlobalVariables getInstance].canDisplayInterstitials = YES;
                     [GlobalVariables getInstance].delayBetweenInterstitials = [[[resultForSlugsAndBoolForAds objectForKey:@"ads"] objectForKey:@"delay"] intValue];
+                    
                 }
                 else
                     [GlobalVariables getInstance].canDisplayInterstitials = NO;
@@ -420,7 +422,7 @@
                     [arrayWithUrlAds addObject:[[offlineHomeDictonary valueForKey:@"ads"] valueForKey:@"ad_url"][i]];
                 }
                 
-                for(int i = 0 ; i <8 ;i++) {
+                for(int i = 0 ; i <[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_content"] count] ;i++) {
                     
                     [lastPostContent addObject:[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"] valueForKey:@"post_content"][i]];
                     [lastPostCategoryName addObject:[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"name"][i]];
@@ -541,7 +543,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8+arrayWithUrlImageAds.count;
+    return lastPostCategoryName.count + arrayWithUrlImageAds.count;
 }
 
 
@@ -748,7 +750,7 @@
             return cell;
             
         }
-        else if(indexPath.row >7) {
+         else if(indexPath.row >7) {
             
             static NSString *CellIdentifier = @"lastPostCellHomeView";
             
@@ -772,8 +774,13 @@
             return cell;
         }
     }
+    if (indexPath.row == 7){
+        return cell;
+    }
     else {
-    
+        NSLog(@"index path %lu", indexPath.row);
+        NSLog(@"last path count %lu, last Post Category Name %@", [lastPostCategoryName count], lastPostCategoryName[indexPath.row]);
+     
         static NSString *CellIdentifier = @"lastPostCellHomeView";
         
         lastPostCellHomeView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -1275,7 +1282,7 @@ finish:
     animation.duration = 10.0f;
     animation.repeatCount = INFINITY;
     [self.rainbowHome.layer addAnimation:animation forKey:@"SpinAnimation"];
-    
+    [self.rainbowHome setImage:[UIImage imageNamed:@"rainbow"]];
     if(([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable)){
         self.newsLetter.hidden = true;
         self.openIapImage.hidden = false;

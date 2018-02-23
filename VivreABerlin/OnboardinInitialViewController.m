@@ -56,14 +56,15 @@
     self.activateNotifications.layer.shadowRadius = 1;
     self.activateNotifications.layer.shadowOpacity = 0.15;
     
-    self.logoIcon.image = [UIImage imageNamed:@"Logo.png"];
+    self.logoIcon.image = [UIImage imageNamed:@"logo1"];
     self.rainBow.image = [UIImage imageNamed:@"rainbow.png"];
     self.logoIcon.contentMode = UIViewContentModeScaleAspectFit;
     self.logoIcon.clipsToBounds = true;
     self.rainBow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainBow.clipsToBounds = true;
+     [self.notificationview bringSubviewToFront:self.logoIcon];
     [self.notificationview bringSubviewToFront:self.rainBow];
-    [self.notificationview bringSubviewToFront:self.logoIcon];
+   
     
     
     

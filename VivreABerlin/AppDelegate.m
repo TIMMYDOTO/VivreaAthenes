@@ -12,6 +12,7 @@
 #import "Reachability.h"
 #import "GlobalVariables.h"
 #import <OneSignal/OneSignal.h>
+#import "Header.h"
 @import GoogleMobileAds;
 
 @interface AppDelegate ()
@@ -22,7 +23,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+//    [FBAdSettings addTestDevice:[FBAdSettings testDeviceHash]];
   // [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"didUserPurchasedIap"];
      NSLog(@"Puchased status : %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]);
     
@@ -82,7 +83,9 @@
     // [OneSignal syncHashedEmail:userEmail];
     
     
-    [GADMobileAds configureWithApplicationID:@"ca-app-pub-5601513769658709~3316614168"];
+    
+    
+    [GADMobileAds configureWithApplicationID:googleAppID];
 
     UINavigationController *navigationController;
     

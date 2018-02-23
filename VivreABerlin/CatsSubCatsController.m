@@ -123,7 +123,7 @@
     self.categoryName.adjustsFontSizeToFitWidth = true;
     self.changableBackground.clipsToBounds = true;
     self.changableBackground.contentMode = UIViewContentModeScaleAspectFill;
-    //self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
@@ -131,9 +131,9 @@
     self.rainbow.image = [UIImage imageNamed:@"rainbow.png"];
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
-    
+     [self.view bringSubviewToFront:self.logo];
     [self.view bringSubviewToFront:self.rainbow];
-    [self.view bringSubviewToFront:self.logo];
+   
    
     
     self.catsSubCatsTable.scrollEnabled = false;

@@ -84,7 +84,7 @@
     if([self isInternet] == NO){
         
         [spinnerview endRefreshing];
-        self.mapView.maximumZoomLevel = 17;
+        self.mapView.maximumZoomLevel = 20;
     }
     
     if([GlobalVariables getInstance].comingFromPostView == true){
@@ -93,7 +93,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].lastLatitudine, [GlobalVariables getInstance].lastLongitudine);
             
-            [self.mapView setCenterCoordinate:center zoomLevel:14 direction:0 animated:NO];
+            [self.mapView setCenterCoordinate:center zoomLevel:12 direction:0 animated:NO];
             
             
         });
@@ -104,7 +104,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
             
-            [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:NO];
+            [self.mapView setCenterCoordinate:center zoomLevel:12 direction:0 animated:NO];
             
             
         });
@@ -332,9 +332,9 @@
         }
         
         
-        //    for( int i = 0 ; i< [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]; i++){
-        //        [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"][i] setValue:[[GlobalVariables getInstance].Annotations valueForKey:@"icon_url"][i] forKey:@"markerImg"];
-        //    }
+//            for( int i = 0 ; i< [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]; i++){
+//                [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"][i] setValue:[[GlobalVariables getInstance].Annotations valueForKey:@"icon_url"][i] forKey:@"markerImg"];
+//            }
         
         
         if([[NSString stringWithFormat:@"%lu",(unsigned long)[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]] isEqualToString:@"0"])
@@ -647,7 +647,7 @@
     
     
     MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",str2]];
-    
+    NSLog(@"str2 %@", str2);
     if (!annotationImage) {
         
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",str2]];
@@ -659,7 +659,7 @@
         if(image == nil)
             return nil;
         image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 0, image.size.height/2, 0)];
-        
+
         annotationImage = [MGLAnnotationImage annotationImageWithImage:[self imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)] reuseIdentifier:[NSString stringWithFormat:@"%@",str2]];
     }
     

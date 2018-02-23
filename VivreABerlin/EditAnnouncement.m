@@ -19,6 +19,7 @@
 
 @implementation EditAnnouncement
 {
+    
     BOOL keyboardIsShowing;
     JTMaterialSpinner *spinnerView;
 }
@@ -104,8 +105,9 @@
         return NO;
     }
 }
--(void)sendingAnHTTPPOSTRequestEditAnnWithToken: (NSString *)token withEmail: (NSString *)email {
-    
+-(void)sendingAnHTTPPOSTRequestEditAnnWithToken: (NSString *)token withEmail: (NSString *)email completionHandler:(void (^)(NSDictionary *resp))completionHandler {
+  
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     
@@ -114,73 +116,73 @@
     
     NSString *params = [NSString stringWithFormat:@"action=dgab_edit_petites_annonces&ad_key=%@&contact_email=%@",token,email];
     
-    
+
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest addValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
     
     NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         
-     //   NSLog(@"%@",responseDict);
+        NSLog(@"token %@", token);
+        NSLog(@"email %@", email);
+    NSLog(@"responce %@",response);
+        NSLog(@"responseDict %@", responseDict);
         
         if([responseDict count]){
+        
+           
+            [userDefaults setObject:@"goodResponce" forKey:@"isGoodResponce"];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BRAVO !"
-                                                            message:@"Vous pouvez éditer votre annonce"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            
-            
-            
-            AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
-            child2.titleeeee = [responseDict valueForKey:@"title"];
-            child2.emailContact = [responseDict valueForKey:@"contact_email"];
-            child2.contactName = [responseDict valueForKey:@"contact_name"];
-            child2.adID = [responseDict valueForKey:@"ad_id"];
-            child2.adKey = [responseDict valueForKey:@"ad_key"];
-            child2.details = [responseDict valueForKey:@"details"];
-            child2.view.frame = self.view.bounds;
+            [userDefaults setObject:token forKey:@"token"];
+            [userDefaults setObject:email forKey:@"email"];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BRAVO !"
+//                                                            message:@"Vous pouvez éditer votre annonce"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
             
             
-            [UIView transitionWithView:self.view duration:0.3
-                               options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-                                   [self addChildViewController:child2];
-                                   [child2 didMoveToParentViewController:self];
-                                   child2.view.frame = self.view.bounds;
-                                   [self.view addSubview:child2.view];
-                                   [self.view bringSubviewToFront:child2.view];
-                               } completion:nil];
+           
+          
 
             
         }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR!"
-                                                            message:@"Merci de vérifier les infos saisies dans les champs"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            
-        }
+//        else{
+//            [userDefaults setObject:@"badResponce" forKey:@"isGoodResponce"];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR!"
+//                                                            message:@"Merci de vérifier les infos saisies dans les champs"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//
+//        }
         [spinnerView endRefreshing];
-        [self.tokenField resignFirstResponder];
-        [self.emailfield resignFirstResponder];
         self.continueButton.hidden = false;
+//        NSLog(@"error %@", error);
+        
+        if (completionHandler) { completionHandler(responseDict); }
+        
     }];
+  
     [dataTask resume];
+    
+
 }
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
+
     BOOL stricterFilter = NO;
     NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
     NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
     NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+  
     return [emailTest evaluateWithObject:checkString];
 }
 
@@ -205,16 +207,27 @@
         
         self.continueButton.hidden = true;
         [spinnerView beginRefreshing];
+    
+    [self sendingAnHTTPPOSTRequestEditAnnWithToken:self.tokenField.text withEmail:self.emailfield.text completionHandler:^(NSDictionary *resp){
+    
+        if ([resp count]){
+            [[self view]setHidden:YES];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AddAnnouncement"] userInfo: resp];
+      
+           
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR!"
+                                                            message:@"Merci de vérifier les infos saisies dans les champs"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
         
-        [self sendingAnHTTPPOSTRequestEditAnnWithToken:self.tokenField.text withEmail:self.emailfield.text];
-        
-        
-        
-        
-//    }
-//    else{
-//        [self showMessage:@"Merci de remplir tous les champs"];
-//    }
+    
+
 
 }
 @end

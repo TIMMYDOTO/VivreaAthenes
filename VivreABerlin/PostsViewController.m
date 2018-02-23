@@ -60,7 +60,7 @@
     NSMutableArray *arrayUsedInTable;
     NSMutableArray *arrayWithImagesUsedInTable;
 }
-
+//    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:4] range:NSMakeRange(0, 500)];
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -118,7 +118,7 @@
     [self.fontSizeImage.layer setBorderColor: [self colorWithHexString:@"D6D8E4"].CGColor];
     [self.fontSizeImage.layer setBorderWidth: 1.0];
     
-    self.logoIcon.image = [UIImage imageNamed:@"Logo.png"];
+    
     
     spinner = [[JTMaterialSpinner alloc] init];
     spinner.circleLayer.lineWidth = 4.0;
@@ -128,13 +128,14 @@
     [self.view bringSubviewToFront:spinner];
     [spinner beginRefreshing];
     
-    self.logoIcon.image = [UIImage imageNamed:@"Logo.png"];
+    self.logoIcon.image = [UIImage imageNamed:@"logo1.png"];
     self.logoIcon.contentMode = UIViewContentModeScaleAspectFit;
     self.logoIcon.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
+     [self.postScrollView bringSubviewToFront:self.logoIcon];
     [self.postScrollView bringSubviewToFront:self.rainbow];
-    [self.postScrollView bringSubviewToFront:self.logoIcon];
+   
     
     //    loadingText = [[UILabel alloc]initWithFrame:CGRectMake(self.view.center.x - 110, self.view.center.y - 100, 250, 50)];
     //    loadingText.textAlignment = UIStackViewAlignmentCenter;
@@ -366,31 +367,35 @@
                 
                 postContent = [[ UITextView alloc] initWithFrame:CGRectMake(self.passage.frame.origin.x, self.view.frame.size.height * 0.8 , self.titleOfThePost.frame.size.width, self.titleOfThePost.frame.size.height)];
                 postContent.backgroundColor = [UIColor clearColor];
-                
+                if([[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"]){
+                    [GlobalVariables getInstance].fontsize = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"] floatValue];
+                }
+                else{
+                    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                        [GlobalVariables getInstance].fontsize = 17;
+                    else
+                        [GlobalVariables getInstance].fontsize = 18;
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",[GlobalVariables getInstance].fontsize] forKey:@"fontSize"];
+                }
                 
                 [UIView transitionWithView:postContent
                                   duration:0.4f
                                    options:UIViewAnimationOptionTransitionCrossDissolve
                                 animations:^{
                                     
-                                    
-                                    NSString *text;
-                                    
+                                    NSMutableArray *captionArr = [[NSMutableArray alloc]init];
+                                    __block  NSString *text;
+                                   
                                     text = [[[NSString stringWithFormat:@"%@",[postInfo valueForKey:@"post_content"]] stringByReplacingOccurrencesOfString:@"GOOGLE MAP" withString:@""] stringByReplacingOccurrencesOfString:@"<img" withString:@"<p></p><img"];
-                                    
-                                    
-                                    if([text containsString:@"<caption>"]){
-                                        NSLog(@"figcaption");
-                                    }
-//                                    NSArray *x = [text componentsSeparatedByString:@"©"];
-                                    if([text containsString:@"<caption>"]){
-                                    NSString *y = [text stringByReplacingOccurrencesOfString:@"<caption>" withString:@"</caption><br />"];
-                                        NSLog(@"ytext = %@\n", y);
-                                    }
-//                                    id z = [y componentsSeparatedByString:@"</caption>"];
-//                                    id r = [z objectAtIndex:0];
-//                                    NSLog(@"x = %@\n y = %@\nz = %@\n r = %@", x, y, z, r);
-                                    NSLog(@"text1 = %@", text);
+                                
+                                    [[self substrings:text] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                        [captionArr addObject:obj];
+                                       
+                                        text = [text stringByReplacingOccurrencesOfString:obj withString:[[@"<center>" stringByAppendingString:obj] stringByAppendingString:@"</center>"]];
+                                  
+                                    }];
+                                  
+                             text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"<BR />"];
                                     
                                     if([text containsString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]])
                                         
@@ -398,16 +403,21 @@
                                     
                                     
                                     
-                                    NSLog(@"figcaption");
+                                
                                     if([text containsString:@"<h2>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h2>" withString:@"<br></br><h2>"];
                                     if([text containsString:@"<h3>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h3>" withString:@"<br></br><h3>"];
                                     if([text containsString:@"<h4>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h4>" withString:@"<br></br><h4>"];
-                                    
-                                    
-                                    
+                                    if([text containsString:@"<BR /><caption><p></p>"])
+                                        text = [text stringByReplacingOccurrencesOfString:@"<BR /><caption><p></p>" withString:@"<caption>"];
+                                    if([text containsString:@"</caption><br />"])
+                                        text = [text stringByReplacingOccurrencesOfString:@"</caption><br />" withString:@"</caption>"];
+                                    if([text containsString:@"<BR />\r<caption>"])
+                                        text = [text stringByReplacingOccurrencesOfString:@"<BR />\r<caption>" withString:@"<BR /><BR /><caption>"];
+                                  
+                                    NSLog(@"text1: %@", text);
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
                                         
                                         
@@ -417,7 +427,7 @@
                                                             documentAttributes: nil
                                                             error: nil
                                                             ];
-                                        
+                               
                                         
                                         [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject: attributedString]
                                                                       withName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]];
@@ -431,7 +441,7 @@
                                             
                                             
                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                                
+                                               
                                                 NSMutableAttributedString *newAtt= [[NSMutableAttributedString alloc]  initWithData: [text dataUsingEncoding:NSUnicodeStringEncoding]
                                                                                                                             options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
                                                                                                                  documentAttributes: nil
@@ -491,20 +501,11 @@
                                          
                                      }];
                                     //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"]);
-                                    if([[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"]){
-                                        [GlobalVariables getInstance].fontsize = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"] floatValue];
-                                    }
-                                    else{
-                                        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-                                            [GlobalVariables getInstance].fontsize = 17;
-                                        else
-                                            [GlobalVariables getInstance].fontsize = 18;
-                                        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",[GlobalVariables getInstance].fontsize] forKey:@"fontSize"];
-                                    }
+                                
                                     
                                     
                                     
-                                    NSMutableAttributedString *res = [attributedString mutableCopy];
+                                   __block NSMutableAttributedString *res = [attributedString mutableCopy];
                                     
                                     [res beginEditing];
                                     __block BOOL found = NO;
@@ -583,33 +584,56 @@
                                             
                                             [res removeAttribute:NSFontAttributeName range:range];
                                             [res addAttribute:NSFontAttributeName value:newFont range:range];
+                                           
+                                            
                                             found = YES;
                                             
                                             
                                             
-                                            
+                                          
                                         }
                                     }];
+                                 
                                     if (!found) {
                                         // No font was found - do something else?
                                     }
                                     [res endEditing];
                                     
                                     
-                                    
-                                    //                                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-                                    //                                    paragraphStyle.headIndent = 10.0;
-                                    //                                    paragraphStyle.firstLineHeadIndent = 0;
-                                    //                                    paragraphStyle.tailIndent = -10.0;
-                                    //                                    NSDictionary *attrsDictionary = @{NSParagraphStyleAttributeName: paragraphStyle};
-                                    //                                    [res removeAttribute:NSParagraphStyleAttributeName range:NSMakeRange(0, [attributedString length])];
-                                    //                                    [res addAttributes:attrsDictionary range:NSMakeRange(0, [attributedString length])];
-                                    
-                                    
-                                    
-                                    
                                     postContent.frame = CGRectMake(self.view.frame.size.width * 0.001, self.starsCollectionView.frame.size.height + self.starsCollectionView.frame.origin.y , self.view.frame.size.width * 0.985, self.titleOfThePost.frame.size.height);
+                                    
+                                postContent.attributedText = res;
+                                    NSMutableArray *arrOfStrings = [[NSMutableArray alloc]init];
+                                    [captionArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                        obj = [obj substringFromIndex:1];
+                                        NSRange searchRange = NSMakeRange(0,postContent.text.length);
+                                        NSRange foundRange;
+                                        while (searchRange.location < postContent.text.length) {
+                                            searchRange.length = postContent.text.length-searchRange.location;
+                                            foundRange = [postContent.text rangeOfString:obj options:nil range:searchRange];
+                                            if (foundRange.location != NSNotFound) {
+                                                // found an occurrence of the substring! do stuff here
+                                                searchRange.location = foundRange.location+foundRange.length;
+                                               [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:NSMakeRange(foundRange.location, foundRange.length)];
+                                            } else {
+                                                // no more substring to find
+                                                break;
+                                            }
+                                        }
+                                        
+                                     //   [self changeString:postContent.text subString:obj mutableString:res];
+                                        
+                                        
+                                      // postContent.text = [postContent.text stringByReplacingOccurrencesOfString:obj withString:@""];
+                                      
+                                        //NSLog(@"range2: %@", NSStringFromRange(range2));
+                                   
+                                    }];
+                             
+                                    
                                     postContent.attributedText = res;
+//                                    postContent.text = [res string];
+//                                    postContent.attributedText = attributedString;
                                     [self.postScrollView addSubview:postContent];
                                     [self.postScrollView bringSubviewToFront:postContent];
                                     [postContent sizeToFit];
@@ -880,7 +904,7 @@
                     else{
                         point.subtitle = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
                     }
-                    // point.subtitle = [NSString stringWithFormat:@"%@ -> %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"], [[postInfo valueForKey:@"category"] valueForKey:@"name"]];
+             
                     [self.postMapView addAnnotation:point];
                     
                     if([self isInternet] == NO){
@@ -1058,9 +1082,46 @@
         self.postNotSaved.hidden = false;
         
     }
-    
-}
 
+}
+-(void)changeString:(NSString *)contentStr subString:(NSString *) substring mutableString:(NSMutableAttributedString *) res{
+    NSRange searchRange = NSMakeRange(0,contentStr.length);
+    NSRange foundRange;
+    while (searchRange.location < contentStr.length) {
+        searchRange.length = contentStr.length-searchRange.location;
+        foundRange = [contentStr rangeOfString:substring options:nil range:searchRange];
+        if (foundRange.location != NSNotFound) {
+            // found an occurrence of the substring! do stuff here
+            searchRange.location = foundRange.location+foundRange.length;
+                NSLog(@"range12: %@", NSStringFromRange(searchRange));
+            [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:searchRange ];
+        
+            
+        } else {
+            // no more substring to find
+            
+            break;
+        }
+    }
+}
+- (NSMutableArray*)substrings:(NSString*)candidateString{
+    
+    NSRegularExpression * exp = [[NSRegularExpression alloc]initWithPattern:@"([^>])*(</caption>)" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSMutableArray *resultArray = [NSMutableArray array];
+    [exp enumerateMatchesInString:candidateString options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, candidateString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+         NSString *finalString = candidateString;
+
+        finalString = [finalString substringWithRange:[result range]];
+        finalString = [finalString substringToIndex:[finalString length]-10];
+        [resultArray addObject:finalString];
+
+       
+    }];
+   
+    NSLog(@"%@",resultArray);
+    return resultArray;
+}
 -(void)viewWillAppear:(BOOL)animated{
     CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.fromValue = [NSNumber numberWithFloat:0.0f];
@@ -1275,12 +1336,7 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    NSLog(@"AM PRIMIT MEMORIE");
-    // Dispose of any resources that can be recreated.
-}
+
 
 -(BOOL)isInternet{
     

@@ -51,20 +51,26 @@ JTMaterialSpinner * spinnerView;
     NSMutableDictionary * HomePageInfos;
     Reachability* internetReachable;
     BOOL canShowAdd;
+ 
+    IBOutlet UIView *statusView;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    statusView.layer.zPosition = -1;
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    UIColor *color = [UIColor blueColor];
+//    statusBar.backgroundColor = color;
     // Do any additional setup after loading the view.
     [GlobalVariables getInstance].currentViewController = @"ViewController";
     
  
     
     canShowAdd = YES;
-    
-    [GlobalVariables getInstance].delayBetweenInterstitials = 300;
-    
+    NSDictionary *adsSettings = [[self makingRequestForAds:settingsData]valueForKey:@"ads"];
+    [GlobalVariables getInstance].delayBetweenInterstitials = [[adsSettings valueForKey:@"delay"]intValue];
+
     [NSTimer scheduledTimerWithTimeInterval:[GlobalVariables getInstance].delayBetweenInterstitials
                                      target:self
                                    selector:@selector(changeShowAddStatus)
@@ -96,7 +102,7 @@ JTMaterialSpinner * spinnerView;
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon.png"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon.png"];
     }
-    
+   
     self.backgroundTabBar.clipsToBounds = true;
     self.firstTabBarImg.clipsToBounds = true;
     self.secondTabBarImg.clipsToBounds = true;
@@ -391,6 +397,9 @@ JTMaterialSpinner * spinnerView;
     
         [GlobalVariables getInstance].DictionaryWithAllPosts = [[NSMutableDictionary alloc]initWithDictionary:(NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"DictionaryWithAllPosts"]]];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 -(void) checkNetworkStatus:(NSNotification *)notice
 {
     // called after network status changes
@@ -558,7 +567,7 @@ JTMaterialSpinner * spinnerView;
             [vc.view removeFromSuperview];
             [vc removeFromParentViewController];
             
-          //   NSLog(@"%@ Controller sters ------------------------------------------",[GlobalVariables getInstance].currentViewController);
+       
         }
         
                     [GlobalVariables getInstance].comingFrom = @"Home";
@@ -733,14 +742,21 @@ JTMaterialSpinner * spinnerView;
     }
     else if ([notification.object isEqualToString:@"AddAnnouncement"])
     {
-        
+        NSDictionary *userInfo = notification.userInfo;
         kAppDelegate.lockInPortrait = YES;
-        
+        NSLog(@"userInfo %@", userInfo);
         
         AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
+   
         
-        child2.view.frame = self.view.bounds;
+                        child2.titleeeee = [userInfo valueForKey:@"title"];
+                        child2.emailContact = [userInfo valueForKey:@"contact_email"];
+                        child2.contactName = [userInfo valueForKey:@"contact_name"];
+                        child2.adID = [userInfo valueForKey:@"ad_id"];
+                        child2.adKey = [userInfo valueForKey:@"ad_key"];
+                        child2.details = [userInfo valueForKey:@"details"];
         
+                        child2.canBeDeleted = YES;
         
         [UIView transitionWithView:self.view duration:0.3
                            options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -749,6 +765,64 @@ JTMaterialSpinner * spinnerView;
                                child2.view.frame = self.view.bounds;
                                [self.view addSubview:child2.view];
                            } completion:nil];
+        
+        
+    }
+    else if ([notification.object isEqualToString:@"editAdAnnouncement"])
+    {
+        NSDictionary *userInfo = notification.userInfo;
+        NSLog(@"userInfo %@", userInfo);
+        kAppDelegate.lockInPortrait = YES;
+        
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"] userInfo: userInfo];
+        
+
+//               AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
+//                child2.titleeeee = [userInfo valueForKey:@"title"];
+//                child2.emailContact = [userInfo valueForKey:@"contact_email"];
+//                child2.contactName = [userInfo valueForKey:@"contact_name"];
+//                child2.adID = [userInfo valueForKey:@"ad_id"];
+//                child2.adKey = [userInfo valueForKey:@"ad_key"];
+//                child2.details = [userInfo valueForKey:@"details"];
+//                child2.view.frame = self.view.bounds;
+//                child2.canBeDeleted = YES;
+//                child2.view.frame = self.view.bounds;
+        
+//        EditAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAnnouncement"];
+        
+//        child2.view.frame = self.view.bounds;
+//
+////        child2.emailfield = [userInfo objectForKey:@"email"];
+//        [UIView transitionWithView:self.view duration:0.3
+//                           options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//                               [self addChildViewController:child2];
+//                               [child2 didMoveToParentViewController:self];
+//                               child2.view.frame = self.view.bounds;
+//                               [self.view addSubview:child2.view];
+//                           } completion:nil];
+        
+        
+        
+//
+//        AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
+//        child2.titleeeee = [userInfo valueForKey:@"title"];
+//        child2.emailContact = [userInfo valueForKey:@"contact_email"];
+//        child2.contactName = [userInfo valueForKey:@"contact_name"];
+//        child2.adID = [userInfo valueForKey:@"ad_id"];
+//        child2.adKey = [userInfo valueForKey:@"ad_key"];
+//        child2.details = [userInfo valueForKey:@"details"];
+//        child2.view.frame = self.view.bounds;
+//        child2.canBeDeleted = YES;
+//        child2.view.frame = self.view.bounds;
+//
+//
+//        [UIView transitionWithView:self.view duration:0.3
+//                           options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//                               [self addChildViewController:child2];
+//                               [child2 didMoveToParentViewController:self];
+//                               child2.view.frame = self.view.bounds;
+//                               [self.view addSubview:child2.view];
+//                           } completion:nil];
         
         
     }
@@ -796,14 +870,15 @@ JTMaterialSpinner * spinnerView;
     }
     else if ([notification.object isEqualToString:@"EditAnnouncement"])
     {
-        
+        NSDictionary *userInfo = notification.userInfo;
+        NSLog(@"userInfo %@", userInfo);
         kAppDelegate.lockInPortrait = YES;
         
         
         EditAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAnnouncement"];
         
         child2.view.frame = self.view.bounds;
-        
+        child2.emailfield.text = [userInfo objectForKey:@"contact_email"];
         
         [UIView transitionWithView:self.view duration:0.3
                            options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -1129,8 +1204,7 @@ JTMaterialSpinner * spinnerView;
                                [vc.view removeFromSuperview];
                                [vc removeFromParentViewController];
                         } completion:nil];
- 
-        //  NSLog(@"----------------------------Controller sters ------------------------------------------");
+
     }
        else if ([notification.object isEqualToString:@"menuButton"])
         [kMainViewController showLeftViewAnimated:YES completionHandler:nil];
@@ -1144,6 +1218,7 @@ JTMaterialSpinner * spinnerView;
         self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:facebookInterstitialID];
         self.interstitialAd.delegate = self;
         [self.interstitialAd loadAd];
+      
         canShowAdd = NO;
     }
     if([GlobalVariables getInstance].sectionTagTickets.length == 0){
@@ -1360,7 +1435,26 @@ JTMaterialSpinner * spinnerView;
     }
 }
 
-
+-(NSDictionary *)makingRequestForAds:(NSString *)url
+{
+    
+    NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
+    NSLog(@"jsonFileUrl %@", jsonFileUrl);
+    
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
+    NSURLResponse *response = NULL;
+    NSError *requestError = NULL;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    
+    NSData* jsonData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *jsonError;
+    
+    return [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError];
+    
+}
 -(void)makingRequestForHomePage:(NSString *)url
 {
     
@@ -1469,7 +1563,7 @@ JTMaterialSpinner * spinnerView;
 - (void)interstitialAdDidLoad:(FBInterstitialAd *)interstitialAd
 {
     NSLog(@"Ad is loaded and ready to be displayed");
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     // You can now display the full screen ad using this code:
     [interstitialAd showAdFromRootViewController:self];
 }
@@ -1493,6 +1587,7 @@ JTMaterialSpinner * spinnerView;
 
 - (void)interstitialAdDidClose:(FBInterstitialAd *)interstitialAd
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     NSLog(@"Interstitial had been closed");
     if([[GlobalVariables getInstance].currentViewController isEqualToString:@"PostViewController"]){
     [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"CanAddObjectToCarousel"];

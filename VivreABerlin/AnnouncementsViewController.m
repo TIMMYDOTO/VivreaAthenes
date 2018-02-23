@@ -17,6 +17,11 @@
 #import "GlobalVariables.h"
 #import "OLGhostAlertView.h"
 #import "Header.h"
+#import "AddAnnouncement.h"
+#import "EditAnnouncement.h"
+#import "AppDelegate.h"
+
+
 @interface AnnouncementsViewController (){
     
    
@@ -37,7 +42,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    
+  self.navController = [[UINavigationController alloc] initWithRootViewController:self];
+   
     changeFrameOnce = true;
     self.noAnnouncement.hidden = true;
     spinnerview = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(self.view.center.x - 22, self.view.center.y + 22, 45, 45)];
@@ -73,13 +80,14 @@
     
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
-    [self.announcesScrollView bringSubviewToFront:self.rainbow];
     [self.announcesScrollView bringSubviewToFront:self.logo];
+    [self.announcesScrollView bringSubviewToFront:self.rainbow];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Spin)
@@ -420,19 +428,57 @@
     [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AddAnnouncement"]];
     }
+    
     else{
         [self showMessage:@"Please connect to the internet"];
     }
     
 }
 
-- (IBAction)editAnnouncement:(id)sender {
+- (IBAction)editAnnouncement:(UIButton *)sender {
      if([self isInternet] == YES){
     [GlobalVariables getInstance].editerClicked = YES;
     [GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer = @"editAnnClickedOnHomePage";
-    [GlobalVariables getInstance].currentPopUpAnnouncementScreen = @"AnnouncementsViewController";
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"]];
-     }
+  
+         
+
+         
+         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(sender.frame.size.width/2-10, sender.frame.size.height/2-10, 20, 20)];
+
+         [activityView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+           [sender addSubview:activityView];
+
+         [activityView startAnimating];
+//
+         [sender setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+
+
+         EditAnnouncement * editAnnoucm = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAnnouncement"];
+
+
+         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+         [editAnnoucm sendingAnHTTPPOSTRequestEditAnnWithToken:[userDefaults objectForKey:@"token"] withEmail:[userDefaults objectForKey:@"email"] completionHandler:^(NSDictionary *resp){
+             if ([resp count]){
+                 
+                 NSLog(@"resp %@", resp);
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"editAdAnnouncement"] userInfo: resp];
+
+                                       [sender setBackgroundImage:[UIImage imageNamed:@"announcementEdit"] forState:UIControlStateNormal];
+                                        [activityView removeFromSuperview];
+
+
+             }
+             else{
+
+                 [activityView removeFromSuperview];
+                   [sender setBackgroundImage:[UIImage imageNamed:@"announcementEdit"] forState:UIControlStateNormal];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"]];
+             }
+
+         }];
+         }
+ 
      else{
              [self showMessage:@"Please connect to the internet"];
          }

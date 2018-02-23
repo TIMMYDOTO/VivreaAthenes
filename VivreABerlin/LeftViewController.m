@@ -49,7 +49,7 @@
 
 - (void) viewDidLoad {
     
-    self.accueilText.text = [NSString stringWithFormat:@"Vivre à %@",AppName];
+    self.accueilText.text = [NSString stringWithFormat:@"Vivre %@",AppName];
     
     self.accueilText.adjustsFontSizeToFitWidth = true;
     self.settingsText.adjustsFontSizeToFitWidth = true;
@@ -110,7 +110,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(hideQuickSearchView:) name:@"CloseKeyboard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(ReloadTable) name:@"ReloadTable" object:nil];
-    self.logoAppIcon.image = [UIImage imageNamed:@"Logo.png"];
+    self.logoAppIcon.image = [UIImage imageNamed:@"logo1"];
     self.logoAppIcon.clipsToBounds = true;
     self.logoAppIcon.contentMode = UIViewContentModeScaleAspectFit;
     [self.view bringSubviewToFront:self.logoAppIcon];
@@ -131,18 +131,25 @@
     
     if(offlineMenuArray.count != 0) {
         arrayForTable = [[NSMutableArray alloc] init];
-        
-        for ( int i = 0 ; i<=8 ;i ++) {
-            if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0)
-            {
-                [arrayForTable addObject:offlineMenuArray[i]];
-                [arrayForTable setValue:nil forKey:@"isExpanded"];
+        [offlineMenuArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([[obj valueForKey:@"order"]integerValue] >= 92) {
+                *stop = YES;
             }
-            
-        }
+            [arrayForTable addObject:obj];
+            [arrayForTable setValue:nil forKey:@"isExpanded"];
+        }];
+//        for ( int i = 0 ; i<=[[offlineMenuArray valueForKey:@"parent"] count] ;i ++) {
+//
+//            if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0 && [[offlineMenuArray valueForKey:@"order"][i]intValue] < 92)
+//            {
+//                [arrayForTable addObject:offlineMenuArray[i]];
+//                [arrayForTable setValue:nil forKey:@"isExpanded"];
+//            }
+//
+//        }
         
         
-        for ( int i = 0 ; i<9 ;i ++) {
+        for ( int i = 0 ; i <arrayForTable.count ;i ++) {
             if([[arrayForTable valueForKey:@"parent"][i] integerValue] == 0)
             {
                 
@@ -210,7 +217,7 @@
     else{
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
+        
             
             [self makingRequest:sideMenuLink];
             
@@ -225,16 +232,17 @@
                 offlineMenuArray = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"menuDictionary"]];
                 
                 arrayForTable = [[NSMutableArray alloc] init];
-                
-                for ( int i = 0 ; i<=8 ;i ++) {
+                NSLog(@"count: %lu", [[offlineMenuArray valueForKey:@"parent"]count]);
+                for ( int i = 0 ; i<=8;i ++) {
                     if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0)
                     {
                         [arrayForTable addObject:offlineMenuArray[i]];
+                        NSLog(@"arrayForTable %@", arrayForTable);
                     }
                     
                 }
                 
-                for ( int i = 0 ; i<9 ;i ++) {
+                for ( int i = 0 ; i<=8;i ++) {
                     if([[arrayForTable valueForKey:@"parent"][i] integerValue] == 0)
                     {
                         
@@ -419,7 +427,9 @@
             
             cell.categoriesName.textColor = [self colorWithHexString:[[NSString stringWithFormat:@"%@",[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"category_color"]]
                                                                       stringByReplacingOccurrencesOfString:@"#" withString:@""]];
-            cell.descriptivePicture.image =[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]]];
+            
+            cell.descriptivePicture.image = [UIImage imageNamed:[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]];
+         
             
             cell.descriptivePicture.contentMode = UIViewContentModeScaleAspectFit;
             cell.descriptivePicture.clipsToBounds = true;

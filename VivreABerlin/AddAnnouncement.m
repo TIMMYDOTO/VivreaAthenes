@@ -13,6 +13,9 @@
 #import "AddAnnouncementNextStep.h"
 #import "Header.h"
 #import "OLGhostAlertView.h"
+#import "AnnouncementsViewController.h"
+#import "AnnouncementArticleView.h"
+#import "TicketsViewController.h"
 @interface AddAnnouncement (){
     
     __weak IBOutlet UIView *arrowsView;
@@ -41,7 +44,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//     
+//
+
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
    
     self.contentTextview.inputAccessoryView = arrowsView;
@@ -63,7 +67,7 @@
         self.emailField.text = self.emailContact;
         self.contentTextview.text = self.details;
         
-        [self.titleField becomeFirstResponder];
+//        [self.titleField becomeFirstResponder];
         
     }
     
@@ -109,20 +113,23 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+    NSLog(@"self.addannouncementView.frame %@",NSStringFromCGRect(self.addannouncementView.frame) );
 }
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [UIView animateWithDuration:0.15 animations:^{
+        NSLog(@"frameOfPopUp %@", NSStringFromCGRect(frameOfPopUp));
         self.addannouncementView.frame = frameOfPopUp;
         self.exitView.frame = exitButtonOrigin;
     } completion:nil];
     return NO;
 }
 - (IBAction)closePopUp:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+    [self.view setHidden:YES];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -135,14 +142,16 @@
         [self.titleField resignFirstResponder];
         
         [UIView animateWithDuration:0.15 animations:^{
+                NSLog(@"%@", NSStringFromCGRect(frameOfPopUp));
             self.addannouncementView.frame = frameOfPopUp;
+        
             self.exitView.frame = exitButtonOrigin;
         } completion:nil];
     }
     
 }
 - (IBAction)SUIVANT:(id)sender {
-   
+   self.emailField.text = [self.emailField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self.contentTextview resignFirstResponder];
     [self.contactNameField resignFirstResponder];
     [self.emailField resignFirstResponder];
@@ -279,7 +288,7 @@
      //   NSLog(@"Am dat click pe editer din Ecranul principal %@",self.adKey);
         
         self.suivant.hidden = true;
-        self.deleteAd.enabled = false;
+//        self.deleteAd.enabled = false;
         
         spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
         spinnerView.circleLayer.lineWidth = 3.0;
@@ -301,7 +310,7 @@
         
         
         self.suivant.hidden = true;
-        self.deleteAd.enabled = false;
+//        self.deleteAd.enabled = false;
         
         spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
         spinnerView.circleLayer.lineWidth = 3.0;
@@ -324,7 +333,7 @@
      //   NSLog(@"Am dat click pe editer din ArticleView din meniul Search");
         
         self.suivant.hidden = true;
-        self.deleteAd.enabled = false;
+//        self.deleteAd.enabled = false;
         
         spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
         spinnerView.circleLayer.lineWidth = 3.0;
@@ -347,7 +356,7 @@
       //  NSLog(@" dat click pe editer din ArticleView");
         
         self.suivant.hidden = true;
-        self.deleteAd.enabled = false;
+//        self.deleteAd.enabled = false;
         
         spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
         spinnerView.circleLayer.lineWidth = 3.0;
@@ -364,33 +373,7 @@
         [self sendingAnHTTPPOSTRequestOnUpdatePostAnn:self.contactNameField.text withEmail:self.emailField.text withTitle:self.titleField.text withDetails:self.contentTextview.text withToken:self.adKey withAdID:self.adID];
     }
     
-    
-    
-    
-    
-    //    AddAnnouncementNextStep * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncementNextStep"];
-    //
-    //    child2.view.frame = self.view.bounds;
-    //
-    //    child2.title = self.titleField.text;
-    //    child2.Email = self.emailField.text;
-    //    child2.contactName = self.contactNameField.text;
-    //    child2.Details = self.contentTextview.text;
-    //
-    //    [UIView transitionWithView:self.view duration:0.3
-    //                       options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-    //                           [self addChildViewController:child2];
-    //                           [child2 didMoveToParentViewController:self];
-    //                           child2.view.frame = self.view.bounds;
-    //                           [self.view addSubview:child2.view];
-    //                           [self.view bringSubviewToFront:child2.view];
-    //                       } completion:nil];
-    
-    
-    
-    
-    
-    
+
     
 }
 -(BOOL)isInternet{
@@ -491,96 +474,139 @@
     return [emailTest evaluateWithObject:checkString];
 }
 - (IBAction)DeleteAD:(id)sender {
-    
-    if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"editAnnClickedOnHomePage"]){
+    if (self.canBeDeleted) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirmation" message:@"Confimez-vous la suppression de votre annonce ?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *non = [UIAlertAction actionWithTitle:@"NON" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                return;
+            }];
+            UIAlertAction *oui = [UIAlertAction actionWithTitle:@"OUI" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-       // NSLog(@"Am dat click pe delete din Ecranul principal");
+                UIAlertController *confirmationAlert = [UIAlertController alertControllerWithTitle:@"Announcement Deleted!" message: nil preferredStyle:UIAlertControllerStyleAlert];
         
-        self.deleteAd.hidden = true;
-        self.suivant.enabled = false;
         
-        spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
-        spinnerView.circleLayer.lineWidth = 3.0;
-        spinnerView.center = self.deleteAd.center;
-        spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
+                [self presentViewController:confirmationAlert animated:YES completion:nil];
+               [self performSelector:@selector(dismissAlert) withObject:nil afterDelay:2];
         
-        [self.addannouncementView addSubview:spinnerView];
-        [self.addannouncementView bringSubviewToFront:spinnerView];
+                if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"editAnnClickedOnHomePage"]){
         
-        [spinnerView beginRefreshing];
         
-        CASES2 = 0;
+                    self.deleteAd.hidden = true;
+                    self.suivant.enabled = false;
         
-        [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
+                    spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
+                    spinnerView.circleLayer.lineWidth = 3.0;
+                    spinnerView.center = self.deleteAd.center;
+                    spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
+        
+                    [self.addannouncementView addSubview:spinnerView];
+                    [self.addannouncementView bringSubviewToFront:spinnerView];
+        
+                    [spinnerView beginRefreshing];
+        
+                    CASES2 = 0;
+        
+                    [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
+                }
+                else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnSearchPage"] && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementsViewController"]){
+        
+                    //  NSLog(@"Am dat click pe delete din Ecranul principal din meniul search");
+        
+        
+                    self.deleteAd.hidden = true;
+                    self.suivant.enabled = false;
+        
+                    spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
+                    spinnerView.circleLayer.lineWidth = 3.0;
+                    spinnerView.center = self.deleteAd.center;
+                    spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
+        
+                    [self.addannouncementView addSubview:spinnerView];
+                    [self.addannouncementView bringSubviewToFront:spinnerView];
+        
+                    [spinnerView beginRefreshing];
+        
+                    CASES2 = 1;
+        
+                    [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
+        
+                }
+                else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnSearchPage"] && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementArticleView"]){
+        
+        
+                    //  NSLog(@"Am dat click pe delete din ArticleView din meniul Search");
+        
+                    self.deleteAd.hidden = true;
+                    self.suivant.enabled = false;
+        
+                    spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
+                    spinnerView.circleLayer.lineWidth = 3.0;
+                    spinnerView.center = self.deleteAd.center;
+                    spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
+        
+                    [self.addannouncementView addSubview:spinnerView];
+                    [self.addannouncementView bringSubviewToFront:spinnerView];
+        
+                    [spinnerView beginRefreshing];
+        
+                    CASES2 = 2;
+        
+                    [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
+        
+                }
+                else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnArtcilePage"]){
+        
+        
+                    // NSLog(@" dat click pe delete din ArticleView");
+        
+                    self.deleteAd.hidden = true;
+                    self.suivant.enabled = false;
+        
+                    spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
+                    spinnerView.circleLayer.lineWidth = 3.0;
+                    spinnerView.center = self.deleteAd.center;
+                    spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
+        
+                    [self.addannouncementView addSubview:spinnerView];
+                    [self.addannouncementView bringSubviewToFront:spinnerView];
+        
+                    [spinnerView beginRefreshing];
+        
+                    CASES2 = 3;
+        
+                    [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
+        
+                }
+            }];
+            [alert addAction:non];    
+            [alert addAction:oui];
+            [self presentViewController:alert animated:YES completion:nil];
     }
-    else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnSearchPage"] && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementsViewController"]){
-        
-      //  NSLog(@"Am dat click pe delete din Ecranul principal din meniul search");
-        
-        
-        self.deleteAd.hidden = true;
-        self.suivant.enabled = false;
-        
-        spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
-        spinnerView.circleLayer.lineWidth = 3.0;
-        spinnerView.center = self.deleteAd.center;
-        spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
-        
-        [self.addannouncementView addSubview:spinnerView];
-        [self.addannouncementView bringSubviewToFront:spinnerView];
-        
-        [spinnerView beginRefreshing];
-        
-        CASES2 = 1;
-        
-        [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
-        
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
     }
-    else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnSearchPage"] && [[GlobalVariables getInstance].currentAnnouncementScreen isEqualToString:@"AnnouncementArticleView"]){
-        
-        
-      //  NSLog(@"Am dat click pe delete din ArticleView din meniul Search");
-        
-        self.deleteAd.hidden = true;
-        self.suivant.enabled = false;
-        
-        spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
-        spinnerView.circleLayer.lineWidth = 3.0;
-        spinnerView.center = self.deleteAd.center;
-        spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
-        
-        [self.addannouncementView addSubview:spinnerView];
-        [self.addannouncementView bringSubviewToFront:spinnerView];
-        
-        [spinnerView beginRefreshing];
-        
-        CASES2 = 2;
-        
-        [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
-        
-    }
-    else if([GlobalVariables getInstance].editerClicked == YES && [[GlobalVariables getInstance].currentPopUpAnnouncementScreenForEditer isEqualToString:@"EditAnnClickedOnArtcilePage"]){
-        
-        
-       // NSLog(@" dat click pe delete din ArticleView");
-        
-        self.deleteAd.hidden = true;
-        self.suivant.enabled = false;
-        
-        spinnerView = [[JTMaterialSpinner alloc] initWithFrame:CGRectMake(0,0,35,35)];
-        spinnerView.circleLayer.lineWidth = 3.0;
-        spinnerView.center = self.deleteAd.center;
-        spinnerView.circleLayer.strokeColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f].CGColor;
-        
-        [self.addannouncementView addSubview:spinnerView];
-        [self.addannouncementView bringSubviewToFront:spinnerView];
-        
-        [spinnerView beginRefreshing];
-        
-        CASES2 = 3;
-        
-        [self sendingAnHTTPPOSTRequestOnDeletePostAnnwithToken:self.adKey withAdID:self.adID];
-    }
+
+}
+-(void)dismissAlert{
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+
+                AnnouncementsViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AnnouncementsViewController"];
+
+                child2.view.frame = self.view.bounds;
+
+                [UIView transitionWithView:self.view duration:0.3
+                                   options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                                      
+                                       [self addChildViewController:child2];
+                                       [child2 didMoveToParentViewController:self];
+                                       child2.view.frame = self.view.bounds;
+                                       [self.view addSubview:child2.view];
+                                       [self.view bringSubviewToFront:child2.view];
+                                   } completion:^(BOOL finished) {
+                                       if (finished){
+                                   
+                                       }
+                                   }];
 }
 - (IBAction)upButtonPressed:(UIButton *)sender {
     
@@ -792,27 +818,27 @@
             
             if([[NSString stringWithFormat:@"%@",[responseDict valueForKey:@"success"]] isEqualToString:@"1"]){
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Annonce supprimée !"
-                                                                message:@"Votre annonce a bien été supprimée."
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Annonce supprimée !"
+//                                                                message:@"Votre annonce a bien été supprimée."
+//                                                               delegate:self
+//                                                      cancelButtonTitle:@"OK"
+//                                                      otherButtonTitles:nil];
                 
                 
                 if(CASES2 == 0) {
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
                     //[[NSNotificationCenter defaultCenter] postNotificationName:@"openAnnouncement" object: [NSString stringWithFormat:@"Something"]];
                 }
                 else if(CASES2 == 1){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"closeSearch" object: [NSString stringWithFormat:@"closeSearch"]];
                     // [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
                     // [[NSNotificationCenter defaultCenter] postNotificationName:@"openAnnouncement" object: [NSString stringWithFormat:@"Something"]];
                 }
                 else if(CASES2 == 2){
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"closeSearch" object: [NSString stringWithFormat:@"closeSearch"]];
                     //  [[NSNotificationCenter defaultCenter] postNotificationName:@"removeScreen" object: [NSString stringWithFormat:@"Something"]];
                     //   [[NSNotificationCenter defaultCenter] postNotificationName:@"openAnnouncement" object: [NSString stringWithFormat:@"Something"]];
@@ -821,14 +847,14 @@
                 }
                 else{
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"closeSearch" object: [NSString stringWithFormat:@"closeSearch"]];
                     //  [[NSNotificationCenter defaultCenter] postNotificationName:@"removeScreen" object: [NSString stringWithFormat:@"Something"]];
                     //  [[NSNotificationCenter defaultCenter] postNotificationName:@"openAnnouncement" object: [NSString stringWithFormat:@"Something"]];
                     
                 }
                 
-                [alert show];
+//                [alert show];
                 
                 
                 
@@ -912,10 +938,7 @@
 - (void)keyboardOnScreen: (NSNotification *)notification {
     NSLog(@"keyboardOnScreen");
        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//      [arrowUp setBackgroundImage:[UIImage imageNamed:@"arrow up gray"]
-//                         forState:UIControlStateNormal];
-//      [arrowDown setBackgroundImage:[UIImage imageNamed:@"arrow down"]
-//                           forState:UIControlStateNormal];
+
     self.keyboardIsShowing = YES;
 
     
@@ -927,11 +950,14 @@
     
     [UIView animateWithDuration:0.15 animations:^{
         CGRect frame = self.addannouncementView.frame;
-        frame.origin.y =   self.view.frame.size.height  - self.addannouncementView.frame.size.height - keyboardFrame.size.height;
+NSLog(@"%@", NSStringFromCGRect(self.addannouncementView.frame));
+       frame.origin.y =   self.view.frame.size.height  - self.addannouncementView.frame.size.height - keyboardFrame.size.height;
+        //frame.origin.y = -135;
         self.addannouncementView.frame = frame;
         
         CGRect frame1 = self.exitView.frame;
         frame1.origin.y =   self.view.frame.size.height  - self.addannouncementView.frame.size.height - keyboardFrame.size.height;
+        NSLog(@"frame1.origin.y %f", frame1.origin.y);
         self.exitView.frame = frame1;
         
     } completion:nil];
@@ -943,6 +969,7 @@
 -  (void)keyboardOffScreen: (NSNotification *)notification {
      [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [UIView animateWithDuration:0.15 animations:^{
+            NSLog(@"%@", NSStringFromCGRect(frameOfPopUp));
         self.addannouncementView.frame = frameOfPopUp;
         self.exitView.frame = exitButtonOrigin;
     } completion:nil];

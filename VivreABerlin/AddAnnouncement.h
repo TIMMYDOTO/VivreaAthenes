@@ -29,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailTitle;
 @property (weak, nonatomic) IBOutlet UILabel *contentTitle;
 @property (assign, nonatomic) BOOL keyboardIsShowing;
+
+@property (assign, nonatomic) BOOL canBeDeleted;
+
 @property (weak, nonatomic) IBOutlet UIButton *exitView;
 - (IBAction)DeleteAD:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *suivant;

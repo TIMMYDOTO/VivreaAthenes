@@ -127,9 +127,9 @@
     [[[GlobalVariables getInstance].MapPageInfos valueForKey:@"districts"][indexPath.row] setValue:@"YES" forKey:@"isSelected"];
 
     
-    [GlobalVariables getInstance].latitudine =[[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lat"][indexPath.row] floatValue];
-    [GlobalVariables getInstance].longitudine =[[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lng"][indexPath.row] floatValue];
-    [GlobalVariables getInstance].zoomLvl =[[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"zoom"][indexPath.row] floatValue];
+    [GlobalVariables getInstance].latitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lat"][indexPath.row] floatValue];
+    [GlobalVariables getInstance].longitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lng"][indexPath.row] floatValue];
+    [GlobalVariables getInstance].zoomLvl = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"zoom"][indexPath.row] floatValue];
     
     [self.districtsTable reloadData];
     double delayInSeconds = 0.15;

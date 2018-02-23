@@ -24,6 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *noAnnouncement;
 @property (weak, nonatomic) IBOutlet UITableView *announcementsTable;
-
+@property (strong, nonatomic) UINavigationController *navController;
 - (IBAction)openiAPController:(id)sender;
 @end

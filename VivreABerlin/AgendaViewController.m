@@ -83,13 +83,14 @@
     self.agendaScrollView.delaysContentTouches = false;
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
+     [self.agendaScrollView bringSubviewToFront:self.logo];
     [self.agendaScrollView bringSubviewToFront:self.rainbow];
-    [self.agendaScrollView bringSubviewToFront:self.logo];
+   
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Spin)

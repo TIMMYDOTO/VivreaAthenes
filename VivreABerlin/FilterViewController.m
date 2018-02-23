@@ -21,6 +21,7 @@
 @implementation FilterViewController
 {
     
+    __weak IBOutlet UIButton *checkAll;
     JTMaterialSpinner *globalSpinner;
     
     
@@ -57,7 +58,7 @@
         }
     }
     if(([GlobalVariables getInstance].PerSessionForFilters != true) ){
-        for ( int i = 0 ; i < 3;i++){
+        for ( int i = 0 ; i < [[GlobalVariables getInstance].arrayWithAnnotations count];i++){
             for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++) {
                 [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"][j] setValue:@"YES" forKey:@"isSelected"];
                 
@@ -107,7 +108,10 @@
     
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+  
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -139,7 +143,7 @@
     
     if (cell.indentationLevel == 0) {
         
-        cell.titletext.text=[self stringByStrippingHTML:[self stringByDecodingXMLEntities:[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_name"]]];
+        cell.titletext.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_name"]]];
         cell.titletext.font = [UIFont fontWithName:@"Montserrat-Light" size:14.f];
         cell.titletext.textColor = [self colorWithHexString:@"303030"];
         
@@ -237,7 +241,7 @@
                               placeholderImage: nil
                                     cachingKey: [NSString stringWithFormat:@"%@",[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_id"]]];
         
-        
+        NSLog(@"image: %@", cell.subCategorieImg.image);
 //        if([self isInternet] == NO)
 //        {
 //            cell.subCategorieImg.image = nil;

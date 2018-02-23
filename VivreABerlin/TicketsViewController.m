@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"TicketsViewController");
     changeFrameOnce = true;
     executeOnlyOnce = YES;
     
@@ -56,13 +56,14 @@
     self.ticketsScroll.bounces = false;
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
-    [self.ticketsScroll bringSubviewToFront:self.rainbow];
     [self.ticketsScroll bringSubviewToFront:self.logo];
+    [self.ticketsScroll bringSubviewToFront:self.rainbow];
+    
     
     [self.view bringSubviewToFront:self.logo];
     [self.view bringSubviewToFront:self.rainbow];
@@ -628,7 +629,7 @@ finish: return result;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexPath: %ld", (long)indexPath.row);
+//    NSLog(@"indexPath: %ld", (long)indexPath.row);
     static NSString *CellIdentifier = @"CatsSubCatsCell";
     
     CatsSubCatsCell *cell = [self.ticketTable dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -681,7 +682,7 @@ finish: return result;
 {
  
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
-    NSLog(@"url %@",url);
+    NSLog(@"makingRequestForAds %@",url);
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
     

@@ -95,7 +95,7 @@
     
     
     [self Spin];
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+
     NSDate *date = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date];
@@ -117,13 +117,14 @@
     
     self.changeableBackground.clipsToBounds = true;
     self.changeableBackground.contentMode = UIViewContentModeScaleAspectFill;
-    self.logo.image = [UIImage imageNamed:@"Logo.png"];
+    self.logo.image = [UIImage imageNamed:@"logo1"];
     self.logo.contentMode = UIViewContentModeScaleAspectFit;
     self.logo.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
+     [self.searchScreenScroll bringSubviewToFront:self.logo];
     [self.searchScreenScroll bringSubviewToFront:self.rainbow];
-    [self.searchScreenScroll bringSubviewToFront:self.logo];
+   
     
     
     
