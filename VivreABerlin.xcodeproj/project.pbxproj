@@ -36,7 +36,6 @@
 		8DEB3AB11EBDB1B100818DA9 /* TokyoArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */; };
 		8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */; };
 		9A5658DF203DD4140092BCDA /* S'échapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658DE203DD4140092BCDA /* S'échapper.png */; };
-		9A5658E3203EE6150092BCDA /* Shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E2203EE6150092BCDA /* Shopping.png */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F0203EE7150092BCDA /* Circuits.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E5203EE70F0092BCDA /* Circuits.png */; };
 		9A5658F1203EE7150092BCDA /* S'installer à Athènes.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E6203EE7110092BCDA /* S'installer à Athènes.png */; };
@@ -49,6 +48,7 @@
 		9A5658F8203EE7150092BCDA /* Activités sportives.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658ED203EE7140092BCDA /* Activités sportives.png */; };
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
+		9A5658FF204055770092BCDA /* Shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FE204055770092BCDA /* Shopping.png */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
 		F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF111F447F0C00BCC8DE /* EditAnnouncement.m */; };
@@ -90,7 +90,6 @@
 		F44C33851FBF27A000A96D64 /* OnboardingFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C33841FBF27A000A96D64 /* OnboardingFirstViewController.m */; };
 		F44D1D1B1EB9DAEB00D8E820 /* Enfants.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D131EB9DAEB00D8E820 /* Enfants.png */; };
 		F44D1D1C1EB9DAEB00D8E820 /* Loisirs.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D141EB9DAEB00D8E820 /* Loisirs.png */; };
-		F44D1D201EB9DAEB00D8E820 /* shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D181EB9DAEB00D8E820 /* shopping.png */; };
 		F44D1D261EB9DB4F00D8E820 /* Alimentation.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D231EB9DB4F00D8E820 /* Alimentation.png */; };
 		F44D1D271EB9DB4F00D8E820 /* Visiter.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D241EB9DB4F00D8E820 /* Visiter.png */; };
 		F44D1D281EB9DB4F00D8E820 /* Culture.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D251EB9DB4F00D8E820 /* Culture.png */; };
@@ -371,7 +370,6 @@
 		8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MunichArrow.png; sourceTree = "<group>"; };
 		925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5658DE203DD4140092BCDA /* S'échapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S'échapper.png"; sourceTree = "<group>"; };
-		9A5658E2203EE6150092BCDA /* Shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Shopping.png; path = ../../../Desktop/Shopping.png; sourceTree = "<group>"; };
 		9A5658E4203EE70F0092BCDA /* musees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musees.png; sourceTree = "<group>"; };
 		9A5658E5203EE70F0092BCDA /* Circuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circuits.png; sourceTree = "<group>"; };
 		9A5658E6203EE7110092BCDA /* S'installer à Athènes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S'installer à Athènes.png"; sourceTree = "<group>"; };
@@ -384,6 +382,7 @@
 		9A5658ED203EE7140092BCDA /* Activités sportives.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activités sportives.png"; sourceTree = "<group>"; };
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
+		9A5658FE204055770092BCDA /* Shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shopping.png; sourceTree = "<group>"; };
 		C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D6AB2DB0DBF433AE991F59F3 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DCB8B477732E33E4DF3468 /* Pods-VivreABerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,7 +438,6 @@
 		F44C33841FBF27A000A96D64 /* OnboardingFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardingFirstViewController.m; sourceTree = "<group>"; };
 		F44D1D131EB9DAEB00D8E820 /* Enfants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enfants.png; sourceTree = "<group>"; };
 		F44D1D141EB9DAEB00D8E820 /* Loisirs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Loisirs.png; sourceTree = "<group>"; };
-		F44D1D181EB9DAEB00D8E820 /* shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopping.png; sourceTree = "<group>"; };
 		F44D1D231EB9DB4F00D8E820 /* Alimentation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alimentation.png; sourceTree = "<group>"; };
 		F44D1D241EB9DB4F00D8E820 /* Visiter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Visiter.png; sourceTree = "<group>"; };
 		F44D1D251EB9DB4F00D8E820 /* Culture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Culture.png; sourceTree = "<group>"; };
@@ -891,7 +889,6 @@
 				F4FEFE351EE9273000C95381 /* Saveurs d'ailleurs.png */,
 				F4FEFE361EE9273000C95381 /* Saveurs sucrées.png */,
 				F4FEFE371EE9273000C95381 /* Supermarchés.png */,
-				9A5658E2203EE6150092BCDA /* Shopping.png */,
 				F4FEFE381EE9273000C95381 /* Thés et cafés.png */,
 				9A5658E7203EE7110092BCDA /* Night life.png */,
 				9A5658E8203EE7120092BCDA /* Cafés et Bars.png */,
@@ -1265,7 +1262,7 @@
 				F44D1D231EB9DB4F00D8E820 /* Alimentation.png */,
 				F44D1D241EB9DB4F00D8E820 /* Visiter.png */,
 				F44D1D251EB9DB4F00D8E820 /* Culture.png */,
-				F44D1D181EB9DAEB00D8E820 /* shopping.png */,
+				9A5658FE204055770092BCDA /* Shopping.png */,
 				F4D051671EB3479400011B0D /* didSelectCellImage.png */,
 				F4F1EF0E1EB0C7A500004114 /* agendaTabBarIcon.png */,
 				F41B78EF1EB0E62E006E0710 /* expandArrow.png */,
@@ -1493,7 +1490,6 @@
 				F4FEFE3D1EE9273000C95381 /* Marchés.png in Resources */,
 				F417FFA11F45B6E40081A2C1 /* exitAnn.png in Resources */,
 				F4C5CCB21F026F6A0091CB3C /* rightColored.png in Resources */,
-				9A5658E3203EE6150092BCDA /* Shopping.png in Resources */,
 				F4FEFE501EE9681200C95381 /* jouets1.png in Resources */,
 				F4E7343A1EF2B4D700D095FB /* blueMarker.png in Resources */,
 				F44D79E91FA369B80024FB17 /* scrolltotop.png in Resources */,
@@ -1559,6 +1555,7 @@
 				F417FF9F1F45B6E40081A2C1 /* editer.png in Resources */,
 				F4FEFE601EE968AB00C95381 /* Cinéma.png in Resources */,
 				F4F1EF181EB0C7A500004114 /* ticketTabBarIcon.png in Resources */,
+				9A5658FF204055770092BCDA /* Shopping.png in Resources */,
 				F4C5CCB61F02744F0091CB3C /* leftColored.png in Resources */,
 				8D16D16E1FF4EB95003DD13B /* InfoPratiquesTableViewCell.xib in Resources */,
 				9A5658F0203EE7150092BCDA /* Circuits.png in Resources */,
@@ -1627,7 +1624,6 @@
 				F42D92551F1F73FC0030EA49 /* backToTop.png in Resources */,
 				F4A211E61EFA4B4100C9C944 /* closePopUpIAP.png in Resources */,
 				F4FEFE701EE9692C00C95381 /* Beauté.png in Resources */,
-				F44D1D201EB9DAEB00D8E820 /* shopping.png in Resources */,
 				F4FEFE611EE968AB00C95381 /* Concerts.png in Resources */,
 				F49C7AC51ECC5C61000209D6 /* Montserrat-Light.otf in Resources */,
 				8DEB3A9E1EBDACBA00818DA9 /* ticketTabBarIconTouched.png in Resources */,
