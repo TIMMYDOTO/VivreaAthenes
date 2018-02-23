@@ -35,6 +35,7 @@
 		8DEB3AB01EBDB1B100818DA9 /* athensArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AA91EBDB1B100818DA9 /* athensArrow.png */; };
 		8DEB3AB11EBDB1B100818DA9 /* TokyoArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */; };
 		8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */; };
+		9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66C204068BE00EC6253 /* Sorties en famille.png */; };
 		9A5658DF203DD4140092BCDA /* S'échapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658DE203DD4140092BCDA /* S'échapper.png */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F0203EE7150092BCDA /* Circuits.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E5203EE70F0092BCDA /* Circuits.png */; };
@@ -44,7 +45,6 @@
 		9A5658F4203EE7150092BCDA /* Activités intérieures.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E9203EE7120092BCDA /* Activités intérieures.png */; };
 		9A5658F5203EE7150092BCDA /* Centre d'Athènes.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EA203EE7120092BCDA /* Centre d'Athènes.png */; };
 		9A5658F6203EE7150092BCDA /* Monuments.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EB203EE7130092BCDA /* Monuments.png */; };
-		9A5658F7203EE7150092BCDA /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EC203EE7130092BCDA /* Sorties en famille.png */; };
 		9A5658F8203EE7150092BCDA /* Activités sportives.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658ED203EE7140092BCDA /* Activités sportives.png */; };
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
@@ -369,6 +369,7 @@
 		8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TokyoArrow.png; sourceTree = "<group>"; };
 		8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MunichArrow.png; sourceTree = "<group>"; };
 		925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A21F66C204068BE00EC6253 /* Sorties en famille.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sorties en famille.png"; sourceTree = "<group>"; };
 		9A5658DE203DD4140092BCDA /* S'échapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S'échapper.png"; sourceTree = "<group>"; };
 		9A5658E4203EE70F0092BCDA /* musees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musees.png; sourceTree = "<group>"; };
 		9A5658E5203EE70F0092BCDA /* Circuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circuits.png; sourceTree = "<group>"; };
@@ -378,7 +379,6 @@
 		9A5658E9203EE7120092BCDA /* Activités intérieures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activités intérieures.png"; sourceTree = "<group>"; };
 		9A5658EA203EE7120092BCDA /* Centre d'Athènes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Centre d'Athènes.png"; sourceTree = "<group>"; };
 		9A5658EB203EE7130092BCDA /* Monuments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Monuments.png; sourceTree = "<group>"; };
-		9A5658EC203EE7130092BCDA /* Sorties en famille.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sorties en famille.png"; path = "../../../Desktop/Sorties en famille.png"; sourceTree = "<group>"; };
 		9A5658ED203EE7140092BCDA /* Activités sportives.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Activités sportives.png"; sourceTree = "<group>"; };
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
@@ -892,10 +892,10 @@
 				F4FEFE381EE9273000C95381 /* Thés et cafés.png */,
 				9A5658E7203EE7110092BCDA /* Night life.png */,
 				9A5658E8203EE7120092BCDA /* Cafés et Bars.png */,
+				9A21F66C204068BE00EC6253 /* Sorties en famille.png */,
 				9A5658E9203EE7120092BCDA /* Activités intérieures.png */,
 				9A5658ED203EE7140092BCDA /* Activités sportives.png */,
 				9A5658EA203EE7120092BCDA /* Centre d'Athènes.png */,
-				9A5658EC203EE7130092BCDA /* Sorties en famille.png */,
 				9A5658E5203EE70F0092BCDA /* Circuits.png */,
 				9A5658EB203EE7130092BCDA /* Monuments.png */,
 				9A5658E4203EE70F0092BCDA /* musees.png */,
@@ -1405,6 +1405,7 @@
 				TargetAttributes = {
 					8D3D5EB31EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1483,6 +1484,7 @@
 				F4FEFE631EE968AB00C95381 /* Expositions.png in Resources */,
 				F49C7AD71ECC5FA3000209D6 /* filters.png in Resources */,
 				F49C7AC41ECC5C61000209D6 /* Montserrat-ExtraLight.otf in Resources */,
+				9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */,
 				F49C7AC11ECC5C61000209D6 /* Montserrat-Black.otf in Resources */,
 				F49C7AD61ECC5FA3000209D6 /* districts.png in Resources */,
 				F4FEFE231EE7E0DC00C95381 /* roundedRect.png in Resources */,
@@ -1564,7 +1566,6 @@
 				F4FEFE7C1EE9699D00C95381 /* Ateliers.png in Resources */,
 				F49C7ACC1ECC5C61000209D6 /* MontserratAlternates-ExtraBold.otf in Resources */,
 				F41B78E01EB0DD37006E0710 /* searchIcon.png in Resources */,
-				9A5658F7203EE7150092BCDA /* Sorties en famille.png in Resources */,
 				F448FEEB1EC49A900079D40D /* Vie pratique.png in Resources */,
 				F4FEFE491EE94DEC00C95381 /* openSubCats.png in Resources */,
 				F41B78DD1EB0DA16006E0710 /* settingsIcon.png in Resources */,
@@ -2117,7 +2118,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VivreABerlin/VivreABerlin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2129,6 +2132,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2140,7 +2144,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VivreABerlin/VivreABerlin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2152,6 +2158,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
