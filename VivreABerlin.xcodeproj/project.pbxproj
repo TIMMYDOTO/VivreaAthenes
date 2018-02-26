@@ -36,6 +36,9 @@
 		8DEB3AB11EBDB1B100818DA9 /* TokyoArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */; };
 		8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */; };
 		9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66C204068BE00EC6253 /* Sorties en famille.png */; };
+		9A21F66F2041FD3200EC6253 /* Loisirs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66E2041FD3200EC6253 /* Loisirs.png */; };
+		9A21F6712041FD9F00EC6253 /* Visiter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F6702041FD9F00EC6253 /* Visiter.png */; };
+		9A21F6732041FDAE00EC6253 /* Sortir.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F6722041FDAD00EC6253 /* Sortir.png */; };
 		9A5658DF203DD4140092BCDA /* S'échapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658DE203DD4140092BCDA /* S'échapper.png */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F0203EE7150092BCDA /* Circuits.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E5203EE70F0092BCDA /* Circuits.png */; };
@@ -86,12 +89,9 @@
 		F44625B81F2E152F007BB014 /* CatsSubCatsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F44625B71F2E152F007BB014 /* CatsSubCatsCell.m */; };
 		F448FED81EC0648F0079D40D /* homeTabBarIconTouched.png in Resources */ = {isa = PBXBuildFile; fileRef = F448FED71EC0648F0079D40D /* homeTabBarIconTouched.png */; };
 		F448FEEB1EC49A900079D40D /* Vie pratique.png in Resources */ = {isa = PBXBuildFile; fileRef = F448FEE91EC49A900079D40D /* Vie pratique.png */; };
-		F448FEEC1EC49A900079D40D /* Sortir.png in Resources */ = {isa = PBXBuildFile; fileRef = F448FEEA1EC49A900079D40D /* Sortir.png */; };
 		F44C33851FBF27A000A96D64 /* OnboardingFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C33841FBF27A000A96D64 /* OnboardingFirstViewController.m */; };
 		F44D1D1B1EB9DAEB00D8E820 /* Enfants.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D131EB9DAEB00D8E820 /* Enfants.png */; };
-		F44D1D1C1EB9DAEB00D8E820 /* Loisirs.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D141EB9DAEB00D8E820 /* Loisirs.png */; };
 		F44D1D261EB9DB4F00D8E820 /* Alimentation.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D231EB9DB4F00D8E820 /* Alimentation.png */; };
-		F44D1D271EB9DB4F00D8E820 /* Visiter.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D241EB9DB4F00D8E820 /* Visiter.png */; };
 		F44D1D281EB9DB4F00D8E820 /* Culture.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D251EB9DB4F00D8E820 /* Culture.png */; };
 		F44D1D2D1EB9E2C000D8E820 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D1D2A1EB9E2C000D8E820 /* UIImageView+Network.m */; };
 		F44D1D3B1EBCA40400D8E820 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D1D3A1EBCA40400D8E820 /* PostsViewController.m */; };
@@ -370,6 +370,9 @@
 		8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MunichArrow.png; sourceTree = "<group>"; };
 		925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A21F66C204068BE00EC6253 /* Sorties en famille.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sorties en famille.png"; sourceTree = "<group>"; };
+		9A21F66E2041FD3200EC6253 /* Loisirs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Loisirs.png; sourceTree = "<group>"; };
+		9A21F6702041FD9F00EC6253 /* Visiter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Visiter.png; sourceTree = "<group>"; };
+		9A21F6722041FDAD00EC6253 /* Sortir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sortir.png; sourceTree = "<group>"; };
 		9A5658DE203DD4140092BCDA /* S'échapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S'échapper.png"; sourceTree = "<group>"; };
 		9A5658E4203EE70F0092BCDA /* musees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musees.png; sourceTree = "<group>"; };
 		9A5658E5203EE70F0092BCDA /* Circuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circuits.png; sourceTree = "<group>"; };
@@ -433,13 +436,10 @@
 		F44625B71F2E152F007BB014 /* CatsSubCatsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsSubCatsCell.m; sourceTree = "<group>"; };
 		F448FED71EC0648F0079D40D /* homeTabBarIconTouched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeTabBarIconTouched.png; sourceTree = "<group>"; };
 		F448FEE91EC49A900079D40D /* Vie pratique.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vie pratique.png"; sourceTree = "<group>"; };
-		F448FEEA1EC49A900079D40D /* Sortir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sortir.png; sourceTree = "<group>"; };
 		F44C33831FBF27A000A96D64 /* OnboardingFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnboardingFirstViewController.h; sourceTree = "<group>"; };
 		F44C33841FBF27A000A96D64 /* OnboardingFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnboardingFirstViewController.m; sourceTree = "<group>"; };
 		F44D1D131EB9DAEB00D8E820 /* Enfants.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enfants.png; sourceTree = "<group>"; };
-		F44D1D141EB9DAEB00D8E820 /* Loisirs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Loisirs.png; sourceTree = "<group>"; };
 		F44D1D231EB9DB4F00D8E820 /* Alimentation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alimentation.png; sourceTree = "<group>"; };
-		F44D1D241EB9DB4F00D8E820 /* Visiter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Visiter.png; sourceTree = "<group>"; };
 		F44D1D251EB9DB4F00D8E820 /* Culture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Culture.png; sourceTree = "<group>"; };
 		F44D1D291EB9E2C000D8E820 /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
 		F44D1D2A1EB9E2C000D8E820 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
@@ -1206,8 +1206,11 @@
 		F4FEFE051EE7D6BF00C95381 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				9A21F6722041FDAD00EC6253 /* Sortir.png */,
 				F44D79E81FA369B80024FB17 /* scrolltotop.png */,
+				9A21F6702041FD9F00EC6253 /* Visiter.png */,
 				F4E533501F949C5800F5694B /* ticketsImgScreen.png */,
+				9A21F66E2041FD3200EC6253 /* Loisirs.png */,
 				F461C4E51F4C4A6900E9A22F /* openiAPButton.png */,
 				F4385BD41F2F22860047F76F /* video.png */,
 				F42FA6151F35AEBC0072FF34 /* backButtonImage.png */,
@@ -1256,11 +1259,8 @@
 				F44D1D131EB9DAEB00D8E820 /* Enfants.png */,
 				F42FA6111F35AD0F0072FF34 /* menuButtonIcon.png */,
 				F42FA60F1F35ABC60072FF34 /* SeparatorCategoryPage.png */,
-				F44D1D141EB9DAEB00D8E820 /* Loisirs.png */,
 				F448FEE91EC49A900079D40D /* Vie pratique.png */,
-				F448FEEA1EC49A900079D40D /* Sortir.png */,
 				F44D1D231EB9DB4F00D8E820 /* Alimentation.png */,
-				F44D1D241EB9DB4F00D8E820 /* Visiter.png */,
 				F44D1D251EB9DB4F00D8E820 /* Culture.png */,
 				9A5658FE204055770092BCDA /* Shopping.png */,
 				F4D051671EB3479400011B0D /* didSelectCellImage.png */,
@@ -1517,7 +1517,6 @@
 				F4FEFE751EE9692C00C95381 /* Matériel beaux-arts.png in Resources */,
 				9A5658F6203EE7150092BCDA /* Monuments.png in Resources */,
 				F4F1EF161EB0C7A500004114 /* homeTabBarIcon.png in Resources */,
-				F448FEEC1EC49A900079D40D /* Sortir.png in Resources */,
 				F4FEFE7E1EE9699D00C95381 /* Escalade.png in Resources */,
 				F4FEFE9D1EE96A6600C95381 /* Transports.png in Resources */,
 				F44D1D261EB9DB4F00D8E820 /* Alimentation.png in Resources */,
@@ -1532,6 +1531,7 @@
 				F4FEFE5F1EE968AB00C95381 /* Cabaret.png in Resources */,
 				9A5658F2203EE7150092BCDA /* Night life.png in Resources */,
 				8D3D5EC41EA7864900DA4778 /* Assets.xcassets in Resources */,
+				9A21F66F2041FD3200EC6253 /* Loisirs.png in Resources */,
 				F44D1D281EB9DB4F00D8E820 /* Culture.png in Resources */,
 				F4BB4DE41EF3EC0900463451 /* defaultPicture.png in Resources */,
 				F417FFA01F45B6E40081A2C1 /* addAnn.png in Resources */,
@@ -1588,7 +1588,6 @@
 				F4FEFE171EE7DBE500C95381 /* tumblr.png in Resources */,
 				F49C7ACF1ECC5C61000209D6 /* MontserratAlternates-Medium.otf in Resources */,
 				F4FEFE441EE9273000C95381 /* Viandes, Poissons.png in Resources */,
-				F44D1D271EB9DB4F00D8E820 /* Visiter.png in Resources */,
 				F4A211F41EFA5EA300C9C944 /* starIncolor.png in Resources */,
 				F4D266C41F445A7700CA1700 /* announcementAdd.png in Resources */,
 				F4FEFE721EE9692C00C95381 /* fetes_deguisements1.png in Resources */,
@@ -1630,7 +1629,7 @@
 				8DEB3A9E1EBDACBA00818DA9 /* ticketTabBarIconTouched.png in Resources */,
 				F4FEFE251EE7E7A400C95381 /* ClosePicture.png in Resources */,
 				8DEB3AAF1EBDB1B100818DA9 /* TokyoPictureApp.png in Resources */,
-				F44D1D1C1EB9DAEB00D8E820 /* Loisirs.png in Resources */,
+				9A21F6732041FDAE00EC6253 /* Sortir.png in Resources */,
 				9A5658F4203EE7150092BCDA /* Activités intérieures.png in Resources */,
 				F46D1DB71F2B262E00359EBC /* lupa.png in Resources */,
 				F4FEFE9A1EE96A6600C95381 /* Entretenir &amp; Réparer.png in Resources */,
@@ -1653,6 +1652,7 @@
 				F4A211F31EFA5EA300C9C944 /* starColour.png in Resources */,
 				F42FA6121F35AD0F0072FF34 /* menuButtonIcon.png in Resources */,
 				F49C7AED1ECDA878000209D6 /* uncheckBox.png in Resources */,
+				9A21F6712041FD9F00EC6253 /* Visiter.png in Resources */,
 				8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */,
 				F49C7AC61ECC5C61000209D6 /* Montserrat-Medium.otf in Resources */,
 				F448FED81EC0648F0079D40D /* homeTabBarIconTouched.png in Resources */,
