@@ -51,15 +51,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch=[[event allTouches] anyObject];
@@ -69,23 +61,23 @@
     
 }
 - (IBAction)firstButton:(id)sender {
-    [self.view addSubview:webViewCustom];
-    [self.view bringSubviewToFront:webViewCustom];
-    [webViewCustom addSubview:creditSpinner];
-    [webViewCustom bringSubviewToFront:creditSpinner];
-    [creditSpinner beginRefreshing];
-    
-    
-    NSURL *url = [NSURL URLWithString:ContactsetCredits];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [webViewCustom loadRequest:urlRequest];
+//    [self.view addSubview:webViewCustom];
+//    [self.view bringSubviewToFront:webViewCustom];
+//    [webViewCustom addSubview:creditSpinner];
+//    [webViewCustom bringSubviewToFront:creditSpinner];
+//    [creditSpinner beginRefreshing];
+//    
+//    
+//    NSURL *url = [NSURL URLWithString:ContactsetCredits];
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//    [webViewCustom loadRequest:urlRequest];
 
     
     
-    
-  //  if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:ContactsetCredits]])
-  //      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ContactsetCredits]];
-  //            [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:ContactsetCredits]  options:@{} completionHandler:nil];
+//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:ContactsetCredits]])
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ContactsetCredits]];
+//              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
 }
 
 
@@ -103,57 +95,62 @@
 
 
 - (IBAction)secondButton:(id)sender {
-    
-    [self.view addSubview:webViewCustom];
-    [self.view bringSubviewToFront:webViewCustom];
-    [webViewCustom addSubview:creditSpinner];
-    [webViewCustom bringSubviewToFront:creditSpinner];
-    [creditSpinner beginRefreshing];
-    
-    NSURL *url = [NSURL URLWithString:Mentionslegales];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [webViewCustom loadRequest:urlRequest];
-    
-    
+     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:Mentionslegales]  options:@{} completionHandler:nil];
+//    [self.view addSubview:webViewCustom];
+//    [self.view bringSubviewToFront:webViewCustom];
+//    [webViewCustom addSubview:creditSpinner];
+//    [webViewCustom bringSubviewToFront:creditSpinner];
+//    [creditSpinner beginRefreshing];
+//
+//    NSURL *url = [NSURL URLWithString:Mentionslegales];
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//    [webViewCustom loadRequest:urlRequest];
+//
+//
 //    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:Mentionslegales]])
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Mentionslegales]];
 //              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
 }
 
 - (IBAction)thirdButton:(id)sender {
+//
+//    [self.view addSubview:webViewCustom];
+//    [self.view bringSubviewToFront:webViewCustom];
+//    [webViewCustom addSubview:creditSpinner];
+//    [webViewCustom bringSubviewToFront:creditSpinner];
+//    [creditSpinner beginRefreshing];
+//
+//    NSURL *url = [NSURL URLWithString:PartenairesPub];
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//    [webViewCustom loadRequest:urlRequest];
     
-    [self.view addSubview:webViewCustom];
-    [self.view bringSubviewToFront:webViewCustom];
-    [webViewCustom addSubview:creditSpinner];
-    [webViewCustom bringSubviewToFront:creditSpinner];
-    [creditSpinner beginRefreshing];
+////
     
-    NSURL *url = [NSURL URLWithString:PartenairesPub];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [webViewCustom loadRequest:urlRequest];
-    
-//    
-//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:PartenairesPub]])
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:PartenairesPub]  options:@{} completionHandler:nil];
+//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:PartenairesPub]]){
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:PartenairesPub]];
 //              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
+//    }
 }
 
 - (IBAction)forthButton:(id)sender {
     
-    [self.view addSubview:webViewCustom];
-    [self.view bringSubviewToFront:webViewCustom];
-    [webViewCustom addSubview:creditSpinner];
-    [webViewCustom bringSubviewToFront:creditSpinner];
-    [creditSpinner beginRefreshing];
-    
-    NSURL *url = [NSURL URLWithString:Quisommesnous];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [webViewCustom loadRequest:urlRequest];
-    
-//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:Quisommesnous]])
+//    [self.view addSubview:webViewCustom];
+//    [self.view bringSubviewToFront:webViewCustom];
+//    [webViewCustom addSubview:creditSpinner];
+//    [webViewCustom bringSubviewToFront:creditSpinner];
+//    [creditSpinner beginRefreshing];
+//
+//    NSURL *url = [NSURL URLWithString:Quisommesnous];
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//    [webViewCustom loadRequest:urlRequest];
+//
+//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:Quisommesnous]]){
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Quisommesnous]];
-//    
+//
 //              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
+//    }
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:Quisommesnous]  options:@{} completionHandler:nil];
 }
 
 - (IBAction)closePopUp:(id)sender {

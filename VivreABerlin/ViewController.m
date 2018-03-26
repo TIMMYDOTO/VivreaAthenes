@@ -77,7 +77,7 @@
     }
     else{
         self.newsLetter.hidden = false;
-        self.openIapImage.hidden = true;
+      //  self.openIapImage.hidden = true;
         offlineModeOn = false;
     }
 
@@ -1021,28 +1021,29 @@ finish:
 }
 
 - (IBAction)openNewsletter:(id)sender {
-    if(offlineModeOn == false){
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.15 animations:^{
-                self.newsLetter.transform = CGAffineTransformIdentity;
-                
-                
-            }];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PopUpNewsletterController"]];
-        }];
-        
-    }];
-    }
-    else{
+    NSLog(@"newLter");
+//    if(offlineModeOn == false){
+//
+//    [UIView animateWithDuration:0.1 animations:^{
+//        self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.15 animations:^{
+//            self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.15 animations:^{
+//                self.newsLetter.transform = CGAffineTransformIdentity;
+//
+//
+//            }];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PopUpNewsletterController"]];
+//        }];
+//
+//    }];
+//    }
+//    else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"IAPViewController"]];
-    }
-    
+//    }
+
 }
 
 - (IBAction)openMenu:(id)sender {
@@ -1289,14 +1290,14 @@ finish:
         offlineModeOn = true;
     }
     else{
-        self.newsLetter.hidden = false;
-        self.openIapImage.hidden = true;
+       // self.newsLetter.hidden = false;
+       // self.openIapImage.hidden = true;
         offlineModeOn = false;
     }
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:@"UserBoughtTheMap"] isEqualToString:@"YES"]){
-        self.newsLetter.hidden = false;
-        self.openIapImage.hidden = true;
+       // self.newsLetter.hidden = false;
+       // self.openIapImage.hidden = true;
         offlineModeOn = false;
     }
 

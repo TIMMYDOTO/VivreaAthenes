@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *tagsTitle;
 @property (weak, nonatomic) IBOutlet UIView *savedPostView;
-@property (weak, nonatomic) IBOutlet UIButton *twiiter2;
+
 @property (weak, nonatomic) IBOutlet UIButton *fb2;
 - (IBAction)facebook2:(id)sender;
 - (IBAction)twitter2:(id)sender;

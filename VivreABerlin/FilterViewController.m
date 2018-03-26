@@ -41,9 +41,7 @@
             }];
         }];
     }];
-//        if([SimpleFilesCache cachedDataWithName:@"ArrayWithAnnotationsSaved"])
-//        [GlobalVariables getInstance].arrayWithAnnotations = [[NSMutableArray alloc]initWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"ArrayWithAnnotationsSaved"]]];
-//    else
+
     [GlobalVariables getInstance].arrayWithAnnotations = [[NSMutableArray alloc]initWithArray:[[GlobalVariables getInstance].MapPageInfos valueForKey:@"categories"]];
     
     
@@ -112,10 +110,7 @@
     [super viewWillAppear:animated];
   
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -210,10 +205,12 @@
         
         SubFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        cell.subTitleText.text=[self stringByStrippingHTML:[self stringByDecodingXMLEntities:[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_name"]]];
+        cell.subTitleText.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_name"]]];
+        
+        NSLog(@"cell.subTitleText.tex %@",  cell.subTitleText.text);
         cell.subTitleText.font = [UIFont fontWithName:@"Montserrat-Light" size:15.f];
         cell.subTitleText.textColor = [self colorWithHexString:@"303030"];
-       // NSLog(@"%@",cell.subTitleText.text);
+
         
         
         
@@ -235,13 +232,13 @@
         
         cell.subBox.transform = CGAffineTransformMakeScale(0.9, 0.9);
         
-        
+        NSLog(@"url %@", [NSURL URLWithString: [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"icon_url"]]);
         
         [cell.subCategorieImg loadImageFromURL: [NSURL URLWithString: [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"icon_url"]]
                               placeholderImage: nil
                                     cachingKey: [NSString stringWithFormat:@"%@",[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"category_id"]]];
         
-        NSLog(@"image: %@", cell.subCategorieImg.image);
+//        NSLog(@"image: %@", cell.subCategorieImg.image);
 //        if([self isInternet] == NO)
 //        {
 //            cell.subCategorieImg.image = nil;
@@ -526,7 +523,7 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"reloadPozition"]];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"reloadPozition"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
 }
 
@@ -535,7 +532,7 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"reloadPozition"]];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"reloadPozition"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
 }
 -(BOOL)isInternet{

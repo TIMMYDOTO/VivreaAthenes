@@ -600,6 +600,7 @@ JTMaterialSpinner * spinnerView;
         
         
     }
+    
     else if([notification.object isEqualToString:@"ViewController"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"ViewPostOnHomeTapBar"] != YES){
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ViewPostOnHomeTapBar"];
         
@@ -775,54 +776,7 @@ JTMaterialSpinner * spinnerView;
         kAppDelegate.lockInPortrait = YES;
         
            [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"EditAnnouncement"] userInfo: userInfo];
-        
-
-//               AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
-//                child2.titleeeee = [userInfo valueForKey:@"title"];
-//                child2.emailContact = [userInfo valueForKey:@"contact_email"];
-//                child2.contactName = [userInfo valueForKey:@"contact_name"];
-//                child2.adID = [userInfo valueForKey:@"ad_id"];
-//                child2.adKey = [userInfo valueForKey:@"ad_key"];
-//                child2.details = [userInfo valueForKey:@"details"];
-//                child2.view.frame = self.view.bounds;
-//                child2.canBeDeleted = YES;
-//                child2.view.frame = self.view.bounds;
-        
-//        EditAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAnnouncement"];
-        
-//        child2.view.frame = self.view.bounds;
-//
-////        child2.emailfield = [userInfo objectForKey:@"email"];
-//        [UIView transitionWithView:self.view duration:0.3
-//                           options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-//                               [self addChildViewController:child2];
-//                               [child2 didMoveToParentViewController:self];
-//                               child2.view.frame = self.view.bounds;
-//                               [self.view addSubview:child2.view];
-//                           } completion:nil];
-        
-        
-        
-//
-//        AddAnnouncement * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAnnouncement"];
-//        child2.titleeeee = [userInfo valueForKey:@"title"];
-//        child2.emailContact = [userInfo valueForKey:@"contact_email"];
-//        child2.contactName = [userInfo valueForKey:@"contact_name"];
-//        child2.adID = [userInfo valueForKey:@"ad_id"];
-//        child2.adKey = [userInfo valueForKey:@"ad_key"];
-//        child2.details = [userInfo valueForKey:@"details"];
-//        child2.view.frame = self.view.bounds;
-//        child2.canBeDeleted = YES;
-//        child2.view.frame = self.view.bounds;
-//
-//
-//        [UIView transitionWithView:self.view duration:0.3
-//                           options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-//                               [self addChildViewController:child2];
-//                               [child2 didMoveToParentViewController:self];
-//                               child2.view.frame = self.view.bounds;
-//                               [self.view addSubview:child2.view];
-//                           } completion:nil];
+ 
         
         
     }
@@ -987,7 +941,11 @@ JTMaterialSpinner * spinnerView;
         
         [GlobalVariables getInstance].comingFromForAgenda = @"Map";
         kAppDelegate.lockInPortrait = YES;
-        
+        self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon.png"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
+        self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon.png"];
+        self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIconTouched.png"];
+        self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon.png"];
         if([[GlobalVariables getInstance].currentViewController isEqualToString:@"MapViewController"] || [[GlobalVariables getInstance].currentViewController isEqualToString:@"PostViewController"] || [[GlobalVariables getInstance].currentViewController isEqualToString:@"ListOfPostsController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"CatsSubCatsController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"AgendaViewController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"AnnouncementsViewController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"TicketsViewController"] ){
             
             UIViewController *vc = [self.childViewControllers lastObject];
@@ -1347,6 +1305,7 @@ JTMaterialSpinner * spinnerView;
     self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon.png"];
     self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon.png"];
     self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIconTouched.png"];
+        NSLog(@"elf.forthTabBarImg.image %@", self.forthTabBarImg.image);
     self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon.png"];
     }
     else {

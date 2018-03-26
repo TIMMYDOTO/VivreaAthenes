@@ -19,9 +19,10 @@
 #import "IAPViewController.h"
 #import "MapCreditsController.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import "ContainerViewController.h"
 @interface MapViewController ()
 
+@property (strong, nonatomic) IBOutlet UIImageView *img;
 
 
 @end
@@ -278,8 +279,9 @@
     else if([notification.object isEqualToString:@"reloadPozition"]){
         
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-        
-        [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:YES];
+        NSLog(@"latitudine %f longitude %f", [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
+        [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl+5 direction:0.0 animated:YES];
+//        [self.mapView setCenterCoordinate:center zoomLevel:20.0 animated:YES];
     }
     else if([notification.object isEqualToString:@"filtrating"] && [GlobalVariables getInstance].canFilter == true) {
         [GlobalVariables getInstance].canFilter = false;
@@ -324,6 +326,8 @@
                     [[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j] setValue:[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"category_name" ] forKey:@"parent_category_name"];
                     [[GlobalVariables getInstance].Annotations addObject:[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j]];
                     
+                    NSLog(@"[GlobalVariables getInstance].Annotations %@", [GlobalVariables getInstance].Annotations );
+                    
                     
                 }
                 
@@ -345,6 +349,10 @@
         }
 
         for (int i = 0 ; i< [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]; i++) {
+            
+            NSLog(@"annonatations count %lu ", [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]);
+            
+            
             for ( int j = 0 ; j < [[[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] valueForKey:@"location"] valueForKey:@"lat"][i] count]; j++) {
                 MGLPointAnnotation *point = [[MGLPointAnnotation alloc] init];
                 
@@ -366,12 +374,12 @@
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
+                    // point is the same 
                     [self.mapView addAnnotation:point];
                     if (i == [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count] -1){
                         self.openFilters.userInteractionEnabled = true;
                     
-                                                [spinnerview endRefreshing];
+                          [spinnerview endRefreshing];
                     }
                    
                     if([GlobalVariables getInstance].PerSession == true){
@@ -570,7 +578,7 @@
                         NSString* webStringURL = [webName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                         NSURL* url = [NSURL URLWithString:webStringURL];
                         
-                        
+                    
                         [imageview loadImageFromURL: url placeholderImage: nil cachingKey: [NSString stringWithFormat:@"%@Thumbnail",[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] valueForKey:@"post_id"][i][j]]];
                         
                         return imageview;
@@ -647,7 +655,7 @@
     
     
     MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",str2]];
-    NSLog(@"str2 %@", str2);
+
     if (!annotationImage) {
         
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",str2]];

@@ -172,6 +172,7 @@
                 [self sendingAnHTTGETTRequestCategoryClicked:[NSString stringWithFormat:postsFromTag,[[NSUserDefaults standardUserDefaults] objectForKey:@"ComingFromAgendaTag"],[NSString stringWithFormat:@"%d",Page]]];
             }
             else {
+                NSLog(@"%@", [NSString stringWithFormat:categoryLink,[GlobalVariables getInstance].idOfcatSubCat,[NSString stringWithFormat:@"%d",Page]]);
                 [self sendingAnHTTGETTRequestCategoryClicked:[NSString stringWithFormat:categoryLink,[GlobalVariables getInstance].idOfcatSubCat,[NSString stringWithFormat:@"%d",Page]]];
                 
                 adsDictionary = [self requestForNativeAds:[NSString stringWithFormat:categoryAdsLink,[GlobalVariables getInstance].subCatSlugNumber]];
@@ -534,9 +535,9 @@
     else if(nativeAdsImage.count == 1 && indexPath.row ==  0)
         return self.view.frame.size.width/2;
     else
-        return 300;
+        return 360;
     
-    return  300;
+    return  360;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -841,13 +842,9 @@
     NSData* jsonData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *jsonError;
-    
+    NSLog(@"url2: %@", url);
     
     Dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError];
-    
-    
-    
-    
     
 }
 -(NSDictionary *)getPostByTagName: (NSString *)url{
@@ -868,10 +865,6 @@
     
     
     return [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError];
-    
-    
-    
-    
     
 }
 -(NSDictionary *)requestForNativeAds: (NSString *)url{

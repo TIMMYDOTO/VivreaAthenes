@@ -52,6 +52,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+//
     // Do any additional setup after loading the view.
     self.reloadScreen.hidden = true;
     arrayUsedInTable = [[NSMutableArray alloc] init];
@@ -147,6 +150,7 @@
         for(int i = 0; i< [[dictionary valueForKey:@"events"] count];i++)
             [agendaInfosArray addObject:[dictionary valueForKey:@"events"][i]];
     
+   
     if([self isInternet ] == YES){
         
         [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:@"canMakeRequestForAgenda"];
@@ -177,7 +181,7 @@
             for(int i = 0 ; i < restult.count; i++){
                 
                 NSLog(@"contor : %d", i);
-                [dossiersTitles addObject:[restult valueForKey:@"name"][i]];
+                [dossiersTitles addObject:[restult valueForKey:@"menu_name"][i]];
                 [dossiersContents addObject:[restult valueForKey:@"description"][i]];
                  [allSlugsName addObject:[restult valueForKey:@"slug"][i]];
                  [allTagsName addObject:[restult valueForKey:@"name"][i]];
@@ -307,7 +311,14 @@
                         self.nosDossires.hidden = YES;
                         self.searchfieldView.hidden = NO;
                     }
+                if (agendaInfosArray.count == 0) {
+                    self.closeDossiersView.hidden = YES;
+                    self.dossiersHeaderView.hidden = YES;
+                    CGRect dossiersFrame = self.dossiersTable.frame;
+                    dossiersFrame.origin.y = dossiersFrame.origin.y - 100;
+                    self.dossiersTable.frame = dossiersFrame;
                     
+                }
                     self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5 + self.dossiersHeaderView.frame.size.height *2.5);
                     
                     
@@ -409,8 +420,8 @@
                 //    [self showMessage:@"aucun événement à venir!"];
                     
                     self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, self.dossiersHeaderView.frame.origin.y, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
-                    self.dossiersHeaderView.hidden = true;
-                    self.closeDossiersView.hidden = true;
+//                    self.dossiersHeaderView.hidden = true;
+//                    self.closeDossiersView.hidden = true;
                     self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5);
                     [spinnerview endRefreshing];
                     self.nosDossires.hidden = true;
@@ -459,7 +470,11 @@
     
     
 }
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"Nos dossiers";
+}
 - (void)viewWillAppear:(BOOL)animated {
+   
     [self Spin];
 }
 -(void)textFieldDidChange :(UITextField *)theTextField{
@@ -619,7 +634,6 @@
         CatsSubCatsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         [cell.articleImage loadImageFromURL: [NSURL URLWithString:[NSString stringWithFormat:@"%@",[arrayUsedInTable valueForKey:@"thumbnail_url"][indexPath.row]]] placeholderImage: [UIImage imageNamed:@"PlaceHolderImage.png"] cachingKey:[NSString stringWithFormat:@"%@",[arrayUsedInTable valueForKey:@"id"][indexPath.row]]];
-        
         
         
         cell.articleContent.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[arrayUsedInTable valueForKey:@"excerpt"][indexPath.row]]];
@@ -905,7 +919,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             
-            
+            NSLog(@"link %@", [NSString stringWithFormat:categoryLink,agendaTAG,@"0"]);
             [self sendingAnHTTGETTRequestCategoryClicked:[NSString stringWithFormat:categoryLink,agendaTAG,@"0"]];
             
             

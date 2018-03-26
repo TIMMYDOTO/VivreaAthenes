@@ -52,6 +52,7 @@
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
 		9A5658FF204055770092BCDA /* Shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FE204055770092BCDA /* Shopping.png */; };
+		9A7444E32067CEB2000DDD9F /* Visites guidées.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7444E22067CEB0000DDD9F /* Visites guidées.png */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
 		F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF111F447F0C00BCC8DE /* EditAnnouncement.m */; };
@@ -256,7 +257,6 @@
 		F4FEFE8C1EE969F800C95381 /* Balades du week-end.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE881EE969F800C95381 /* Balades du week-end.png */; };
 		F4FEFE8D1EE969F800C95381 /* Itinéraires.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE891EE969F800C95381 /* Itinéraires.png */; };
 		F4FEFE8E1EE969F800C95381 /* Musées.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE8A1EE969F800C95381 /* Musées.png */; };
-		F4FEFE8F1EE969F800C95381 /* Visites guidées.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE8B1EE969F800C95381 /* Visites guidées.png */; };
 		F4FEFE971EE96A6600C95381 /* Apprendre l'allemand.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE901EE96A6600C95381 /* Apprendre l'allemand.png */; };
 		F4FEFE981EE96A6600C95381 /* Avocats, fiscalistes, conseils en droit du travail.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE911EE96A6600C95381 /* Avocats, fiscalistes, conseils en droit du travail.png */; };
 		F4FEFE991EE96A6600C95381 /* Communauté.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FEFE921EE96A6600C95381 /* Communauté.png */; };
@@ -386,6 +386,7 @@
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
 		9A5658FE204055770092BCDA /* Shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shopping.png; sourceTree = "<group>"; };
+		9A7444E22067CEB0000DDD9F /* Visites guidées.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Visites guidées.png"; sourceTree = "<group>"; };
 		C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D6AB2DB0DBF433AE991F59F3 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DCB8B477732E33E4DF3468 /* Pods-VivreABerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin.release.xcconfig"; sourceTree = "<group>"; };
@@ -628,7 +629,6 @@
 		F4FEFE881EE969F800C95381 /* Balades du week-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Balades du week-end.png"; sourceTree = "<group>"; };
 		F4FEFE891EE969F800C95381 /* Itinéraires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Itinéraires.png"; sourceTree = "<group>"; };
 		F4FEFE8A1EE969F800C95381 /* Musées.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Musées.png"; sourceTree = "<group>"; };
-		F4FEFE8B1EE969F800C95381 /* Visites guidées.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Visites guidées.png"; sourceTree = "<group>"; };
 		F4FEFE901EE96A6600C95381 /* Apprendre l'allemand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Apprendre l'allemand.png"; sourceTree = "<group>"; };
 		F4FEFE911EE96A6600C95381 /* Avocats, fiscalistes, conseils en droit du travail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Avocats, fiscalistes, conseils en droit du travail.png"; sourceTree = "<group>"; };
 		F4FEFE921EE96A6600C95381 /* Communauté.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Communauté.png"; sourceTree = "<group>"; };
@@ -839,6 +839,7 @@
 		F43957561ED58CEC00CAE618 /* MarkersIcons */ = {
 			isa = PBXGroup;
 			children = (
+				9A7444E22067CEB0000DDD9F /* Visites guidées.png */,
 				F46D1DB61F2B262E00359EBC /* lupa.png */,
 				F4E734391EF2B4D700D095FB /* blueMarker.png */,
 				F4FEFE681EE9692C00C95381 /* Beauté.png */,
@@ -854,7 +855,6 @@
 				F4FEFE961EE96A6600C95381 /* Transports.png */,
 				F4FEFE891EE969F800C95381 /* Itinéraires.png */,
 				F4FEFE8A1EE969F800C95381 /* Musées.png */,
-				F4FEFE8B1EE969F800C95381 /* Visites guidées.png */,
 				F4FEFE821EE969C800C95381 /* Ich bin ein Berliner.png */,
 				F4FEFE831EE969C800C95381 /* Mitte.png */,
 				F4FEFE781EE9699D00C95381 /* Ateliers.png */,
@@ -1405,7 +1405,7 @@
 				TargetAttributes = {
 					8D3D5EB31EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GBTHA95GEH;
+						DevelopmentTeam = HY6ZSGAUP6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1513,6 +1513,7 @@
 				F49C7AD21ECC5C61000209D6 /* MontserratAlternates-Thin.otf in Resources */,
 				9A5658F3203EE7150092BCDA /* Cafés et Bars.png in Resources */,
 				8DEB3AAD1EBDB1B100818DA9 /* AthensPictureApp.png in Resources */,
+				9A7444E32067CEB2000DDD9F /* Visites guidées.png in Resources */,
 				F4C5CCAD1F026EA40091CB3C /* left.png in Resources */,
 				F4FEFE751EE9692C00C95381 /* Matériel beaux-arts.png in Resources */,
 				9A5658F6203EE7150092BCDA /* Monuments.png in Resources */,
@@ -1592,7 +1593,6 @@
 				F4D266C41F445A7700CA1700 /* announcementAdd.png in Resources */,
 				F4FEFE721EE9692C00C95381 /* fetes_deguisements1.png in Resources */,
 				F43CBA9C1F46BDBB0015B024 /* ChangeFont.png in Resources */,
-				F4FEFE8F1EE969F800C95381 /* Visites guidées.png in Resources */,
 				F4C292A71F136A1500894F9C /* more.png in Resources */,
 				F4FEFE401EE9273000C95381 /* Saveurs sucrées.png in Resources */,
 				F463FD471FA87DE200EBAA56 /* MainiPhoneX.storyboard in Resources */,
@@ -2120,7 +2120,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2146,7 +2146,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

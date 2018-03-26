@@ -21,27 +21,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nZz-iQ-sYz">
-                                <rect key="frame" x="47" y="192" width="281" height="283"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="283" id="8xv-WC-Wev"/>
-                                    <constraint firstAttribute="width" constant="281" id="k90-F2-lgk"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="RKy-i1-wII">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nZz-iQ-sYz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rhn-wb-1dc"/>
-                            <constraint firstItem="nZz-iQ-sYz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ybS-9h-9Fo"/>
+                            <constraint firstItem="RKy-i1-wII" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="CGI-aU-8Hf"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="RKy-i1-wII" secondAttribute="bottom" id="Fe3-zU-dhl"/>
+                            <constraint firstAttribute="trailing" secondItem="RKy-i1-wII" secondAttribute="trailing" id="cXI-Ne-hR1"/>
+                            <constraint firstItem="RKy-i1-wII" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="iLz-wU-L0R"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bigLogo.png" width="1260" height="1236"/>
+        <image name="spashScreen" width="347" height="596"/>
     </resources>
 </document>

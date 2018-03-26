@@ -85,7 +85,7 @@
     self.starsCollectionView.hidden = true;
     self.postDetailsImageScroll.delegate = self;
     self.changeableBackgroundd.hidden = true;
-    self.twittertw.hidden = true;
+   
     self.facebookfb.hidden = true;
     self.tagsScrollView.delegate = self;
     self.tagsTitle.hidden = true;
@@ -242,7 +242,7 @@
                 self.logoIcon.hidden = false;
                 self.rainbow.hidden = false;
                 self.starsCollectionView.hidden = false;
-                self.twittertw.hidden = false;
+         
                 self.facebookfb.hidden = false;
                 numberOfStars = [[[postInfo valueForKey:@"ratings"] valueForKey:@"average"] intValue];
                 self.tagsTitle.hidden = false;
@@ -372,7 +372,7 @@
                 }
                 else{
                     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-                        [GlobalVariables getInstance].fontsize = 17;
+                        [GlobalVariables getInstance].fontsize = 12;
                     else
                         [GlobalVariables getInstance].fontsize = 18;
                     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f",[GlobalVariables getInstance].fontsize] forKey:@"fontSize"];
@@ -534,7 +534,7 @@
                                                         newFont = [UIFont fontWithName:@"Montserrat-Regular" size:14];
                                                     
                                                     
-                                                    self.fontSizeNumber.text = @"14";
+                                                    self.fontSizeNumber.text = @"12";
                                                     
                                                 }
                                                 else {
@@ -1890,29 +1890,7 @@ finish:
     
 }
 
-- (IBAction)twitter:(id)sender {
-    [UIView animateWithDuration:0.1 animations:^{
-        self.twittertw.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.twittertw.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.15 animations:^{
-                self.twittertw.transform = CGAffineTransformIdentity;
-                
-                
-                SLComposeViewController *tweetSheet = [SLComposeViewController
-                                                       composeViewControllerForServiceType:SLServiceTypeTwitter];
-                [tweetSheet setInitialText:[NSString stringWithFormat:@"%@ - Vivre à %@ %@",[postInfo valueForKey:@"post_title" ],nameOfTheCity,[postInfo valueForKey:@"post_url"]]];
-                [self presentViewController:tweetSheet animated:YES completion:nil];
-                
-                
-            }];
-            
-        }];
-        
-    }];
-}
+
 -(void)showMessage: (NSString *)content{
     
     demo = [[OLGhostAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@", content] message:nil timeout:1 dismissible:YES];
@@ -1950,30 +1928,7 @@ finish:
     }];
 }
 
-- (IBAction)twitter2:(id)sender {
-    [UIView animateWithDuration:0.1 animations:^{
-        self.twiiter2.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.twiiter2.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.15 animations:^{
-                self.twiiter2.transform = CGAffineTransformIdentity;
-                NSString *textToShare = [NSString stringWithFormat:@"%@ - Vivre à %@ %@",[postInfo valueForKey:@"post_title" ],nameOfTheCity,[postInfo valueForKey:@"post_url"]];
-                
-                SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-                [controller setInitialText: textToShare];
-                
-                [self presentViewController:controller animated:YES completion:Nil];
-                
-                
-            }];
-            
-        }];
-        
-    }];
-    
-}
+
 
 
 - (IBAction)increaseFontButton:(id)sender {

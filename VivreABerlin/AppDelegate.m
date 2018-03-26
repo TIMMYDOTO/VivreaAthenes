@@ -29,7 +29,9 @@
     
     [GlobalVariables getInstance].myLaunchOptions = launchOptions;
     
-    // Override point for customization after application launch.
+     [GADMobileAds configureWithApplicationID:googleAppID];
+    
+    
     
     // Replace '11111111-2222-3333-4444-0123456789ab' with your OneSignal App ID.
     
@@ -85,7 +87,7 @@
     
     
     
-    [GADMobileAds configureWithApplicationID:googleAppID];
+   
 
     UINavigationController *navigationController;
     

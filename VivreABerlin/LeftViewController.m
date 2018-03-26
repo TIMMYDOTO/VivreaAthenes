@@ -18,6 +18,7 @@
 #import "MenuCell.h"
 #import "SubMenuCell.h"
 #import "JTMaterialSpinner.h"
+#import "ContainerViewController.h"
 @interface LeftViewController ()
 
 
@@ -29,6 +30,10 @@
 
 @implementation LeftViewController
 {
+    
+    NSString *flag;
+    NSMutableArray *arr;
+    
     
     NSMutableArray * MenuArray;
     NSMutableArray * offlineMenuArray;
@@ -48,7 +53,7 @@
 
 
 - (void) viewDidLoad {
-    
+    arr = [[NSMutableArray alloc]init];
     self.accueilText.text = [NSString stringWithFormat:@"Vivre %@",AppName];
     
     self.accueilText.adjustsFontSizeToFitWidth = true;
@@ -125,31 +130,49 @@
     
 }
 
--(void)newLoad{
+-(void)newLoad {
     offlineMenuArray = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"menuDictionary"]];
+    
+    
+    
+  
     
     
     if(offlineMenuArray.count != 0) {
         arrayForTable = [[NSMutableArray alloc] init];
         [offlineMenuArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([[obj valueForKey:@"order"]integerValue] >= 92) {
+            if ([[obj valueForKey:@"order"]integerValue] >= 92)  {
                 *stop = YES;
             }
+
+
             [arrayForTable addObject:obj];
             [arrayForTable setValue:nil forKey:@"isExpanded"];
         }];
-//        for ( int i = 0 ; i<=[[offlineMenuArray valueForKey:@"parent"] count] ;i ++) {
-//
-//            if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0 && [[offlineMenuArray valueForKey:@"order"][i]intValue] < 92)
-//            {
-//                [arrayForTable addObject:offlineMenuArray[i]];
-//                [arrayForTable setValue:nil forKey:@"isExpanded"];
-//            }
-//
-//        }
+        NSMutableArray *arr = [NSMutableArray array];
         
+        for (NSDictionary *dict in arrayForTable) {
+            NSMutableDictionary *currentDictionary = [NSMutableDictionary dictionaryWithDictionary:dict];
+            
+            NSArray *oldChildren = currentDictionary[@"children"];
+            NSMutableArray *children = [NSMutableArray array];
+            if (oldChildren!=nil && [oldChildren count]>0) {
+                for (NSDictionary *child in oldChildren) {
+                    NSString *classes = child[@"classes"];
+                    if (classes!=nil && [classes isEqualToString:@""] == NO && [classes containsString:@"dgab-force-display"]) {
+                        [children addObject:child];
+                    }
+                }
+            }
+            [currentDictionary setObject:children forKey:@"children"];
+            [arr addObject:currentDictionary];
+        }
+        arrayForTable = arr;
         
-        for ( int i = 0 ; i <arrayForTable.count ;i ++) {
+        NSLog(@"arrayForTable %@", arrayForTable);
+        
+        for ( int i = 0 ; i <arrayForTable.count; i ++) {
+        
             if([[arrayForTable valueForKey:@"parent"][i] integerValue] == 0)
             {
                 
@@ -378,12 +401,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(tableView == self.catAndSubcatsTable)
-        return arrayForTable.count;
+
+    if(tableView == self.catAndSubcatsTable){
+        return arrayForTable.count ;
+    }
     else
         return filteredTableData.count;
 }
-
+-(bool)sendingAnHTTGETTRequestCategoryClicked: (NSString *)url diction:(NSDictionary *)diction{
+    
+    NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
+    
+    
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
+    NSURLResponse *response = NULL;
+    NSError *requestError = NULL;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    
+    NSData* jsonData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *jsonError;
+//    NSLog(@"dict: %@", [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError]);
+   NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&jsonError];
+    if ([dict valueForKey:@"results"] == [NSNull null]) {
+      return false;
+    }
+    else {
+        return true;
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"MenuCell";
@@ -391,9 +439,14 @@
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
+
+  
     if(tableView == self.catAndSubcatsTable){
-        cell.categoriesName.text=[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
+
+            cell.categoriesName.text =[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
+
+        
+
         
         cell.indentationWidth = 20;
         [cell setIndentationLevel:[[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"level"] intValue]];
@@ -510,10 +563,15 @@
             static NSString *CellIdentifier = @"SubMenuCell";
             
             SubMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
+           
+//            [[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if ([obj count]) {
+//                    cell.subMenuCategoryname.text = obj;
+//                }
+//            }];
             
             cell.subMenuCategoryname.text=[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
-            
+           
              if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
                  UIFont *fontt = [UIFont fontWithName:@"Montserrat-Regular" size:27.f];
                  cell.subMenuCategoryname.font = fontt;
@@ -592,13 +650,15 @@
     else{
         NSInteger tag = button.tag;
         
-        NSLog(@"%ld",(long)tag);
+      
         
         [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+        ///////////////////
         [GlobalVariables getInstance].idOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"object_id"];
         [GlobalVariables getInstance].nameOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"title"];
        
-       
+        NSLog(@"idOfcatSubCat %@", [GlobalVariables getInstance].idOfcatSubCat);
+        NSLog(@"nameOfcatSubCat %@", [GlobalVariables getInstance].nameOfcatSubCat);
         
         if([[GlobalVariables getInstance].allCategoriesName containsObject:[[arrayForTable objectAtIndex:tag] valueForKey:@"title"]]){
             
@@ -800,6 +860,7 @@
 - (IBAction)toMap:(id)sender {
     
     [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"MapViewController"]];
 }
 
@@ -1056,6 +1117,7 @@
 - (IBAction)openTwitter:(id)sender {
     [self.searchArticles resignFirstResponder];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+
     [UIView animateWithDuration:0.2
                      animations:^{self.quickSearchView.alpha = 0.0;}
                      completion:^(BOOL finished){ self.quickSearchView.hidden = YES; }];
@@ -1065,7 +1127,7 @@
                      }
                      completion:^(BOOL finished){ }];
 
-    
+
     [UIView animateWithDuration:0.3/1.5 animations:^{
         self.twitter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
     } completion:^(BOOL finished) {
@@ -1079,7 +1141,7 @@
     }];
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
+
         if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:twitterSocial]])
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:twitterSocial]];
         else{
@@ -1089,7 +1151,7 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            
+
         }
     });
 }
@@ -1139,42 +1201,44 @@
 - (IBAction)openTumblr:(id)sender {
     [self.searchArticles resignFirstResponder];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [UIView animateWithDuration:0.2
-                     animations:^{self.quickSearchView.alpha = 0.0;}
-                     completion:^(BOOL finished){ self.quickSearchView.hidden = YES; }];
-    [UIView animateWithDuration:0.3
-                     animations:^{self.catAndSubcatsTable.frame = CGRectMake(self.catAndSubcatsTable.frame.origin.x, originOfCatsTable, self.catAndSubcatsTable.frame.size.width, self.catAndSubcatsTable.frame.size.height);
-                     }
-                     completion:^(BOOL finished){ }];
-
-    [GlobalVariables getInstance].isUserSearchingOnSideBar = NO;
-    
-    [UIView animateWithDuration:0.3/1.5 animations:^{
-        self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3/2 animations:^{
-            self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.3/2 animations:^{
-                self.tumblr.transform = CGAffineTransformIdentity;
-            }];
-        }];
-    }];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:tumblrSocial]])
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tumblrSocial]];
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR"
-                                                            message:@"Ce réseau social n'a pas encore été installé"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            
-        }
-    });
+     [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PopUpNewsletterController"]];
+//    [UIView animateWithDuration:0.2
+//                     animations:^{self.quickSearchView.alpha = 0.0;}
+//                     completion:^(BOOL finished){ self.quickSearchView.hidden = YES; }];
+//    [UIView animateWithDuration:0.3
+//                     animations:^{self.catAndSubcatsTable.frame = CGRectMake(self.catAndSubcatsTable.frame.origin.x, originOfCatsTable, self.catAndSubcatsTable.frame.size.width, self.catAndSubcatsTable.frame.size.height);
+//                     }
+//                     completion:^(BOOL finished){ }];
+//
+//    [GlobalVariables getInstance].isUserSearchingOnSideBar = NO;
+//
+//    [UIView animateWithDuration:0.3/1.5 animations:^{
+//        self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.3/2 animations:^{
+//            self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.3/2 animations:^{
+//                self.tumblr.transform = CGAffineTransformIdentity;
+//            }];
+//        }];
+//    }];
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//
+//        if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:tumblrSocial]])
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tumblrSocial]];
+//        else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR"
+//                                                            message:@"Ce réseau social n'a pas encore été installé"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//
+//        }
+//    });
 }
 
 - (UIImage *)imageFromColor:(UIColor *)color {

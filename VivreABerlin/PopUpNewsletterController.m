@@ -25,7 +25,7 @@
     
     
     self.enterEmailFiel.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@"YOUR EMAIL HERE"
+    [[NSAttributedString alloc] initWithString:@"VOTRE MAIL"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: [UIColor grayColor],
                                                  NSFontAttributeName : [UIFont fontWithName:@"Montserrat-Light" size:17.0]
@@ -33,7 +33,7 @@
      ];
     
     self.enterNameField.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@"YOUR NAME HERE"
+    [[NSAttributedString alloc] initWithString:@"VOTRE NOM"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: [UIColor grayColor],
                                                  NSFontAttributeName : [UIFont fontWithName:@"Montserrat-Light" size:17.0]
