@@ -183,9 +183,11 @@
                     [nativeAdsImage addObject:[[adsDictionary valueForKey:@"ads"][i] valueForKey:@"ad_image"]];
                     [nativeAdsDestionation addObject:[[adsDictionary valueForKey:@"ads"][i] valueForKey:@"ad_url"]];
                 }
-                
+                if([NSNull null] != [Dictionary objectForKey:@"results"]) {
+                NSLog(@"results count %lu",[[Dictionary valueForKey:@"results"] count]);
                 for(int i = 0 ; i < [[Dictionary valueForKey:@"results"] count]; i++)
                     [allArticlesFromCategory addObject:[Dictionary valueForKey:@"results"][i]];
+                }
                 
                 if(Page == [[NSString stringWithFormat:@"%@",[Dictionary valueForKey:@"pages"]] intValue])
                 {
@@ -828,7 +830,9 @@
     
 }
 -(void)sendingAnHTTGETTRequestCategoryClicked: (NSString *)url{
-    
+    if ([url isEqualToString:@"https://vivreathenes.com/wp-json/wp/v2/posts/category/544?page=1"]) {
+        url = @"https://vivreathenes.com/wp-json/wp/v2/posts/tag/coups-de-coeur?page=1";
+    }
     NSURL *jsonFileUrl = [[NSURL alloc] initWithString:url];
     
     
