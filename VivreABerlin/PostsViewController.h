@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 @import Mapbox;
 #import <CoreLocation/CoreLocation.h>
+#import <WebKit/WebKit.h>
 
-
-@interface PostsViewController : UIViewController <MGLMapViewDelegate,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIWebViewDelegate,UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface PostsViewController : UIViewController <MGLMapViewDelegate,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIWebViewDelegate,UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, WKNavigationDelegate, WKUIDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *openSideBar;
 @property (weak, nonatomic) IBOutlet UILabel *titleOfThePost;
 @property (weak, nonatomic) IBOutlet UIScrollView *postScrollView;

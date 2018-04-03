@@ -25,43 +25,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [FBAdSettings addTestDevice:[FBAdSettings testDeviceHash]];
   // [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"didUserPurchasedIap"];
-     NSLog(@"Puchased status : %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]);
+//     NSLog(@"Puchased status : %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]);
     
     [GlobalVariables getInstance].myLaunchOptions = launchOptions;
     
-     [GADMobileAds configureWithApplicationID:googleAppID];
+//    NSLog(@"[GlobalVariables getInstance].myLaunchOptions %@",[GlobalVariables getInstance].myLaunchOptions);
+    
+    [GADMobileAds configureWithApplicationID:googleAppID];
     
     
     
-    // Replace '11111111-2222-3333-4444-0123456789ab' with your OneSignal App ID.
-    
-    
-//    id notificationOpenedBlock = ^(OSNotificationOpenedResult *result) {
-//        // This block gets called when the user reacts to a notification received
-//        OSNotificationPayload* payload = result.notification.payload;
-//
-//        NSString* messageTitle = @"OneSignal Example";
-//        NSString* fullMessage = [payload.body copy];
-//
-//        if (payload.additionalData) {
-//
-//            if(payload.title)
-//                messageTitle = payload.title;
-//
-//            NSDictionary* additionalData = payload.additionalData;
-//
-//            if (additionalData[@"actionSelected"])
-//                fullMessage = [fullMessage stringByAppendingString:[NSString stringWithFormat:@"\nPressed ButtonId:%@", additionalData[@"actionSelected"]]];
-//        }
-//
-//        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:messageTitle
-//                                                            message:fullMessage
-//                                                           delegate:self
-//                                                  cancelButtonTitle:@"Close"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//
-//    };
 
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"showStartUpScreens"]){
     [OneSignal initWithLaunchOptions:launchOptions

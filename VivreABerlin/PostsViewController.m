@@ -20,7 +20,6 @@
 #import "OLGhostAlertView.h"
 #import "InfoPratiquesTableViewCell.h"
 #import <Social/Social.h>
-
 @interface PostsViewController ()
 
 #define IS_IPHONE ( [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] )
@@ -48,7 +47,7 @@
     NSMutableArray *allTagsSlugs;
     NSMutableArray *allTagsName;
     UITextView *postContent;
-    
+    WKWebView *webView;
     UILabel *contentOfTheInfoPratiques;
     
     
@@ -60,7 +59,31 @@
     NSMutableArray *arrayUsedInTable;
     NSMutableArray *arrayWithImagesUsedInTable;
 }
-//    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:4] range:NSMakeRange(0, 500)];
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    NSLog(@"url %@", URL);
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    webView.backgroundColor = [UIColor clearColor];
+    [webView loadRequest:[NSURLRequest requestWithURL: URL]];
+
+    [self.view addSubview:webView];
+    [self.view bringSubviewToFront:webView];
+    
+
+    UIButton *cross = [[UIButton alloc]initWithFrame:CGRectMake(screenWidth - 50, 25, 30, 30)];
+    [cross addTarget:self action:@selector(closeWebView:) forControlEvents:UIControlEventTouchUpInside];
+    [cross setBackgroundImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
+    [webView addSubview:cross];
+    return  NO;
+}
+-(void)closeWebView:(UIButton*)sender{
+
+    [webView setHidden:YES];
+  
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -108,11 +131,7 @@
     self.okButton.hidden = true;
     
     
-    
-    //    loadingScreen = [[UIView alloc]initWithFrame:self.view.frame];
-    //    loadingScreen.backgroundColor = [UIColor whiteColor];
-    //    [self.view addSubview:loadingScreen];
-    //    [self.view bringSubviewToFront:loadingScreen];
+  
     self.fontSizeImage.layer.cornerRadius = 2;
     self.fontSizeImage.clipsToBounds = true;
     [self.fontSizeImage.layer setBorderColor: [self colorWithHexString:@"D6D8E4"].CGColor];
@@ -136,15 +155,7 @@
      [self.postScrollView bringSubviewToFront:self.logoIcon];
     [self.postScrollView bringSubviewToFront:self.rainbow];
    
-    
-    //    loadingText = [[UILabel alloc]initWithFrame:CGRectMake(self.view.center.x - 110, self.view.center.y - 100, 250, 50)];
-    //    loadingText.textAlignment = UIStackViewAlignmentCenter;
-    //    loadingText.font = [UIFont fontWithName:@"Montserrat-Regular" size:18];
-    //    loadingText.textColor = [UIColor blackColor];
-    //    loadingText.text = @"Chargement en cours.";
-    //    [loadingScreen addSubview: loadingText];
-    //    [loadingScreen bringSubviewToFront: loadingText];
-    //    [self updateLoadingLabel];
+ 
     
     dispatch_async(dispatch_get_main_queue(), ^{
         initialpozitionOfOpenMenuButton = self.view.frame.size.height/12;
@@ -403,7 +414,9 @@
                                     
                                     
                                     
-                                
+                                   
+                                    
+                                    
                                     if([text containsString:@"<h2>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<h2>" withString:@"<br></br><h2>"];
                                     if([text containsString:@"<h3>"])
@@ -416,8 +429,44 @@
                                         text = [text stringByReplacingOccurrencesOfString:@"</caption><br />" withString:@"</caption>"];
                                     if([text containsString:@"<BR />\r<caption>"])
                                         text = [text stringByReplacingOccurrencesOfString:@"<BR />\r<caption>" withString:@"<BR /><BR /><caption>"];
-                                  
+                                    
+                                    
+                                    if([text containsString:@"style=\"font-weight: 400;\">\r<BR />"])
+                                        text = [text stringByReplacingOccurrencesOfString:@"style=\"font-weight: 400;\">\r<BR />" withString:@"style=\"font-weight: 400;\">"];
+                                    
+                                    if([text containsString:@"<ul style=\"font-weight: 400;\">"]){
+                                        text = [text stringByReplacingOccurrencesOfString:@"<ul style=\"font-weight: 400;\">" withString:@""];
+                                    }
+                                    if([text containsString:@"</span></li>\r<BR />"])
+                                        text = [text stringByReplacingOccurrencesOfString:@"</span></li>\r<BR />" withString:@"</span></li>"];
+                                   
+                                    if ([text containsString:@"</span></li>"]) {
+                                        text = [text stringByReplacingOccurrencesOfString:@"</span></li>" withString:@"</span></li></ul><p>"];
+                            
+                                    }
+                                    
+                                    if ([text containsString:@"<li style=\"font-weight: 400;\"><b>"]) {
+                                        text = [text stringByReplacingOccurrencesOfString:@"<li style=\"font-weight: 400;\"><b>" withString:@"<ul style=\"font-weight: 400;\">  <li style=\"font-weight: 400;\"><b>"];
+                                    }
+                                    if ([text containsString:@"</li>"]) {
+                                        text = [text stringByReplacingOccurrencesOfString:@"</li>" withString:@"</li>\r</ul>"];
+                                    }
+                                    if ([text containsString:@"<li>"]) {
+                                        text = [text stringByReplacingOccurrencesOfString:@"<li>" withString:@"<ul><li>"];
+                                    }
+                                    if ([text containsString:@"<ul>\r"]) {
+                                        text = [text stringByReplacingOccurrencesOfString:@"<ul>\r" withString:@""];
+                                    }
+//                                    if ([text containsString:@"<b>"]) {
+//                                        text = [text stringByReplacingOccurrencesOfString:@"<b>" withString:@"<b>"];
+//
+//                                    }
+                                   
+//                                    if([text containsString:@"<ul style=\"font-weight: 400;\">"])
+//                                        text = [text stringByReplacingOccurrencesOfString:@"<ul style=\"font-weight: 400;\">" withString:@""];
+                                   
                                     NSLog(@"text1: %@", text);
+                                  
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
                                         
                                         
@@ -462,8 +511,6 @@
                                     
                                     
                                     
-                                    //else
-                                    //    NSLog(@" KEY : %@", key);
                                     
                                     [attributedString enumerateAttribute:NSAttachmentAttributeName
                                                                  inRange:NSMakeRange(0, [attributedString length])
@@ -484,7 +531,7 @@
                                              CGSize size = image.size;
                                              if(size.width > postContent.frame.size.width){
                                                  
-                                                 // calculate proportional height to width
+                                               
                                                  float ratio = image.size.width /( postContent.frame.size.width + 25);
                                                  float height = image.size.height / ratio;
                                                  
@@ -564,7 +611,7 @@
                                             else{
                                                 
                                                 if([[NSString stringWithFormat:@"%@",oldFont.fontName] isEqualToString:@"TimesNewRomanPS-BoldMT"])
-                                                    newFont = [UIFont fontWithName:@"Montserrat-Bold" size:[GlobalVariables getInstance].fontsize + 3];
+                                                    newFont = [UIFont fontWithName:@"Montserrat-Bold" size:[GlobalVariables getInstance].fontsize + 0];
                                                 else if([[NSString stringWithFormat:@"%@",oldFont.fontName] isEqualToString:@"TimesNewRomanPS-ItalicMT"])
                                                     newFont = [UIFont fontWithName:@"Montserrat-Italic" size:[GlobalVariables getInstance].fontsize];
                                                 else if([[NSString stringWithFormat:@"%@",oldFont.fontName] isEqualToString:@"TimesNewRomanPSMT"])
@@ -621,24 +668,19 @@
                                             }
                                         }
                                         
-                                     //   [self changeString:postContent.text subString:obj mutableString:res];
-                                        
-                                        
-                                      // postContent.text = [postContent.text stringByReplacingOccurrencesOfString:obj withString:@""];
-                                      
-                                        //NSLog(@"range2: %@", NSStringFromRange(range2));
+                                   
                                    
                                     }];
                              
                                     
                                     postContent.attributedText = res;
-//                                    postContent.text = [res string];
-//                                    postContent.attributedText = attributedString;
+                                  
+
                                     [self.postScrollView addSubview:postContent];
                                     [self.postScrollView bringSubviewToFront:postContent];
                                     [postContent sizeToFit];
                                     
-                                    
+                                    postContent.delegate = self;
                                     
                                     // postContent.font = self.titleOfThePost.font;
                                     postContent.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
@@ -815,7 +857,7 @@
                                             newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/15;
                                         else
                                             newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
-                                        // newFrame.size.height = self.tableView.contentSize.height;
+                                       
                                         self.tableView.frame = newFrame;
                                     }
                                     else {
@@ -1084,6 +1126,7 @@
     }
 
 }
+
 -(void)changeString:(NSString *)contentStr subString:(NSString *) substring mutableString:(NSMutableAttributedString *) res{
     NSRange searchRange = NSMakeRange(0,contentStr.length);
     NSRange foundRange;
@@ -1435,21 +1478,7 @@
     
     
 }
-//- (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id<MGLAnnotation>)annotation {
-//
-//    MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",annotation.title]];
-//
-//    if (!annotationImage) {
-//
-//        UIImage *image = [UIImage imageNamed:@"blueMarker.png"];
-//
-//        image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 0, 32, 32)];
-//
-//        annotationImage = [MGLAnnotationImage annotationImageWithImage:[self imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)] reuseIdentifier:[NSString stringWithFormat:@"%@",annotation.title]];
-//    }
-//
-//    return annotationImage;
-//}
+
 -(void)makingRequestForPostDetails:(NSString *)url
 {
     
@@ -2039,17 +2068,7 @@ finish:
         return self.view.frame.size.width/7;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//   // return self.view.frame.size.width/12;
-//    if(indexPath.row == 0){
-//        return additionalSpaceNeeded + [self heightForText:@"Infos Pratiques: ";];
-//    }
-//    else {
-//    NSString * yourText = arrayUsedInTable[indexPath.row]; // or however you are getting the text
-//    return additionalSpaceNeeded + [self heightForText:yourText];
-//    }
-//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"InfoPratiquesTableViewCell";

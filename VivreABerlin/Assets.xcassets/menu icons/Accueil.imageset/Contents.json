@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Au quotidien.png",
+      "filename" : "Accueil.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Accueil@2x.png",
       "scale" : "2x"
     },
     {

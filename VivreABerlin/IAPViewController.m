@@ -61,12 +61,10 @@
 
 
 - (IBAction)closePopUp:(id)sender {
-    if(popUpappeared == true)
+//    if(popUpappeared == true)
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
     
-  //  [GlobalVariables getInstance].canFilter = true;
-   // [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
-    
+
 }
 
 - (IBAction)purchaseButton:(id)sender {
@@ -103,12 +101,7 @@
         NSLog(@"User cannot make payments due to parental controls");
         //this is called the user cannot make payments, most likely due to parental controls
     }
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"startDownloadingMap"]];
-//    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"ONcetime"];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
-//    [GlobalVariables getInstance].canFilter = true;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
+
         
     }
     else{

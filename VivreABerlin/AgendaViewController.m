@@ -24,6 +24,8 @@
 
 @implementation AgendaViewController
 {
+    __weak IBOutlet UIImageView *didSelectImage;
+    __weak IBOutlet UILabel *enenemLabel;
     BOOL changeFrameOnce;
     CGFloat searchfieldOriginY;
     NSMutableArray *agendaInfosArray;
@@ -72,7 +74,7 @@
     self.noArticle.delegate = self;
     self.nosDossires.hidden = YES;
     
-    self.dossiersHeaderView.hidden = YES;
+//    self.dossiersHeaderView.hidden = YES;
     dossierHeaderFrame = self.dossiersHeaderView.frame;
     self.dossiersHeaderView.layer.cornerRadius = 8;
     self.dossiersHeaderView.clipsToBounds = true;
@@ -275,6 +277,7 @@
                     
                     CGRect newHeight1 = self.dossiersView.frame;
                     newHeight1.size.height = self.dossiersTable.frame.origin.y + self.dossiersTable.rowHeight * [dossiersTitles count];
+                    newHeight1.size.height= newHeight1.size.height - 25;
                     self.dossiersView.frame = newHeight1;
                     
                     CGRect newHeight = self.dossiersTable.frame;
@@ -311,17 +314,9 @@
                         self.nosDossires.hidden = YES;
                         self.searchfieldView.hidden = NO;
                     }
-                if (agendaInfosArray.count == 0) {
-                    self.closeDossiersView.hidden = YES;
-                    self.dossiersHeaderView.hidden = YES;
-                    CGRect dossiersFrame = self.dossiersTable.frame;
-                    dossiersFrame.origin.y = dossiersFrame.origin.y - 100;
-                    self.dossiersTable.frame = dossiersFrame;
-                    
-                }
-                    self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5 + self.dossiersHeaderView.frame.size.height *2.5);
-                    
-                    
+                    self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5 + self.dossiersHeaderView.frame.size.height * 2.5);
+
+                ////////////////////
                     
                     if([[INFOSDICT valueForKey:@"agenda_posts"] intValue] == 1) {
                         displayAgendaPost = true;
@@ -413,15 +408,10 @@
                     displayAgendaPost = true;
                 else
                     displayAgendaPost = false;
-                
-                
-                
-               // dispatch_async(dispatch_get_main_queue(), ^{
-                //    [self showMessage:@"aucun événement à venir!"];
                     
                     self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, self.dossiersHeaderView.frame.origin.y, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
-//                    self.dossiersHeaderView.hidden = true;
-//                    self.closeDossiersView.hidden = true;
+                    self.dossiersHeaderView.hidden = true;
+                    self.closeDossiersView.hidden = true;
                     self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5);
                     [spinnerview endRefreshing];
                     self.nosDossires.hidden = true;
@@ -465,14 +455,13 @@
                          action:@selector(textFieldDidChange:)
                forControlEvents:UIControlEventEditingChanged];
     
-    
-    
+
+
+
     
     
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Nos dossiers";
-}
+
 - (void)viewWillAppear:(BOOL)animated {
    
     [self Spin];
@@ -708,7 +697,30 @@
         static NSString *CellIdentifier = @"CatsSubCatsCell";
         
         CatsSubCatsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+        if (agendaInfosArray.count == 0) {
+            
+            self.dossiersHeaderView.backgroundColor = [UIColor clearColor];
+            self.closeDossiersView.enabled = NO;
+            enenemLabel.text  = @"";
+            didSelectImage.image = [UIImage imageNamed:@""];
+           
+            self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, 50, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
+            self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5 + self.dossiersHeaderView.frame.size.height);
+           
+            
+            self.agendaScrollView.frame = CGRectMake(self.agendaScrollView.frame.origin.x, self.agendaScrollView.frame.origin.y, self.agendaScrollView.frame.size.width, self.agendaScrollView.frame.size.height);
+            self.nosDossires.frame = CGRectMake(self.nosDossires.frame.origin.x, self.nosDossires.frame.origin.y - 12, self.nosDossires.frame.size.width, self.nosDossires.frame.size.height);
+              [[self view]bringSubviewToFront:self.nosDossires];
+            
+            self.dossiersView.frame = CGRectMake(self.dossiersView.frame.origin.x, self.dossiersView.frame.origin.y, self.dossiersView.frame.size.width, self.dossiersView.frame.size.height);
+     
+        }
+        else{
+            enenemLabel.hidden = NO;
+            self.dossiersHeaderView.hidden = NO;
+            didSelectImage.hidden = NO;
+            self.closeDossiersView.hidden = NO;
+        }
          [cell.articleImage loadImageFromURL: [NSURL URLWithString:[NSString stringWithFormat:@"%@",dossiersBgs[indexPath.row]]] placeholderImage: [UIImage imageNamed:@"PlaceHolderImage.png"] cachingKey:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",dossersBgsIds[indexPath.row]]]];
         
         
@@ -955,14 +967,7 @@
                 
                 }
                 else {
-//                        [self showMessage:@"aucun événement à venir!"];
-//                        self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, self.dossiersHeaderView.frame.origin.y, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
-//                        self.dossiersHeaderView.hidden = true;
-//                        self.closeDossiersView.hidden = true;
-//                        self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5);
-//                         [spinnerview endRefreshing];
-//                    self.nosDossires.hidden = true;
-//                  self.slugLabel.text = @"Nos dossiers";
+
                     
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alerte"
                                                                     message:@"Aucun événement prévu actuellement !"

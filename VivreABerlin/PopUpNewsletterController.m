@@ -11,18 +11,25 @@
 #import "JTMaterialSpinner.h"
 #import "Reachability.h"
 
-@interface PopUpNewsletterController ()
+@interface PopUpNewsletterController (){
+    
+    __weak IBOutlet UIView *nameView;
+    __weak IBOutlet UIView *emailView;
+}
 
 @end
 
 @implementation PopUpNewsletterController {
-    
+ 
     JTMaterialSpinner * spinner;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    emailView.layer.cornerRadius = emailView.frame.size.height/2;
+    emailView.clipsToBounds = true;
+    nameView.layer.cornerRadius = emailView.frame.size.height/2;
+    nameView.clipsToBounds = true;
     
     self.enterEmailFiel.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"VOTRE MAIL"
@@ -75,17 +82,32 @@
     
 }
 
++(BOOL) validateStringContainsAlphabetsOnly:(NSString*)strng
+{
+    NSCharacterSet *strCharSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];//1234567890_"];
+    
+    strCharSet = [strCharSet invertedSet];
+    //And you can then use a string method to find if your string contains anything in the inverted set:
+    
+    NSRange r = [strng rangeOfCharacterFromSet:strCharSet];
+    if (r.location != NSNotFound) {
+        
+        
+        
+        return NO;
+    }
+    else
+     
+    return YES;
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch=[[event allTouches] anyObject];
     if([touch view] != self.popupView)
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
-    
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 
 - (IBAction)submitButton:(id)sender {
@@ -101,6 +123,27 @@
             }];
         }];
     }];
+    if ([self NSStringIsValidEmail:self.enterEmailFiel.text] == NO || self.enterEmailFiel.text.length == 0) {
+        [emailView.layer setBorderColor:[UIColor redColor].CGColor];
+        [emailView.layer setBorderWidth:1.5f];
+        return;
+    }
+    else {
+         [emailView.layer setBorderWidth:0.f];
+    }
+    if ([PopUpNewsletterController validateStringContainsAlphabetsOnly:self.enterNameField.text] == false || self.enterNameField.text.length == 0) {
+            [nameView.layer setBorderColor:[UIColor redColor].CGColor];
+            [nameView.layer setBorderWidth:1.5f];
+        return;
+        }
+    else{
+        [nameView.layer setBorderWidth:0.f];
+    }
+   
+    
+    
+    
+    
     if([self isInternet] ==  YES) {
     [spinner beginRefreshing];
     [self sendingAnHTTPPOSTRequestOniOSWithUserkey:subscribeKey withEmail:self.enterEmailFiel.text withName:self.enterNameField.text];
@@ -143,35 +186,55 @@
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"response %@", response);
+        NSLog(@"error %@", error);
+        NSDictionary *responseDict = [NSDictionary dictionary];
+       responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"%@",responseDict);
         
         self.resultLabel.hidden = false;
-        
-        if ([[responseDict valueForKey:@"message"] isEqualToString:@"already_confirmed"]){
-            self.resultLabel.textColor = [UIColor orangeColor];
-            self.resultLabel.text = @"Already a subscriber";
-            [self shakeAnimation:self.resultLabel];
-            
+//        NSLog(@"%@", [responseDict valueForKey:@"message"] );
+        if (responseDict != 0) {
+            if ([[responseDict valueForKey:@"message"] isEqualToString:@"already_confirmed"]){
+                self.resultLabel.textColor = [UIColor orangeColor];
+                self.resultLabel.text = @"Already a subscriber";
+                [self shakeAnimation:self.resultLabel];
+                
+            }
+            else if ([[responseDict valueForKey:@"message"] isEqualToString:@"Wrong email"]){
+                self.resultLabel.textColor = [UIColor redColor];
+                self.resultLabel.text = @"Wrong email";
+                [self shakeAnimation:self.resultLabel];
+            }
+            else {
+                self.resultLabel.textColor = [UIColor greenColor];
+                self.resultLabel.text = @"Confirmation sent";
+                [self shakeAnimation:self.resultLabel];
+                
+           
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
+                });
+                
+            }
         }
-        else if ([[responseDict valueForKey:@"message"] isEqualToString:@"Wrong email"]){
-            self.resultLabel.textColor = [UIColor redColor];
-            self.resultLabel.text = @"Wrong email";
-            [self shakeAnimation:self.resultLabel];
-        }
-        else {
-            self.resultLabel.textColor = [UIColor greenColor];
-            self.resultLabel.text = @"Confirmation sent";
-            [self shakeAnimation:self.resultLabel];
-        }
+      
         [spinner endRefreshing];
         
     }];
     [dataTask resume];
 }
 
-
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 -(void)shakeAnimation:(UILabel*) label
 {
     CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];

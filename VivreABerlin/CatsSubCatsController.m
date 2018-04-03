@@ -539,7 +539,7 @@
     else
         return 360;
     
-    return  360;
+
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

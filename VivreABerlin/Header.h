@@ -28,9 +28,9 @@
 
 // CREDITS
 #define ContactsetCredits @"https://vivreathenes.com/contacts-et-credits"
-#define Mentionslegales @"https://vivreathenes.com/mentions-legales"
+#define Mentionslegales @"https://vivreathenes.com/mentions-legales-conditions-generales-d-utilisation"
 #define PartenairesPub @"https://vivreathenes.com/partenaires-et-publicite"
-#define Quisommesnous @"https://vivreathenes.com/qui-sommes-nous"
+#define Quisommesnous @"https://vivreathenes.com/vivre-athenes-qui-sommes-nous"
 
 // HOMEPAGE
 #define HomePageLink  @"https://vivreathenes.com/wp-json/wp/v2/homepage"

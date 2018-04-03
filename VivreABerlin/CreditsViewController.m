@@ -113,43 +113,14 @@
 }
 
 - (IBAction)thirdButton:(id)sender {
-//
-//    [self.view addSubview:webViewCustom];
-//    [self.view bringSubviewToFront:webViewCustom];
-//    [webViewCustom addSubview:creditSpinner];
-//    [webViewCustom bringSubviewToFront:creditSpinner];
-//    [creditSpinner beginRefreshing];
-//
-//    NSURL *url = [NSURL URLWithString:PartenairesPub];
-//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-//    [webViewCustom loadRequest:urlRequest];
-    
-////
-    
+
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:PartenairesPub]  options:@{} completionHandler:nil];
-//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:PartenairesPub]]){
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:PartenairesPub]];
-//              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
-//    }
+
 }
 
 - (IBAction)forthButton:(id)sender {
     
-//    [self.view addSubview:webViewCustom];
-//    [self.view bringSubviewToFront:webViewCustom];
-//    [webViewCustom addSubview:creditSpinner];
-//    [webViewCustom bringSubviewToFront:creditSpinner];
-//    [creditSpinner beginRefreshing];
-//
-//    NSURL *url = [NSURL URLWithString:Quisommesnous];
-//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-//    [webViewCustom loadRequest:urlRequest];
-//
-//    if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:Quisommesnous]]){
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Quisommesnous]];
-//
-//              [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"closePopUp"]];
-//    }
+
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:Quisommesnous]  options:@{} completionHandler:nil];
 }
 

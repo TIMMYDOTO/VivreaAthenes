@@ -19,7 +19,10 @@
 #import "SubMenuCell.h"
 #import "JTMaterialSpinner.h"
 #import "ContainerViewController.h"
-@interface LeftViewController ()
+@interface LeftViewController (){
+    
+ 
+}
 
 
 
@@ -35,6 +38,7 @@
     NSMutableArray *arr;
     
     
+  
     NSMutableArray * MenuArray;
     NSMutableArray * offlineMenuArray;
     NSMutableArray * arrayForTable;
@@ -169,7 +173,7 @@
         }
         arrayForTable = arr;
         
-        NSLog(@"arrayForTable %@", arrayForTable);
+  
         
         for ( int i = 0 ; i <arrayForTable.count; i ++) {
         
@@ -442,7 +446,9 @@
 
   
     if(tableView == self.catAndSubcatsTable){
-
+        if (indexPath.row == arrayForTable.count-1) {
+            cell.separator.backgroundColor = [UIColor clearColor];
+        }
             cell.categoriesName.text =[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
 
         
@@ -482,7 +488,7 @@
                                                                       stringByReplacingOccurrencesOfString:@"#" withString:@""]];
             
             cell.descriptivePicture.image = [UIImage imageNamed:[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]];
-         
+            NSLog(@"title %@", [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]);
             
             cell.descriptivePicture.contentMode = UIViewContentModeScaleAspectFit;
             cell.descriptivePicture.clipsToBounds = true;
@@ -564,11 +570,7 @@
             
             SubMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
            
-//            [[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                if ([obj count]) {
-//                    cell.subMenuCategoryname.text = obj;
-//                }
-//            }];
+
             
             cell.subMenuCategoryname.text=[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
            
@@ -610,13 +612,14 @@
             cell.backgroundColor = [UIColor clearColor];
             cell.textLabel.textAlignment = NSTextAlignmentLeft;
             cell.textLabel.numberOfLines = 2;
-            //cell.textLabel.adjustsFontSizeToFitWidth = true;
+        
              if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
             cell.textLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:25];
             else
                 cell.textLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:15];
             cell.textLabel.textColor = [UIColor lightGrayColor];
             [tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+ 
             [tableView setSeparatorColor:[UIColor grayColor]];
             tableView.showsHorizontalScrollIndicator = false;
             return cell;
@@ -657,8 +660,7 @@
         [GlobalVariables getInstance].idOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"object_id"];
         [GlobalVariables getInstance].nameOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"title"];
        
-        NSLog(@"idOfcatSubCat %@", [GlobalVariables getInstance].idOfcatSubCat);
-        NSLog(@"nameOfcatSubCat %@", [GlobalVariables getInstance].nameOfcatSubCat);
+
         
         if([[GlobalVariables getInstance].allCategoriesName containsObject:[[arrayForTable objectAtIndex:tag] valueForKey:@"title"]]){
             
@@ -717,7 +719,7 @@
                     
                 }
                 if(ar.count == 0){
-                    NSLog(@"This Cell doesn't have any other children %@",[d valueForKey:@"title"]);
+                
                     if([[d valueForKey:@"title"] isEqualToString:@"Accueil"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ViewController"]];
                         [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
@@ -742,9 +744,7 @@
                         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ComingFromAgendaTag"];
                         [GlobalVariables getInstance].backGroundImageTag = nil;
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"CatsSubCatsController"]];
-                        //                if([GlobalVariables getInstance].finishedLoading == true){
-                        //
-                        //                }
+                    
                     }
                 }
                 if(isAlreadyInserted) {
@@ -786,7 +786,7 @@
         else
         [GlobalVariables getInstance].idOfPost = [filteredTableData valueForKey:@"post_id"][indexPath.row];
         [GlobalVariables getInstance].comingFrom = @"Search";
-        //[GlobalVariables getInstance].comingFromViewController = [GlobalVariables getInstance].currentViewController;
+
         [GlobalVariables getInstance].comingFromViewController = @"ListOfPostsController";
         [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
         [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
@@ -1043,7 +1043,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-  //  [searchSpinner endRefreshing];
+
     [self.catAndSubcatsTable setContentOffset:CGPointMake(0, 3) animated:YES];
     
     self.quickSearchView.hidden = false;
@@ -1203,42 +1203,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
      [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PopUpNewsletterController"]];
-//    [UIView animateWithDuration:0.2
-//                     animations:^{self.quickSearchView.alpha = 0.0;}
-//                     completion:^(BOOL finished){ self.quickSearchView.hidden = YES; }];
-//    [UIView animateWithDuration:0.3
-//                     animations:^{self.catAndSubcatsTable.frame = CGRectMake(self.catAndSubcatsTable.frame.origin.x, originOfCatsTable, self.catAndSubcatsTable.frame.size.width, self.catAndSubcatsTable.frame.size.height);
-//                     }
-//                     completion:^(BOOL finished){ }];
-//
-//    [GlobalVariables getInstance].isUserSearchingOnSideBar = NO;
-//
-//    [UIView animateWithDuration:0.3/1.5 animations:^{
-//        self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.3/2 animations:^{
-//            self.tumblr.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.3/2 animations:^{
-//                self.tumblr.transform = CGAffineTransformIdentity;
-//            }];
-//        }];
-//    }];
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//
-//        if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:tumblrSocial]])
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tumblrSocial]];
-//        else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR"
-//                                                            message:@"Ce réseau social n'a pas encore été installé"
-//                                                           delegate:self
-//                                                  cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [alert show];
-//
-//        }
-//    });
+
 }
 
 - (UIImage *)imageFromColor:(UIColor *)color {
@@ -1527,7 +1492,7 @@ finish:
     return NO;
 }
 - (IBAction)openCredits:(id)sender {
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"PopUpButtonClickedOnLeftController" object: [NSString stringWithFormat:@"OpenPopUp2"]];
+
 [kMainViewController hideLeftViewAnimated:NO completionHandler:nil];
 [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"CreditsViewController"]];
 }

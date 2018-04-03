@@ -20,7 +20,10 @@
 #import "MapCreditsController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ContainerViewController.h"
-@interface MapViewController ()
+@interface MapViewController (){
+
+    NSMutableArray *coordinates;
+}
 
 @property (strong, nonatomic) IBOutlet UIImageView *img;
 
@@ -40,8 +43,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+    coordinates = [NSMutableArray array];
+ 
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(ChangeScreen:) name:@"ChangeFilters" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(offlinePackProgressDidChange:) name:MGLOfflinePackProgressChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(offlinePackDidReceiveError:) name:MGLOfflinePackErrorNotification object:nil];
@@ -94,7 +97,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].lastLatitudine, [GlobalVariables getInstance].lastLongitudine);
             
-            [self.mapView setCenterCoordinate:center zoomLevel:12 direction:0 animated:NO];
+//            [self.mapView setCenterCoordinate:center zoomLevel:12 direction:0 animated:NO];
             
             
         });
@@ -125,19 +128,19 @@
     
     self.mapView.tintColor = [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f];
     
-    //    CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-    //
-    //    [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:YES];
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
+    
+        [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:YES];
     
     
     
     [GlobalVariables getInstance].deleteAnnotationsArray = [[NSMutableArray alloc]init];
     
     
-    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    //         [self centerUserLocationInMap: [GlobalVariables getInstance].lastUserLocation zoom: 15];
-    //    });
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//             [self centerUserLocationInMap: [GlobalVariables getInstance].lastUserLocation zoom: 15];
+//        });
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -163,11 +166,7 @@
     });
     
     
-    
-    
-    
-    
-    
+  
 }
 
 -(void)requestForAuthorization{
@@ -210,7 +209,10 @@
     }
     
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+  
+}
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
@@ -237,7 +239,7 @@
 }
 -(void) ChangeScreen: (NSNotification *) notification
 {
-    
+    [GlobalVariables getInstance].canFilter = true;
     
     if ([notification.object isEqualToString:@"openDistricts"])
     {
@@ -278,10 +280,54 @@
     }
     else if([notification.object isEqualToString:@"reloadPozition"]){
         
-        CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-        NSLog(@"latitudine %f longitude %f", [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-        [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl+5 direction:0.0 animated:YES];
-//        [self.mapView setCenterCoordinate:center zoomLevel:20.0 animated:YES];
+        
+        
+      
+        NSLog(@"coordinates %@", coordinates);
+       
+        
+        NSDictionary *maxLatDict =  @{
+                                      @"lat" : @0
+                                      };
+        NSDictionary *minLatDict =  @{
+                                      @"lat" : @180
+                                      };
+        
+        
+        NSDictionary *maxLongDict =  @{
+                                      @"long" : @0
+                                      };
+        NSDictionary *minLongDict =  @{
+                                      @"long" : @180
+                                      };
+        for (NSDictionary *diction in coordinates) {
+            if ([[diction objectForKey:@"lat"] doubleValue]>[[maxLatDict objectForKey:@"lat"] doubleValue]) {
+                maxLatDict = diction;
+            }
+            if ([[diction objectForKey:@"lat"]doubleValue]<[[minLatDict objectForKey:@"lat"]doubleValue]) {
+                minLatDict = diction;
+            }
+            if ([[diction objectForKey:@"long"] doubleValue]>[[maxLongDict objectForKey:@"long"] doubleValue]) {
+                maxLongDict = diction;
+            }
+            if ([[diction objectForKey:@"long"]doubleValue]<[[minLongDict objectForKey:@"long"]doubleValue]) {
+                minLongDict = diction;
+            }
+            
+        }
+        NSLog(@"maxLatDict %@", maxLatDict);
+        NSLog(@"minLatDict %@", minLatDict);
+        
+        NSLog(@"maxLongDict %@", maxLongDict);
+        NSLog(@"minLongDict %@", minLongDict);
+
+        MGLCoordinateBounds bounds;
+        bounds.sw = CLLocationCoordinate2DMake((CLLocationDegrees)[[minLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[minLongDict valueForKey:@"long"] doubleValue]);
+        
+        bounds.ne = CLLocationCoordinate2DMake((CLLocationDegrees)[[maxLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[maxLongDict valueForKey:@"long"] doubleValue]);
+        
+//       [self.mapView cameraThatFitsCoordinateBounds:bounds];
+        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
     }
     else if([notification.object isEqualToString:@"filtrating"] && [GlobalVariables getInstance].canFilter == true) {
         [GlobalVariables getInstance].canFilter = false;
@@ -302,7 +348,7 @@
 }
 -(void)createAnnotations{
     
-    
+    [coordinates removeAllObjects];
     self.openFilters.userInteractionEnabled = false;
     
     [GlobalVariables getInstance].Annotations = [[NSMutableArray alloc]init];
@@ -311,16 +357,37 @@
     
     [GlobalVariables getInstance].deleteAnnotationsArray = [[NSMutableArray alloc]init];
     
-//    [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:[GlobalVariables getInstance].arrayWithAnnotations] withName:@"ArrayWithAnnotationsSaved"];
-//    
-//    if([SimpleFilesCache cachedDataWithName:@"ArrayWithAnnotationsSaved"])
-//    [GlobalVariables getInstance].arrayWithAnnotations = [[NSMutableArray alloc]initWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"ArrayWithAnnotationsSaved"]]];
+
     
 
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [GlobalVariables getInstance].arrayWithAnnotations = [[NSMutableArray alloc]initWithArray:[[GlobalVariables getInstance].MapPageInfos valueForKey:@"categories"]];
+    
+    
+    for ( int i = 0 ; i < [GlobalVariables getInstance].arrayWithAnnotations.count;i++){
+        [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:i] setValue:@"NO" forKey:@"isExpanded"];
         
+        [[GlobalVariables getInstance].arrayWithAnnotations setValue:@"0" forKey:@"level"];
+        for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++){
+            
+            [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"][j] setValue:@"1" forKey:@"level"];
+            
+        }
+    }
+    if(([GlobalVariables getInstance].PerSessionForFilters != true) ){
+        for ( int i = 0 ; i < [[GlobalVariables getInstance].arrayWithAnnotations count];i++){
+            for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++) {
+                [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"][j] setValue:@"YES" forKey:@"isSelected"];
+                
+            }
+        }
+        [GlobalVariables getInstance].PerSessionForFilters = true;
+    }
+////////////
+    
+    
         for ( int i = 0 ; i < [GlobalVariables getInstance].arrayWithAnnotations.count;i++){
+            
             for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++){
                 if ([[[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"][j] valueForKey:@"isSelected" ] isEqualToString:@"YES"]){
                     [[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j] setValue:[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"category_name" ] forKey:@"parent_category_name"];
@@ -368,6 +435,15 @@
                 else if([self isInternet] == YES){
                     
                     point.coordinate = CLLocationCoordinate2DMake([[[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] valueForKey:@"location"] valueForKey:@"lat"][i][j] floatValue], [[[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] valueForKey:@"location"] valueForKey:@"lng"][i][j] floatValue]);
+
+                    
+                    NSDictionary *dict = @{
+                                           @"lat" : [NSNumber numberWithDouble:point.coordinate.latitude],
+                                           @"long" : [NSNumber numberWithDouble:point.coordinate.longitude]
+                                           };
+
+                    [coordinates addObject:dict];
+
                     point.title = [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] valueForKey:@"post_title"][i][j];
                     [[GlobalVariables getInstance].deleteAnnotationsArray addObject:point];
                     point.subtitle = [NSString stringWithFormat:@"%@ -> %@",[[GlobalVariables getInstance].Annotations valueForKey:@"parent_category_name"][i],[[GlobalVariables getInstance].Annotations valueForKey:@"category_name"][i]];
@@ -406,7 +482,7 @@
         }
         
         
-    });
+//    });
     
     
     

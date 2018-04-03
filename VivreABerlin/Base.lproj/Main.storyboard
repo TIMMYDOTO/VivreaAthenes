@@ -224,6 +224,7 @@
                                             <outlet property="checkedCategory" destination="ZiU-EJ-Ljc" id="uUz-Yf-NIq"/>
                                             <outlet property="descriptivePicture" destination="HdI-d3-k1i" id="Jjb-5K-uHA"/>
                                             <outlet property="expandCell" destination="djS-MD-vc8" id="czJ-5D-YYi"/>
+                                            <outlet property="separator" destination="mzH-GH-Gpb" id="EKD-d4-SKZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubMenuCell" id="J2l-Gd-BBA" customClass="SubMenuCell">
@@ -345,8 +346,8 @@
                                         <rect key="frame" x="15" y="12" width="10" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="newletter.png" id="e8O-Qb-dQG">
-                                        <rect key="frame" x="309" y="5" width="35" height="35"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="newsleter" id="e8O-Qb-dQG">
+                                        <rect key="frame" x="309" y="2" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aj6-r1-4Tj">
@@ -726,16 +727,9 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="s3B-Xb-xaZ">
-                                                            <rect key="frame" x="40" y="0.0" width="313" height="231"/>
+                                                            <rect key="frame" x="16" y="0.0" width="344" height="256"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRw-bV-8ep">
-                                                            <rect key="frame" x="31" y="263" width="331" height="68"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
-                                                            <color key="textColor" red="0.35686274509803922" green="0.396078431372549" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <view contentMode="scaleToFill" misplaced="YES" id="Vdr-ws-X8p">
                                                             <rect key="frame" x="16" y="339" width="344" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -746,10 +740,17 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hse-cZ-DtV">
-                                                            <rect key="frame" x="40" y="240" width="313" height="29"/>
+                                                            <rect key="frame" x="31" y="261" width="313" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                             <color key="textColor" red="0.43582040071487427" green="0.72012168169021606" blue="0.84147793054580688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRw-bV-8ep">
+                                                            <rect key="frame" x="23" y="291" width="331" height="38"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
+                                                            <color key="textColor" red="0.35686274509803922" green="0.396078431372549" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -807,6 +808,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="authorOfBg" destination="tuW-ye-WSc" id="bkm-uz-eIh"/>
                         <outlet property="authorView" destination="3Hi-dI-HpY" id="0Zc-3Q-SLt"/>
@@ -1277,13 +1279,18 @@
                                 <rect key="frame" x="59" y="163" width="257" height="237"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="roundedRect.png" id="HIO-dz-X09">
-                                        <rect key="frame" x="18" y="126" width="221" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </imageView>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="N2Y-s6-nkp">
+                                        <rect key="frame" x="27" y="50" width="203" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="gtN-Y1-gnC">
+                                        <rect key="frame" x="27" y="135" width="203" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VOTRE NOM" textAlignment="natural" minimumFontSize="17" id="aXI-fr-jWO">
-                                        <rect key="frame" x="41" y="135" width="177" height="31"/>
+                                        <rect key="frame" x="41" y="140" width="177" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1310,11 +1317,6 @@
                                             <action selector="submitButton:" destination="qyP-KX-Gfe" eventType="touchUpInside" id="s48-tN-AlY"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="roundedRect.png" id="0NH-Zm-TDZ">
-                                        <rect key="frame" x="18" y="47" width="221" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="VOTRE MAIL" textAlignment="natural" minimumFontSize="17" id="nPY-7q-RBy">
                                         <rect key="frame" x="41" y="59" width="177" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -1352,8 +1354,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="emailView" destination="N2Y-s6-nkp" id="2w3-jR-H8x"/>
                         <outlet property="enterEmailFiel" destination="nPY-7q-RBy" id="7I1-kq-5vx"/>
                         <outlet property="enterNameField" destination="aXI-fr-jWO" id="0nJ-Zw-lnO"/>
+                        <outlet property="nameView" destination="gtN-Y1-gnC" id="Ia3-9Z-H19"/>
                         <outlet property="newsletterText" destination="WwL-mu-KYe" id="ruA-AM-KCq"/>
                         <outlet property="newsletterView" destination="xmG-0P-jpH" id="LNr-Ri-G2h"/>
                         <outlet property="popupView" destination="wS0-2i-mkA" id="YZg-Ea-bR1"/>
@@ -1363,7 +1367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umR-0h-LVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="167" y="-449"/>
+            <point key="canvasLocation" x="166.5" y="-449.5"/>
         </scene>
         <!--Pop Up Applications Controller-->
         <scene sceneID="gua-Iy-Pw4">
@@ -3028,7 +3032,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainbow" id="g0C-Az-zbZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="g0C-Az-zbZ">
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -3050,40 +3054,40 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" id="tZL-AZ-ArA">
-                                                            <rect key="frame" x="8" y="74" width="329" height="1"/>
+                                                            <rect key="frame" x="8" y="74" width="328" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.83463859559999998" green="0.85026699299999997" blue="0.89589917659999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" id="TOG-ZO-8Sc">
-                                                            <rect key="frame" x="115" y="0.0" width="1" height="75"/>
+                                                            <rect key="frame" x="115" y="0.0" width="0.0" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.83529411760000005" green="0.85098039219999999" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" misplaced="YES" id="fqr-qy-Ymu">
-                                                            <rect key="frame" x="229" y="0.0" width="1" height="75"/>
+                                                            <rect key="frame" x="229" y="0.0" width="0.0" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.83529411760000005" green="0.85098039219999999" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ahy-4c-VWj">
-                                                            <rect key="frame" x="8" y="8" width="98" height="53"/>
+                                                            <rect key="frame" x="8" y="8" width="98" height="54"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lpr-e1-qGE">
-                                                            <rect key="frame" x="8" y="61" width="102" height="14"/>
+                                                            <rect key="frame" x="8" y="62" width="102" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
                                                             <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvG-Uh-bVZ">
-                                                            <rect key="frame" x="119" y="8" width="106" height="59"/>
+                                                            <rect key="frame" x="118" y="8" width="107" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                                             <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sNJ-W3-bb3">
-                                                            <rect key="frame" x="233" y="8" width="108" height="59"/>
+                                                            <rect key="frame" x="233" y="8" width="107" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                                             <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3176,30 +3180,30 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wgV-Kr-1di">
-                                                            <rect key="frame" x="30" y="5" width="315" height="135"/>
+                                                            <rect key="frame" x="30" y="4" width="314" height="136"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z78-Hy-ogY">
-                                                            <rect key="frame" x="30" y="137" width="315" height="53"/>
+                                                            <rect key="frame" x="30" y="137" width="314" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                             <color key="textColor" red="0.4358204007" green="0.72012168170000002" blue="0.84147793049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pHf-1o-OKJ">
-                                                            <rect key="frame" x="22" y="182" width="332" height="85"/>
+                                                            <rect key="frame" x="22" y="181" width="332" height="86"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                                             <color key="textColor" red="0.35686274509999999" green="0.39607843139999999" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" id="dGJ-UR-yBh">
-                                                            <rect key="frame" x="16" y="282" width="345" height="1"/>
+                                                            <rect key="frame" x="15" y="282" width="345" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.84641534090000003" green="0.86211031680000005" blue="0.90359157320000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeparatorCategoryPage.png" id="yKo-lW-191">
-                                                            <rect key="frame" x="174" y="270" width="25" height="25"/>
+                                                            <rect key="frame" x="173" y="270" width="26" height="25"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
@@ -3224,76 +3228,76 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="8" y="230" width="359" height="436"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" id="HgO-lf-VIl">
+                                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="HgO-lf-VIl">
                                                 <rect key="frame" x="4" y="8" width="351" height="49"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Événements à venir" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="GXt-hg-h2V">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Événements à venir" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="GXt-hg-h2V">
                                                         <rect key="frame" x="12" y="9" width="285" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="didSelectCellImage.png" id="YFB-CY-CKn">
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="didSelectCellImage.png" id="YFB-CY-CKn">
                                                         <rect key="frame" x="311" y="12" width="26" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     </imageView>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CBK-RI-doH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="49"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="closeDossiers:" destination="eQ1-AD-zcC" eventType="touchUpInside" id="Dt9-Nj-ezl"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.61653047800064087" green="0.38954544067382812" blue="0.17878168821334839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CBK-RI-doH">
-                                                <rect key="frame" x="4" y="8" width="352" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="closeDossiers:" destination="eQ1-AD-zcC" eventType="touchUpInside" id="Dt9-Nj-ezl"/>
-                                                </connections>
-                                            </button>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNb-fz-pXa">
-                                                <rect key="frame" x="4" y="87" width="355" height="349"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="321" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNb-fz-pXa">
+                                                <rect key="frame" x="4" y="92" width="355" height="344"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatsSubCatsCell" id="xdM-wC-i7o" customClass="CatsSubCatsCell">
-                                                        <rect key="frame" x="0.0" y="28" width="355" height="300"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatsSubCatsCell" rowHeight="321" id="xdM-wC-i7o" customClass="CatsSubCatsCell">
+                                                        <rect key="frame" x="0.0" y="28" width="355" height="321"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xdM-wC-i7o" id="126-Ik-DF2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="300"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="321"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="Jxu-LH-DVa">
-                                                                    <rect key="frame" x="28" y="5" width="297" height="165"/>
+                                                                    <rect key="frame" x="15" y="6" width="327" height="214"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hf7-6f-qqk">
-                                                                    <rect key="frame" x="21" y="205" width="314" height="60"/>
+                                                                    <rect key="frame" x="22" y="252" width="313" height="38"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                                                     <color key="textColor" red="0.35686274509999999" green="0.39607843139999999" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" id="YDh-eu-ryk">
-                                                                    <rect key="frame" x="15" y="281" width="327" height="2"/>
+                                                                    <rect key="frame" x="15" y="302" width="327" height="3"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" red="0.84641534090000003" green="0.86211031680000005" blue="0.90359157320000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </view>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeparatorCategoryPage.png" id="I5u-Z2-eB9">
-                                                                    <rect key="frame" x="163" y="270" width="26" height="24"/>
+                                                                    <rect key="frame" x="164" y="291" width="24" height="26"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EUa-cH-BWL">
-                                                                    <rect key="frame" x="30" y="178" width="297" height="19"/>
+                                                                    <rect key="frame" x="30" y="228" width="297" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                                     <color key="textColor" red="0.4358204007" green="0.72012168170000002" blue="0.84147793049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3317,6 +3321,12 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                     <outlet property="delegate" destination="eQ1-AD-zcC" id="XPo-IP-yZU"/>
                                                 </connections>
                                             </tableView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nos dossiers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="p7t-Rm-Yfy">
+                                                <rect key="frame" x="4" y="82" width="355" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="21"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -3369,11 +3379,14 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                         <outlet property="agendaTable" destination="etg-2d-Q0u" id="3t1-xA-sbS"/>
                         <outlet property="changeableBg" destination="1Pi-p0-NtE" id="N7l-RG-hyb"/>
                         <outlet property="closeDossiersView" destination="CBK-RI-doH" id="qxA-0m-rpF"/>
+                        <outlet property="didSelectImage" destination="YFB-CY-CKn" id="XY5-vu-K1B"/>
                         <outlet property="dossiersHeaderView" destination="HgO-lf-VIl" id="dtL-yr-I7f"/>
                         <outlet property="dossiersTable" destination="mNb-fz-pXa" id="Bqc-8Y-kHj"/>
                         <outlet property="dossiersView" destination="5lN-Dm-yb6" id="jho-mf-efB"/>
+                        <outlet property="enenemLabel" destination="GXt-hg-h2V" id="34j-WE-Vaa"/>
                         <outlet property="logo" destination="kCn-yc-vSW" id="uTZ-V5-wdv"/>
                         <outlet property="noArticle" destination="Wer-5X-VPt" id="d8L-yr-FD2"/>
+                        <outlet property="nosDossires" destination="p7t-Rm-Yfy" id="Aua-gl-qmB"/>
                         <outlet property="offlineButton" destination="J1N-kw-r3M" id="3J8-uQ-5Xu"/>
                         <outlet property="rainbow" destination="g0C-Az-zbZ" id="RjW-QU-cJf"/>
                         <outlet property="reloadScreen" destination="8g7-nn-gZp" id="bK9-HE-T9R"/>
@@ -4528,13 +4541,12 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="mapScreen" width="155" height="282"/>
         <image name="menuButtonIcon.png" width="74" height="66"/>
         <image name="more.png" width="32" height="8"/>
-        <image name="newletter.png" width="163" height="172"/>
+        <image name="newsleter" width="300" height="300"/>
         <image name="newsletter" width="226" height="137"/>
         <image name="offlinePic.png" width="144" height="140"/>
         <image name="openiAPButton.png" width="65" height="66"/>
         <image name="rainbow" width="80" height="78"/>
         <image name="rectangle5" width="332" height="591"/>
-        <image name="roundedRect.png" width="411" height="87"/>
         <image name="savedPost.png" width="380" height="70"/>
         <image name="searchIcon.png" width="40" height="40"/>
         <image name="settingsBackground.png" width="453" height="91"/>

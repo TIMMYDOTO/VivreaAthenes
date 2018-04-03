@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *expandCell;
 @property (weak, nonatomic) IBOutlet UIImageView *descriptivePicture;
 @property (weak, nonatomic) IBOutlet UIButton *checkedCategory;
+@property (weak, nonatomic) IBOutlet UIView *separator;
 
 @end

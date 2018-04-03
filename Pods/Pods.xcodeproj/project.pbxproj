@@ -71,7 +71,7 @@
 		4B4E6005C94972066FD3ABEB813B0D17 /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = iOS_SDK/OneSignalSDK/Framework/OneSignal.framework; sourceTree = "<group>"; };
 		522B5652888A633694A2FDD71F77FAF8 /* KVOController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KVOController.xcconfig; sourceTree = "<group>"; };
 		62AC5885C5AE5CB0741E207E9BCD914F /* FBAdView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAdView.h; path = FBAudienceNetwork.framework/Headers/FBAdView.h; sourceTree = "<group>"; };
-		6384CB0A8EEC8F41EED4EA77075730F6 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-VivreABerlin.a"; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6384CB0A8EEC8F41EED4EA77075730F6 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CF158D20EBF996FA08E5661B433FFF /* KVOController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KVOController.h; path = FBKVOController/KVOController.h; sourceTree = "<group>"; };
 		63D3086871B1696453EA9ECCA6B344BB /* FBNativeAdScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBNativeAdScrollView.h; path = FBAudienceNetwork.framework/Headers/FBNativeAdScrollView.h; sourceTree = "<group>"; };
 		64520B872924CCE1986813809F801766 /* FBAdDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAdDefines.h; path = FBAudienceNetwork.framework/Headers/FBAdDefines.h; sourceTree = "<group>"; };
@@ -85,16 +85,16 @@
 		854B4AB88F9BF28E4F3B9E6C7A93D4F5 /* Pods-VivreABerlinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VivreABerlinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A79F6FD3AB91C7B805F6BADDC4EA054 /* KVOController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KVOController-prefix.pch"; sourceTree = "<group>"; };
 		8EDD7E1171AB47436D6C75608D8AAD93 /* Pods-VivreABerlinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VivreABerlinTests.release.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9AF911C580F8C0BDF8A0DE5EBCAD68E0 /* Pods-VivreABerlinTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VivreABerlinTests-resources.sh"; sourceTree = "<group>"; };
 		A651FDDDAF82A93E347BCCE031CC5308 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		ABD1973344FEBF355B90ECC90FA1EA69 /* FBAudienceNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAudienceNetwork.h; path = FBAudienceNetwork.framework/Headers/FBAudienceNetwork.h; sourceTree = "<group>"; };
-		B359C6BFFA1E82E27A029BED48284CCD /* libKVOController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libKVOController.a; path = libKVOController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B359C6BFFA1E82E27A029BED48284CCD /* libKVOController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKVOController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5BA869094A9A0A2EDEE52A59797079E /* Pods-VivreABerlinTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VivreABerlinTests-dummy.m"; sourceTree = "<group>"; };
 		B624CD41DC0F1B9CA4335069C8CBA567 /* FBNativeAdsManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBNativeAdsManager.h; path = FBAudienceNetwork.framework/Headers/FBNativeAdsManager.h; sourceTree = "<group>"; };
-		B7435BA91EED96C4D300CA5456980A22 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-VivreABerlinUITests.a"; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7435BA91EED96C4D300CA5456980A22 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA79C3A32C46D26CDD154BC1FB4227CA /* FBAdSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAdSettings.h; path = FBAudienceNetwork.framework/Headers/FBAdSettings.h; sourceTree = "<group>"; };
-		BE6EAB28A084F2E523267E781E1EE54A /* libPods-VivreABerlinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-VivreABerlinTests.a"; path = "libPods-VivreABerlinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6EAB28A084F2E523267E781E1EE54A /* libPods-VivreABerlinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94FFD6A2F22D2B221F5A535697DA775 /* Pods-VivreABerlinUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VivreABerlinUITests-resources.sh"; sourceTree = "<group>"; };
 		CFEC2F4E20FF2E10A0FB93CC7AE3B716 /* FBRewardedVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBRewardedVideoAd.h; path = FBAudienceNetwork.framework/Headers/FBRewardedVideoAd.h; sourceTree = "<group>"; };
 		D62C6AC90AC2604A35E8A684B449CF96 /* FBNativeAdCollectionViewAdProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBNativeAdCollectionViewAdProvider.h; path = FBAudienceNetwork.framework/Headers/FBNativeAdCollectionViewAdProvider.h; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		D9BB43E140165D3FFE6E50BD98B7FEAB /* FBKVOController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = FBKVOController/FBKVOController.h; sourceTree = "<group>"; };
 		E043E72C4743A3C6AACD773FF1CF8938 /* Pods-VivreABerlin-OneSignalNotificationServiceExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VivreABerlin-OneSignalNotificationServiceExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E8EED95FE63A9C373743B1491C7C1E99 /* Pods-VivreABerlin-OneSignalNotificationServiceExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VivreABerlin-OneSignalNotificationServiceExtension-dummy.m"; sourceTree = "<group>"; };
-		E8FC989B7AF5CDC404D4C44B5A93859D /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-VivreABerlin-OneSignalNotificationServiceExtension.a"; path = "libPods-VivreABerlin-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FC989B7AF5CDC404D4C44B5A93859D /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E979B680BC0FD2156A00F62E5D0C82E6 /* KVOController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KVOController-dummy.m"; sourceTree = "<group>"; };
 		EDFD9EEDEF4AAB9EB698E83C9CAE0A10 /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FBKVOController.h"; path = "FBKVOController/NSObject+FBKVOController.h"; sourceTree = "<group>"; };
 		F1322FA19C69AA63F9475AFFD0385FAA /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -159,7 +159,6 @@
 			children = (
 				8403ECF56FB6924F479419C06DFC9E11 /* Frameworks */,
 			);
-			name = "Mapbox-iOS-SDK";
 			path = "Mapbox-iOS-SDK";
 			sourceTree = "<group>";
 		};
@@ -230,7 +229,6 @@
 				3F6DDF8753D6140EC48D5518315E1CFE /* NSObject+FBKVOController.m */,
 				D4D08FEB9F40FD92F79FA6044D40CC43 /* Support Files */,
 			);
-			name = KVOController;
 			path = KVOController;
 			sourceTree = "<group>";
 		};
@@ -239,7 +237,6 @@
 			children = (
 				42582123BE6DB7A9364FFF9477F5AD13 /* Frameworks */,
 			);
-			name = OneSignal;
 			path = OneSignal;
 			sourceTree = "<group>";
 		};
@@ -355,7 +352,6 @@
 			children = (
 				7F70AD0F8BB13C7ACBEE018B34018518 /* Frameworks */,
 			);
-			name = "Google-Mobile-Ads-SDK";
 			path = "Google-Mobile-Ads-SDK";
 			sourceTree = "<group>";
 		};
@@ -384,7 +380,6 @@
 				CFEC2F4E20FF2E10A0FB93CC7AE3B716 /* FBRewardedVideoAd.h */,
 				49C2864B35484947DA4ABE4AE99E1AB2 /* Frameworks */,
 			);
-			name = FBAudienceNetwork;
 			path = FBAudienceNetwork;
 			sourceTree = "<group>";
 		};
@@ -494,7 +489,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0920;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -712,7 +707,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/KVOController/KVOController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -735,7 +730,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/KVOController/KVOController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
