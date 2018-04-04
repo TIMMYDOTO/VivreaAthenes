@@ -778,8 +778,6 @@
         return cell;
     }
     else {
-        NSLog(@"index path %lu", indexPath.row);
-        NSLog(@"last path count %lu, last Post Category Name %@", [lastPostCategoryName count], lastPostCategoryName[indexPath.row]);
      
         static NSString *CellIdentifier = @"lastPostCellHomeView";
         

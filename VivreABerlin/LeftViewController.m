@@ -488,6 +488,9 @@
                                                                       stringByReplacingOccurrencesOfString:@"#" withString:@""]];
             
             cell.descriptivePicture.image = [UIImage imageNamed:[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]];
+            if([[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"] isEqualToString:@"S'échapper"] ){
+                cell.descriptivePicture.image = [UIImage imageNamed:@"Sechapper"];
+            }
             NSLog(@"title %@", [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]);
             
             cell.descriptivePicture.contentMode = UIViewContentModeScaleAspectFit;
@@ -1283,13 +1286,12 @@
     
     
       NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-      //  NSLog(@"%@ params",params);
+      
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-      //  NSLog(@"%@",responseDict);
+     
         
         filteredTableData = [[NSMutableArray alloc]init];
-        
-      //  NSLog(@"SEARCHED TEXT IS %@",searchedText);
+
         NSUInteger pages = [[NSString stringWithFormat:@"%@",[responseDict valueForKey:@"pages"]] integerValue];
         if(pages > 1){
             

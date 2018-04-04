@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Au Quotidien.png",
+      "filename" : "S'échapper.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "S'échapper@2x.png",
       "scale" : "2x"
     },
     {

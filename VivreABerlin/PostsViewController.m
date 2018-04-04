@@ -49,7 +49,7 @@
     UITextView *postContent;
     WKWebView *webView;
     UILabel *contentOfTheInfoPratiques;
-    
+    UIActivityIndicatorView *activityView;
     
     
     CGFloat initialpozitionOfBackButton;
@@ -61,17 +61,22 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
     NSLog(@"url %@", URL);
+    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    
+    activityView =[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityView setCenter:CGPointMake(screenWidth/2.0, screenHeight/2.0)];
+    [activityView startAnimating];
     webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     webView.backgroundColor = [UIColor clearColor];
     [webView loadRequest:[NSURLRequest requestWithURL: URL]];
-
+    activityView.tag = 100;
+    webView.navigationDelegate = self;
+   
     [self.view addSubview:webView];
-    [self.view bringSubviewToFront:webView];
-    
+
+     [self.view addSubview:activityView];
 
     UIButton *cross = [[UIButton alloc]initWithFrame:CGRectMake(screenWidth - 50, 25, 30, 30)];
     [cross addTarget:self action:@selector(closeWebView:) forControlEvents:UIControlEventTouchUpInside];
@@ -79,9 +84,13 @@
     [webView addSubview:cross];
     return  NO;
 }
--(void)closeWebView:(UIButton*)sender{
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [activityView removeFromSuperview];
+}
 
-    [webView setHidden:YES];
+-(void)closeWebView:(UIButton*)sender{
+    [activityView removeFromSuperview];
+    [webView removeFromSuperview];
   
 }
 - (void)viewDidLoad {
@@ -192,14 +201,10 @@
     
     
     
-    
-    // NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts allKeys]);
-    //  NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost]);
+  
     
     [GlobalVariables getInstance].DictionaryWithAllPosts = [[NSMutableDictionary alloc] initWithDictionary:[(NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"DictionaryWithAllPosts"]] mutableCopy]];
-    //   NSLog(@"%@",[[GlobalVariables getInstance].DictionaryWithAllPosts allKeys]);
-    
-    // NSLog(@"%@ CONTINUTUL POSTULUi",[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost]);
+
     
     if([[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] != nil || [self isInternet] == YES){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -272,10 +277,6 @@
                 
                 if([[[NSUserDefaults standardUserDefaults] valueForKey:@"CanAddObjectToCarousel"] isEqualToString:@"YES"])
                     [[GlobalVariables getInstance].CarouselOfPostIds addObject:[GlobalVariables getInstance].idOfPost];
-                
-                
-                
-                //   NSLog(@"IDOFPOST : %@,  CAROUSELIDS: %@",[GlobalVariables getInstance].idOfPost, [GlobalVariables getInstance].CarouselOfPostIds);
                 
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ViewPostOnHomeTapBar"];
@@ -457,15 +458,9 @@
                                     if ([text containsString:@"<ul>\r"]) {
                                         text = [text stringByReplacingOccurrencesOfString:@"<ul>\r" withString:@""];
                                     }
-//                                    if ([text containsString:@"<b>"]) {
-//                                        text = [text stringByReplacingOccurrencesOfString:@"<b>" withString:@"<b>"];
-//
-//                                    }
+
                                    
-//                                    if([text containsString:@"<ul style=\"font-weight: 400;\">"])
-//                                        text = [text stringByReplacingOccurrencesOfString:@"<ul style=\"font-weight: 400;\">" withString:@""];
-                                   
-                                    NSLog(@"text1: %@", text);
+//                                    NSLog(@"text1: %@", text);
                                   
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
                                         
@@ -547,7 +542,7 @@
                                          
                                          
                                      }];
-                                    //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"]);
+                            
                                 
                                     
                                     
@@ -1136,7 +1131,7 @@
         if (foundRange.location != NSNotFound) {
             // found an occurrence of the substring! do stuff here
             searchRange.location = foundRange.location+foundRange.length;
-                NSLog(@"range12: %@", NSStringFromRange(searchRange));
+            
             [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:searchRange ];
         
             
@@ -1162,7 +1157,7 @@
        
     }];
    
-    NSLog(@"%@",resultArray);
+
     return resultArray;
 }
 -(void)viewWillAppear:(BOOL)animated{

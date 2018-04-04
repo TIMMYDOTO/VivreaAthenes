@@ -16,7 +16,6 @@
 		8D3D5EBC1EA7864900DA4778 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5EBB1EA7864900DA4778 /* AppDelegate.m */; };
 		8D3D5EBF1EA7864900DA4778 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5EBE1EA7864900DA4778 /* ViewController.m */; };
 		8D3D5EC21EA7864900DA4778 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC01EA7864900DA4778 /* Main.storyboard */; };
-		8D3D5EC41EA7864900DA4778 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
 		8D3D5EC71EA7864900DA4778 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC51EA7864900DA4778 /* LaunchScreen.storyboard */; };
 		8D3D5ED21EA7864900DA4778 /* VivreABerlinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5ED11EA7864900DA4778 /* VivreABerlinTests.m */; };
 		8D3D5EDD1EA7864900DA4778 /* VivreABerlinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5EDC1EA7864900DA4778 /* VivreABerlinUITests.m */; };
@@ -48,6 +47,7 @@
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
 		9A5658FF204055770092BCDA /* Shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FE204055770092BCDA /* Shopping.png */; };
+		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
 		9A7444E32067CEB2000DDD9F /* Visites guidées.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7444E22067CEB0000DDD9F /* Visites guidées.png */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
@@ -1508,9 +1508,9 @@
 				F41B78F01EB0E62E006E0710 /* expandArrow.png in Resources */,
 				8DCCBA211EFED38500555342 /* savedPost.png in Resources */,
 				F4FEFE181EE7DBE500C95381 /* twtitter.png in Resources */,
+				9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */,
 				F4FEFE5F1EE968AB00C95381 /* Cabaret.png in Resources */,
 				9A5658F2203EE7150092BCDA /* Night life.png in Resources */,
-				8D3D5EC41EA7864900DA4778 /* Assets.xcassets in Resources */,
 				F4BB4DE41EF3EC0900463451 /* defaultPicture.png in Resources */,
 				F417FFA01F45B6E40081A2C1 /* addAnn.png in Resources */,
 				F4A211F81EFBBCE200C9C944 /* loadinView.png in Resources */,
