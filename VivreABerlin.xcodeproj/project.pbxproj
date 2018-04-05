@@ -35,6 +35,8 @@
 		8DEB3AB11EBDB1B100818DA9 /* TokyoArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */; };
 		8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */; };
 		9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66C204068BE00EC6253 /* Sorties en famille.png */; };
+		9A4719732076911D00998297 /* Bien-être.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4719722076911C00998297 /* Bien-être.png */; };
+		9A471975207691B300998297 /* Hébergement.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A471974207691B200998297 /* Hébergement.png */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F0203EE7150092BCDA /* Circuits.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E5203EE70F0092BCDA /* Circuits.png */; };
 		9A5658F1203EE7150092BCDA /* S'installer à Athènes.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E6203EE7110092BCDA /* S'installer à Athènes.png */; };
@@ -363,6 +365,8 @@
 		8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MunichArrow.png; sourceTree = "<group>"; };
 		925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A21F66C204068BE00EC6253 /* Sorties en famille.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sorties en famille.png"; sourceTree = "<group>"; };
+		9A4719722076911C00998297 /* Bien-être.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bien-être.png"; path = "../../Vivre(several cities)/VivreABerlin/Bien-être.png"; sourceTree = "<group>"; };
+		9A471974207691B200998297 /* Hébergement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hébergement.png"; sourceTree = "<group>"; };
 		9A5658E4203EE70F0092BCDA /* musees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musees.png; sourceTree = "<group>"; };
 		9A5658E5203EE70F0092BCDA /* Circuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Circuits.png; sourceTree = "<group>"; };
 		9A5658E6203EE7110092BCDA /* S'installer à Athènes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S'installer à Athènes.png"; sourceTree = "<group>"; };
@@ -825,9 +829,11 @@
 		F43957561ED58CEC00CAE618 /* MarkersIcons */ = {
 			isa = PBXGroup;
 			children = (
+				9A4719722076911C00998297 /* Bien-être.png */,
 				9A7444E22067CEB0000DDD9F /* Visites guidées.png */,
 				F46D1DB61F2B262E00359EBC /* lupa.png */,
 				F4E734391EF2B4D700D095FB /* blueMarker.png */,
+				9A471974207691B200998297 /* Hébergement.png */,
 				F4FEFE681EE9692C00C95381 /* Beauté.png */,
 				F4FEFE801EE969C800C95381 /* Clubs.png */,
 				F4FEFE811EE969C800C95381 /* evenements1.png */,
@@ -1500,8 +1506,10 @@
 				F4FEFE7E1EE9699D00C95381 /* Escalade.png in Resources */,
 				F4FEFE9D1EE96A6600C95381 /* Transports.png in Resources */,
 				F44D1D261EB9DB4F00D8E820 /* Alimentation.png in Resources */,
+				9A471975207691B300998297 /* Hébergement.png in Resources */,
 				F49C7AC91ECC5C61000209D6 /* Montserrat-Thin.otf in Resources */,
 				F49C7AC81ECC5C61000209D6 /* Montserrat-SemiBold.otf in Resources */,
+				9A4719732076911D00998297 /* Bien-être.png in Resources */,
 				F42FA6161F35AEBC0072FF34 /* backButtonImage.png in Resources */,
 				F417FFA41F45C16E0081A2C1 /* shareFb.png in Resources */,
 				F49C7AD81ECC5FA3000209D6 /* mapMenuButton.png in Resources */,

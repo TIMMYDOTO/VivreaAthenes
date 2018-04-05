@@ -731,7 +731,7 @@
     
     
     MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",str2]];
-
+    NSLog(@"str %@", str2);
     if (!annotationImage) {
         
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",str2]];
