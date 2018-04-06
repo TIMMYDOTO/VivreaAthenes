@@ -393,6 +393,7 @@
                     [[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j] setValue:[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"category_name" ] forKey:@"parent_category_name"];
                     [[GlobalVariables getInstance].Annotations addObject:[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j]];
                     
+                    
                     NSLog(@"[GlobalVariables getInstance].Annotations %@", [GlobalVariables getInstance].Annotations );
                     
                     
@@ -402,12 +403,12 @@
             }
         }
         
-        
+
 //            for( int i = 0 ; i< [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]; i++){
 //                [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"][i] setValue:[[GlobalVariables getInstance].Annotations valueForKey:@"icon_url"][i] forKey:@"markerImg"];
 //            }
-        
-        
+    
+    
         if([[NSString stringWithFormat:@"%lu",(unsigned long)[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]] isEqualToString:@"0"])
             self.openFilters.userInteractionEnabled = true;
         
@@ -508,10 +509,6 @@
     
     mapView.showsUserLocation = YES;
     
-    
-    //    CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-    //
-    //    [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:YES];
     
     
     CGRect frame = CGRectMake(self.centerLocation.frame.origin.x, self.centerLocation.frame.origin.y + self.centerLocation.frame.size.height + 5, self.mapView.compassView.frame.size.width, self.mapView.compassView.frame.size.height);
@@ -721,30 +718,90 @@
     
     // Hide the callout
     [mapView deselectAnnotation:annotation animated:YES];
+   
 }
 
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id<MGLAnnotation>)annotation {
+ 
+
     
     NSArray *items = [annotation.subtitle componentsSeparatedByString:@" -> "];
+
     
-    NSString *str2=[items objectAtIndex:1];
+    NSString *nameOfAnnotation=[items objectAtIndex:1];
+  
+    NSLog(@"nameOfAnnotation %@", nameOfAnnotation);
+    NSString *url = @"";
+
+    if ([nameOfAnnotation isEqualToString:@"S'installer à Athènes"] ) {
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/06/s_installer.png";
+    }else if ([nameOfAnnotation isEqualToString:@"Transports"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/06/transports.png";
+    }else if ([nameOfAnnotation isEqualToString:@"Activités intérieures"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/enfants-activites-interieures.png";
+    }
+        else if ([nameOfAnnotation isEqualToString:@"Activités sportives"]){
+            url = @"https://vivreathenes.com/wp-content/uploads/2018/02/enfants-activites-sportives.png";
+        }
+    else if ([nameOfAnnotation isEqualToString:@"Centre d'Athènes"]){
+
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/enfants-centre-athenes.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Sorties en famille"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/enfants-sorties-famille.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Bien-être"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/06/bien_etre.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Shopping"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/shopping.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Cafés et Bars"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/06/cafes_thes.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Night life"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2016/09/by_night.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Restaurants"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/06/restaurants_et_cafes.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Circuits"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/09/itineraires.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Hébergement"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/hebergements.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Monuments"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/monuments.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Musées"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2015/09/musees.png";
+    }
+    else if ([nameOfAnnotation isEqualToString:@"Visites guidées"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/03/visites-guidees.png";
+    }
+    NSString * reuseIdentifier = NSStringFromClass(annotation.class);
+    MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",nameOfAnnotation]];
+
+    
+
     
     
-    MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",str2]];
-    NSLog(@"str %@", str2);
     if (!annotationImage) {
         
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",str2]];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
         
-        if ([str2 isEqualToString:@"Médecine douce / Ostéopathes"]){
+        if ([nameOfAnnotation isEqualToString:@"Médecine douce / Ostéopathes"]){
             image = [UIImage imageNamed:@"Medicine.png"];
         }
         
         if(image == nil)
             return nil;
         image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 0, image.size.height/2, 0)];
-
-        annotationImage = [MGLAnnotationImage annotationImageWithImage:[self imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)] reuseIdentifier:[NSString stringWithFormat:@"%@",str2]];
+       
+    
+       
+        annotationImage = [MGLAnnotationImage annotationImageWithImage:[self imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)] reuseIdentifier:[NSString stringWithFormat:@"%@",nameOfAnnotation]];
     }
     
     return annotationImage;
