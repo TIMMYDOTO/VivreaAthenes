@@ -197,7 +197,7 @@
         if (responseDict != 0) {
             if ([[responseDict valueForKey:@"message"] isEqualToString:@"already_confirmed"]){
                 self.resultLabel.textColor = [UIColor orangeColor];
-                self.resultLabel.text = @"Already a subscriber";
+                self.resultLabel.text = @"Déjà inscrit !";
                 [self shakeAnimation:self.resultLabel];
                 
             }
@@ -208,7 +208,7 @@
             }
             else {
                 self.resultLabel.textColor = [UIColor greenColor];
-                self.resultLabel.text = @"Confirmation sent";
+                self.resultLabel.text = @"Confirmation envoyée";
                 [self shakeAnimation:self.resultLabel];
                 
            

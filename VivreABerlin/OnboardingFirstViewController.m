@@ -154,7 +154,7 @@
         
         if ([[responseDict valueForKey:@"message"] isEqualToString:@"already_confirmed"]){
             
-             [self showMessage:@"Already a subscriber"];
+             [self showMessage:@"Déjà inscrit !"];
         }
         else if ([[responseDict valueForKey:@"message"] isEqualToString:@"Wrong email"]){
       
@@ -163,7 +163,7 @@
         }
         else {
     
-            [self showMessage:@"Confirmation sent"];
+            [self showMessage:@"Confirmation envoyée"];
             
            // [[NSNotificationCenter defaultCenter] postNotificationName:@"DeleteSecondScreen" object: [NSString stringWithFormat:@"DeleteSecondScreen"]];
            // [[NSNotificationCenter defaultCenter] postNotificationName:@"DeleteFirstScreen" object: [NSString stringWithFormat:@"DeleteFirstScreen"]];
