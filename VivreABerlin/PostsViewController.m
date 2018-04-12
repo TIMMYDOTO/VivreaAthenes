@@ -59,47 +59,24 @@
     NSMutableArray *arrayUsedInTable;
     NSMutableArray *arrayWithImagesUsedInTable;
 }
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
-    NSLog(@"url %@", URL);
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    activityView =[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activityView setCenter:CGPointMake(screenWidth/2.0, screenHeight/2.0)];
-    [activityView startAnimating];
-    webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-    webView.backgroundColor = [UIColor clearColor];
-    [webView loadRequest:[NSURLRequest requestWithURL: URL]];
-    activityView.tag = 100;
-    webView.navigationDelegate = self;
-   
-    [self.view addSubview:webView];
 
-     [self.view addSubview:activityView];
-
-    UIButton *cross = [[UIButton alloc]initWithFrame:CGRectMake(screenWidth - 50, 25, 30, 30)];
-    [cross addTarget:self action:@selector(closeWebView:) forControlEvents:UIControlEventTouchUpInside];
-    [cross setBackgroundImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
-    [webView addSubview:cross];
-    return  NO;
-}
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    [activityView removeFromSuperview];
+    NSLog(@"htight %f", webView.scrollView.contentSize.height);
+    [webView evaluateJavaScript: @"document.body.scrollHeight"
+                   completionHandler: ^(id response, NSError *error) {
+                       NSLog(@"Document height: %@", response);
+                          [webView setFrame:CGRectMake(webView.frame.origin.x, webView.frame.origin.y, webView.frame.size.width, [response doubleValue])];
+                   }];
+ 
 }
 
--(void)closeWebView:(UIButton*)sender{
-    [activityView removeFromSuperview];
-    [webView removeFromSuperview];
-  
-}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     
     NSLog(@"%@   id OF POST",[GlobalVariables getInstance].idOfPost);
-    
-    //  [GlobalVariables getInstance].idOfPost = @"36599";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"InfoPratiquesTableViewCell" bundle:nil] forCellReuseIdentifier:@"InfoPratiquesTableViewCell"];
     
@@ -376,8 +353,11 @@
                 
                 self.starsCollectionView.frame = CGRectMake(self.view.frame.size.width * 0.012, self.passage.frame.origin.y + self.passage.frame.size.height + 5, self.starsCollectionView.frame.size.width, self.starsCollectionView.frame.size.height);
                 
+                webView = [[ WKWebView alloc] initWithFrame:CGRectMake(self.passage.frame.origin.x, self.view.frame.size.height * 0.8 , self.titleOfThePost.frame.size.width, self.titleOfThePost.frame.size.height)];
+                webView.navigationDelegate = self;
                 
                 postContent = [[ UITextView alloc] initWithFrame:CGRectMake(self.passage.frame.origin.x, self.view.frame.size.height * 0.8 , self.titleOfThePost.frame.size.width, self.titleOfThePost.frame.size.height)];
+                
                 postContent.backgroundColor = [UIColor clearColor];
                 if([[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"]){
                     [GlobalVariables getInstance].fontsize = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fontSize"] floatValue];
@@ -459,7 +439,7 @@
                                         text = [text stringByReplacingOccurrencesOfString:@"<ul>\r" withString:@""];
                                     }
 
-                                   
+                                    [webView loadHTMLString:text baseURL:nil];
 //                                    NSLog(@"text1: %@", text);
                                   
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
@@ -641,7 +621,7 @@
                                     }
                                     [res endEditing];
                                     
-                                    
+                                    webView.frame = CGRectMake(self.view.frame.size.width * 0.001, self.starsCollectionView.frame.size.height + self.starsCollectionView.frame.origin.y , self.view.frame.size.width * 0.985, self.titleOfThePost.frame.size.height);
                                     postContent.frame = CGRectMake(self.view.frame.size.width * 0.001, self.starsCollectionView.frame.size.height + self.starsCollectionView.frame.origin.y , self.view.frame.size.width * 0.985, self.titleOfThePost.frame.size.height);
                                     
                                 postContent.attributedText = res;
@@ -670,9 +650,9 @@
                                     
                                     postContent.attributedText = res;
                                   
-
-                                    [self.postScrollView addSubview:postContent];
-                                    [self.postScrollView bringSubviewToFront:postContent];
+                                    
+                                    [self.postScrollView addSubview:webView];
+                                    [self.postScrollView bringSubviewToFront:webView];
                                     [postContent sizeToFit];
                                     
                                     postContent.delegate = self;
