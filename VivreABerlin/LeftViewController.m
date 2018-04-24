@@ -450,10 +450,7 @@
             cell.separator.backgroundColor = [UIColor clearColor];
         }
             cell.categoriesName.text =[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
-
-        
-
-        
+ 
         cell.indentationWidth = 20;
         [cell setIndentationLevel:[[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"level"] intValue]];
         
@@ -658,7 +655,7 @@
         
       
         
-        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+//        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
         ///////////////////
         [GlobalVariables getInstance].idOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"object_id"];
         [GlobalVariables getInstance].nameOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"title"];
@@ -725,18 +722,18 @@
                 
                     if([[d valueForKey:@"title"] isEqualToString:@"Accueil"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ViewController"]];
-                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else if([[d valueForKey:@"title"] isEqualToString:@"Petites annonces"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AnnouncementsViewController"]];
-                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else if([[d valueForKey:@"title"] isEqualToString:@"Agenda de Berlin"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AgendaViewController"]];
-                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else{
-                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
 
                         [GlobalVariables getInstance].idOfcatSubCat = [d valueForKey:@"object_id"];
                         

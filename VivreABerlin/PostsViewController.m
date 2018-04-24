@@ -63,18 +63,27 @@
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     NSLog(@"htight %f", webView.scrollView.contentSize.height);
     [webView evaluateJavaScript: @"document.body.scrollHeight"
-                   completionHandler: ^(id response, NSError *error) {
-                       NSLog(@"Document height: %@", response);
-                          [webView setFrame:CGRectMake(webView.frame.origin.x, webView.frame.origin.y, webView.frame.size.width, [response doubleValue])];
-                   }];
- 
+              completionHandler: ^(id response, NSError *error) {
+                  NSLog(@"Document height: %@", response);
+                  [webView setFrame:CGRectMake(webView.frame.origin.x, webView.frame.origin.y, webView.frame.size.width, [response doubleValue])];
+                  CGRect newFrame = self.tableView.frame;
+                  newFrame.origin.y = webView.frame.size.height + webView.frame.origin.y;
+//                  if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+//                      newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/15;
+//                  else
+//                      newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
+//
+                  self.tableView.frame = newFrame;
+                   [self.tableView reloadData];
+              }];
+    
 }
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     
     NSLog(@"%@   id OF POST",[GlobalVariables getInstance].idOfPost);
     
@@ -94,7 +103,7 @@
     self.starsCollectionView.hidden = true;
     self.postDetailsImageScroll.delegate = self;
     self.changeableBackgroundd.hidden = true;
-   
+    
     self.facebookfb.hidden = true;
     self.tagsScrollView.delegate = self;
     self.tagsTitle.hidden = true;
@@ -117,7 +126,7 @@
     self.okButton.hidden = true;
     
     
-  
+    
     self.fontSizeImage.layer.cornerRadius = 2;
     self.fontSizeImage.clipsToBounds = true;
     [self.fontSizeImage.layer setBorderColor: [self colorWithHexString:@"D6D8E4"].CGColor];
@@ -138,10 +147,10 @@
     self.logoIcon.clipsToBounds = true;
     self.rainbow.contentMode = UIViewContentModeScaleAspectFit;
     self.rainbow.clipsToBounds = true;
-     [self.postScrollView bringSubviewToFront:self.logoIcon];
+    [self.postScrollView bringSubviewToFront:self.logoIcon];
     [self.postScrollView bringSubviewToFront:self.rainbow];
-   
- 
+    
+    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         initialpozitionOfOpenMenuButton = self.view.frame.size.height/12;
@@ -178,10 +187,10 @@
     
     
     
-  
+    
     
     [GlobalVariables getInstance].DictionaryWithAllPosts = [[NSMutableDictionary alloc] initWithDictionary:[(NSMutableDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"DictionaryWithAllPosts"]] mutableCopy]];
-
+    
     
     if([[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] != nil || [self isInternet] == YES){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -235,7 +244,7 @@
                 self.logoIcon.hidden = false;
                 self.rainbow.hidden = false;
                 self.starsCollectionView.hidden = false;
-         
+                
                 self.facebookfb.hidden = false;
                 numberOfStars = [[[postInfo valueForKey:@"ratings"] valueForKey:@"average"] intValue];
                 self.tagsTitle.hidden = false;
@@ -377,17 +386,17 @@
                                     
                                     NSMutableArray *captionArr = [[NSMutableArray alloc]init];
                                     __block  NSString *text;
-                                   
+                                    
                                     text = [[[NSString stringWithFormat:@"%@",[postInfo valueForKey:@"post_content"]] stringByReplacingOccurrencesOfString:@"GOOGLE MAP" withString:@""] stringByReplacingOccurrencesOfString:@"<img" withString:@"<p></p><img"];
-                                
+                                    
                                     [[self substrings:text] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                                         [captionArr addObject:obj];
-                                       
+                                        
                                         text = [text stringByReplacingOccurrencesOfString:obj withString:[[@"<center>" stringByAppendingString:obj] stringByAppendingString:@"</center>"]];
-                                  
+                                        
                                     }];
-                                  
-                             text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"<BR />"];
+                                    
+                                    text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"<BR />"];
                                     
                                     if([text containsString:[NSString stringWithFormat:@"https://www.youtu%@",[self scanString:text startTag:@"https://www.youtub" endTag:@""]]])
                                         
@@ -395,7 +404,7 @@
                                     
                                     
                                     
-                                   
+                                    
                                     
                                     
                                     if([text containsString:@"<h2>"])
@@ -420,10 +429,10 @@
                                     }
                                     if([text containsString:@"</span></li>\r<BR />"])
                                         text = [text stringByReplacingOccurrencesOfString:@"</span></li>\r<BR />" withString:@"</span></li>"];
-                                   
+                                    
                                     if ([text containsString:@"</span></li>"]) {
                                         text = [text stringByReplacingOccurrencesOfString:@"</span></li>" withString:@"</span></li></ul><p>"];
-                            
+                                        
                                     }
                                     
                                     if ([text containsString:@"<li style=\"font-weight: 400;\"><b>"]) {
@@ -438,10 +447,11 @@
                                     if ([text containsString:@"<ul>\r"]) {
                                         text = [text stringByReplacingOccurrencesOfString:@"<ul>\r" withString:@""];
                                     }
+                                    
+                                    [webView loadHTMLString:text baseURL:[NSURL URLWithString:@"https://vivreathenes.com/le-planetarium-d-athenes-au-plus-pres-des-etoiles.html"]];
 
-                                    [webView loadHTMLString:text baseURL:nil];
-//                                    NSLog(@"text1: %@", text);
-                                  
+                                    //                                    NSLog(@"text1: %@", text);
+                                    
                                     if([SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]] == nil){
                                         
                                         
@@ -451,7 +461,7 @@
                                                             documentAttributes: nil
                                                             error: nil
                                                             ];
-                               
+                                        
                                         
                                         [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject: attributedString]
                                                                       withName:[NSString stringWithFormat:@"%@-a",[GlobalVariables getInstance].idOfPost]];
@@ -465,7 +475,7 @@
                                             
                                             
                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                               
+                                                
                                                 NSMutableAttributedString *newAtt= [[NSMutableAttributedString alloc]  initWithData: [text dataUsingEncoding:NSUnicodeStringEncoding]
                                                                                                                             options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
                                                                                                                  documentAttributes: nil
@@ -506,7 +516,7 @@
                                              CGSize size = image.size;
                                              if(size.width > postContent.frame.size.width){
                                                  
-                                               
+                                                 
                                                  float ratio = image.size.width /( postContent.frame.size.width + 25);
                                                  float height = image.size.height / ratio;
                                                  
@@ -522,12 +532,12 @@
                                          
                                          
                                      }];
-                            
-                                
                                     
                                     
                                     
-                                   __block NSMutableAttributedString *res = [attributedString mutableCopy];
+                                    
+                                    
+                                    __block NSMutableAttributedString *res = [attributedString mutableCopy];
                                     
                                     [res beginEditing];
                                     __block BOOL found = NO;
@@ -606,16 +616,16 @@
                                             
                                             [res removeAttribute:NSFontAttributeName range:range];
                                             [res addAttribute:NSFontAttributeName value:newFont range:range];
-                                           
+                                            
                                             
                                             found = YES;
                                             
                                             
                                             
-                                          
+                                            
                                         }
                                     }];
-                                 
+                                    
                                     if (!found) {
                                         // No font was found - do something else?
                                     }
@@ -624,7 +634,7 @@
                                     webView.frame = CGRectMake(self.view.frame.size.width * 0.001, self.starsCollectionView.frame.size.height + self.starsCollectionView.frame.origin.y , self.view.frame.size.width * 0.985, self.titleOfThePost.frame.size.height);
                                     postContent.frame = CGRectMake(self.view.frame.size.width * 0.001, self.starsCollectionView.frame.size.height + self.starsCollectionView.frame.origin.y , self.view.frame.size.width * 0.985, self.titleOfThePost.frame.size.height);
                                     
-                                postContent.attributedText = res;
+                                    postContent.attributedText = res;
                                     NSMutableArray *arrOfStrings = [[NSMutableArray alloc]init];
                                     [captionArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                                         obj = [obj substringFromIndex:1];
@@ -636,20 +646,20 @@
                                             if (foundRange.location != NSNotFound) {
                                                 // found an occurrence of the substring! do stuff here
                                                 searchRange.location = foundRange.location+foundRange.length;
-                                               [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:NSMakeRange(foundRange.location, foundRange.length)];
+                                                [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:NSMakeRange(foundRange.location, foundRange.length)];
                                             } else {
                                                 // no more substring to find
                                                 break;
                                             }
                                         }
                                         
-                                   
-                                   
+                                        
+                                        
                                     }];
-                             
+                                    
                                     
                                     postContent.attributedText = res;
-                                  
+                                    
                                     
                                     [self.postScrollView addSubview:webView];
                                     [self.postScrollView bringSubviewToFront:webView];
@@ -827,18 +837,18 @@
                                     [self.tableView reloadData];
                                     if(arrayUsedInTable.count > 0) {
                                         CGRect newFrame = self.tableView.frame;
-                                        newFrame.origin.y = postContent.frame.size.height + postContent.frame.origin.y;
+                                        newFrame.origin.y = webView.frame.size.height + webView.frame.origin.y;
                                         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
                                             newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/15;
                                         else
                                             newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
-                                       
+                                        
                                         self.tableView.frame = newFrame;
                                     }
                                     else {
                                         CGRect newFrame = self.tableView.frame;
                                         newFrame.size.height = 0;
-                                        newFrame.origin.y = postContent.frame.size.height + postContent.frame.origin.y;
+                                        newFrame.origin.y = webView.frame.size.height + webView.frame.origin.y;
                                         self.tableView.frame = newFrame;
                                     }
                                     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -921,7 +931,7 @@
                     else{
                         point.subtitle = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
                     }
-             
+                    
                     [self.postMapView addAnnotation:point];
                     
                     if([self isInternet] == NO){
@@ -1099,7 +1109,7 @@
         self.postNotSaved.hidden = false;
         
     }
-
+    
 }
 
 -(void)changeString:(NSString *)contentStr subString:(NSString *) substring mutableString:(NSMutableAttributedString *) res{
@@ -1113,7 +1123,7 @@
             searchRange.location = foundRange.location+foundRange.length;
             
             [res addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:searchRange ];
-        
+            
             
         } else {
             // no more substring to find
@@ -1128,16 +1138,16 @@
     
     NSMutableArray *resultArray = [NSMutableArray array];
     [exp enumerateMatchesInString:candidateString options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, candidateString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-         NSString *finalString = candidateString;
-
+        NSString *finalString = candidateString;
+        
         finalString = [finalString substringWithRange:[result range]];
         finalString = [finalString substringToIndex:[finalString length]-10];
         [resultArray addObject:finalString];
-
-       
+        
+        
     }];
-   
-
+    
+    
     return resultArray;
 }
 -(void)viewWillAppear:(BOOL)animated{

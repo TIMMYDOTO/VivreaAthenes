@@ -37,6 +37,7 @@
 #import "SearchAnnouncement.h"
 #import "OLGhostAlertView.h"
 #import "CreditsViewController.h"
+#import "AstuceVC.h"
 
 JTMaterialSpinner * spinnerView;
 
@@ -54,6 +55,7 @@ JTMaterialSpinner * spinnerView;
  
     IBOutlet UIView *statusView;
     
+    __weak IBOutlet UIView *astuceView;
 }
 
 - (void)viewDidLoad {
@@ -400,6 +402,11 @@ JTMaterialSpinner * spinnerView;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+
+- (IBAction)openAstuce:(UIButton *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AstuceVC"]];
+}
+
 -(void) checkNetworkStatus:(NSNotification *)notice
 {
     // called after network status changes
@@ -474,7 +481,7 @@ JTMaterialSpinner * spinnerView;
     self.imageViewEffectloading.hidden = false;
     self.imageOfLoadingScreen.hidden = false;
     
-    self.progresslabel.text = @"S'il vous plaît se connecter à Internet.";
+    self.progresslabel.text = @"Connexion internet requise pour accéder à l’app.";
     self.progresslabel.font = [UIFont fontWithName:@"Montserrat-Light" size:20];
     self.progresslabel.textColor = [UIColor redColor];
     self.progresslabel.numberOfLines = 0;
@@ -487,7 +494,7 @@ JTMaterialSpinner * spinnerView;
     CGRect neworigin = self.progresslabel.frame;
     neworigin.origin.y = self.progresslabel.frame.origin.y - self.loadinScreen.frame.size.height/7;
     self.progresslabel.frame = neworigin;
-    
+   
     self.loadinScreen.layer.cornerRadius = 15;
     self.loadinScreen.clipsToBounds = true;
     
@@ -510,6 +517,12 @@ JTMaterialSpinner * spinnerView;
     button.titleLabel.textColor = [UIColor whiteColor];
     button.hidden =false;
     
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    [astuceView setFrame:CGRectMake(screenWidth/2 - 137, screenHeight - astuceView.frame.size.height - 10, 275, 87)];
+    astuceView.layer.cornerRadius = 13;
+    astuceView.clipsToBounds = true;
 }
 
 
@@ -528,10 +541,6 @@ JTMaterialSpinner * spinnerView;
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 -(void) SCHIMBECRAN: (NSNotification *) notification
@@ -808,6 +817,27 @@ JTMaterialSpinner * spinnerView;
         
         
          CreditsViewController* child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"CreditsViewController"];
+        
+        child2.view.frame = self.view.bounds;
+        
+        
+        [UIView transitionWithView:self.view duration:0.3
+                           options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                               [self addChildViewController:child2];
+                               [child2 didMoveToParentViewController:self];
+                               child2.view.frame = self.view.bounds;
+                               [self.view addSubview:child2.view];
+                           } completion:nil];
+        
+        
+    }
+    else if ([notification.object isEqualToString:@"AstuceVC"])
+    {
+        
+        kAppDelegate.lockInPortrait = YES;
+        
+        
+        AstuceVC* child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AstuceVC"];
         
         child2.view.frame = self.view.bounds;
         

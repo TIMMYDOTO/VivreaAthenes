@@ -40,6 +40,7 @@
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
+		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
 		F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF111F447F0C00BCC8DE /* EditAnnouncement.m */; };
@@ -355,6 +356,8 @@
 		9A5658E8203EE7120092BCDA /* Cafés et Bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cafés et Bars.png"; sourceTree = "<group>"; };
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
+		9AEADF38208CA55100854061 /* AstuceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AstuceVC.h; sourceTree = "<group>"; };
+		9AEADF39208CA55100854061 /* AstuceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AstuceVC.m; sourceTree = "<group>"; };
 		C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D6AB2DB0DBF433AE991F59F3 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DCB8B477732E33E4DF3468 /* Pods-VivreABerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin.release.xcconfig"; sourceTree = "<group>"; };
@@ -711,6 +714,7 @@
 				F48BA5C51EAF990700B85DDB /* Tickets */,
 				F48BA5C71EAF996600B85DDB /* Globals */,
 				F467559D1EADF14A00EAE093 /* Resources */,
+				9AEADF3B208CA56300854061 /* AstuceVC */,
 				8D3D5EC01EA7864900DA4778 /* Main.storyboard */,
 				F45D38321F95FE0E00048225 /* MainIPad.storyboard */,
 				F463FD461FA87DE200EBAA56 /* MainiPhoneX.storyboard */,
@@ -796,6 +800,15 @@
 				F4F2E8381F4F51BA00FCB2C0 /* CreditsViewController.m */,
 			);
 			name = PopUpApplications;
+			sourceTree = "<group>";
+		};
+		9AEADF3B208CA56300854061 /* AstuceVC */ = {
+			isa = PBXGroup;
+			children = (
+				9AEADF38208CA55100854061 /* AstuceVC.h */,
+				9AEADF39208CA55100854061 /* AstuceVC.m */,
+			);
+			name = AstuceVC;
 			sourceTree = "<group>";
 		};
 		F43957561ED58CEC00CAE618 /* MarkersIcons */ = {
@@ -1813,6 +1826,7 @@
 				F48BA5BA1EAF862E00B85DDB /* TicketsViewController.m in Sources */,
 				F43ED9631F0A3C930054A924 /* ListOfPostsController.m in Sources */,
 				F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */,
+				9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */,
 				F49C7AF81ECF0549000209D6 /* FilterCell.m in Sources */,
 				F460C1D31F0CDEDE0050CAA6 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				8DEB3A7E1EBDA08B00818DA9 /* PopUpNewsletterController.m in Sources */,
