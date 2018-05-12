@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '74F66BD7F23DE4AB1B43655077810848'
+               BlueprintIdentifier = '24536B0B034BBF4702F613F48804EC7F'
                BlueprintName = 'Pods-VivreABerlin-OneSignalNotificationServiceExtension'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-VivreABerlin-OneSignalNotificationServiceExtension.a'>

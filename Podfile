@@ -10,6 +10,9 @@ pod 'Mapbox-iOS-SDK', '~> 3.6'
 pod 'FBAudienceNetwork'
 pod 'Google-Mobile-Ads-SDK'
 pod 'OneSignal', '>= 2.5.2', '< 3.0'
+pod 'SDWebImage', '~> 4.0'
+pod 'AFNetworking', '~> 3.0'
+
   target 'VivreABerlinTests' do
     inherit! :search_paths
     # Pods for testing

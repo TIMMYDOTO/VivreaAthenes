@@ -38,7 +38,7 @@
 #import "OLGhostAlertView.h"
 #import "CreditsViewController.h"
 #import "AstuceVC.h"
-
+#import "PostViewController.h"
 JTMaterialSpinner * spinnerView;
 
 @interface ContainerViewController ()
@@ -676,7 +676,7 @@ JTMaterialSpinner * spinnerView;
         }
         
         
-        PostsViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"PostsViewController"];
+        PostViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"PostViewController"];
         
         child2.view.frame = self.containerviewcontroller.bounds;
         

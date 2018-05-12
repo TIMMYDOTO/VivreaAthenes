@@ -12,8 +12,10 @@
 #import "UIImageView+Network.h"
 #import "AppDelegate.h"
 #import "JTMaterialSpinner.h"
-
-@interface ZoomMapPage ()
+#import "SimpleFilesCache.h"
+@interface ZoomMapPage (){
+    
+}
 
 @end
 
@@ -43,7 +45,14 @@
     [self.view bringSubviewToFront: self.ZoomMapView];
     self.ZoomMapView.delegate = self;
     
+     BOOL unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
+    unlockedIAP = YES;
+       if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+           
+           MapInfo = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]]];
+       }else{
     MapInfo = [[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost];
+       }
     
     
     point = [[MGLPointAnnotation alloc] init];

@@ -782,9 +782,9 @@
 
         [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
          if(!([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable))
-            [GlobalVariables getInstance].idOfPost = [filteredTableData valueForKey:@"id"][indexPath.row];
+            [GlobalVariables getInstance].idOfPost = [[filteredTableData valueForKey:@"id"][indexPath.row]stringValue];
         else
-        [GlobalVariables getInstance].idOfPost = [filteredTableData valueForKey:@"post_id"][indexPath.row];
+        [GlobalVariables getInstance].idOfPost = [[filteredTableData valueForKey:@"post_id"][indexPath.row]stringValue];;
         [GlobalVariables getInstance].comingFrom = @"Search";
 
         [GlobalVariables getInstance].comingFromViewController = @"ListOfPostsController";

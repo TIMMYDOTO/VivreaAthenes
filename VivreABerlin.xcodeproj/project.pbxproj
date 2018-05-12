@@ -35,12 +35,16 @@
 		8DEB3AB11EBDB1B100818DA9 /* TokyoArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAA1EBDB1B100818DA9 /* TokyoArrow.png */; };
 		8DEB3AB21EBDB1B100818DA9 /* MunichArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */; };
 		9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66C204068BE00EC6253 /* Sorties en famille.png */; };
+		9A278658209B248A00DB0FC3 /* SuggestionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A278657209B248A00DB0FC3 /* SuggestionsCell.m */; };
+		9A4369AB20A069570062B098 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4369AA20A069570062B098 /* PostModel.m */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F3203EE7150092BCDA /* Cafés et Bars.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E8203EE7120092BCDA /* Cafés et Bars.png */; };
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
+		9A9C87532092227E00593596 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87522092227D00593596 /* style.css */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
+		9AEADF3E2091D21000854061 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF3D2091D21000854061 /* PostViewController.m */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
 		F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF111F447F0C00BCC8DE /* EditAnnouncement.m */; };
@@ -352,12 +356,20 @@
 		8DEB3AAB1EBDB1B100818DA9 /* MunichArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MunichArrow.png; sourceTree = "<group>"; };
 		925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A21F66C204068BE00EC6253 /* Sorties en famille.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sorties en famille.png"; sourceTree = "<group>"; };
+		9A278656209B248A00DB0FC3 /* SuggestionsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestionsCell.h; sourceTree = "<group>"; };
+		9A278657209B248A00DB0FC3 /* SuggestionsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestionsCell.m; sourceTree = "<group>"; };
+		9A4369A920A069570062B098 /* PostModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostModel.h; sourceTree = "<group>"; };
+		9A4369AA20A069570062B098 /* PostModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostModel.m; sourceTree = "<group>"; };
 		9A5658E4203EE70F0092BCDA /* musees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musees.png; sourceTree = "<group>"; };
 		9A5658E8203EE7120092BCDA /* Cafés et Bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cafés et Bars.png"; sourceTree = "<group>"; };
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
+		9A9C87522092227D00593596 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		9A9C87542093339700593596 /* Gudea.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gudea.otf; sourceTree = "<group>"; };
 		9AEADF38208CA55100854061 /* AstuceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AstuceVC.h; sourceTree = "<group>"; };
 		9AEADF39208CA55100854061 /* AstuceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AstuceVC.m; sourceTree = "<group>"; };
+		9AEADF3C2091D21000854061 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		9AEADF3D2091D21000854061 /* PostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D6AB2DB0DBF433AE991F59F3 /* libPods-VivreABerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DCB8B477732E33E4DF3468 /* Pods-VivreABerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin.release.xcconfig"; sourceTree = "<group>"; };
@@ -716,11 +728,19 @@
 				F467559D1EADF14A00EAE093 /* Resources */,
 				9AEADF3B208CA56300854061 /* AstuceVC */,
 				8D3D5EC01EA7864900DA4778 /* Main.storyboard */,
+				9A4369A920A069570062B098 /* PostModel.h */,
+				9A4369AA20A069570062B098 /* PostModel.m */,
+				9AEADF3C2091D21000854061 /* PostViewController.h */,
+				9AEADF3D2091D21000854061 /* PostViewController.m */,
+				9A278656209B248A00DB0FC3 /* SuggestionsCell.h */,
+				9A278657209B248A00DB0FC3 /* SuggestionsCell.m */,
 				F45D38321F95FE0E00048225 /* MainIPad.storyboard */,
 				F463FD461FA87DE200EBAA56 /* MainiPhoneX.storyboard */,
 				8D3D5EC31EA7864900DA4778 /* Assets.xcassets */,
 				8D3D5EC51EA7864900DA4778 /* LaunchScreen.storyboard */,
 				8D3D5EC81EA7864900DA4778 /* Info.plist */,
+				9A9C87522092227D00593596 /* style.css */,
+				9A9C87542093339700593596 /* Gudea.otf */,
 				8D3D5EB71EA7864900DA4778 /* Supporting Files */,
 			);
 			path = VivreABerlin;
@@ -1430,6 +1450,7 @@
 				F4FEFE771EE9692C00C95381 /* musique1.png in Resources */,
 				F49C7AC31ECC5C61000209D6 /* Montserrat-ExtraBold.otf in Resources */,
 				F4F1EF151EB0C7A500004114 /* agendaTabBarIcon.png in Resources */,
+				9A9C87532092227E00593596 /* style.css in Resources */,
 				F4F1EF191EB0C7A500004114 /* announcementsTabBarIcon.png in Resources */,
 				F49C7AF51ECEF9A4000209D6 /* incompleteBox.png in Resources */,
 				F46616A81F486AB900EEF9CA /* AddImage.png in Resources */,
@@ -1851,6 +1872,7 @@
 				8D16D16D1FF4EB95003DD13B /* InfoPratiquesTableViewCell.m in Sources */,
 				F4CFF21B1EA8AC560081ABD5 /* LGSideMenuController.m in Sources */,
 				F41B29891F9E0D900053C97A /* UIImage+animatedGIF.m in Sources */,
+				9AEADF3E2091D21000854061 /* PostViewController.m in Sources */,
 				F4CFF21A1EA8AC560081ABD5 /* LeftViewController.m in Sources */,
 				F4FEFE2E1EE7F29E00C95381 /* SubMenuCell.m in Sources */,
 				F4F1EEFF1EB0A8F200004114 /* MenuCell.m in Sources */,
@@ -1861,6 +1883,7 @@
 				F49DCF321F2256BB007DB5BE /* MapCreditsController.m in Sources */,
 				F4FEFE311EE7F2AD00C95381 /* SubSubMenuCell.m in Sources */,
 				F46D1DBA1F2B2C9500359EBC /* AgendaCell.m in Sources */,
+				9A4369AB20A069570062B098 /* PostModel.m in Sources */,
 				8DDFEEAF1EBDF17D0014EC9D /* Reachability.m in Sources */,
 				F40EEF151F447F1700BCC8DE /* SearchAnnouncement.m in Sources */,
 				8D3D5EBC1EA7864900DA4778 /* AppDelegate.m in Sources */,
@@ -1876,6 +1899,7 @@
 				8D3D5EB91EA7864900DA4778 /* main.m in Sources */,
 				F47F395B1F2DBE7B0035C48F /* AgendaArticlePopUp.m in Sources */,
 				F4D051661EB343E000011B0D /* lastPostCellHomeView.m in Sources */,
+				9A278658209B248A00DB0FC3 /* SuggestionsCell.m in Sources */,
 				F482A3C51ECB2BB10095FA39 /* DMCircularScrollView.m in Sources */,
 				F4B262D51F18E410002F9770 /* CatsSubCatsController.m in Sources */,
 			);

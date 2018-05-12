@@ -812,7 +812,7 @@
     if(arrayWithUrlImageAds.count == 2){
         if(indexPath.row >= 0 && indexPath.row < 3) {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -823,7 +823,7 @@
         }
         else if(indexPath.row > 3 && indexPath.row < 7) {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -834,7 +834,7 @@
         }
         else if(indexPath.row > 7 && indexPath.row < 10) {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-2];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-2]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -848,7 +848,7 @@
         
         if(indexPath.row >= 0 && indexPath.row < 7) {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -859,7 +859,7 @@
         }
         else if(indexPath.row > 7) {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -873,7 +873,7 @@
     }
     else {
             
-            [GlobalVariables getInstance].idOfPost =[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row];
+            [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
         [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -894,9 +894,6 @@
 //    return self.view.frame.size.height/3.65;
 //}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 -(void)makingRequest:(NSString *)url
 {
@@ -1120,7 +1117,7 @@ finish:
     
     NSInteger tag = button.tag;
     
-    [GlobalVariables getInstance].idOfPost = [[offlineHomeDictonary valueForKey:@"slider_posts"] valueForKey:@"ID"][tag];
+    [GlobalVariables getInstance].idOfPost = [[[offlineHomeDictonary valueForKey:@"slider_posts"] valueForKey:@"ID"][tag]stringValue];
     [GlobalVariables getInstance].comingFrom = @"Home";
     [GlobalVariables getInstance].comingFromViewController = @"ViewController";
     [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];

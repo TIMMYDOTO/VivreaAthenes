@@ -357,7 +357,7 @@
     
     if([self isInternet] == NO){
         
-        [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row] valueForKey:@"post_id"];
+        [GlobalVariables getInstance].idOfPost =[[allArticlesFromCategory[indexPath.row] valueForKey:@"post_id"]stringValue];;
         [GlobalVariables getInstance].comingFrom = @"CategoryPage";
         [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
         [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -388,7 +388,7 @@
             }
             else if(indexPath.row > 0 && indexPath.row <10) {
                 
-                [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"];
+                [GlobalVariables getInstance].idOfPost =[[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"]stringValue];
                 [GlobalVariables getInstance].comingFrom = @"CategoryPage";
                 [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
                 [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -412,7 +412,7 @@
                 
             }
             else {
-                [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row-2] valueForKey:@"id"];
+                [GlobalVariables getInstance].idOfPost =[[allArticlesFromCategory[indexPath.row-2] valueForKey:@"id"]stringValue];
                 [GlobalVariables getInstance].comingFrom = @"CategoryPage";
                 [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
                 [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -443,7 +443,7 @@
             }
             else if(indexPath.row > 0 && indexPath.row <= allArticlesFromCategory.count) {
                 
-                [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"];
+                [GlobalVariables getInstance].idOfPost =[[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"]stringValue];
                 [GlobalVariables getInstance].comingFrom = @"CategoryPage";
                 [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
                 [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -467,7 +467,7 @@
                 
             }
             else {
-                [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row-2] valueForKey:@"id"];
+                [GlobalVariables getInstance].idOfPost = [[allArticlesFromCategory[indexPath.row-2] valueForKey:@"id"]stringValue];
                 [GlobalVariables getInstance].comingFrom = @"CategoryPage";
                 [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
                 [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -500,7 +500,7 @@
                 
             }
             else{
-                [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"];
+                [GlobalVariables getInstance].idOfPost = [[allArticlesFromCategory[indexPath.row-1] valueForKey:@"id"]stringValue];
                 [GlobalVariables getInstance].comingFrom = @"CategoryPage";
                 [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
                 [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
@@ -511,7 +511,7 @@
         }
         else{
             
-            [GlobalVariables getInstance].idOfPost =[allArticlesFromCategory[indexPath.row] valueForKey:@"id"];
+            [GlobalVariables getInstance].idOfPost =[[allArticlesFromCategory[indexPath.row] valueForKey:@"id"]stringValue];
             [GlobalVariables getInstance].comingFrom = @"CategoryPage";
             [GlobalVariables getInstance].comingFromViewController = @"CatsSubCatsController";
             [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];

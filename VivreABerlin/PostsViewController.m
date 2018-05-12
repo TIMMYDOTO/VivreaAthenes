@@ -73,8 +73,10 @@
 //                  else
 //                      newFrame.size.height = (arrayUsedInTable.count+1) * self.view.frame.size.width/7;
 //
+                  [_suggestedPostView setFrame:CGRectMake(0, newFrame.origin.y, _suggestedPostView.frame.size.width, _suggestedPostView.frame.size.height)];
                   self.tableView.frame = newFrame;
-                   [self.tableView reloadData];
+//                   [self.tableView reloadData];
+                  NSLog(@"self.tableView.frame %@", NSStringFromCGRect(self.tableView.frame));
               }];
     
 }
@@ -211,7 +213,7 @@
                 //       NSLog(@"FARA REQUEST");
                 
                 postInfo = [[NSMutableDictionary alloc]initWithDictionary:[[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] mutableCopy]];
-                
+                [[GlobalVariables getInstance].DictionaryWithAllPosts setObject:postInfo forKey:[GlobalVariables getInstance].idOfPost];
                 
                 if([self isInternet] == YES && ([[[NSUserDefaults standardUserDefaults] valueForKey:@"CanAddObjectToCarousel"] isEqualToString:@"YES"])){
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -661,9 +663,9 @@
                                     postContent.attributedText = res;
                                     
                                     
-                                    [self.postScrollView addSubview:webView];
+//                                    [self.postScrollView addSubview:webView];
                                     [self.postScrollView bringSubviewToFront:webView];
-                                    [postContent sizeToFit];
+//                                    [postContent sizeToFit];
                                     
                                     postContent.delegate = self;
                                     
@@ -2109,7 +2111,7 @@ finish:
         else
             cell.textView.textColor = [UIColor darkGrayColor];
         
-        //[cell.textView sizeToFit];
+//        [cell.textView sizeToFit];
     }
     // cell.textView.numberOfLines = 1;
     // cell.textView.adjustsFontSizeToFitWidth = true;
