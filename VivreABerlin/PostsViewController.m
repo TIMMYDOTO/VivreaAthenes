@@ -1206,8 +1206,10 @@
 
 
 -(void) openMapPage{
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ZoomMapPage"]];
+ 
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ZoomMapPage"]];
+
+
     
 }
 - (void) mapViewDidFinishLoadingMap:(MGLMapView *)mapView {

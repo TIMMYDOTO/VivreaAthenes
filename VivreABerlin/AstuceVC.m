@@ -34,7 +34,7 @@
     
     
     astuceView.frame = CGRectMake(screenWidth * 0.1, screenHeight * 0.05, screenWidth * 0.8, screenHeight * 0.93);
-    
+//    [astuceView setHidden:NO];
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
     
     middleTextField.layer.cornerRadius = 14.0;

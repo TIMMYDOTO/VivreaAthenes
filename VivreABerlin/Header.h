@@ -77,10 +77,10 @@
 #define SouthWestMarkerLat @"52.3835746"
 #define SouthWestMarkerLong @"13.120975899999962"
 // IAP
-#define IAPID @"1"
-#define facebookInterstitialID @"1"
-#define googleInterstitialID @"1"
-#define googleAppID @"1"
+//#define IAPID @"1"
+//#define facebookInterstitialID @"1"
+//#define googleInterstitialID @"1"
+//#define googleAppID @"1"
 
 
 
@@ -156,8 +156,8 @@
 
 
 
-//#define IAPID @"39249328493284932"
-//#define facebookInterstitialID @"167997730311966_358154934629577"
-//#define googleInterstitialID @"ca-app-pub-5601513769658709/7611082391"
-//#define googleAppID @"ca-app-pub-5601513769658709~3316614168"
+#define IAPID @"39249328493284932"
+#define facebookInterstitialID @"167997730311966_358154934629577"
+#define googleInterstitialID @"ca-app-pub-5601513769658709/7611082391"
+#define googleAppID @"ca-app-pub-5601513769658709~3316614168"
 #endif /* Header_h */

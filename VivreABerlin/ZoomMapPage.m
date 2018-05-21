@@ -46,7 +46,6 @@
     self.ZoomMapView.delegate = self;
     
      BOOL unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-    unlockedIAP = YES;
        if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
            
            MapInfo = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]]];
@@ -55,16 +54,18 @@
        }
     
     
-    point = [[MGLPointAnnotation alloc] init];
-    point.coordinate = CLLocationCoordinate2DMake([[[MapInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue], [[[MapInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue]);
-    point.title = [MapInfo valueForKey:@"post_title"];
-    point.subtitle = [NSString stringWithFormat:@"%@ -> %@",[[MapInfo valueForKey:@"category"]valueForKey:@"category_parent_name"], [[MapInfo valueForKey:@"category"] valueForKey:@"name"]];
-    [self.ZoomMapView addAnnotation:point];
 
+    NSMutableArray *location = [NSMutableArray array];
+   location =  [[MapInfo valueForKey:@"practical_infos"] valueForKey:@"locations"];
+    [location enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    point = [[MGLPointAnnotation alloc] init];
+        point.coordinate = CLLocationCoordinate2DMake([[obj valueForKey:@"lat"]doubleValue], [[obj valueForKey:@"lng"]doubleValue]);
+        point.title = [obj valueForKey:@"title"];
+        point.subtitle = [obj objectForKey:@"description"];
+          [self.ZoomMapView addAnnotation:point];
+    }];
     
-    if([self isInternet] == NO){
-        self.ZoomMapView.maximumZoomLevel = 17;
-    }
+
     
     [self.ZoomMapView addSubview:self.closeZoomMapPage];
     [self.ZoomMapView bringSubviewToFront:self.closeZoomMapPage];
@@ -78,46 +79,39 @@
     [self.ZoomMapView bringSubviewToFront: spinnerview];
     [spinnerview beginRefreshing];
 
-    if([self isInternet] == NO){
-    dispatch_time_t popTimee = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
-    dispatch_after(popTimee, dispatch_get_main_queue(), ^(void){
-    [self.ZoomMapView setCenterCoordinate:CLLocationCoordinate2DMake([[[MapInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue] + 0.0002, [[[MapInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue] - 0.00001) zoomLevel:16 direction:0 animated:YES];
-        [spinnerview endRefreshing];
-    });
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.ZoomMapView selectAnnotation:point animated:YES];
-        
-    });
-    }
+
 
 
 }
 - (void) mapViewDidFinishLoadingMap:(MGLMapView *)mapView {
-    
+    NSMutableDictionary *dict = [[NSUserDefaults standardUserDefaults]objectForKey:@"coordinates"];
     mapView.showsUserLocation = YES;
-    
-    [self.ZoomMapView setCenterCoordinate:CLLocationCoordinate2DMake([[[MapInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue] + 0.0002, [[[MapInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue] - 0.00001) zoomLevel:16 direction:0 animated:YES];
+    MGLCoordinateBounds bounds;
+    bounds.sw.latitude = [[dict valueForKey:@"sw.latitude"]doubleValue];
+    bounds.sw.longitude = [[dict valueForKey:@"sw.longitude"]doubleValue];
+    bounds.ne.latitude = [[dict valueForKey:@"ne.latitude"]doubleValue];
+    bounds.ne.longitude =[[dict valueForKey:@"ne.longitude"]doubleValue];
+    if (self.ZoomMapView.annotations.count > 1) {
+            [mapView flyToCamera:[mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil ];
+    }
+    else{
+         [self.ZoomMapView setCenterCoordinate:CLLocationCoordinate2DMake([[[MapInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue] + 0.0002, [[[MapInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue] - 0.00001) zoomLevel:16 direction:0 animated:YES];
+        
+    }
+
+
     
     [spinnerview endRefreshing];
     
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.ZoomMapView selectAnnotation:point animated:YES];
-        
-    });
+    
+
     
     
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)mapView:(MGLMapView *)mapView annotationCanShowCallout:(id <MGLAnnotation>)annotation {
     // Always try to show a callout when an annotation is tapped.
-    return YES;
+    return true;
 }
 - (UIView *)mapView:(MGLMapView *)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation>)annotation
 {

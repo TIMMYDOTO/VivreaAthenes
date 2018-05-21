@@ -808,82 +808,82 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    // [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
     if(arrayWithUrlImageAds.count == 2){
         if(indexPath.row >= 0 && indexPath.row < 3) {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
             [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
+
+
         }
         else if(indexPath.row > 3 && indexPath.row < 7) {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
             [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
+
+
         }
         else if(indexPath.row > 7 && indexPath.row < 10) {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-2]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
             [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
+
+
         }
     }
     else if(arrayWithUrlImageAds.count == 1){
-        
+
         if(indexPath.row >= 0 && indexPath.row < 7) {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
             [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
+
+
         }
         else if(indexPath.row > 7) {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row-1]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
             [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
             [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
+
+
         }
-        
-        
+
+
     }
     else {
-            
+
             [GlobalVariables getInstance].idOfPost =[[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]stringValue];
             [GlobalVariables getInstance].comingFrom = @"Home";
         [GlobalVariables getInstance].comingFromViewController = @"ViewController";
              [GlobalVariables getInstance].CarouselOfPostIds = [[NSMutableArray alloc] initWithArray: @[[NSString stringWithFormat:@"%@",[GlobalVariables getInstance].comingFromViewController]]];
         [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-            
-            
-        
-        
-        
+
+
+
+
+
     }
 
     

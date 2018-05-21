@@ -15,14 +15,15 @@
 #import <Social/Social.h>
 #import "SuggestionsCell.h"
 #import "SimpleFilesCache.h"
+#import "OLGhostAlertView.h"
 
 #import "PostModel.h"
 
 @interface PostViewController (){
-    
+    OLGhostAlertView *demo;
     __weak IBOutlet UILabel *practicalInfosLabel;
     IBOutlet UIView *practicalInfos;
-    
+    NSMutableArray *pointArr;
     __weak IBOutlet UIView *articlesSuggestions;
     __weak IBOutlet UIView *scheduleView;
     CGFloat initialpozitionOfBackButton;
@@ -30,7 +31,7 @@
     __weak IBOutlet UILabel *lundiSchedule;
     UIButton *backToTop;
     __weak IBOutlet UILabel *mardiSchedule;
-    
+    UIButton *tag;
     __weak IBOutlet UILabel *mercrediSchedule;
     
     __weak IBOutlet UILabel *jeudiSchedule;
@@ -41,7 +42,7 @@
     
     __weak IBOutlet UILabel *dimancheSchedule;
     
-    
+    NSNumber *numberOfTags;
     BOOL changeFrameOnce;
     BOOL changeFrameOnce1;
     __weak IBOutlet UIButton *menuButton;
@@ -60,20 +61,21 @@
     __weak IBOutlet UIImageView *imageViewHeader;
     
     __weak IBOutlet UIView *blueSeparatorView;
-    
+    UILabel *tagsL;
     __weak IBOutlet UILabel *authorLabel;
     NSString *htmlString;
     BOOL canAppear;
     WKWebView *wkWebView;
     int numberOfStars;
     CGFloat screenWidth;
+    float percent;
     CGFloat screenHeight;
     __weak IBOutlet UIImageView *rainbow;
     __weak IBOutlet UIImageView *logo;
     
     __weak IBOutlet UILabel *postsBigTitle;
     __weak IBOutlet UILabel *passage;
-    
+    UILongPressGestureRecognizer *longTap;
     
     __weak IBOutlet UIView *starImageView;
     __weak IBOutlet UIImageView *starImage1;
@@ -90,12 +92,19 @@
     NSMutableArray *allTagsSlugs;
     NSMutableArray *allTagsName;
     
+    UIView *viewForTags;
     float yPositionForSchedule;
     
+    NSMutableArray *arrayOfSchedule;
     NSMutableArray *arrayUsedInTable;
     NSMutableArray *arrayWithImagesUsedInTable;
     
-    CGFloat scale;
+    NSMutableArray *thumbnailArr;
+    NSMutableArray *titleArr;
+    NSMutableArray *fragmentArr;
+    
+    NSUInteger suggestionsCount;
+    int tagsCount;
 }
 
 @end
@@ -104,18 +113,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-    unlockedIAP = NO;
     
+    thumbnailArr = [[NSMutableArray alloc] init];
+    titleArr = [[NSMutableArray alloc] init];
+    fragmentArr = [[NSMutableArray alloc] init];
+    
+    
+    numberOfTags = [[NSNumber alloc]init];
+    arrayOfSchedule = [[NSMutableArray alloc] init];
     arrayUsedInTable = [[NSMutableArray alloc] init];
     arrayWithImagesUsedInTable = [[NSMutableArray alloc] init];
     allTagsSlugs = [[NSMutableArray alloc] init];
     allTagsName = [[NSMutableArray alloc] init];
-    
+    percent = 100.0;
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
-    scale = 1.0;
+
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-//     [[GlobalVariables getInstance] setIdOfPost:@"35197"];
+// [[GlobalVariables getInstance] setIdOfPost:@"34241"];
+
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
         postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]];
@@ -125,16 +142,18 @@
             [starImageArr[i] setImage:[UIImage imageNamed:@"starColour.png"]];
             
         }
-        imageViewHeader.image = [SimpleFilesCache cachedImageWithName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"img"]];
+        imageViewHeader.image = postModel.imageHeader;
+
         authorLabel.text = postModel.authorName;
-        
+
          wkWebView = [[WKWebView alloc]initWithFrame:CGRectMake(0, imageViewHeader.frame.size.height+200, screenWidth, 0) configuration:[WKWebViewConfiguration new]];
         passage.text = postModel.passageText;
         postsBigTitle.text = postModel.postTitleText;
-         [postsBigTitle sizeToFit];
+
+       
         [wkWebView loadHTMLString:postModel.htmlString baseURL: nil];
-//        NSLog(@"ew]contentSize].height %f", [[wkWebView scrollView]contentSize].height);
-        [self settingMap:postModel.postMapView];
+
+   
         
     }
     else{ [self getPost]; }
@@ -149,27 +168,30 @@
     
     
     
-    
-    
 }
 
 -(void)settingDesign{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
      screenWidth = screenRect.size.width;
      screenHeight = screenRect.size.height;
-
+    [mainScrollView setFrame:CGRectMake(0, 0, screenWidth, screenHeight*0.92)];
     [imageViewHeader setFrame:CGRectMake(0, 0, screenWidth, 236)];
     [blueSeparatorView setFrame:CGRectMake(0, imageViewHeader.frame.size.height - 29, screenWidth, 29)];
     [rainbow setFrame:CGRectMake(screenWidth/2-40, imageViewHeader.frame.size.height-42, 80, 85)];
     [logo setFrame:CGRectMake(screenWidth/2-40, imageViewHeader.frame.size.height-42, 80, 85)];
     
     [authorLabel setFrame:CGRectMake(screenWidth, imageViewHeader.frame.size.height-31, 0, 38)];
+    [authorLabel sizeToFit];
+    [authorLabel setFrame:CGRectMake(screenWidth - authorLabel.frame.size.width - 4, authorLabel.frame.origin.y, authorLabel.frame.size.width, 38)];
     [facebookfb setFrame:CGRectMake(5, imageViewHeader.frame.size.height + 10, 45, 30)];
-    [postsBigTitle setFrame:CGRectMake(5, facebookfb.frame.origin.y + facebookfb.frame.size.height + 15, screenWidth - 20, 38)];
+    [postsBigTitle setFrame:CGRectMake(5, facebookfb.frame.origin.y + facebookfb.frame.size.height + 15, screenWidth - 20, 43)];
+
     [passage setFrame:CGRectMake(5, postsBigTitle.frame.origin.y + postsBigTitle.frame.size.height + 12 , screenWidth, 38)];
 
     [starImageView setFrame:CGRectMake(5, passage.frame.origin.y + passage.frame.size.height + 4, 90, 27)];
     if (wkWebView == nil) {
+        
+  
         wkWebView = [[WKWebView alloc]initWithFrame:CGRectMake(0, starImageView.frame.origin.y + starImageView.frame.size.height+20, screenWidth, 0) configuration:[WKWebViewConfiguration new]];
     }
  
@@ -178,15 +200,15 @@
     wkWebView.UIDelegate = self;
     wkWebView.opaque = false;
     wkWebView.scrollView.scrollEnabled = NO;
-
+   
 
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(zoomingWKWebView:)];
     pinchRecognizer.delegate = self;
 
     wkWebView.scrollView.delegate = self;
     [wkWebView.scrollView addGestureRecognizer:pinchRecognizer];
-     wkWebView.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:0.0f];
-    wkWebView.backgroundColor = [UIColor colorWithRed:200/255.0f green:200/255.0f blue:245/255.0f alpha:1.0f];
+    wkWebView.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:0.0f];
+
 
     
     [mainScrollView addSubview:wkWebView];
@@ -207,11 +229,12 @@
         self.postMapView.compassView.hidden = false;
         self.postMapView.compassView.alpha = 0.f;
         self.postMapView.rotateEnabled = false;
-        [self.postMapView addAnnotation:postModel.point];
-        [self.postMapView selectAnnotation:postModel.point animated:YES];
+        [self.postMapView addAnnotations:postModel.annotations];
+
+        
         
     }
-    else if ([[postInfo valueForKey:@"location"] count] > 0){
+    else if ([[[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"] count] > 0){
         
         
         self.postMapView = [[MGLMapView alloc]init];
@@ -220,11 +243,7 @@
         self.postMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         self.postMapView.delegate = self;
-        if([self isInternet] == NO){
-            
-            self.postMapView.maximumZoomLevel = 17;
-            
-        }
+
         
         self.postMapView.logoView.alpha = 0.f;
         self.postMapView.attributionButton.alpha = 0.f;
@@ -232,80 +251,107 @@
         self.postMapView.compassView.alpha = 0.f;
         self.postMapView.rotateEnabled = false;
         
+        pointArr = [[NSMutableArray alloc]init];
         
-        point = [[MGLPointAnnotation alloc] init];
-        point.coordinate = CLLocationCoordinate2DMake([[[postInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue], [[[postInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue]);
-        point.title = [postInfo valueForKey:@"post_title"];
+        NSMutableArray *locations = [[NSMutableArray alloc]init];
         
-        if([[NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"]] isEqualToString:@"0"]){
-            point.subtitle = [NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
-        }
-        else{
-            point.subtitle = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
-        }
-        
-        [self.postMapView addAnnotation:point];
-        postModel.point = point;
-        
-        
-        if([self isInternet] == NO){
-            dispatch_time_t popTimee = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC));
-            dispatch_after(popTimee, dispatch_get_main_queue(), ^(void){
-                [self.postMapView setCenterCoordinate:point.coordinate zoomLevel:16 direction:0 animated:YES];
-                //                [spinner endRefreshing];
-            });
+        postModel.annotations = [NSMutableArray array];
+        locations = [[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"];
+        [locations enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            point = [[MGLPointAnnotation alloc] init];
             
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self.postMapView selectAnnotation:point animated:YES];
-                
-            });
-        }
+            point.coordinate = CLLocationCoordinate2DMake([[obj objectForKey:@"lat"]doubleValue], [[obj objectForKey:@"lng"]doubleValue ]);
+            point.title = [obj objectForKey:@"title"];
+            point.subtitle = [obj objectForKey:@"description"];
+         
+            [pointArr addObject:point];
+            [self.postMapView addAnnotation:point];
+            [postModel.annotations addObject:point];
+
+        }];
+        [[GlobalVariables getInstance].DictionaryWithAllPosts setObject:postInfo forKey:[GlobalVariables getInstance].idOfPost];
         
-        double delayInSeconds = 1.5;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self.postMapView selectAnnotation:point animated:YES];
-            
-        });
-        
-        
-        
+//        postModel.point = point;
+
     }
     else{
          self.postMapView = [[MGLMapView alloc]init];
     }
     
     
-    
-    
 }
--(void)zoomingWKWebView:(UIPinchGestureRecognizer *)recongizer{
-//    NSLog(@"zoomingWKWebView %f", recongizer.scale);
-    
-    if (recongizer.scale  >= 0.7f && recongizer.scale <= 3.0) {
-//        NSLog(@"scrollView gestureRecognizers %f",  recongizer.scale );
-        float percent = 100.0 * recongizer.scale;
-        NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
-        
-        [wkWebView evaluateJavaScript:javaStr completionHandler:nil];
-        
-//        NSLog(@"heighttt %f", [[wkWebView scrollView]contentSize].height);
-//        if (scale < recongizer.scale) {
-//            [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.frame.size.height * recongizer.scale)]; }
-//        else{ [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.frame.size.height * recongizer.scale)]; }
-        [wkWebView sizeToFit];
-        NSLog(@"webivew hegiht %f", [[wkWebView scrollView]contentSize].height);
-        scale = recongizer.scale;
-//
 
+-(void)zoomingWKWebView:(UIPinchGestureRecognizer *)recongizer{
+
+    if (recongizer.scale <= 2.0f) {
+ 
+        if (recongizer.scale > 1.0 && percent < 130) {
+            percent = percent + 1;
+            NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
+            
+            [wkWebView evaluateJavaScript:javaStr completionHandler:^(id _Nullable f, NSError * _Nullable error) {
+                NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
+                //                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
+                
+                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.scrollView.contentSize.height)];
+                
+                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height +49, screenWidth, heightForPracticalInfos.size.height)];
+                
+                [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
+                
+                [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, viewForTags.frame.size.width, viewForTags.frame.size.height)];
+                
+                [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5 * [postModel.suggestionsCount doubleValue])];
+                [articlesSuggestions setFrame:CGRectMake(0, self.tableView.frame.origin.y - 50, screenWidth, 40)];
+                CGRect contentRect = CGRectZero;
+                for (UIView *view in mainScrollView.subviews) {
+                    contentRect = CGRectUnion(contentRect, view.frame);
+                }
+                contentRect.size.width = screenWidth;
+                contentRect.size.height = contentRect.size.height+40;
+                mainScrollView.contentSize = contentRect.size;
+            }];
+            
+//            NSString *jScript = @"document.body.offsetHeight";
+//            [wkWebView evaluateJavaScript:jScript completionHandler:^(id _Nullable height, NSError * _Nullable error) {
+//                //
+//
+////                tag.frame = CGRectMake(tag.frame.origin.x,  tagsL.frame.origin.y + 5, 0, 50.0);
+////                [tag sizeToFit];
+//            }];
+            
+            
+        }
+//        else if (recongizer.velocity < 0 && percent > 100.0){
+//
+//                percent = percent - 1;
+//
+//            NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
+//
+//            [wkWebView evaluateJavaScript:javaStr completionHandler:nil];
+//
+//            NSString *jScript = @"document.body.offsetHeight";
+//
+//            [wkWebView evaluateJavaScript:jScript completionHandler:^(id _Nullable height, NSError * _Nullable error) {
+//                //
+//                NSLog(@"height floatValue %f", [height floatValue]);
+//                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
+//
+//                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height +49, screenWidth, practicalInfos.frame.size.height)];
+//
+//                [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
+//                   [tagsL setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, 50, 50)];
+//                tag.frame = CGRectMake(tag.frame.origin.x,  tagsL.frame.origin.y + 5, 0, 50.0);
+//                [tag sizeToFit];
+//            }];
         
-        [practicalInfos setFrame:CGRectMake(0, [[wkWebView scrollView]contentSize].height + wkWebView.frame.origin.y+49, screenWidth, 744)];
-        
-   
+            
+        }
+ 
     }
+
+
     
-}
 
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
@@ -331,14 +377,23 @@
         } else {
             NSLog(@"responseObject: %@" , responseObject);
             
-            postInfo = [NSMutableArray array];
+            postInfo = [[NSMutableArray alloc]init];
             postInfo = responseObject;
-     
-           
-//             [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
+            
+            suggestionsCount = [[postInfo valueForKey:@"suggested_posts"]count];
+            
+            
+            for (tagsCount = 0; tagsCount < [[postInfo valueForKey:@"tags"] count]; tagsCount++) {
+                numberOfTags = [NSNumber numberWithInteger:tagsCount];
+                [allTagsSlugs addObject:[[postInfo valueForKey:@"tags"][tagsCount]  valueForKey:@"slug"]];
+                [allTagsName addObject:[[postInfo valueForKey:@"tags"][tagsCount]  valueForKey:@"name"]];
+            }
+             [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
             
             
             postsBigTitle.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[postInfo valueForKey:@"post_title"]]];
+
+          
             [postsBigTitle sizeToFit];
  
             if([[NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"]] isEqualToString:@"0"]){
@@ -364,7 +419,7 @@
             }
             
             if ([[responseObject objectForKey:@"practical_infos"] count] ){
-                [self settingPracticalInfos];
+                [self settingPracticalInfos:nil arrayOfInfosImg:nil];
             }
             
          
@@ -377,8 +432,23 @@
             [imageViewHeader sd_setImageWithURL:[NSURL URLWithString:urlStringHeadImg]
                                placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                    
-                                   postModel = [[PostModel alloc]initPostWithImageHeader:image authorName:authorName htmlString:finalString numberOfStars:[NSNumber numberWithInt: numberOfStars] passageText:passage.text postTitleText:postsBigTitle.text];
-                                   [SimpleFilesCache saveImageToCacheDirectory:image withName: [[GlobalVariables getInstance].idOfPost stringByAppendingString:@"img"]] ;
+                                 
+//
+                                       postModel = [[PostModel alloc]initPostWithImageHeader:image authorName:authorName htmlString:finalString numberOfStars:[NSNumber numberWithInt: numberOfStars] passageText:passage.text postTitleText:postsBigTitle.text];
+                                       postModel.arrayOfInfos = arrayUsedInTable;
+                                       postModel.arrayOfInfosImg = arrayWithImagesUsedInTable;
+                                       postModel.arrayOfSchedule = arrayOfSchedule;
+                                       postModel.tagsCount = numberOfTags;
+                                       postModel.allTagsSlugs = allTagsSlugs;
+                                       postModel.allTagsName = allTagsName;
+                                  
+                                        postModel.suggestionsCount = [NSNumber numberWithInteger:suggestionsCount];
+                                   postModel.thumbnail = [[NSMutableArray alloc]init];
+                                   postModel.title = [[NSMutableArray alloc]init];
+                                   postModel.fragment = [[NSMutableArray alloc]init];
+                                    postModel.identifier = [[NSMutableArray alloc]init];
+
+                                
                                   
                                   
                                    [self settingMap:nil];
@@ -427,19 +497,39 @@
          
          if(changeFrameOnce1 == true && scrollView.contentOffset.y >= initialpozitionOfOpenMenuButton - 37){
              menuButton.frame = CGRectMake(backButton.frame.origin.x, 10, menuButton.frame.size.width, menuButton.frame.size.height);
-             backButton.frame = CGRectMake(backButton.frame.origin.x, 60, backButton.frame.size.width, backButton.frame.size.height);
+
              [self.view addSubview:menuButton];
-//             [self.view addSubview:backButton];
+
              changeFrameOnce1 = false;
          }
          else if(changeFrameOnce1 == false && scrollView.contentOffset.y < initialpozitionOfOpenMenuButton - 37) {
              
              menuButton.frame = CGRectMake(menuButton.frame.origin.x, initialpozitionOfOpenMenuButton, menuButton.frame.size.width, menuButton.frame.size.height);
-//              backButton.frame = CGRectMake(menuButton.frame.origin.x, initialpozitionOfBackButton, menuButton.frame.size.width, backButton.frame.size.height);
+
              [mainScrollView addSubview:menuButton];
-//            [mainScrollView addSubview:backButton];
+
              
              changeFrameOnce1 = true;
+         }
+         if(changeFrameOnce == true && scrollView.contentOffset.y  +menuButton.frame.size.height >= initialpozitionOfBackButton - backButton.frame.size.height ) {
+             
+             backButton.frame = CGRectMake(backButton.frame.origin.x, menuButton.frame.origin.y + menuButton.frame.size.height + 5, backButton.frame.size.width, backButton.frame.size.height);
+             
+             [self.view addSubview:backButton];
+             [self.view bringSubviewToFront:backButton];
+             
+             changeFrameOnce = false;
+             
+         }
+         else if(changeFrameOnce == false && scrollView.contentOffset.y < backButton.frame.origin.y - backButton.frame.size.height + 25) {
+             
+             backButton.frame = CGRectMake(backButton.frame.origin.x, initialpozitionOfBackButton, backButton.frame.size.width, backButton.frame.size.height);
+             
+             [mainScrollView addSubview:backButton];
+             [mainScrollView bringSubviewToFront:backButton];
+             
+             changeFrameOnce = true;
+             
          }
     }
 }
@@ -523,7 +613,7 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [self backToTop];
-  
+
     [self performSelector:@selector(finishedLoading) withObject:nil afterDelay:0.2];
     
 }
@@ -557,7 +647,81 @@
 }
 
 
--(void)settingPracticalInfos{
+-(void)settingPracticalInfos:(NSMutableArray *)arraOfInfosObj arrayOfInfosImg:(NSMutableArray *)arrayOfInfosImg{
+
+    if (arraOfInfosObj && arrayOfInfosImg) {
+        heightOfObj = 85;
+        [arraOfInfosObj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayOfInfosImg[idx]]];
+            practicalInfosLabel.text =  @"Infos Pratiques";
+            if ([obj isKindOfClass:[UIView class]]) {
+                [self setttingSchedule:postModel.arrayOfSchedule];
+                
+            }
+            else{
+                UITextView *lbl = [[UITextView alloc]init];
+                lbl.text = obj;
+                lbl.editable = false;
+                lbl.backgroundColor = [UIColor clearColor];
+                if ([lbl.text containsString:@"@"]) {
+                    lbl.dataDetectorTypes = UIDataDetectorTypeAll;
+                }
+                else {
+                    lbl.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+                    
+                }
+                lbl.textContainer.maximumNumberOfLines = 2;
+                lbl.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+                [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
+                
+                if ([arrayOfInfosImg[idx] isEqualToString:@"phone"] || [arrayOfInfosImg[idx] isEqualToString:@"location"]) {
+                    [imgView setFrame:CGRectMake(14, heightOfObj, 15, 25)];
+                }
+                if ([arraOfInfosObj[idx] isEqualToString:@"quartier"]) {
+                    [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
+                }
+                
+                if([[arraOfInfosObj objectAtIndex:idx] containsString:@"XYZ"]) {
+                    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arraOfInfosObj objectAtIndex:idx] componentsSeparatedByString:@"XYZ"] objectAtIndex:0]];
+                    [attributedString addAttribute: NSLinkAttributeName value: [[[arraOfInfosObj objectAtIndex:idx] componentsSeparatedByString:@"XYZ"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
+                    lbl.attributedText = attributedString;
+                    //                lbl.delegate = self;
+                    lbl.dataDetectorTypes = UIDataDetectorTypeLink;
+                }
+                if([[arraOfInfosObj objectAtIndex:idx] containsString:@"title"]) {
+                    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arraOfInfosObj objectAtIndex:idx] componentsSeparatedByString:@"title"] objectAtIndex:0]];
+                    [attributedString addAttribute: NSLinkAttributeName value: [[[arraOfInfosObj objectAtIndex:idx] componentsSeparatedByString:@"title"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
+                    lbl.attributedText = attributedString;
+                    
+                    [lbl setFont:[UIFont fontWithName:@"Verdana-Bold" size:21]];
+                    
+                    lbl.dataDetectorTypes = UIDataDetectorTypeLink;
+                    //                [lbl setTextColor:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:153.0/255.0 alpha:1.0]]; doesn't work for some f***** reason. why so hard..
+                    
+                    
+                }
+                
+                
+                if ([arrayOfInfosImg[idx] isEqualToString:@"0"])  {
+                    [lbl setFrame:CGRectMake(10, heightOfObj-2.5, screenWidth - 70, 36)];
+                }else{
+                    [lbl setFrame:CGRectMake(40, heightOfObj-2.5, screenWidth - 70, 36)]; }
+                
+                heightOfObj = lbl.frame.size.height + lbl.frame.origin.y + 25;
+
+                [practicalInfos addSubview:imgView];
+                [practicalInfos addSubview:lbl];
+                [practicalInfos bringSubviewToFront:imgView];
+                [practicalInfos bringSubviewToFront:lbl];
+                
+                heightForPracticalInfos = practicalInfos.frame;
+                heightForPracticalInfos.size.height = lbl.frame.origin.y+lbl.frame.size.height;
+                
+            }
+            
+        }];
+        return;
+    }
     NSString *metros = [[NSString alloc] init];
     NSString *typeOfResto = @"Types de resto :";
     
@@ -572,10 +736,10 @@
         [arrayWithImagesUsedInTable addObject:@"0"];
     }
     if ([[[postInfo valueForKey:@"practical_infos"]valueForKey:@"schedule"] count]) {
-        //        hasInfos = @1;
+        
         [arrayUsedInTable addObject:scheduleView];
         [arrayWithImagesUsedInTable addObject:@"0"];
-        [self setttingSchedule];
+        [self setttingSchedule:nil];
     }
 
   
@@ -698,11 +862,12 @@
     NSLog(@"arrayUsedInTable %@", arrayUsedInTable);
      NSLog(@"arrayWithImagesUsedInTable %@", arrayWithImagesUsedInTable);
     heightOfObj = 85;
+  
     [arrayUsedInTable enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayWithImagesUsedInTable[idx]]];
         practicalInfosLabel.text =  @"Infos Pratiques";
         if (obj == scheduleView) {
-            [self setttingSchedule];
+            [self setttingSchedule:nil];
             
         }
         else{
@@ -732,7 +897,7 @@
                 NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arrayUsedInTable objectAtIndex:idx] componentsSeparatedByString:@"XYZ"] objectAtIndex:0]];
                 [attributedString addAttribute: NSLinkAttributeName value: [[[arrayUsedInTable objectAtIndex:idx] componentsSeparatedByString:@"XYZ"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
                lbl.attributedText = attributedString;
-//                lbl.delegate = self;
+
                 lbl.dataDetectorTypes = UIDataDetectorTypeLink;
             }
             if([[arrayUsedInTable objectAtIndex:idx] containsString:@"title"]) {
@@ -776,7 +941,21 @@
 //    NSLog(@"%@", URL); // URL is an instance of NSURL of the tapped link
 //    return NO; // Return NO if you don't want iOS to open the link
 //}
--(void)setttingSchedule{
+-(void)setttingSchedule:(NSMutableArray *)arrOfSchedule{
+    self.arrScheduleLabels = [[NSMutableArray alloc]initWithObjects:lundiSchedule, mardiSchedule, mercrediSchedule, jeudiSchedule, vendrediSchedule, samediSchedule, dimancheSchedule, nil];
+    if (arrOfSchedule != nil) {
+         NSUInteger index = 0;
+        for (NSString *schedule in [arrOfSchedule subarrayWithRange:NSMakeRange(0, 7)]) {
+            UILabel *lbl =  self.arrScheduleLabels[index];
+            lbl.text = schedule;
+            [lbl sizeToFit];
+            index = index + 1;
+        }
+        [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, scheduleView.frame.size.height)];
+        [scheduleView setHidden:NO];
+        heightOfObj = scheduleView.frame.size.height + scheduleView.frame.origin.y + 30;
+        return;
+    }
     
     NSMutableDictionary *schedule = [[postInfo valueForKey:@"practical_infos"]valueForKey:@"schedule"];
  
@@ -805,7 +984,7 @@
    
     
     
-    self.arrScheduleLabels = [[NSMutableArray alloc]initWithObjects:lundiSchedule, mardiSchedule, mercrediSchedule, jeudiSchedule, vendrediSchedule, samediSchedule, dimancheSchedule, nil];
+
 
 
     lundiSchedule.text = [startMonday stringByAppendingString:endMonday];
@@ -847,7 +1026,7 @@
     NSUInteger index = 0;
 
     
-    for (NSDictionary *dict in sortedArr ) {
+    for (NSDictionary *dict in sortedArr) {
         UILabel *lbl =  self.arrScheduleLabels[index];
         
         if ([lbl.text isEqualToString:@" -  "] && [[sortedArr[index] valueForKey:@"status"] isEqualToString:@"closed"]) {
@@ -859,7 +1038,11 @@
             lbl.text = @"Ouvert";
         }
         [lbl sizeToFit];
+        NSLog(@"lbl.text %@", lbl.text);
+        [arrayOfSchedule addObject:lbl.text];
         index++;
+       
+
     }
     
 
@@ -870,9 +1053,7 @@
 
 
 -(void)finishedLoading{
-//    CGSize contentSize = CGSizeMake(0, 0);
-//    contentSize.height = [[wkWebView scrollView]contentSize].height + wkWebView.frame.origin.y+60+1300;
-//    NSLog(@"height %f", contentSize.height);
+
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]){
         [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [postModel.heightForWKWebView floatValue])];
     }
@@ -883,38 +1064,105 @@
 
     
     [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, heightForPracticalInfos.size.height)];
+    NSLog(@"prac frame %@", NSStringFromCGRect(practicalInfos.frame));
     [mainScrollView addSubview:practicalInfos];
     
-    
-    if ([[postInfo valueForKey:@"locations"] count]) {
-        [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 30, self.view.frame.size.width, self.view.frame.size.height/2.5)];
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+        [self settingPracticalInfos:postModel.arrayOfInfos arrayOfInfosImg:postModel.arrayOfInfosImg];
+    }
+
+  
+    [self settingMap:postModel.postMapView];
+    if ([[postInfo valueForKey:@"location"] count] || (unlockedIAP == YES && [SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost])) {
+        [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + heightForPracticalInfos.size.height + 30, self.view.frame.size.width, self.view.frame.size.height/2.5)];
+        
+
+
+        
+        [mainScrollView addSubview:self.postMapView];
+
     }
     else{
          [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 30, self.view.frame.size.width, 0)];
     }
-    UIButton *openMapPage = [[UIButton alloc]initWithFrame:self.postMapView.frame];
-   
-    [mainScrollView  addSubview:self.postMapView];
-    [mainScrollView addSubview:openMapPage];
-    [mainScrollView bringSubviewToFront:openMapPage];
-    [openMapPage addTarget:self action:@selector(openMapPage) forControlEvents:UIControlEventTouchUpInside];
+
+    longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(openMapPage:)];
+      [self.postMapView addGestureRecognizer:longTap];
     
-    UILabel *tagsL = [[UILabel alloc]initWithFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 12, 50, 50)];
+
+  
+
+    tagsL = [[UILabel alloc]initWithFrame:CGRectMake(4, 10, 50, 50)];
  
-    tagsL.text = @"TAGS :";
-    tagsL.font = [UIFont fontWithName:@"Montserrat-Light" size:16];
+    tagsL.text = @"TAGS:";
+    tagsL.font = [UIFont fontWithName:@"Montserrat-Bold" size:14];
    
     
     tagsL.textColor = [UIColor blackColor];
     [tagsL setHidden:YES];
     float buttonWidth = 0.0;
     float buttonXpos = tagsL.frame.origin.x + tagsL.frame.size.width;
-    for (int i = 0; i<[[postInfo valueForKey:@"tags"] count]; i++) {
+      viewForTags = [[UIView alloc]init];
+       int yForNewTag = 0;
+        if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    for (int i = 0; i <= [postModel.tagsCount intValue]; i++) {
+          [tagsL setHidden: NO];
+       tag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [tag addTarget:self
+                action:@selector(tagPressed:)
+      forControlEvents:UIControlEventTouchUpInside];
+        
+        [tag setTitle:[postModel.allTagsName[i] uppercaseString] forState:UIControlStateNormal];
+        [tag setBackgroundColor:[UIColor colorWithRed:227.0/255.0 green:228.0/255.0 blue:234.0/255.0 alpha:1.0]];
+        
+        tag.frame = CGRectMake(buttonXpos + buttonWidth + 4,  tagsL.frame.origin.y + 5 + yForNewTag, 0, 50.0);
+        //
+        
+        tag.layer.cornerRadius = tag.frame.size.height/5;
+        tag.titleLabel.font = [UIFont fontWithName:@"Montserrat-Light" size:16];
+        
+        tag.titleLabel.textAlignment = NSTextAlignmentCenter;
+        tag.titleLabel.adjustsFontSizeToFitWidth = true;
+        tag.titleLabel.textColor = [UIColor colorWithRed:51.0/255.0 green:76.0/255.0 blue:105.0/255.0 alpha:1.0];
+        
+        [tag sizeToFit];
+        if (buttonXpos + buttonWidth + tag.frame.size.width  + 8 > screenWidth) {
+            tag.frame = CGRectMake(10, tagsL.frame.origin.y + 45 , 0, 50.0);
+            yForNewTag = 40;
+            [tag sizeToFit];
+        }
+        CGRect size = tag.frame;
+        size.size.width = size.size.width + 10;
+        tag.frame = size;
+        buttonWidth = tag.frame.size.width + 5;
+        buttonXpos = tag.frame.origin.x;
+        
+        [tag setTag:i];
+        
+        
+        
+        
+        
+      
+        [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
+       
+        
+        [mainScrollView addSubview:viewForTags];
+
+        [viewForTags addSubview:tag];
+   
+        
+        [viewForTags addSubview:tagsL];
+
+    }
+        }
+else{
+    for (int i = 0; i <= [numberOfTags intValue]; i++) {
         [tagsL setHidden: NO];
         
-        [allTagsSlugs addObject:[[postInfo valueForKey:@"tags"][i]  valueForKey:@"slug"]];
-        [allTagsName addObject:[[postInfo valueForKey:@"tags"][i]  valueForKey:@"name"]];
-        UIButton *tag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+       
+        tag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
         [tag addTarget:self
                    action:@selector(tagPressed:)
@@ -922,8 +1170,8 @@
         
         [tag setTitle:[[[postInfo valueForKey:@"tags"][i] valueForKey:@"name"]uppercaseString] forState:UIControlStateNormal];
         [tag setBackgroundColor:[UIColor colorWithRed:227.0/255.0 green:228.0/255.0 blue:234.0/255.0 alpha:1.0]];
-        
-        tag.frame = CGRectMake(buttonXpos + buttonWidth + 4,  tagsL.frame.origin.y + 5, 0, 50.0);
+     
+        tag.frame = CGRectMake(buttonXpos + buttonWidth + 4,  tagsL.frame.origin.y + 5 + yForNewTag, 0, 50.0);
 //
        
         tag.layer.cornerRadius = tag.frame.size.height/5;
@@ -934,34 +1182,49 @@
         tag.titleLabel.textColor = [UIColor colorWithRed:51.0/255.0 green:76.0/255.0 blue:105.0/255.0 alpha:1.0];
        
         [tag sizeToFit];
-        if (buttonXpos + buttonWidth + tag.frame.size.width  + 4 > screenWidth) {
-            tag.frame = CGRectMake(10, tagsL.frame.origin.y + 40 , 0, 50.0);
+        if (buttonXpos + buttonWidth + tag.frame.size.width  + 8 > screenWidth) {
+            tag.frame = CGRectMake(10, tagsL.frame.origin.y + 45 , 0, 50.0);
+            yForNewTag = 40;
             [tag sizeToFit];
         }
         CGRect size = tag.frame;
-        size.size.width = size.size.width + 7;
+        size.size.width = size.size.width + 10;
         tag.frame = size;
         buttonWidth = tag.frame.size.width + 5;
         buttonXpos = tag.frame.origin.x;
-        //Set Tag for future identification
+       
         [tag setTag:i];
-      
-        [mainScrollView addSubview:tag];
-        [mainScrollView bringSubviewToFront:tag];
+        [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
         
-        [mainScrollView addSubview:tagsL];
-        [mainScrollView bringSubviewToFront:tagsL];
         
-    }
+        [mainScrollView addSubview:viewForTags];
 
-    if ([[postInfo valueForKey:@"suggested_posts"]count]) {
-        NSInteger numberOfPost = [[postInfo valueForKey:@"suggested_posts"]count];
+        [viewForTags addSubview:tag];
+
+        
+        [viewForTags addSubview:tagsL];
+
+    }
+}
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+         [mainScrollView addSubview:self.tableView];
+         [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5 * [postModel.suggestionsCount doubleValue])];
+        [self.tableView setScrollEnabled:NO];
+        //        mainScrollView.contentSize = CGSizeMake(screenWidth, self.tableView.frame.origin.y + self.tableView.frame.size.height + 100);
+        
+        [articlesSuggestions setFrame:CGRectMake(0, self.tableView.frame.origin.y - 50, screenWidth, 40)];
+        [articlesSuggestions setHidden:NO];
+        [mainScrollView addSubview:articlesSuggestions];
+        [mainScrollView bringSubviewToFront:articlesSuggestions];
+    }
+    if (suggestionsCount) {
+ 
         [mainScrollView addSubview:self.tableView];
         
         
-        [self.tableView setFrame:CGRectMake(0, tagsL.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5*numberOfPost)];
+        [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5*suggestionsCount)];
         [self.tableView setScrollEnabled:NO];
-//        mainScrollView.contentSize = CGSizeMake(screenWidth, self.tableView.frame.origin.y + self.tableView.frame.size.height + 100);
+
 
         [articlesSuggestions setFrame:CGRectMake(0, self.tableView.frame.origin.y - 50, screenWidth, 40)];
         [articlesSuggestions setHidden:NO];
@@ -975,7 +1238,7 @@
         contentRect = CGRectUnion(contentRect, view.frame);
     }
     contentRect.size.width = screenWidth;
-    contentRect.size.height = contentRect.size.height + 400.0;
+    contentRect.size.height = contentRect.size.height+40;
     mainScrollView.contentSize = contentRect.size;
     
    
@@ -983,7 +1246,19 @@
 -(void)tagPressed :(UIButton *)button{
     [GlobalVariables getInstance].backToPostHasToBeHidden = YES;
     NSInteger index = button.tag;
-    
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+        NSLog(@"local");
+        NSLog(@"TAG CLICKED SLUG IS : %@",postModel.allTagsSlugs[index]);
+        [GlobalVariables getInstance].slugName = postModel.allTagsName[index];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ComingFromAgendaTag"];
+        [GlobalVariables getInstance].backGroundImageTag = nil;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",postModel.allTagsSlugs[index]] forKey:@"ComingFromPostTag"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"CatsSubCatsController"]];
+        return;
+    }
     NSLog(@"TAG CLICKED SLUG IS : %@",allTagsSlugs[index]);
     [GlobalVariables getInstance].slugName = allTagsName[index];
     
@@ -994,29 +1269,166 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"CatsSubCatsController"]];
 }
+- (BOOL)mapView:(MGLMapView *)mapView annotationCanShowCallout:(id <MGLAnnotation>)annotation {
+    return true;
+}
+
+
+
+- (UIView *)mapView:(MGLMapView *)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation>)annotation
+{
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75.f, 70.f)];
+        imageview.image = postModel.imageHeader;
+        if(!imageview.image){
+            return nil;
+
+        }
+         return imageview;
+
+
+    }else{
+                UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75.f, 70.f)];
+                [imageview sd_setImageWithURL:[postInfo valueForKey:@"post_thumbnail_url"] placeholderImage:[UIImage imageNamed: @"PlaceHolderImage"]];
+        if(!imageview.image){
+            return nil;
+
+        }
+               return imageview;
+    }
+
+
+}
+
 - (void) mapViewDidFinishLoadingMap:(MGLMapView *)mapView {
+    __block NSMutableDictionary *maxLatDict = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@0 , @"lat", nil];
+    __block NSMutableDictionary *minLatDict =   [[NSMutableDictionary alloc]initWithObjectsAndKeys:@180, @"lat", nil];
     
+    
+    __block NSMutableDictionary *maxLongDict =  [[NSMutableDictionary alloc]initWithObjectsAndKeys:@0, @"long" , nil];
+    __block NSMutableDictionary *minLongDict =  [[NSMutableDictionary alloc]initWithObjectsAndKeys:@180, @"long", nil];
     mapView.showsUserLocation = YES;
      if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
-         [self.postMapView setCenterCoordinate:CLLocationCoordinate2DMake(postModel.point.coordinate.latitude, postModel.point.coordinate.longitude) zoomLevel:16 animated:YES];
-          }
+         if (postModel.annotations.count > 1) {
+              MGLCoordinateBounds bounds;
+             bounds.sw = CLLocationCoordinate2DMake((CLLocationDegrees)[[postModel.bounds valueForKey:@"sw.latitude"] doubleValue], (CLLocationDegrees)[[postModel.bounds valueForKey:@"sw.longitude"] doubleValue]);
+             bounds.ne =  CLLocationCoordinate2DMake((CLLocationDegrees)[[postModel.bounds valueForKey:@"ne.latitude"] doubleValue], (CLLocationDegrees)[[postModel.bounds valueForKey:@"ne.longitude"] doubleValue]);
+              [self.postMapView flyToCamera:[mapView cameraThatFitsCoordinateBounds:MGLCoordinateBoundsMake(bounds.sw, bounds.ne) edgePadding:UIEdgeInsetsMake(25, 10, 10, 10)] completionHandler:nil];
+             
+             
+   
+         }
+         else{
+             [self.postMapView setCenterCoordinate:CLLocationCoordinate2DMake(postModel.annotations.firstObject.coordinate.latitude, postModel.annotations.firstObject.coordinate.longitude) zoomLevel:16 animated:YES];
+         }
+         }
+        
      else{
-         [self.postMapView setCenterCoordinate:CLLocationCoordinate2DMake([[[postInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue] + 0.0002, [[[postInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue] - 0.00001) zoomLevel:16 direction:0 animated:YES];
+        
          
+         [pointArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+             MGLPointAnnotation *annotation = (MGLPointAnnotation*) obj;
+             
+             if (annotation.coordinate.latitude > [[maxLatDict objectForKey:@"lat"] doubleValue]) {
+                 [maxLatDict setValue:[NSNumber numberWithDouble:annotation.coordinate.latitude] forKey:@"lat"];
+                 
+//38.02
+             }
+             if (annotation.coordinate.latitude < [[minLatDict objectForKey:@"lat"]doubleValue]) {
+                [minLatDict setValue:[NSNumber numberWithDouble:annotation.coordinate.latitude] forKey:@"lat"];
+                 //37.71
+             }
+             if (annotation.coordinate.longitude >[[maxLongDict objectForKey:@"long"] doubleValue]) {
+                 [maxLongDict setValue:[NSNumber numberWithDouble:annotation.coordinate.longitude] forKey:@"long"];
+                 // 24.05
+             }
+             if (annotation.coordinate.longitude<[[minLongDict objectForKey:@"long"]doubleValue]) {
+                  [minLongDict setValue:[NSNumber numberWithDouble:annotation.coordinate.longitude] forKey:@"long"];
+                 //23.64
+             }
+             
+             
+
+        
+             
+         }];
+         MGLCoordinateBounds bounds;
+        
+         NSMutableDictionary *coordinates = [NSMutableDictionary dictionary];
+         bounds.sw = CLLocationCoordinate2DMake((CLLocationDegrees)[[minLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[minLongDict valueForKey:@"long"] doubleValue]);
+         
+         bounds.ne = CLLocationCoordinate2DMake((CLLocationDegrees)[[maxLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[maxLongDict valueForKey:@"long"] doubleValue]);
+     
+         [coordinates setValue:[NSNumber numberWithFloat:bounds.sw.latitude] forKey:@"sw.latitude"];
+         [coordinates setValue:[NSNumber numberWithFloat:bounds.sw.longitude] forKey:@"sw.longitude"];
+         [coordinates setValue:[NSNumber numberWithFloat:bounds.ne.latitude] forKey:@"ne.latitude"];
+         [coordinates setValue:[NSNumber numberWithFloat:bounds.ne.longitude] forKey:@"ne.longitude"];
+         [[NSUserDefaults standardUserDefaults]setObject:coordinates forKey:@"coordinates"];
+         postModel.bounds = coordinates;
+         if (self.postMapView.annotations.count > 1) {
+                    [self.postMapView flyToCamera:[mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(25, 10, 10, 10)] completionHandler:nil];
+             
+         }
+         else{
+              [self.postMapView setCenterCoordinate:CLLocationCoordinate2DMake([[[postInfo valueForKey:@"location"] valueForKey:@"lat"] doubleValue] + 0.0002, [[[postInfo valueForKey:@"location"] valueForKey:@"lng"] doubleValue] - 0.00001) zoomLevel:16 direction:0 animated:YES];
+         }
+        
+
+    
+         
+
          postModel.postMapView = mapView;
-         [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
+         
+         double delayInSeconds = 1.5;
+         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+          [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
+             NSLog(@"model is saved");
+             [self showMessage:@"Article enregistré!"];
+             [self.view addSubview:demo];
+             demo.center = self.view.center;
+             [self.view bringSubviewToFront:demo];
+         });
+        
      }
   
     
 
 }
--(void) openMapPage{
+
+-(void)showMessage: (NSString *)content{
     
+    demo = [[OLGhostAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@", content] message:nil timeout:1.1 dismissible:YES];
+
+    demo.titleLabel.font = [UIFont fontWithName:@"Montserrat-Light" size:14.0 ];
+    demo.titleLabel.textColor = [UIColor whiteColor];
+    demo.backgroundColor =  [UIColor colorWithRed:59/255.0f green:169/255.0f blue:206/255.0f alpha:1.0f];;
+    demo.bottomContentMargin = 50;
+    demo.layer.cornerRadius = 7;
+    
+    [demo show];
+    
+    
+}
+-(void) openMapPage:(UIGestureRecognizer *)gestureRecognizer{
+
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        NSLog(@"UIGestureRecognizerStateBegan.");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ZoomMapPage"]];
-    
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+
+        [GlobalVariables getInstance].idOfPost = [NSString stringWithFormat:@"%@", postModel.identifier[indexPath.row]];
+        [GlobalVariables getInstance].comingFrom = @"Posts";
+        [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+    }
+    else{
     NSInteger tag = indexPath.row;
     NSLog(@"%lu", tag);
     [GlobalVariables getInstance].idOfPost = [[postInfo valueForKey:@"suggested_posts"] valueForKey:@"id"][tag];
@@ -1025,17 +1437,34 @@
     [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
     [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[postInfo valueForKey:@"suggested_posts"]count];
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+        return [postModel.suggestionsCount integerValue];
+    }
+    return suggestionsCount;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SuggestionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    [cell.thumbnail sd_setImageWithURL:[[postInfo valueForKey:@"suggested_posts"][indexPath.row]valueForKey:@"thumbnail_url"] placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"]];
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+        cell.thumbnail.image = postModel.thumbnail[indexPath.row];
+        cell.title.text = postModel.title[indexPath.row];
+        cell.fragment.text = postModel.fragment[indexPath.row];
+    }
+    else{
+
+        [cell.thumbnail sd_setImageWithURL:[[postInfo valueForKey:@"suggested_posts"][indexPath.row]valueForKey:@"thumbnail_url"] placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+              [postModel.thumbnail addObject:cell.thumbnail.image];
+        }];
     cell.title.text = [[postInfo valueForKey:@"suggested_posts"][indexPath.row]valueForKey:@"title"];
     cell.fragment.text = [[postInfo valueForKey:@"suggested_posts"][indexPath.row]valueForKey:@"excerpt"];
-  
-   
+        [postModel.identifier addObject:[NSNumber numberWithInteger:[[[postInfo valueForKey:@"suggested_posts"][indexPath.row]valueForKey:@"id"]intValue]]] ;
+      
+        [postModel.title addObject:cell.title.text];
+        [postModel.fragment addObject:cell.fragment.text];
+    }
+    
     
     UIColor *borderColor = [UIColor colorWithRed:(246.0/255.0) green:(153.0/255.0) blue:(1.0/255.0) alpha:1.0];
     [cell.thumbnail.layer setBorderColor:borderColor.CGColor];
@@ -1161,10 +1590,5 @@
 finish:
     return result;
 }
--(BOOL)isInternet{
-    if(!([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable))
-    {return YES; }
-    
-    else { return NO; }
-}
+
 @end
