@@ -130,7 +130,10 @@
     [GlobalVariables getInstance].latitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lat"][indexPath.row] floatValue];
     [GlobalVariables getInstance].longitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lng"][indexPath.row] floatValue];
     [GlobalVariables getInstance].zoomLvl = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"zoom"][indexPath.row] floatValue];
-    
+    NSLog(@"longitudine %f", [GlobalVariables getInstance].longitudine);
+    [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].latitudine forKey:@"latDis"];
+   [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].longitudine forKey:@"longDis"];
+     [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].zoomLvl forKey:@"zoomLvl"];
     [self.districtsTable reloadData];
     double delayInSeconds = 0.15;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

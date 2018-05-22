@@ -209,7 +209,7 @@
     [wkWebView.scrollView addGestureRecognizer:pinchRecognizer];
     wkWebView.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:0.0f];
 
-
+// wkWebView.backgroundColor = [UIColor redColor];
     
     [mainScrollView addSubview:wkWebView];
     [mainScrollView bringSubviewToFront:rainbow];
@@ -282,15 +282,15 @@
 }
 
 -(void)zoomingWKWebView:(UIPinchGestureRecognizer *)recongizer{
-
+  NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
     if (recongizer.scale <= 2.0f) {
  
         if (recongizer.scale > 1.0 && percent < 130) {
             percent = percent + 1;
             NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
-            
+
             [wkWebView evaluateJavaScript:javaStr completionHandler:^(id _Nullable f, NSError * _Nullable error) {
-                NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
+              
                 //                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
                 
                 [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.scrollView.contentSize.height)];
@@ -322,6 +322,13 @@
             
             
         }
+//        if (recongizer.scale < 1.0) {
+//            percent = percent - 1;
+//            NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
+//            [wkWebView evaluateJavaScript:javaStr completionHandler:^(id _Nullable f, NSError * _Nullable error) {
+////                NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
+//            }];
+//        }
 //        else if (recongizer.velocity < 0 && percent > 100.0){
 //
 //                percent = percent - 1;

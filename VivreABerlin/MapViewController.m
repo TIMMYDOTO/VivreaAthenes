@@ -281,7 +281,18 @@
     else if([notification.object isEqualToString:@"reloadPozition"]){
         
         
-        
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"latDis"] != nil) {
+            float latDist = [[[NSUserDefaults standardUserDefaults]objectForKey:@"latDis"]doubleValue];
+            float longDist = [[[NSUserDefaults standardUserDefaults]objectForKey:@"longDis"]doubleValue];
+            float zoom = [[[NSUserDefaults standardUserDefaults]objectForKey:@"zoomLvl"]doubleValue];
+            [self.mapView setCenterCoordinate:
+             CLLocationCoordinate2DMake(latDist, longDist)
+                                    zoomLevel: zoom
+                                     animated: YES];
+            [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"latDis"];
+            
+            return;
+        }
       
         NSLog(@"coordinates %@", coordinates);
        
