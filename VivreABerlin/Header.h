@@ -15,7 +15,7 @@
 
 // SIDEBAR
 #define sideMenuLink  @"https://vivreathenes.com/wp-json/wp-api-menus/v2/menu-locations/primary"
-#define colorsInSideBar  [NSArray arrayWithObjects:@"LeaveThisOneAndEditTheOthers",@"F18D12",@"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", nil]
+#define colorsInSideBar  [NSArray arrayWithObjects:@"LeaveThisOneAndEditTheOthers",@"F18D12",@"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"B4CA35", nil]
 #define adminAjax @"https://vivreathenes.com/wp-admin/admin-ajax.php"
 
 

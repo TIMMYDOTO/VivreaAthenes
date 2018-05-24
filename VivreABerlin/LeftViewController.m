@@ -57,6 +57,9 @@
 
 
 - (void) viewDidLoad {
+    if ([AppName isEqualToString:@"Athènes"]) {
+        [_instagram setImage:[UIImage imageNamed:@"pinterest"]];
+    }
     arr = [[NSMutableArray alloc]init];
     self.accueilText.text = [NSString stringWithFormat:@"Vivre %@",AppName];
     
@@ -137,9 +140,6 @@
 -(void)newLoad {
     offlineMenuArray = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"menuDictionary"]];
     
-    
-    
-  
     
     
     if(offlineMenuArray.count != 0) {
@@ -655,7 +655,7 @@
         
       
         
-//        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
         ///////////////////
         [GlobalVariables getInstance].idOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"object_id"];
         [GlobalVariables getInstance].nameOfcatSubCat = [[arrayForTable objectAtIndex:tag] valueForKey:@"title"];
@@ -722,18 +722,18 @@
                 
                     if([[d valueForKey:@"title"] isEqualToString:@"Accueil"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ViewController"]];
-//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else if([[d valueForKey:@"title"] isEqualToString:@"Petites annonces"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AnnouncementsViewController"]];
-//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else if([[d valueForKey:@"title"] isEqualToString:@"Agenda de Berlin"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AgendaViewController"]];
-//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else{
-//                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+                        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
 
                         [GlobalVariables getInstance].idOfcatSubCat = [d valueForKey:@"object_id"];
                         

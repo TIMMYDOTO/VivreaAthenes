@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScrollImageController : UIViewController <UIScrollViewDelegate>
+@interface ScrollImageController : UIViewController <UIScrollViewDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *zoomingScroll;
 @property (weak, nonatomic) IBOutlet UIImageView *zoomingImage;
-@property (weak, nonatomic) IBOutlet UILabel *authorOfImage;
+
+@property (weak, nonatomic) IBOutlet UITextView *authorOfImage;
 
 @end

@@ -28,8 +28,6 @@
     kAppDelegate.lockInPortrait = NO;
     self.view.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
     
-    
-  
     if([GlobalVariables getInstance].urlOfImageClicked != nil){
         
         NSString* webName = [[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].urlOfImageClicked] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -39,16 +37,36 @@
         
         [self.zoomingImage loadImageFromURL:url placeholderImage:[UIImage imageNamed:@"noimage.png"] cachingKey:[NSString stringWithFormat:@"%@Thumbnailllll",[GlobalVariables getInstance].idOfPost]];
         
-        self.authorOfImage.text = [NSString stringWithFormat:@"%@",[self stringByStrippingHTML:[self stringByDecodingXMLEntities:[[[GlobalVariables getInstance].DictionaryWithAllPosts objectForKey:[GlobalVariables getInstance].idOfPost] valueForKey:@"post_thumbnail_caption"]]]];
         
         
+        NSString *authorCaption = [[NSString alloc]init];
+        authorCaption = [[NSUserDefaults standardUserDefaults]objectForKey:@"authorLblTxt"];
+      
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[authorCaption dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        
+        self.authorOfImage.attributedText = attrStr;
+        [self.authorOfImage setTextColor:[UIColor whiteColor]];
+        [self.authorOfImage setFont:[UIFont fontWithName:@"Montserrat-Light" size:16]];
+        self.authorOfImage.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
        
         [GlobalVariables getInstance].zoomingImageClickedFromTagAgenda = NO;
         [GlobalVariables getInstance].urlOfImageClicked =  nil;
     }
+    else if([GlobalVariables getInstance].urlOfImageClicked == nil){
+        NSString *authorCaption = [[NSString alloc]init];
+        authorCaption = [[NSUserDefaults standardUserDefaults]objectForKey:@"authorLblTxt"];
+        
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[authorCaption dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        
+        self.authorOfImage.attributedText = attrStr;
+        [self.authorOfImage setTextColor:[UIColor whiteColor]];
+        [self.authorOfImage setFont:[UIFont fontWithName:@"Montserrat-Light" size:16]];
+        self.authorOfImage.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+        [self.zoomingImage setImage:[SimpleFilesCache cachedImageWithName:@"imgHeader"]];
+    }
     else if([GlobalVariables getInstance].announcementImageUrl != nil)
     {
-        
+       
         
         NSString* webName = [[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].announcementImageUrl] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString* webStringURL = [webName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -91,24 +109,30 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapReceived:)];
     //tapGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:tapGestureRecognizer];
-    self.authorOfImage.numberOfLines = 3;
+ 
     self.authorOfImage.textColor = [UIColor whiteColor];
     [self.authorOfImage sizeToFit];
     self.authorOfImage.backgroundColor = [UIColor blackColor];
     self.authorOfImage.layer.cornerRadius = 2;
     self.authorOfImage.alpha = 0.2;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    [self.authorOfImage setFrame:CGRectMake(10, screenHeight/2+170, screenWidth -  20, 50)];
+  
    // self.authorOfImage.adjustsFontSizeToFitWidth = true;
     
     
+}
+
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    return true;
 }
 -(void)tapReceived:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"closePopUp"]];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 -(UIView *) viewForZoomingInScrollView:(UIScrollView *)inScroll {
     return self.zoomingImage;

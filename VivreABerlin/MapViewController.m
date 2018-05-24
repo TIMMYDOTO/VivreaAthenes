@@ -39,6 +39,7 @@
     UIButton *downloadMap;
     UIButton *openMapCredits;
     BOOL LocationActivated;
+    MGLCoordinateBounds bounds;
 }
 
 - (void)viewDidLoad {
@@ -83,7 +84,7 @@
     [self.mapView bringSubviewToFront: spinnerview];
     [spinnerview beginRefreshing];
     
-        
+    [self createAnnotations];
     
     if([self isInternet] == NO){
         
@@ -332,13 +333,14 @@
         NSLog(@"maxLongDict %@", maxLongDict);
         NSLog(@"minLongDict %@", minLongDict);
 
-        MGLCoordinateBounds bounds;
+        
         bounds.sw = CLLocationCoordinate2DMake((CLLocationDegrees)[[minLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[minLongDict valueForKey:@"long"] doubleValue]);
         
         bounds.ne = CLLocationCoordinate2DMake((CLLocationDegrees)[[maxLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[maxLongDict valueForKey:@"long"] doubleValue]);
         
 //       [self.mapView cameraThatFitsCoordinateBounds:bounds];
         [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
+          [spinnerview endRefreshing];
     }
     else if([notification.object isEqualToString:@"filtrating"] && [GlobalVariables getInstance].canFilter == true) {
         [GlobalVariables getInstance].canFilter = false;
@@ -358,7 +360,7 @@
     }
 }
 -(void)createAnnotations{
-    
+
     [coordinates removeAllObjects];
     self.openFilters.userInteractionEnabled = false;
     
@@ -403,9 +405,9 @@
                 if ([[[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"][j] valueForKey:@"isSelected" ] isEqualToString:@"YES"]){
                     [[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j] setValue:[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"category_name" ] forKey:@"parent_category_name"];
                     [[GlobalVariables getInstance].Annotations addObject:[[GlobalVariables getInstance].arrayWithAnnotations valueForKey:@"subcategories"][i][j]];
-                    
-                    
-                    NSLog(@"[GlobalVariables getInstance].Annotations %@", [GlobalVariables getInstance].Annotations );
+//
+//
+//                    NSLog(@"[GlobalVariables getInstance].Annotations %@", [GlobalVariables getInstance].Annotations );
                     
                     
                 }
@@ -415,9 +417,6 @@
         }
         
 
-//            for( int i = 0 ; i< [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]; i++){
-//                [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"][i] setValue:[[GlobalVariables getInstance].Annotations valueForKey:@"icon_url"][i] forKey:@"markerImg"];
-//            }
     
     
         if([[NSString stringWithFormat:@"%lu",(unsigned long)[[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count]] isEqualToString:@"0"])
@@ -467,7 +466,7 @@
                     if (i == [[[GlobalVariables getInstance].Annotations valueForKey:@"markers"] count] -1){
                         self.openFilters.userInteractionEnabled = true;
                     
-                          [spinnerview endRefreshing];
+                        
                     }
                    
                     if([GlobalVariables getInstance].PerSession == true){
@@ -493,9 +492,9 @@
             
         }
         
-        
+      
 //    });
-    
+
     
     
 }
@@ -546,7 +545,7 @@
     self.mapView.backgroundColor = [UIColor blueColor];
     
     
-    [self createAnnotations];
+//    [self createAnnotations];
     
     
     for (MGLOfflinePack *pack in [[MGLOfflineStorage sharedOfflineStorage] packs]){
@@ -988,27 +987,30 @@
                            alpha:1.0f];
 }
 
-//- (void)dealloc {
-//    // Remove offline pack observers.
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
+
 - (IBAction)backToDistrict:(id)sender {
+    if (bounds.ne.latitude) {
+        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
+    }else{
+            CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
+            [self.mapView setCenterCoordinate:center zoomLevel:8 direction:0 animated:YES];
+    }
     
-    [UIView animateWithDuration:0.3/1.5 animations:^{
-        self.backToDistrict.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3/2 animations:^{
-            self.backToDistrict.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.3/2 animations:^{
-                self.backToDistrict.transform = CGAffineTransformIdentity;
-            }];
-        }];
-    }];
+//    [UIView animateWithDuration:0.3/1.5 animations:^{
+//        self.backToDistrict.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2 , 1.2);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.3/2 animations:^{
+//            self.backToDistrict.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.3/2 animations:^{
+//                self.backToDistrict.transform = CGAffineTransformIdentity;
+//            }];
+//        }];
+//    }];
     
-    CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
-    
-    [self.mapView setCenterCoordinate:center zoomLevel:[GlobalVariables getInstance].zoomLvl direction:0 animated:YES];
+
+//    
+
 }
 - (void) openMapCredits {
     

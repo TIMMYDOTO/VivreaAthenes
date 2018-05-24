@@ -38,6 +38,8 @@
     
     __weak IBOutlet UILabel *vendrediSchedule;
     
+   
+    
     __weak IBOutlet UILabel *samediSchedule;
     
     __weak IBOutlet UILabel *dimancheSchedule;
@@ -105,6 +107,9 @@
     
     NSUInteger suggestionsCount;
     int tagsCount;
+    UIActivityIndicatorView *activityView;
+    UIView *blackCurtain;
+    NSString *authorName;
 }
 
 @end
@@ -115,11 +120,12 @@
     [super viewDidLoad];
 
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-    
+    unlockedIAP = YES;
+    blackCurtain = [[UIView alloc] init];
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
     fragmentArr = [[NSMutableArray alloc] init];
-    
+
     
     numberOfTags = [[NSNumber alloc]init];
     arrayOfSchedule = [[NSMutableArray alloc] init];
@@ -129,10 +135,13 @@
     allTagsName = [[NSMutableArray alloc] init];
     percent = 100.0;
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
-
+    activityView = [[UIActivityIndicatorView alloc]
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = self.view.center;
+    [activityView startAnimating];
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-// [[GlobalVariables getInstance] setIdOfPost:@"34241"];
-
+ [[GlobalVariables getInstance] setIdOfPost:@"31166"];
+//35693       35579
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
         postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]];
@@ -144,16 +153,28 @@
         }
         imageViewHeader.image = postModel.imageHeader;
 
-        authorLabel.text = postModel.authorName;
+        
+        
+        NSString *authorNam = postModel.authorName;
+        NSAttributedString * attrSt = [[NSAttributedString alloc] initWithData:[authorNam dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        
+        authorLabel.attributedText = attrSt;
+        [authorLabel setTextColor:[UIColor whiteColor]];
+        [authorLabel setTextAlignment:NSTextAlignmentRight];
+        [authorLabel setFont:[UIFont fontWithName:@"Montserrat-Italic" size:12.f]];
+       
 
          wkWebView = [[WKWebView alloc]initWithFrame:CGRectMake(0, imageViewHeader.frame.size.height+200, screenWidth, 0) configuration:[WKWebViewConfiguration new]];
         passage.text = postModel.passageText;
         postsBigTitle.text = postModel.postTitleText;
-
+    
        
-        [wkWebView loadHTMLString:postModel.htmlString baseURL: nil];
-
-   
+        [wkWebView loadHTMLString:postModel.htmlString baseURL:[NSBundle mainBundle].bundleURL];
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+          [self.view addSubview:blackCurtain];
+        [self.view addSubview:activityView];
+      
+        NSLog(@"beginIgnoringInteractionEvents");
         
     }
     else{ [self getPost]; }
@@ -167,24 +188,55 @@
     changeFrameOnce1 = true;
     
     
+    double delayInSeconds = 4.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
+        NSLog(@"model is saved");
+        [self showMessage:@"Article enregistré!"];
+        [self.view addSubview:demo];
+        demo.center = self.view.center;
+        [self.view bringSubviewToFront:demo];
+    });
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
     
 }
+
 
 -(void)settingDesign{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
      screenWidth = screenRect.size.width;
      screenHeight = screenRect.size.height;
+
     [mainScrollView setFrame:CGRectMake(0, 0, screenWidth, screenHeight*0.92)];
+    [blackCurtain setFrame:CGRectMake(0, 0, screenWidth, mainScrollView.frame.size.height)];
+    [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+      [self.view addSubview:blackCurtain];
     [imageViewHeader setFrame:CGRectMake(0, 0, screenWidth, 236)];
     [blueSeparatorView setFrame:CGRectMake(0, imageViewHeader.frame.size.height - 29, screenWidth, 29)];
-    [rainbow setFrame:CGRectMake(screenWidth/2-40, imageViewHeader.frame.size.height-42, 80, 85)];
-    [logo setFrame:CGRectMake(screenWidth/2-40, imageViewHeader.frame.size.height-42, 80, 85)];
+    [rainbow setFrame:CGRectMake(screenWidth/2-41, imageViewHeader.frame.size.height-45, 81, 90)];
+    [logo setFrame:CGRectMake(screenWidth/2-41, imageViewHeader.frame.size.height-45, 81, 90)];
     
-    [authorLabel setFrame:CGRectMake(screenWidth, imageViewHeader.frame.size.height-31, 0, 38)];
-    [authorLabel sizeToFit];
-    [authorLabel setFrame:CGRectMake(screenWidth - authorLabel.frame.size.width - 4, authorLabel.frame.origin.y, authorLabel.frame.size.width, 38)];
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    animation.fromValue = [NSNumber numberWithFloat:0.0f];
+    animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
+    animation.duration = 10.0f;
+    animation.repeatCount = INFINITY;
+    
+    logo.contentMode = UIViewContentModeScaleAspectFit;
+    logo.clipsToBounds = true;
+    rainbow.contentMode = UIViewContentModeScaleAspectFit;
+    rainbow.clipsToBounds = true;
+    [rainbow.layer addAnimation:animation forKey:@"SpinAnimation"];
+    
+    
+    
+    [authorLabel setFrame:CGRectMake(screenWidth /2 + 40, imageViewHeader.frame.size.height-32.5, screenWidth/2 - 42, 38)];
+
     [facebookfb setFrame:CGRectMake(5, imageViewHeader.frame.size.height + 10, 45, 30)];
-    [postsBigTitle setFrame:CGRectMake(5, facebookfb.frame.origin.y + facebookfb.frame.size.height + 15, screenWidth - 20, 43)];
+    [postsBigTitle setFrame:CGRectMake(5, facebookfb.frame.origin.y + facebookfb.frame.size.height + 15, screenWidth - 10, 43)];
 
     [passage setFrame:CGRectMake(5, postsBigTitle.frame.origin.y + postsBigTitle.frame.size.height + 12 , screenWidth, 38)];
 
@@ -195,7 +247,9 @@
         wkWebView = [[WKWebView alloc]initWithFrame:CGRectMake(0, starImageView.frame.origin.y + starImageView.frame.size.height+20, screenWidth, 0) configuration:[WKWebViewConfiguration new]];
     }
  
+    
 
+    
     wkWebView.navigationDelegate = self;
     wkWebView.UIDelegate = self;
     wkWebView.opaque = false;
@@ -209,12 +263,30 @@
     [wkWebView.scrollView addGestureRecognizer:pinchRecognizer];
     wkWebView.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:0.0f];
 
-// wkWebView.backgroundColor = [UIColor redColor];
+
     
     [mainScrollView addSubview:wkWebView];
-    [mainScrollView bringSubviewToFront:rainbow];
-    [mainScrollView bringSubviewToFront:logo];
+  
 
+}
+- (IBAction)tapOnHeader:(UITapGestureRecognizer *)sender {
+    
+ if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+     [SimpleFilesCache saveImageToCacheDirectory:postModel.imageHeader withName:@"imgHeader"];
+     
+      [[NSUserDefaults standardUserDefaults]setObject:postModel.authorName forKey:@"authorLblTxt"];
+ }else{
+       [[NSUserDefaults standardUserDefaults]setObject:authorName forKey:@"authorLblTxt"];
+        [GlobalVariables getInstance].urlOfImageClicked = [postInfo valueForKey:@"post_thumbnail_url"];
+ }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ScrollImageController"]];
+}
+- (void)appDidBecomeActive:(NSNotification *)notification {
+    NSLog(@"did become active notification");
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [activityView removeFromSuperview];
+    [blackCurtain removeFromSuperview];
 }
 -(void)settingMap:(MGLMapView *)mapView{
     NSURL *url = [NSURL URLWithString:@"mapbox://styles/mapbox/streets-v9"];
@@ -311,54 +383,11 @@
                 contentRect.size.height = contentRect.size.height+40;
                 mainScrollView.contentSize = contentRect.size;
             }];
-            
-//            NSString *jScript = @"document.body.offsetHeight";
-//            [wkWebView evaluateJavaScript:jScript completionHandler:^(id _Nullable height, NSError * _Nullable error) {
-//                //
-//
-////                tag.frame = CGRectMake(tag.frame.origin.x,  tagsL.frame.origin.y + 5, 0, 50.0);
-////                [tag sizeToFit];
-//            }];
-            
-            
-        }
-//        if (recongizer.scale < 1.0) {
-//            percent = percent - 1;
-//            NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
-//            [wkWebView evaluateJavaScript:javaStr completionHandler:^(id _Nullable f, NSError * _Nullable error) {
-////                NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
-//            }];
-//        }
-//        else if (recongizer.velocity < 0 && percent > 100.0){
-//
-//                percent = percent - 1;
-//
-//            NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
-//
-//            [wkWebView evaluateJavaScript:javaStr completionHandler:nil];
-//
-//            NSString *jScript = @"document.body.offsetHeight";
-//
-//            [wkWebView evaluateJavaScript:jScript completionHandler:^(id _Nullable height, NSError * _Nullable error) {
-//                //
-//                NSLog(@"height floatValue %f", [height floatValue]);
-//                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
-//
-//                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height +49, screenWidth, practicalInfos.frame.size.height)];
-//
-//                [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
-//                   [tagsL setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, 50, 50)];
-//                tag.frame = CGRectMake(tag.frame.origin.x,  tagsL.frame.origin.y + 5, 0, 50.0);
-//                [tag sizeToFit];
-//            }];
-        
-            
+            }
+ 
         }
  
     }
-
-
-    
 
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
@@ -371,6 +400,7 @@
 
 -(void)getPost{
     NSLog(@"ne local");
+ 
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 
@@ -403,8 +433,9 @@
           
             [postsBigTitle sizeToFit];
  
-            if([[NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"]] isEqualToString:@"0"]){
-                passage.text = [NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
+            if([[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"] == [NSNull null]){
+                passage.text = @"";
+//                passage.text = [NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
             }
             else{
                 passage.text = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
@@ -412,13 +443,16 @@
           
         
       
-            NSString *authorName = [responseObject objectForKey:@"post_thumbnail_caption"];
-            [authorLabel setText:authorName];
+            authorName = [responseObject objectForKey:@"post_thumbnail_caption"];
+           NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[authorName dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             
+            authorLabel.attributedText = attrStr;
+           [authorLabel setTextColor:[UIColor whiteColor]];
+            [authorLabel setTextAlignment:NSTextAlignmentRight];
+            [authorLabel setFont:[UIFont fontWithName:@"Montserrat-Italic" size:12.f]];
+            [authorLabel setFrame:CGRectMake(screenWidth /2 + 40, authorLabel.frame.origin.y, screenWidth/2-42, 38)];
+        
             
-            [authorLabel sizeToFit];
-         
-       [authorLabel setFrame:CGRectMake(screenWidth - authorLabel.frame.size.width - 4, authorLabel.frame.origin.y, authorLabel.frame.size.width, 38)];
             numberOfStars = [[[responseObject valueForKey:@"ratings"] valueForKey:@"average"] intValue];
             for (int i = 0; i < numberOfStars; i++) {
                 [starImageArr[i] setImage:[UIImage imageNamed:@"starColour.png"]];
@@ -546,10 +580,15 @@
     [mainScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
 }
-
-- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
-{
-    
+-(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
+    NSLog(@"url %@", navigationAction.request.URL);
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [self.view addSubview:blackCurtain];
+    [self.view addSubview:activityView];
+    if (![navigationAction.request.URL.absoluteString containsString:@"http"]) {
+        return nil;
+    }
+  
     if (!navigationAction.targetFrame.isMainFrame) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSError *error = nil;
@@ -561,9 +600,13 @@
         
         
         NSArray *listItems = [my_string componentsSeparatedByString:@"<link rel='shortlink' href='https://vivreathenes.com/?p="];
-        if ([navigationAction.request.URL.absoluteString containsString:@"vivre"] == false) {
+        if ([navigationAction.request.URL.absoluteString containsString:@"vivreathenes.com"] == false) {
 //            [webView loadRequest:[NSURLRequest requestWithURL:navigationAction.request.URL]];
+           
+            
+     
             [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+            
 
             return nil;
         }
@@ -572,11 +615,14 @@
         
         NSLog(@"foundedId %@", foundedId);
         [[GlobalVariables getInstance] setIdOfPost:foundedId];
-        [self getPost];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+
+
         
     }
     return nil;
 }
+
 -(void)settingWebView:(NSString *)htmlStr{
  
     htmlStr = [@"<body>" stringByAppendingString:htmlStr];
@@ -613,14 +659,19 @@
     
    
     NSLog(@"finalString %@", finalString);
+
+
+      [wkWebView loadHTMLString:finalString baseURL:[NSBundle mainBundle].bundleURL];
+
    
-      [wkWebView loadHTMLString:finalString baseURL:nil];
-
-
+    
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [self backToTop];
-
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [activityView removeFromSuperview];
+    [blackCurtain removeFromSuperview];
+    NSLog(@"endIgnoringInteractionEvents");
     [self performSelector:@selector(finishedLoading) withObject:nil afterDelay:0.2];
     
 }
@@ -965,7 +1016,9 @@
     }
     
     NSMutableDictionary *schedule = [[postInfo valueForKey:@"practical_infos"]valueForKey:@"schedule"];
- 
+    if (schedule.count >0) {
+        
+   
     
     NSString *startMonday = [[schedule valueForKey:@"monday"]valueForKey:@"start"];
     NSString *endMonday = [NSString stringWithFormat:@" -  %@", [[schedule valueForKey:@"monday"]valueForKey:@"end"]];
@@ -1051,7 +1104,7 @@
        
 
     }
-    
+     }
 
     [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, scheduleView.frame.size.height)];
     [scheduleView setHidden:NO];
@@ -1080,7 +1133,7 @@
 
   
     [self settingMap:postModel.postMapView];
-    if ([[postInfo valueForKey:@"location"] count] || (unlockedIAP == YES && [SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost])) {
+    if ([[postInfo valueForKey:@"location"] count] || (unlockedIAP == YES && [SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost] && postModel.postMapView)) {
         [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + heightForPracticalInfos.size.height + 30, self.view.frame.size.width, self.view.frame.size.height/2.5)];
         
 
@@ -1113,6 +1166,10 @@
        int yForNewTag = 0;
         if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
     for (int i = 0; i <= [postModel.tagsCount intValue]; i++) {
+        if ([postModel.tagsCount intValue] == 0) {
+                [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
+            break;
+        }
           [tagsL setHidden: NO];
        tag = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
@@ -1166,6 +1223,10 @@
         }
 else{
     for (int i = 0; i <= [numberOfTags intValue]; i++) {
+        if ([numberOfTags intValue] == 0) {
+            [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
+            break;
+        }
         [tagsL setHidden: NO];
         
        
@@ -1387,16 +1448,7 @@ else{
 
          postModel.postMapView = mapView;
          
-         double delayInSeconds = 1.5;
-         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-          [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
-             NSLog(@"model is saved");
-             [self showMessage:@"Article enregistré!"];
-             [self.view addSubview:demo];
-             demo.center = self.view.center;
-             [self.view bringSubviewToFront:demo];
-         });
+
         
      }
   

@@ -732,8 +732,8 @@
                                             <action selector="openiAPController:" destination="HSO-OG-oGP" eventType="touchUpInside" id="xBU-mP-3XK"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="btR-hL-FIl">
-                                        <rect key="frame" x="0.0" y="184" width="162" height="46"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="btR-hL-FIl">
+                                        <rect key="frame" x="3" y="190" width="158" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                                         <color key="textColor" red="0.96048861742019653" green="0.5988040566444397" blue="0.017176084220409393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -747,8 +747,8 @@
                                         <rect key="frame" x="152" y="144" width="69" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ibp-YB-OV4">
-                                        <rect key="frame" x="0.0" y="231" width="375" height="436"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ibp-YB-OV4">
+                                        <rect key="frame" x="0.0" y="242" width="375" height="425"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1392,9 +1392,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="cO2-G7-AkZ">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="cO2-G7-AkZ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="fmv-CC-E22" appends="YES" id="gYi-NH-6bZ"/>
+                                        </connections>
                                     </imageView>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="12n-8p-oTr">
                                         <rect key="frame" x="0.0" y="32" width="79" height="74"/>
@@ -1412,20 +1416,27 @@
                                         <rect key="frame" x="0.0" y="199" width="375" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1137254902" green="0.22352941179999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="grs-YN-6tb" appends="YES" id="fjz-TW-MJV"/>
+                                        </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MKs-RB-MJZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MKs-RB-MJZ">
                                         <rect key="frame" x="240" y="192" width="140" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Italic" family="Montserrat" pointSize="12"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <attributedString key="attributedText"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="gEn-Mm-8Et" appends="YES" id="41r-4S-0Qj"/>
+                                        </connections>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="o9X-cu-9cF">
-                                        <rect key="frame" x="148" y="178" width="81" height="82"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="WW9-jf-qKx">
+                                        <rect key="frame" x="148" y="177" width="81" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo1" id="WW9-jf-qKx">
-                                        <rect key="frame" x="148" y="178" width="81" height="82"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rainbow" id="o9X-cu-9cF">
+                                        <rect key="frame" x="148" y="177" width="81" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cW9-2M-HJ6">
@@ -1446,8 +1457,8 @@
                                             <action selector="facebook:" destination="9qM-Uy-A3V" eventType="touchUpInside" id="qFT-ca-4R7"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0cN-sc-2Ey">
-                                        <rect key="frame" x="0.0" y="271" width="343" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0cN-sc-2Ey">
+                                        <rect key="frame" x="0.0" y="271" width="367" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -1744,6 +1755,21 @@
                         <outlet property="delegate" destination="9qM-Uy-A3V" id="4ag-D4-MtK"/>
                     </connections>
                 </tableView>
+                <tapGestureRecognizer id="fmv-CC-E22">
+                    <connections>
+                        <action selector="tapOnHeader:" destination="9qM-Uy-A3V" id="3xA-5z-71X"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="gEn-Mm-8Et">
+                    <connections>
+                        <action selector="tapOnHeader:" destination="9qM-Uy-A3V" id="Xqg-gQ-vsM"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="grs-YN-6tb">
+                    <connections>
+                        <action selector="tapOnHeader:" destination="9qM-Uy-A3V" id="0Iu-X9-OhQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-780.5" y="-1174.5"/>
         </scene>
@@ -4799,23 +4825,26 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" id="3oh-ox-EXQ">
+                                        <rect key="frame" x="37" y="522" width="301" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="hS4-mT-I1F" id="FxH-mH-gRg"/>
+                                        </connections>
+                                    </textView>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="hS4-mT-I1F" id="9qG-od-mPU"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1YC-hm-zvj">
-                                <rect key="frame" x="11" y="579" width="312" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Italic" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="authorOfImage" destination="1YC-hm-zvj" id="d19-0D-HEI"/>
+                        <outlet property="authorOfImage" destination="3oh-ox-EXQ" id="8ix-mt-dDV"/>
                         <outlet property="zoomingImage" destination="wWm-ow-nkY" id="qtL-nw-KND"/>
                         <outlet property="zoomingScroll" destination="OWa-D1-98J" id="Kmy-fn-fiU"/>
                     </connections>

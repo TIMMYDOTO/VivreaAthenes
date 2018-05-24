@@ -2,8 +2,10 @@
 @font-face
 {
     font-family: 'Gudea';
-    src: local('Gudea'),url('Gudea.otf') format('opentype');
+/*    src: local('Gudea'),url('Gudea.otf') format('opentype');*/
+    src: url(Gudea.otf);
 }
+
 editor-signature{
   font-size: xx-small;
   color: #666699;
@@ -35,7 +37,7 @@ wp-caption-text{
 body{
     font-family: Gudea;
 
-    padding-left: 5px;
+/*    padding-left: 5px;*/
     padding-right: 5px;
 }
 link-style a{

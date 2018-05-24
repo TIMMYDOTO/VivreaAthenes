@@ -37,6 +37,7 @@
 		9A21F66D204068BE00EC6253 /* Sorties en famille.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A21F66C204068BE00EC6253 /* Sorties en famille.png */; };
 		9A278658209B248A00DB0FC3 /* SuggestionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A278657209B248A00DB0FC3 /* SuggestionsCell.m */; };
 		9A4369AB20A069570062B098 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4369AA20A069570062B098 /* PostModel.m */; };
+		9A55A97020B4C14E0077C812 /* Gudea.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87542093339700593596 /* Gudea.otf */; };
 		9A5658EF203EE7150092BCDA /* musees.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E4203EE70F0092BCDA /* musees.png */; };
 		9A5658F3203EE7150092BCDA /* Cafés et Bars.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E8203EE7120092BCDA /* Cafés et Bars.png */; };
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
@@ -1445,6 +1446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A55A97020B4C14E0077C812 /* Gudea.otf in Resources */,
 				F45D38331F95FE0E00048225 /* MainIPad.storyboard in Resources */,
 				F4FEFE411EE9273000C95381 /* Supermarchés.png in Resources */,
 				F4FEFE771EE9692C00C95381 /* musique1.png in Resources */,

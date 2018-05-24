@@ -53,6 +53,7 @@
 	<string>L’accès à votre bibliothèque photo est indispensable si vous souhaitez sauvegarder des images de l’app ou si vous souhaitez publier une annonce. Rien ne sera publié sans votre accord.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Gudea.otf</string>
 		<string>Montserrat-Black.otf</string>
 		<string>Montserrat-Bold.otf</string>
 		<string>Montserrat-ExtraBold.otf</string>
