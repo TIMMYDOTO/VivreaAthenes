@@ -119,9 +119,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-    unlockedIAP = YES;
     blackCurtain = [[UIView alloc] init];
+    [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
+    [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+    [self.view addSubview:blackCurtain];
+    
+    
+    activityView = [[UIActivityIndicatorView alloc]
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = self.view.center;
+    [activityView startAnimating];
+    [self.view addSubview:activityView];
+    unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
+  
+    
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
     fragmentArr = [[NSMutableArray alloc] init];
@@ -135,16 +146,14 @@
     allTagsName = [[NSMutableArray alloc] init];
     percent = 100.0;
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
-    activityView = [[UIActivityIndicatorView alloc]
-                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityView.center = self.view.center;
-    [activityView startAnimating];
+    
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
- [[GlobalVariables getInstance] setIdOfPost:@"31166"];
-//35693       35579
+// [[GlobalVariables getInstance] setIdOfPost:@"35936"];
+//32319        30246
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
         postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]];
+//        NSLog(@"size of Object: %zd", malloc_size(postModel));
         
         
         for (int i = 0; i < [postModel.numberOfStars intValue]; i++) {
@@ -170,11 +179,9 @@
     
        
         [wkWebView loadHTMLString:postModel.htmlString baseURL:[NSBundle mainBundle].bundleURL];
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-          [self.view addSubview:blackCurtain];
-        [self.view addSubview:activityView];
       
-        NSLog(@"beginIgnoringInteractionEvents");
+      
+    
         
     }
     else{ [self getPost]; }
@@ -187,8 +194,8 @@
     changeFrameOnce = true;
     changeFrameOnce1 = true;
     
-    
-    double delayInSeconds = 4.5;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    double delayInSeconds = 7;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
@@ -199,7 +206,7 @@
         [self.view bringSubviewToFront:demo];
     });
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
     
     
 }
@@ -211,9 +218,7 @@
      screenHeight = screenRect.size.height;
 
     [mainScrollView setFrame:CGRectMake(0, 0, screenWidth, screenHeight*0.92)];
-    [blackCurtain setFrame:CGRectMake(0, 0, screenWidth, mainScrollView.frame.size.height)];
-    [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
-      [self.view addSubview:blackCurtain];
+   
     [imageViewHeader setFrame:CGRectMake(0, 0, screenWidth, 236)];
     [blueSeparatorView setFrame:CGRectMake(0, imageViewHeader.frame.size.height - 29, screenWidth, 29)];
     [rainbow setFrame:CGRectMake(screenWidth/2-41, imageViewHeader.frame.size.height-45, 81, 90)];
@@ -283,10 +288,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ScrollImageController"]];
 }
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    NSLog(@"did become active notification");
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    [activityView removeFromSuperview];
-    [blackCurtain removeFromSuperview];
+    [activityView setHidden:YES];
+    [blackCurtain setHidden:YES];
+
 }
 -(void)settingMap:(MGLMapView *)mapView{
     NSURL *url = [NSURL URLWithString:@"mapbox://styles/mapbox/streets-v9"];
@@ -575,16 +579,12 @@
     }
 }
 
--(void)backToTop{
-    
-    [mainScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-    
-}
+
 -(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
-    NSLog(@"url %@", navigationAction.request.URL);
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [self.view addSubview:blackCurtain];
-    [self.view addSubview:activityView];
+    [activityView setHidden:NO];
+    [blackCurtain setHidden:NO];
+    NSLog(@"urll %@", navigationAction.request.URL);
+
     if (![navigationAction.request.URL.absoluteString containsString:@"http"]) {
         return nil;
     }
@@ -667,11 +667,9 @@
     
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [self backToTop];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    [activityView removeFromSuperview];
-    [blackCurtain removeFromSuperview];
-    NSLog(@"endIgnoringInteractionEvents");
+    [activityView setHidden:YES];
+    [blackCurtain setHidden:YES];
+
     [self performSelector:@selector(finishedLoading) withObject:nil afterDelay:0.2];
     
 }
@@ -711,7 +709,7 @@
         heightOfObj = 85;
         [arraOfInfosObj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayOfInfosImg[idx]]];
-            practicalInfosLabel.text =  @"Infos Pratiques";
+//            practicalInfosLabel.text =  @"Infos Pratiques";
             if ([obj isKindOfClass:[UIView class]]) {
                 [self setttingSchedule:postModel.arrayOfSchedule];
                 
@@ -923,7 +921,7 @@
   
     [arrayUsedInTable enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayWithImagesUsedInTable[idx]]];
-        practicalInfosLabel.text =  @"Infos Pratiques";
+//        practicalInfosLabel.text =  @"Infos Pratiques";
         if (obj == scheduleView) {
             [self setttingSchedule:nil];
             
@@ -1094,8 +1092,12 @@
             
             
         }
-        else if ([lbl.text isEqualToString:@" -  "] && [[sortedArr[index] valueForKey:@"status"] isEqualToString:@"closed"]){
+        else if ([lbl.text isEqualToString:@" -  "] && [[sortedArr[index] valueForKey:@"status"] isEqualToString:@"opened"]){
             lbl.text = @"Ouvert";
+        }
+        else if (![lbl.text isEqualToString:@" -  "]){
+            [scheduleView setHidden:NO];
+         practicalInfosLabel.text =  @"Infos Pratiques";
         }
         [lbl sizeToFit];
         NSLog(@"lbl.text %@", lbl.text);
@@ -1107,7 +1109,7 @@
      }
 
     [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, scheduleView.frame.size.height)];
-    [scheduleView setHidden:NO];
+    
     heightOfObj = scheduleView.frame.size.height + scheduleView.frame.origin.y + 30;
 }
 
