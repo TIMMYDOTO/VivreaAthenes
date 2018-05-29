@@ -148,7 +148,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-// [[GlobalVariables getInstance] setIdOfPost:@"35936"];
+// [[GlobalVariables getInstance] setIdOfPost:@"34310"];
 //32319        30246
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -338,7 +338,9 @@
             
             point.coordinate = CLLocationCoordinate2DMake([[obj objectForKey:@"lat"]doubleValue], [[obj objectForKey:@"lng"]doubleValue ]);
             point.title = [obj objectForKey:@"title"];
-            point.subtitle = [obj objectForKey:@"description"];
+            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[[obj objectForKey:@"description"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+             point.subtitle = [attrStr string];
+//            point.subtitle = [obj objectForKey:@"description"];
          
             [pointArr addObject:point];
             [self.postMapView addAnnotation:point];
@@ -394,7 +396,7 @@
     }
 
 
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return TRUE;
 }
 - (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView{
@@ -581,6 +583,7 @@
 
 
 -(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
+    NSLog(@"createWebViewWithConfiguration");
     [activityView setHidden:NO];
     [blackCurtain setHidden:NO];
     NSLog(@"urll %@", navigationAction.request.URL);
@@ -731,7 +734,7 @@
                 [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
                 
                 if ([arrayOfInfosImg[idx] isEqualToString:@"phone"] || [arrayOfInfosImg[idx] isEqualToString:@"location"]) {
-                    [imgView setFrame:CGRectMake(14, heightOfObj, 15, 25)];
+                    [imgView setFrame:CGRectMake(14, heightOfObj, 20, 25)];
                 }
                 if ([arraOfInfosObj[idx] isEqualToString:@"quartier"]) {
                     [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
@@ -942,8 +945,11 @@
             lbl.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
             [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
             
-            if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"phone"] || [arrayWithImagesUsedInTable[idx] isEqualToString:@"location"]) {
+            if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"phone"] ) {
             [imgView setFrame:CGRectMake(14, heightOfObj, 15, 25)];
+            }
+            if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"location"]) {
+                [imgView setFrame:CGRectMake(14, heightOfObj, 20, 20)];
             }
             if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"quartier"]) {
                 [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];

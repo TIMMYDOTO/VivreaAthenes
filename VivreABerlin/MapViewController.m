@@ -327,6 +327,7 @@
             }
             
         }
+     
         NSLog(@"maxLatDict %@", maxLatDict);
         NSLog(@"minLatDict %@", minLatDict);
         
@@ -338,9 +339,17 @@
         
         bounds.ne = CLLocationCoordinate2DMake((CLLocationDegrees)[[maxLatDict valueForKey:@"lat"] doubleValue], (CLLocationDegrees)[[maxLongDict valueForKey:@"long"] doubleValue]);
         
-//       [self.mapView cameraThatFitsCoordinateBounds:bounds];
+
+        if (coordinates.count == 0) {
+            CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
+            
+            [self.mapView setCenterCoordinate:center zoomLevel:8 direction:0 animated:NO];
+        }
+        else{
         [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
-          [spinnerview endRefreshing];
+       
+        }
+           [spinnerview endRefreshing];
     }
     else if([notification.object isEqualToString:@"filtrating"] && [GlobalVariables getInstance].canFilter == true) {
         [GlobalVariables getInstance].canFilter = false;

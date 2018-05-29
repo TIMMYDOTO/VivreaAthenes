@@ -523,7 +523,7 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"filtrating"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeFilters" object: [NSString stringWithFormat:@"reloadPozition"]];
    
 }
