@@ -147,7 +147,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
- [[GlobalVariables getInstance] setIdOfPost:@"31166"];
+// [[GlobalVariables getInstance] setIdOfPost:@"31166"];
 //32319        30246
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
