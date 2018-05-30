@@ -9,8 +9,12 @@
 #import "MapCreditsController.h"
 #import "GlobalVariables.h"
 #import "SimpleFilesCache.h"
+#import "AFNetworking.h"
 
-@interface MapCreditsController ()
+@interface MapCreditsController (){
+    WKWebView *wkWebView;
+    UIActivityIndicatorView *activityView;
+}
 
 @end
 
@@ -19,7 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self getCreditsPhotos];
+    activityView = [[UIActivityIndicatorView alloc]
+                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityView.center = self.view.center;
+    [activityView startAnimating];
+    [[UIApplication sharedApplication].keyWindow addSubview:activityView];
+
+    wkWebView = [[WKWebView alloc]initWithFrame:CGRectMake(48, 190, 268, 300) configuration:[WKWebViewConfiguration new]];
+    [wkWebView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:wkWebView];
+    wkWebView.navigationDelegate = self;
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
     
     [GlobalVariables getInstance].filtresIconsCaption = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"FiltresIconsCaption"]];
@@ -28,14 +42,53 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)getCreditsPhotos{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:@"https://vivreathenes.com/wp-json/wp/v2/credits-photos"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"%@ %@", response, responseObject);
+            NSString *htmlStr = [responseObject valueForKey:@"content"];
+            htmlStr = [@"<body>" stringByAppendingString:htmlStr];
+            htmlStr = [htmlStr stringByAppendingString:@"<body>"];
+            
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"openCredits" ofType:@"css"];
+            
+            
+            NSString *cssString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            
+            htmlStr = [cssString stringByAppendingString:htmlStr];
+            
+            
+            [wkWebView loadHTMLString:htmlStr baseURL:[NSBundle mainBundle].bundleURL];
+            [activityView removeFromSuperview];
+        }
+    }];
+    [dataTask resume];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [GlobalVariables getInstance].filtresIconsCaption.count;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    //this is a 'new window action' (aka target="_blank") > open this URL externally. If we´re doing nothing here, WKWebView will also just do nothing. Maybe this will change in a later stage of the iOS 8 Beta
+    if (!navigationAction.targetFrame) {
+        NSURL *url = navigationAction.request.URL;
+        UIApplication *app = [UIApplication sharedApplication];
+        if ([app canOpenURL:url]) {
+            [app openURL:url];
+        }
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

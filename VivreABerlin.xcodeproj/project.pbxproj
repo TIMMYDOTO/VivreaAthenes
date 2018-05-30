@@ -42,6 +42,7 @@
 		9A5658F3203EE7150092BCDA /* Cafés et Bars.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658E8203EE7120092BCDA /* Cafés et Bars.png */; };
 		9A5658F9203EE7150092BCDA /* Grecs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658EE203EE7140092BCDA /* Grecs.png */; };
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
+		9A5E483B20BEBCBC0086D628 /* openCredits.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A5E483A20BEBCBC0086D628 /* openCredits.css */; };
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
 		9A9C87532092227E00593596 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87522092227D00593596 /* style.css */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
@@ -365,6 +366,7 @@
 		9A5658E8203EE7120092BCDA /* Cafés et Bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cafés et Bars.png"; sourceTree = "<group>"; };
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
+		9A5E483A20BEBCBC0086D628 /* openCredits.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = openCredits.css; sourceTree = "<group>"; };
 		9A9C87522092227D00593596 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		9A9C87542093339700593596 /* Gudea.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gudea.otf; sourceTree = "<group>"; };
 		9AEADF38208CA55100854061 /* AstuceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AstuceVC.h; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 				8D3D5EC51EA7864900DA4778 /* LaunchScreen.storyboard */,
 				8D3D5EC81EA7864900DA4778 /* Info.plist */,
 				9A9C87522092227D00593596 /* style.css */,
+				9A5E483A20BEBCBC0086D628 /* openCredits.css */,
 				9A9C87542093339700593596 /* Gudea.otf */,
 				8D3D5EB71EA7864900DA4778 /* Supporting Files */,
 			);
@@ -1548,6 +1551,7 @@
 				F4F232E51EFD1E8300CE0F16 /* faceBookdetails.png in Resources */,
 				F4D051611EB1F08300011B0D /* checkmark.png in Resources */,
 				F4FEFE671EE968AB00C95381 /* Théâtre.png in Resources */,
+				9A5E483B20BEBCBC0086D628 /* openCredits.css in Resources */,
 				F47F39581F2DBB310035C48F /* website.png in Resources */,
 				F4FEFE5E1EE968AB00C95381 /* architecture1.png in Resources */,
 				F4FEFE841EE969C800C95381 /* Clubs.png in Resources */,

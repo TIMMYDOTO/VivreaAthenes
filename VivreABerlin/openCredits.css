@@ -1,0 +1,25 @@
+<style>
+@font-face
+{
+    font-family: 'Gudea';
+    /*    src: local('Gudea'),url('Gudea.otf') format('opentype');*/
+    src: url(Gudea.otf);
+}
+body{
+    font-family: Gudea;
+    font-size: 23px;
+  
+}
+a:link{
+      color: #675F69;
+    
+    
+}
+a:visited{
+    color: #675F69;
+}
+div{
+    padding-top: 25px;
+    padding-left: 5px;
+}
+</style>

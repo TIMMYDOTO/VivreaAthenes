@@ -1304,7 +1304,7 @@ JTMaterialSpinner * spinnerView;
     }
     else {
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"SelectedHearth"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIconTouched"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];

@@ -102,7 +102,7 @@
     self.zoomingScroll.maximumZoomScale = 2.0;
     self.zoomingScroll.minimumZoomScale = 1.0;
     self.zoomingScroll.clipsToBounds = YES;
-    self.zoomingScroll.delegate = self;
+//    self.zoomingScroll.delegate = self;
     self.zoomingScroll.zoomScale = .37;
     self.zoomingScroll.scrollsToTop = false;
     self.zoomingScroll.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -118,7 +118,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    [self.authorOfImage setFrame:CGRectMake(10, screenHeight/2+170, screenWidth -  20, 50)];
+    [self.authorOfImage setFrame:CGRectMake(10, screenHeight/2+170, screenWidth -  20, 60)];
   
    // self.authorOfImage.adjustsFontSizeToFitWidth = true;
     
@@ -135,6 +135,7 @@
 
 
 -(UIView *) viewForZoomingInScrollView:(UIScrollView *)inScroll {
+
     return self.zoomingImage;
 }
 - (NSString *)stringByStrippingHTML:(NSString *)inputString

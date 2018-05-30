@@ -1183,8 +1183,11 @@
     }];
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        if( [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:instagramSocial]])
+           if ([AppName isEqualToString:@"Athènes"] && [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:pinterest]]) {
+             
+               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:pinterest]];
+           }
+        else if(![AppName isEqualToString:@"Athènes"]  &&  [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:instagramSocial]])
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:instagramSocial]];
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERREUR"

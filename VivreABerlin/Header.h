@@ -24,7 +24,7 @@
 #define twitterSocial @"https://twitter.com/VivreaBERLIN"
 #define instagramSocial @"https://www.instagram.com/vivre.a.berlin/"
 #define tumblrSocial @"https://vivreaberlin.tumblr.com/"
-
+#define pinterest @"https://www.pinterest.fr/vivreathenes/"
 
 // CREDITS
 #define ContactsetCredits @"https://vivreathenes.com/contacts-et-credits"

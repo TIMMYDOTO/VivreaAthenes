@@ -84,7 +84,7 @@
     [self.mapView bringSubviewToFront: spinnerview];
     [spinnerview beginRefreshing];
     
-    [self createAnnotations];
+//    [self createAnnotations];
     
     if([self isInternet] == NO){
         
@@ -291,7 +291,7 @@
                                     zoomLevel: zoom
                                      animated: YES];
             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"latDis"];
-            
+            [spinnerview endRefreshing];
             return;
         }
       
@@ -346,7 +346,7 @@
             [self.mapView setCenterCoordinate:center zoomLevel:8 direction:0 animated:NO];
         }
         else{
-        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
+        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(55, 10, 10, 10)] completionHandler:nil];
        
         }
            [spinnerview endRefreshing];
@@ -552,7 +552,7 @@
     
     // self.mapView.compassView.center = self.view.center;
     self.mapView.backgroundColor = [UIColor blueColor];
-    
+    [self createAnnotations];
     
 //    [self createAnnotations];
     
@@ -569,9 +569,12 @@
         });
     }
     
+   
+    
+    
+}
+- (void)mapView:(MGLMapView *)mapView didAddAnnotationViews:(NS_ARRAY_OF(MGLAnnotationView *) *)annotationViews{
     [spinnerview endRefreshing];
-    
-    
 }
 -(void)StartDownloadingTheMap{
     
@@ -749,7 +752,7 @@
     
     NSString *nameOfAnnotation=[items objectAtIndex:1];
   
-    NSLog(@"nameOfAnnotation %@", nameOfAnnotation);
+    NSLog(@"nameOfAnnotation12 %@", nameOfAnnotation);
     NSString *url = @"";
 
     if ([nameOfAnnotation isEqualToString:@"S'installer à Athènes"] ) {

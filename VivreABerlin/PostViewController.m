@@ -132,7 +132,7 @@
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
   
-    
+    unlockedIAP = YES;
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
     fragmentArr = [[NSMutableArray alloc] init];
@@ -148,7 +148,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-// [[GlobalVariables getInstance] setIdOfPost:@"34310"];
+ [[GlobalVariables getInstance] setIdOfPost:@"31166"];
 //32319        30246
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -221,8 +221,8 @@
    
     [imageViewHeader setFrame:CGRectMake(0, 0, screenWidth, 236)];
     [blueSeparatorView setFrame:CGRectMake(0, imageViewHeader.frame.size.height - 29, screenWidth, 29)];
-    [rainbow setFrame:CGRectMake(screenWidth/2-41, imageViewHeader.frame.size.height-45, 81, 90)];
-    [logo setFrame:CGRectMake(screenWidth/2-41, imageViewHeader.frame.size.height-45, 81, 90)];
+    [rainbow setFrame:CGRectMake(screenWidth/2-35, imageViewHeader.frame.size.height-40, 69, 79)];
+    [logo setFrame:CGRectMake(screenWidth/2-35, imageViewHeader.frame.size.height-40, 69, 79)];
     
     CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.fromValue = [NSNumber numberWithFloat:0.0f];
@@ -268,7 +268,7 @@
     [wkWebView.scrollView addGestureRecognizer:pinchRecognizer];
     wkWebView.backgroundColor = [UIColor colorWithRed:240/255.0f green:241/255.0f blue:245/255.0f alpha:0.0f];
 
-
+// wkWebView.backgroundColor = [UIColor colorWithRed:100.0/255.0f green:241/255.0f blue:245/255.0f alpha:1.0f];
     
     [mainScrollView addSubview:wkWebView];
   
@@ -373,7 +373,7 @@
                 
                 [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.scrollView.contentSize.height)];
                 
-                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height +49, screenWidth, heightForPracticalInfos.size.height)];
+                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 10, screenWidth, heightForPracticalInfos.size.height)];
                 
                 [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
                 
@@ -431,7 +431,10 @@
                 [allTagsSlugs addObject:[[postInfo valueForKey:@"tags"][tagsCount]  valueForKey:@"slug"]];
                 [allTagsName addObject:[[postInfo valueForKey:@"tags"][tagsCount]  valueForKey:@"name"]];
             }
-             [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
+            if ([[postInfo valueForKey:@"location"]count] > 0) {
+            [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
+            }
+     
             
             
             postsBigTitle.text = [self stringByStrippingHTML:[self stringByDecodingXMLEntities:[postInfo valueForKey:@"post_title"]]];
@@ -441,7 +444,7 @@
  
             if([[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"] == [NSNull null]){
                 passage.text = @"";
-//                passage.text = [NSString stringWithFormat:@"%@",[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
+
             }
             else{
                 passage.text = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
@@ -581,11 +584,25 @@
     }
 }
 
+-(void)backToTop{
+    
+    [mainScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+}
 
--(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
-    NSLog(@"createWebViewWithConfiguration");
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    //this is a 'new window action' (aka target="_blank") > open this URL externally. If we´re doing nothing here, WKWebView will also just do nothing. Maybe this will change in a later stage of the iOS 8 Beta
+   
+    decisionHandler(WKNavigationActionPolicyAllow);
     [activityView setHidden:NO];
     [blackCurtain setHidden:NO];
+}
+
+
+-(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
+   
+   
     NSLog(@"urll %@", navigationAction.request.URL);
 
     if (![navigationAction.request.URL.absoluteString containsString:@"http"]) {
@@ -709,7 +726,7 @@
 -(void)settingPracticalInfos:(NSMutableArray *)arraOfInfosObj arrayOfInfosImg:(NSMutableArray *)arrayOfInfosImg{
 
     if (arraOfInfosObj && arrayOfInfosImg) {
-        heightOfObj = 85;
+        heightOfObj = 70;
         [arraOfInfosObj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayOfInfosImg[idx]]];
 //            practicalInfosLabel.text =  @"Infos Pratiques";
@@ -775,7 +792,7 @@
                 
                 heightForPracticalInfos = practicalInfos.frame;
                 heightForPracticalInfos.size.height = lbl.frame.origin.y+lbl.frame.size.height;
-                
+                NSLog(@"1heightForPracticalInfos.size.height %f", heightForPracticalInfos.size.height);
             }
             
         }];
@@ -920,7 +937,7 @@
     
     NSLog(@"arrayUsedInTable %@", arrayUsedInTable);
      NSLog(@"arrayWithImagesUsedInTable %@", arrayWithImagesUsedInTable);
-    heightOfObj = 85;
+    heightOfObj = 60;
   
     [arrayUsedInTable enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayWithImagesUsedInTable[idx]]];
@@ -982,8 +999,7 @@
                 [lbl setFrame:CGRectMake(40, heightOfObj-2.5, screenWidth - 70, 36)]; }
         
         heightOfObj = lbl.frame.size.height + lbl.frame.origin.y + 25;
-       
-//        [lbl sizeToFit];
+
         [practicalInfos addSubview:imgView];
         [practicalInfos addSubview:lbl];
         [practicalInfos bringSubviewToFront:imgView];
@@ -991,7 +1007,7 @@
             
             heightForPracticalInfos = practicalInfos.frame;
             heightForPracticalInfos.size.height = lbl.frame.origin.y+lbl.frame.size.height;
-           
+           NSLog(@"2heightForPracticalInfos.size.height %f", heightForPracticalInfos.size.height);
         }
        
     }];
@@ -1004,6 +1020,7 @@
 //    return NO; // Return NO if you don't want iOS to open the link
 //}
 -(void)setttingSchedule:(NSMutableArray *)arrOfSchedule{
+     bool opened = false;
     self.arrScheduleLabels = [[NSMutableArray alloc]initWithObjects:lundiSchedule, mardiSchedule, mercrediSchedule, jeudiSchedule, vendrediSchedule, samediSchedule, dimancheSchedule, nil];
     if (arrOfSchedule != nil) {
          NSUInteger index = 0;
@@ -1060,7 +1077,7 @@
     dimancheSchedule.text = [startDimanche stringByAppendingString:endDimanche];
     
     
-   
+  
     
     
     NSMutableArray *sortedArr = [[schedule allKeys]mutableCopy];
@@ -1088,8 +1105,8 @@
         }
     }
     NSUInteger index = 0;
+        
 
-    
     for (NSDictionary *dict in sortedArr) {
         UILabel *lbl =  self.arrScheduleLabels[index];
         
@@ -1099,9 +1116,11 @@
             
         }
         else if ([lbl.text isEqualToString:@" -  "] && [[sortedArr[index] valueForKey:@"status"] isEqualToString:@"opened"]){
+          
             lbl.text = @"Ouvert";
         }
         else if (![lbl.text isEqualToString:@" -  "]){
+              opened = true;
             [scheduleView setHidden:NO];
          practicalInfosLabel.text =  @"Infos Pratiques";
         }
@@ -1113,10 +1132,17 @@
 
     }
      }
-
-    [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, scheduleView.frame.size.height)];
+    if (opened) {
+         [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, scheduleView.frame.size.height)];
+         heightOfObj = scheduleView.frame.size.height + scheduleView.frame.origin.y + 30;
+       
+    } else {
+         [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, 0)];
+         heightOfObj = scheduleView.frame.origin.y;
+    }
+   
     
-    heightOfObj = scheduleView.frame.size.height + scheduleView.frame.origin.y + 30;
+   
 }
 
 
@@ -1409,19 +1435,19 @@ else{
              if (annotation.coordinate.latitude > [[maxLatDict objectForKey:@"lat"] doubleValue]) {
                  [maxLatDict setValue:[NSNumber numberWithDouble:annotation.coordinate.latitude] forKey:@"lat"];
                  
-//38.02
+
              }
              if (annotation.coordinate.latitude < [[minLatDict objectForKey:@"lat"]doubleValue]) {
                 [minLatDict setValue:[NSNumber numberWithDouble:annotation.coordinate.latitude] forKey:@"lat"];
-                 //37.71
+        
              }
              if (annotation.coordinate.longitude >[[maxLongDict objectForKey:@"long"] doubleValue]) {
                  [maxLongDict setValue:[NSNumber numberWithDouble:annotation.coordinate.longitude] forKey:@"long"];
-                 // 24.05
+           
              }
              if (annotation.coordinate.longitude<[[minLongDict objectForKey:@"long"]doubleValue]) {
                   [minLongDict setValue:[NSNumber numberWithDouble:annotation.coordinate.longitude] forKey:@"long"];
-                 //23.64
+        
              }
              
              

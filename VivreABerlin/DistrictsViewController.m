@@ -38,10 +38,7 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -108,7 +105,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
-    
     UITableViewCell *cell = [self.districtsTable cellForRowAtIndexPath:indexPath];
     
     cell.backgroundColor = [self colorWithHexString:@"A5C6D3"];
@@ -117,7 +113,6 @@
     cell.imageView.image = [UIImage imageNamed:@"CheckBox.png"];
     cell.textLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:14.f];
     cell.textLabel.textColor = [self colorWithHexString:@"41a9cc"];
-    
     
     
     for (int i=0; i< [[[GlobalVariables getInstance].MapPageInfos valueForKey:@"districts"] count];i++){
@@ -129,8 +124,34 @@
     
     [GlobalVariables getInstance].latitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lat"][indexPath.row] floatValue];
     [GlobalVariables getInstance].longitudine = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"lng"][indexPath.row] floatValue];
+    
+    NSLog(@"zoomLvl %f", [GlobalVariables getInstance].zoomLvl);
+    
+    if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 5) {
+        [GlobalVariables getInstance].zoomLvl = 13.7;
+        
+    }
+    else if (indexPath.row == 4  ){
+        [GlobalVariables getInstance].zoomLvl = 14.0;
+    }
+    else if (indexPath.row == 2 || indexPath.row == 3 ){
+        [GlobalVariables getInstance].zoomLvl = 13.6;
+    }
+    else if (indexPath.row == 6 ){
+        [GlobalVariables getInstance].zoomLvl = 11.3;
+    }
+    else if (indexPath.row == 7 ){
+        [GlobalVariables getInstance].zoomLvl = 9.2;
+    }
+    else if (indexPath.row == 8 ){
+        [GlobalVariables getInstance].zoomLvl = 6.6;
+    }
+    else{
     [GlobalVariables getInstance].zoomLvl = [[[[GlobalVariables getInstance].MapPageInfos  valueForKey:@"districts"] valueForKey:@"zoom"][indexPath.row] floatValue];
-    NSLog(@"longitudine %f", [GlobalVariables getInstance].longitudine);
+    }
+    NSLog(@"zoom lvl %f", [GlobalVariables getInstance].zoomLvl);
+    
+    
     [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].latitudine forKey:@"latDis"];
    [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].longitudine forKey:@"longDis"];
      [[NSUserDefaults standardUserDefaults]setFloat:[GlobalVariables getInstance].zoomLvl forKey:@"zoomLvl"];

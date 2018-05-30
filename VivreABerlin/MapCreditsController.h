@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MapCreditsController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+#import <WebKit/WebKit.h>
+@interface MapCreditsController : UIViewController <UITableViewDelegate,UITableViewDataSource, WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *creditsTable;
 
 @end
