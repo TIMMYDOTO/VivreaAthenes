@@ -132,7 +132,6 @@
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
   
-    unlockedIAP = YES;
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
     fragmentArr = [[NSMutableArray alloc] init];
