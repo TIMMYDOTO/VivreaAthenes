@@ -118,7 +118,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+//Hello world
     blackCurtain = [[UIView alloc] init];
     [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
     [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
