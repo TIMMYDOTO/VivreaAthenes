@@ -346,7 +346,7 @@
             [self.mapView setCenterCoordinate:center zoomLevel:8 direction:0 animated:NO];
         }
         else{
-        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(55, 10, 10, 10)] completionHandler:nil];
+        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(100, 40, 45, 30)] completionHandler:nil];
        
         }
            [spinnerview endRefreshing];
@@ -802,6 +802,10 @@
     else if ([nameOfAnnotation isEqualToString:@"Visites guidées"]){
         url = @"https://vivreathenes.com/wp-content/uploads/2018/03/visites-guidees.png";
     }
+    else if ([nameOfAnnotation isEqualToString:@"Quartiers"]){
+        url = @"https://vivreathenes.com/wp-content/uploads/2018/02/quartiers.png";
+    }
+    
     NSString * reuseIdentifier = NSStringFromClass(annotation.class);
     MGLAnnotationImage *annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[NSString stringWithFormat:@"%@",nameOfAnnotation]];
 
@@ -1002,7 +1006,7 @@
 
 - (IBAction)backToDistrict:(id)sender {
     if (bounds.ne.latitude) {
-        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)] completionHandler:nil];
+        [self.mapView flyToCamera:[self.mapView cameraThatFitsCoordinateBounds:bounds edgePadding:UIEdgeInsetsMake(100, 40, 45, 30)] completionHandler:nil];
     }else{
             CLLocationCoordinate2D center = CLLocationCoordinate2DMake( [GlobalVariables getInstance].latitudine, [GlobalVariables getInstance].longitudine);
             [self.mapView setCenterCoordinate:center zoomLevel:8 direction:0 animated:YES];

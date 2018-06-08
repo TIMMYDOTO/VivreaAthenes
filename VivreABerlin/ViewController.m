@@ -20,7 +20,7 @@
 #import "UIScrollView+SVPullToRefresh.h"
 #import <QuartzCore/QuartzCore.h>
 #import "OnboardinInitialViewController.h"
-
+#import "ContainerViewController.h"
 #define IS_IPHONE ( [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] )
 #define IS_HEIGHT_GTE_568 [[UIScreen mainScreen ] bounds].size.height <= 568.0f
 #define IS_IPHONE_5 ( IS_IPHONE && IS_HEIGHT_GTE_568 )
@@ -278,6 +278,9 @@
                 }
                 
                 if ([[[resultForSlugsAndBoolForAds objectForKey:@"gyg"] objectForKey:@"section_tickets"] intValue] == 0 ) {
+                    
+                    
+                    
                     [GlobalVariables getInstance].canDisplayTicketsWebView = false;
                     [GlobalVariables getInstance].sectionTagTickets = [[resultForSlugsAndBoolForAds objectForKey:@"gyg"] objectForKey:@"section_tag"];
                     
@@ -337,6 +340,8 @@
                     if ([[[resultForSlugsAndBoolForAds objectForKey:@"gyg"] objectForKey:@"section_tickets"] intValue] == 0 ) {
                         [GlobalVariables getInstance].canDisplayTicketsWebView = false;
                         [GlobalVariables getInstance].sectionTagTickets = [[resultForSlugsAndBoolForAds objectForKey:@"gyg"] objectForKey:@"section_tag"];
+                        
+                      
                         
                         if([[[resultForSlugsAndBoolForAds objectForKey:@"gyg"] allKeys] containsObject:@"full_name_tag"])
                              [GlobalVariables getInstance].sectionTagNameTickets = [[resultForSlugsAndBoolForAds objectForKey:@"gyg"] objectForKey:@"full_name_tag"];

@@ -38,8 +38,8 @@
     
     __weak IBOutlet UILabel *vendrediSchedule;
     
-   
     
+    WKWebView *wkWebViewForm;
     __weak IBOutlet UILabel *samediSchedule;
     
     __weak IBOutlet UILabel *dimancheSchedule;
@@ -131,11 +131,20 @@
     [activityView startAnimating];
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-  
+
+    
+    
+    
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
     fragmentArr = [[NSMutableArray alloc] init];
 
+    if (!self.arrOfId) {
+        self.arrOfId = [[NSMutableArray alloc] init];
+    }
+    
+//    arrOfId = [[NSUserDefaults standardUserDefaults]objectForKey:@"arrOfId"];
+    
     
     numberOfTags = [[NSNumber alloc]init];
     arrayOfSchedule = [[NSMutableArray alloc] init];
@@ -147,22 +156,17 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-// [[GlobalVariables getInstance] setIdOfPost:@"31166"];
-//32319        30246
+    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
+
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
         postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]];
-//        NSLog(@"size of Object: %zd", malloc_size(postModel));
-        
         
         for (int i = 0; i < [postModel.numberOfStars intValue]; i++) {
             [starImageArr[i] setImage:[UIImage imageNamed:@"starColour.png"]];
             
         }
         imageViewHeader.image = postModel.imageHeader;
-
-        
-        
         NSString *authorNam = postModel.authorName;
         NSAttributedString * attrSt = [[NSAttributedString alloc] initWithData:[authorNam dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         
@@ -179,9 +183,6 @@
        
         [wkWebView loadHTMLString:postModel.htmlString baseURL:[NSBundle mainBundle].bundleURL];
       
-      
-    
-        
     }
     else{ [self getPost]; }
    
@@ -195,9 +196,11 @@
     
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     double delayInSeconds = 7;
+   
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[GlobalVariables getInstance].idOfPost];
+        NSString *idOFPost = [GlobalVariables getInstance].idOfPost;
+        [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[NSString stringWithFormat:@"%@", idOFPost]];
         NSLog(@"model is saved");
         [self showMessage:@"Article enregistré!"];
         [self.view addSubview:demo];
@@ -205,11 +208,7 @@
         [self.view bringSubviewToFront:demo];
     });
     
-
-    
-    
 }
-
 
 -(void)settingDesign{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -305,8 +304,7 @@
         self.postMapView.compassView.alpha = 0.f;
         self.postMapView.rotateEnabled = false;
         [self.postMapView addAnnotations:postModel.annotations];
-
-        
+ 
         
     }
     else if ([[[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"] count] > 0){
@@ -424,6 +422,7 @@
             
             suggestionsCount = [[postInfo valueForKey:@"suggested_posts"]count];
             
+    
             
             for (tagsCount = 0; tagsCount < [[postInfo valueForKey:@"tags"] count]; tagsCount++) {
                 numberOfTags = [NSNumber numberWithInteger:tagsCount];
@@ -431,7 +430,10 @@
                 [allTagsName addObject:[[postInfo valueForKey:@"tags"][tagsCount]  valueForKey:@"name"]];
             }
             if ([[postInfo valueForKey:@"location"]count] > 0) {
-            [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
+                
+                [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[NSString stringWithFormat:@"%@map",[GlobalVariables getInstance].idOfPost]];
+             
+//             [[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
             }
      
             
@@ -441,7 +443,7 @@
           
             [postsBigTitle sizeToFit];
  
-            if([[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"] == [NSNull null]){
+            if([[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"] == [NSNull null] || [[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_id"]integerValue] == 0){
                 passage.text = @"";
 
             }
@@ -474,6 +476,7 @@
          
             
             htmlString = [responseObject objectForKey:@"post_content"];
+            htmlString = [htmlString stringByAppendingString:[responseObject objectForKey:@"infos"]];
             [self settingWebView:htmlString];
             
          
@@ -620,7 +623,7 @@
         
         NSArray *listItems = [my_string componentsSeparatedByString:@"<link rel='shortlink' href='https://vivreathenes.com/?p="];
         if ([navigationAction.request.URL.absoluteString containsString:@"vivreathenes.com"] == false) {
-//            [webView loadRequest:[NSURLRequest requestWithURL:navigationAction.request.URL]];
+
            
             
      
@@ -632,9 +635,14 @@
         NSArray *listItems2 = [listItems[1] componentsSeparatedByString:@"' />"];
          NSString *foundedId = listItems2[0];
         
+    
+        [self.arrOfId addObject:[GlobalVariables getInstance].idOfPost];
+//        [[NSUserDefaults standardUserDefaults]setObject:arrOfId forKey:@"arrOfId"];
         NSLog(@"foundedId %@", foundedId);
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:self.arrOfId forKey:@"arrOfId"];
+        
         [[GlobalVariables getInstance] setIdOfPost:foundedId];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"] userInfo:dict];
 
 
         
@@ -643,9 +651,11 @@
 }
 
 -(void)settingWebView:(NSString *)htmlStr{
- 
-    htmlStr = [@"<body>" stringByAppendingString:htmlStr];
     
+    
+    
+    htmlStr = [@"<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script><body>" stringByAppendingString:htmlStr];
+    htmlStr = [@"<script src=\"contact-form.js\"></script>" stringByAppendingString:htmlStr];
     htmlStr = [htmlStr stringByAppendingString:@"</editor-signature></body>"];
     
     
@@ -664,12 +674,12 @@
     
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"<span class=\"editor-signature\">" withString:@"<editor-signature>"];
     
-  
+  htmlStr = [@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></head>" stringByAppendingString:htmlStr];
 
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
    
-      htmlStr = [@"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" stringByAppendingString:htmlStr];
     
+//    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"href=\"#" withString:@""];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
     
     
@@ -693,7 +703,17 @@
     
 }
 - (IBAction)getBack:(UIButton *)sender {
+    if (self.arrOfId.count) {
+        [[GlobalVariables getInstance] setIdOfPost:self.arrOfId.lastObject];
+        [self.arrOfId removeObject:_arrOfId.lastObject];
+        
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:self.arrOfId forKey:@"arrOfId"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"] userInfo:dict];
+    }
+    else{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"%@", [GlobalVariables getInstance].comingFromViewController]];
+    }
 }
 - (IBAction)menuButtonClicked:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"menuButton"]];
@@ -749,8 +769,12 @@
                 lbl.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
                 [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
                 
-                if ([arrayOfInfosImg[idx] isEqualToString:@"phone"] || [arrayOfInfosImg[idx] isEqualToString:@"location"]) {
+                if ([arrayOfInfosImg[idx] isEqualToString:@"phone"]) {
                     [imgView setFrame:CGRectMake(14, heightOfObj, 20, 25)];
+//
+                }
+                if ([arrayOfInfosImg[idx] isEqualToString:@"location"]) {
+                    [imgView setFrame:CGRectMake(14, heightOfObj, 23, 27.5)];
                 }
                 if ([arraOfInfosObj[idx] isEqualToString:@"quartier"]) {
                     [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
@@ -921,9 +945,13 @@
         [arrayWithImagesUsedInTable addObject:@"card"];
     }
     for (int i = 0 ; i < [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"] count]; i++) {
-        [arrayUsedInTable addObject:[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"][i] valueForKey:@"address"]];
+        
+       
+        
+        [arrayUsedInTable addObject:[NSString stringWithFormat:@"adrs%@", [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"locations"][i] valueForKey:@"address"]]];
         [arrayWithImagesUsedInTable addObject:@"location"];
     }
+
     
     for (int i = 0 ; i < [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"metros"] count]; i++)
         metros = [metros stringByAppendingString:[NSString stringWithFormat:@" %@ %@",[[[postInfo valueForKey:@"practical_infos"] valueForKey:@"metros"][i] valueForKey:@"code"], [[[postInfo valueForKey:@"practical_infos"] valueForKey:@"metros"][i] valueForKey:@"name"]]];
@@ -957,6 +985,19 @@
                     lbl.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
                     
                 }
+            if ([obj containsString:@"adrs"]) {
+                UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]init];
+                [gesture addTarget:self action:@selector(tapedOnAddress:) ];
+//                gesture.delegate = self;
+                [lbl setUserInteractionEnabled:YES];
+                [lbl addGestureRecognizer:gesture];
+                NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:[lbl.text substringFromIndex:4]];
+                [attributeString addAttribute:NSUnderlineStyleAttributeName
+                                        value:[NSNumber numberWithInt:1]
+                                        range:(NSRange){0,[attributeString length]}];
+                lbl.attributedText = attributeString;
+                
+            }
             lbl.textContainer.maximumNumberOfLines = 2;
             lbl.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
             [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
@@ -965,7 +1006,10 @@
             [imgView setFrame:CGRectMake(14, heightOfObj, 15, 25)];
             }
             if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"location"]) {
-                [imgView setFrame:CGRectMake(14, heightOfObj, 20, 20)];
+                
+                
+                [imgView setFrame:CGRectMake(14, heightOfObj, 17, 27.5)];
+             
             }
             if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"quartier"]) {
                 [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
@@ -990,7 +1034,7 @@
                 
              
             }
-            
+
             
             if ([arrayWithImagesUsedInTable[idx] isEqualToString:@"0"])  {
                 [lbl setFrame:CGRectMake(10, heightOfObj-2.5, screenWidth - 70, 36)];
@@ -1001,8 +1045,7 @@
 
         [practicalInfos addSubview:imgView];
         [practicalInfos addSubview:lbl];
-        [practicalInfos bringSubviewToFront:imgView];
-        [practicalInfos bringSubviewToFront:lbl];
+      
             
             heightForPracticalInfos = practicalInfos.frame;
             heightForPracticalInfos.size.height = lbl.frame.origin.y+lbl.frame.size.height;
@@ -1013,6 +1056,17 @@
     
     
 }
+
+-(void)tapedOnAddress:(UITapGestureRecognizer *)sender {
+    UIView *view = sender.view;
+   UITextView *clickedView =  (UITextView *)view;
+    NSLog(@"tapedOnAddress %@", clickedView.text);
+    NSString *url = [NSString stringWithFormat: @"https://www.google.com/maps/search/?api=1&query=%@",
+                     [clickedView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
+
 //- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
 //    // Do whatever you want here
 //    NSLog(@"%@", URL); // URL is an instance of NSURL of the tapped link

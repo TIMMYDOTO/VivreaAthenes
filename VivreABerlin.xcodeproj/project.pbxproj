@@ -45,6 +45,7 @@
 		9A5E483B20BEBCBC0086D628 /* openCredits.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A5E483A20BEBCBC0086D628 /* openCredits.css */; };
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
 		9A9C87532092227E00593596 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87522092227D00593596 /* style.css */; };
+		9AD32EFB20CA9A820062B80B /* contact-form.js in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32EFA20CA9A810062B80B /* contact-form.js */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
 		9AEADF3E2091D21000854061 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF3D2091D21000854061 /* PostViewController.m */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
@@ -87,7 +88,6 @@
 		F44C33851FBF27A000A96D64 /* OnboardingFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C33841FBF27A000A96D64 /* OnboardingFirstViewController.m */; };
 		F44D1D261EB9DB4F00D8E820 /* Alimentation.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D1D231EB9DB4F00D8E820 /* Alimentation.png */; };
 		F44D1D2D1EB9E2C000D8E820 /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D1D2A1EB9E2C000D8E820 /* UIImageView+Network.m */; };
-		F44D1D3B1EBCA40400D8E820 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D1D3A1EBCA40400D8E820 /* PostsViewController.m */; };
 		F44D79DF1FA34BC50024FB17 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = F44D79DE1FA34BC50024FB17 /* NotificationService.m */; };
 		F44D79E31FA34BC50024FB17 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F44D79DB1FA34BC50024FB17 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F44D79E91FA369B80024FB17 /* scrolltotop.png in Resources */ = {isa = PBXBuildFile; fileRef = F44D79E81FA369B80024FB17 /* scrolltotop.png */; };
@@ -369,6 +369,7 @@
 		9A5E483A20BEBCBC0086D628 /* openCredits.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = openCredits.css; sourceTree = "<group>"; };
 		9A9C87522092227D00593596 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		9A9C87542093339700593596 /* Gudea.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gudea.otf; sourceTree = "<group>"; };
+		9AD32EFA20CA9A810062B80B /* contact-form.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "contact-form.js"; sourceTree = "<group>"; };
 		9AEADF38208CA55100854061 /* AstuceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AstuceVC.h; sourceTree = "<group>"; };
 		9AEADF39208CA55100854061 /* AstuceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AstuceVC.m; sourceTree = "<group>"; };
 		9AEADF3C2091D21000854061 /* PostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
@@ -428,8 +429,6 @@
 		F44D1D231EB9DB4F00D8E820 /* Alimentation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alimentation.png; sourceTree = "<group>"; };
 		F44D1D291EB9E2C000D8E820 /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
 		F44D1D2A1EB9E2C000D8E820 /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
-		F44D1D391EBCA40400D8E820 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
-		F44D1D3A1EBCA40400D8E820 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		F44D79DB1FA34BC50024FB17 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44D79DD1FA34BC50024FB17 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		F44D79DE1FA34BC50024FB17 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
@@ -742,6 +741,7 @@
 				8D3D5EC31EA7864900DA4778 /* Assets.xcassets */,
 				8D3D5EC51EA7864900DA4778 /* LaunchScreen.storyboard */,
 				8D3D5EC81EA7864900DA4778 /* Info.plist */,
+				9AD32EFA20CA9A810062B80B /* contact-form.js */,
 				9A9C87522092227D00593596 /* style.css */,
 				9A5E483A20BEBCBC0086D628 /* openCredits.css */,
 				9A9C87542093339700593596 /* Gudea.otf */,
@@ -919,8 +919,6 @@
 		F44D1D3C1EBCA40A00D8E820 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				F44D1D391EBCA40400D8E820 /* PostsViewController.h */,
-				F44D1D3A1EBCA40400D8E820 /* PostsViewController.m */,
 				8D16D16A1FF4EB95003DD13B /* InfoPratiquesTableViewCell.h */,
 				8D16D16B1FF4EB95003DD13B /* InfoPratiquesTableViewCell.m */,
 				8D16D16C1FF4EB95003DD13B /* InfoPratiquesTableViewCell.xib */,
@@ -1385,7 +1383,7 @@
 				TargetAttributes = {
 					8D3D5EB31EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = HY6ZSGAUP6;
+						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1453,6 +1451,7 @@
 				F45D38331F95FE0E00048225 /* MainIPad.storyboard in Resources */,
 				F4FEFE411EE9273000C95381 /* Supermarchés.png in Resources */,
 				F4FEFE771EE9692C00C95381 /* musique1.png in Resources */,
+				9AD32EFB20CA9A820062B80B /* contact-form.js in Resources */,
 				F49C7AC31ECC5C61000209D6 /* Montserrat-ExtraBold.otf in Resources */,
 				F4F1EF151EB0C7A500004114 /* agendaTabBarIcon.png in Resources */,
 				9A9C87532092227E00593596 /* style.css in Resources */,
@@ -1899,7 +1898,6 @@
 				8DEB3AA41EBDAE4B00818DA9 /* PopUpApplicationsController.m in Sources */,
 				F439574A1ED2DFDA00CAE618 /* SubFilterCell.m in Sources */,
 				F44625B81F2E152F007BB014 /* CatsSubCatsCell.m in Sources */,
-				F44D1D3B1EBCA40400D8E820 /* PostsViewController.m in Sources */,
 				F4434F6C1F4B216F00368CA2 /* FilterViewController.m in Sources */,
 				F48BA5B11EAF80B500B85DDB /* ContainerViewController.m in Sources */,
 				8D3D5EB91EA7864900DA4778 /* main.m in Sources */,
@@ -2088,7 +2086,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY6ZSGAUP6;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2114,7 +2112,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY6ZSGAUP6;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

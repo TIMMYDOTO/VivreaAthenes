@@ -15,4 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MGLMapView *postMapView;
 @property (weak, nonatomic) IBOutlet UILabel *articleEnregistre;
+
+
+@property (retain, nonatomic) NSMutableArray *arrOfId;
 @end

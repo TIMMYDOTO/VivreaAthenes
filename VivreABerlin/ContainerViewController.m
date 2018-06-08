@@ -61,16 +61,14 @@ JTMaterialSpinner * spinnerView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     statusView.layer.zPosition = -1;
-//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-//    UIColor *color = [UIColor blueColor];
-//    statusBar.backgroundColor = color;
-    // Do any additional setup after loading the view.
+
     [GlobalVariables getInstance].currentViewController = @"ViewController";
     
  
     
     canShowAdd = YES;
     NSDictionary *adsSettings = [[self makingRequestForAds:settingsData]valueForKey:@"ads"];
+    BOOL section_tickets = [[[[self makingRequestForAds:settingsData]valueForKey:@"gyg"]valueForKey:@"section_tickets"]boolValue];
     [GlobalVariables getInstance].delayBetweenInterstitials = [[adsSettings valueForKey:@"delay"]intValue];
 
     [NSTimer scheduledTimerWithTimeInterval:[GlobalVariables getInstance].delayBetweenInterstitials
@@ -91,7 +89,8 @@ JTMaterialSpinner * spinnerView;
  
     self.backgroundTabBar.image = [UIImage imageNamed:@"tabBarBackground"];
     self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-    self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+      
+ self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
     self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIconTouched"];
     self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
     self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -99,12 +98,17 @@ JTMaterialSpinner * spinnerView;
     else{
         self.backgroundTabBar.image = [UIImage imageNamed:@"tabBarBackground"];
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-         self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+          self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIconTouched"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
     }
-   
+    if (section_tickets) {
+         self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+    }
+    else{
+          self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
+    }
     self.backgroundTabBar.clipsToBounds = true;
     self.firstTabBarImg.clipsToBounds = true;
     self.secondTabBarImg.clipsToBounds = true;
@@ -255,9 +259,6 @@ JTMaterialSpinner * spinnerView;
             
             [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:[GlobalVariables getInstance].filtresIconsCaption] withName:@"FiltresIconsCaption"];
 
-            
-            
-            
             if([self isInternet]==YES){
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     
@@ -545,7 +546,7 @@ JTMaterialSpinner * spinnerView;
 
 -(void) SCHIMBECRAN: (NSNotification *) notification
 {
-    
+
     if ([notification.object isEqualToString:@"ViewController"]  && [[GlobalVariables getInstance].currentViewController isEqualToString:@"PostViewController"])
     {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ViewPostOnHomeTapBar"];
@@ -562,7 +563,7 @@ JTMaterialSpinner * spinnerView;
         }
         else {
             self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-            self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+            self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
             self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIconTouched"];
             self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
             self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -624,7 +625,7 @@ JTMaterialSpinner * spinnerView;
         }
         else {
             self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-            self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+            self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
             self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIconTouched"];
             self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
             self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -664,10 +665,11 @@ JTMaterialSpinner * spinnerView;
     {
         [GlobalVariables getInstance].comingFromForAgenda = @"Posts";
         kAppDelegate.lockInPortrait = YES;
-        
+      
         if([[GlobalVariables getInstance].currentViewController isEqualToString:@"MapViewController"] || [[GlobalVariables getInstance].currentViewController isEqualToString:@"PostViewController"] || [[GlobalVariables getInstance].currentViewController isEqualToString:@"ListOfPostsController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"CatsSubCatsController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"AgendaViewController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"AnnouncementsViewController"]  || [[GlobalVariables getInstance].currentViewController isEqualToString:@"TicketsViewController"]){
             
             UIViewController *vc = [self.childViewControllers lastObject];
+         
             [vc willMoveToParentViewController:nil];
             [vc.view removeFromSuperview];
             [vc removeFromParentViewController];
@@ -678,7 +680,7 @@ JTMaterialSpinner * spinnerView;
         
         PostViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"PostViewController"];
         
-        
+        child2.arrOfId = [notification.userInfo valueForKey:@"arrOfId"];
         
                    child2.view.frame = self.containerviewcontroller.bounds;
                    [self.containerviewcontroller addSubview:child2.view];
@@ -1017,7 +1019,7 @@ JTMaterialSpinner * spinnerView;
         [GlobalVariables getInstance].comingFromForAgenda = @"Map";
         kAppDelegate.lockInPortrait = YES;
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+//        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIconTouched"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -1263,7 +1265,7 @@ JTMaterialSpinner * spinnerView;
     }
     else {
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIconTouched"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -1304,7 +1306,7 @@ JTMaterialSpinner * spinnerView;
     }
     else {
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIconTouched"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"SelectedHearth"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -1345,7 +1347,7 @@ JTMaterialSpinner * spinnerView;
      }
      else {
          self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-         self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+         self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
          self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIconTouched"];
          self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
          self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -1385,7 +1387,7 @@ JTMaterialSpinner * spinnerView;
     }
     else {
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIconTouched"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
@@ -1426,7 +1428,7 @@ JTMaterialSpinner * spinnerView;
     }
     else {
         self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIcon"];
-        self.secondTabBarImg.image = [UIImage imageNamed:@"ticketTabBarIcon"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
         self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
         self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
         self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIconTouched"];

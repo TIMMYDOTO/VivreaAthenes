@@ -32,6 +32,8 @@
 ///
 +(NSString *)pathForName:(NSString *)name
 {
+    NSLog(@"name12 %@", name);
+    NSLog(@"fornamepath %@", [SimpleFilesCache cachesDirectoryName]);
     NSString *cachePath = [SimpleFilesCache cachesDirectoryName];
     NSString *path = [cachePath stringByAppendingPathComponent:name];
     return path;
@@ -53,6 +55,7 @@
 ///
 +(NSData *)cachedDataWithName:(NSString *)name
 {
+    
     NSString *path = [SimpleFilesCache pathForName:name];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if(fileExists) {

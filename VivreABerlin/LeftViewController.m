@@ -53,12 +53,15 @@
     
     NSString * textSearchedAfterASecond;
     
+    __weak IBOutlet UIView *viewForSocialLinks;
 }
 
 
 - (void) viewDidLoad {
     if ([AppName isEqualToString:@"Athènes"]) {
         [_instagram setImage:[UIImage imageNamed:@"pinterest"]];
+        [_twitter setImage:nil];
+    
     }
     arr = [[NSMutableArray alloc]init];
     self.accueilText.text = [NSString stringWithFormat:@"Vivre %@",AppName];
@@ -118,7 +121,8 @@
      }
     
     self.searchArticles.delegate = self;
-    //self.socialsView.frame = posFrame;
+   
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(hideQuickSearchView:) name:@"CloseKeyboard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(ReloadTable) name:@"ReloadTable" object:nil];
@@ -330,7 +334,7 @@
     if([notifaction.object isEqualToString:@"JustCloseKeyboard"]){
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [UIView animateWithDuration:0.3
-                     animations:^{self.quickSearchView.alpha = 0.0;}
+                animations:^{self.quickSearchView.alpha = 0.0;}
                      completion:^(BOOL finished){ self.quickSearchView.hidden = YES; }];
     [UIView animateWithDuration:0.2
                      animations:^{self.catAndSubcatsTable.frame = CGRectMake(self.catAndSubcatsTable.frame.origin.x, originOfCatsTable, self.catAndSubcatsTable.frame.size.width, self.catAndSubcatsTable.frame.size.height);
@@ -882,8 +886,11 @@
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             CGRect frame = self.socialsView.frame;
             frame.origin.x = -400;
-            self.socialsView.frame = frame;
+//            self.socialsView.frame = frame;
             self.socialsView.alpha = 0;
+             
+                viewForSocialLinks.alpha = 0;
+                
             self.openSearchBar.userInteractionEnabled = false;
             }
             else {
@@ -958,6 +965,7 @@
                 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
                 self.socialsView.frame = posFrame;
                 self.socialsView.alpha = 1;
+                viewForSocialLinks.alpha = 1;
                 
                 
             }completion:^(BOOL finished) {
@@ -1115,6 +1123,9 @@
 }
 
 - (IBAction)openTwitter:(id)sender {
+    if ([AppName isEqualToString:@"Athènes"]) {
+        return ;
+    }
     [self.searchArticles resignFirstResponder];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 

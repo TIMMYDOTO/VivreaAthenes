@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *expandArrow;
 @property (weak, nonatomic) IBOutlet UIButton *expandAllButton;
 @property (weak, nonatomic) IBOutlet UIView *separator;
+@property (weak, nonatomic) IBOutlet UIButton *expandButton;
 
 @end

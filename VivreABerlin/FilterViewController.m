@@ -187,6 +187,8 @@
         
         cell.titletext.font = [UIFont fontWithName:@"Montserrat-Light" size:17.f];
         
+        [cell.expandButton addTarget:self action:@selector(expandButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        cell.expandButton.tag = indexPath.row;
         
         [cell.expandAllButton addTarget:self
                                  action:@selector(CheckALL:)
@@ -305,53 +307,69 @@
         
     });
 }
-
+- (void)expandButtonClicked:(UIButton *)btn{
+    NSLog(@"tag %lu", btn.tag);
+    
+    NSDictionary *d=[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag];
+        if([d valueForKey:@"subcategories"]) {
+            NSArray *ar=[d valueForKey:@"subcategories"];
+    
+            BOOL isAlreadyInserted=NO;
+    
+            for(NSDictionary *dInner in ar ){
+                NSInteger index=[[GlobalVariables getInstance].arrayWithAnnotations indexOfObjectIdenticalTo:dInner];
+                isAlreadyInserted=(index>0 && index!=NSIntegerMax);
+                if(isAlreadyInserted) break;
+    
+    
+            }
+            if(ar.count == 0){
+    
+    
+            }
+            if(isAlreadyInserted) {
+                [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag] setValue:@"NO" forKey:@"isExpanded"];
+                [self miniMizeThisRows:ar];
+            } else {
+    
+    
+                NSUInteger count=btn.tag+1;
+                NSMutableArray *arCells=[NSMutableArray array];
+                for(NSDictionary *dInner in ar ) {
+                    [arCells addObject:[NSIndexPath indexPathForRow:count inSection:0]];
+                    [[GlobalVariables getInstance].arrayWithAnnotations insertObject:dInner atIndex:count++];
+                }
+    
+//                [tableView insertRowsAtIndexPaths:arCells withRowAnimation:UITableViewRowAnimationLeft];
+    
+//                [self.filterTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag] setValue:@"YES" forKey:@"isExpanded"];
+                [self.filterTable reloadData];
+            }
+    
+        }
+        else {
+          //  NSLog(@"This Cell doesn't have any other children %@",[d valueForKey:@"category_name"]);
+            if([[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag] valueForKey:@"isSelected"] isEqualToString:@"YES"])
+                [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag] setValue:@"NO" forKey:@"isSelected"];
+            else
+                [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:btn.tag] setValue:@"YES" forKey:@"isSelected"];
+    
+            [GlobalVariables getInstance].canFilter = true;
+            [self.filterTable reloadData];
+    
+        }
+    
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
-    
-    NSDictionary *d=[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row];
-    if([d valueForKey:@"subcategories"]) {
-        NSArray *ar=[d valueForKey:@"subcategories"];
-        
-        BOOL isAlreadyInserted=NO;
-        
-        for(NSDictionary *dInner in ar ){
-            NSInteger index=[[GlobalVariables getInstance].arrayWithAnnotations indexOfObjectIdenticalTo:dInner];
-            isAlreadyInserted=(index>0 && index!=NSIntegerMax);
-            if(isAlreadyInserted) break;
-            
-            
-        }
-        if(ar.count == 0){
-            
-            
-        }
-        if(isAlreadyInserted) {
-            [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] setValue:@"NO" forKey:@"isExpanded"];
-            [self miniMizeThisRows:ar];
-        } else {
-            
-            
-            NSUInteger count=indexPath.row+1;
-            NSMutableArray *arCells=[NSMutableArray array];
-            for(NSDictionary *dInner in ar ) {
-                [arCells addObject:[NSIndexPath indexPathForRow:count inSection:0]];
-                [[GlobalVariables getInstance].arrayWithAnnotations insertObject:dInner atIndex:count++];
-            }
-            
-            [tableView insertRowsAtIndexPaths:arCells withRowAnimation:UITableViewRowAnimationLeft];
-            
-            [self.filterTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] setValue:@"YES" forKey:@"isExpanded"];
-            [self.filterTable reloadData];
-        }
-        
-    }
-    else {
-      //  NSLog(@"This Cell doesn't have any other children %@",[d valueForKey:@"category_name"]);
+
+                UIButton *btn = [[UIButton alloc]init];
+                btn.tag = indexPath.row;
+                [self CheckALL:btn];
         if([[[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] valueForKey:@"isSelected"] isEqualToString:@"YES"])
             [[[GlobalVariables getInstance].arrayWithAnnotations objectAtIndex:indexPath.row] setValue:@"NO" forKey:@"isSelected"];
         else
@@ -360,7 +378,7 @@
         [GlobalVariables getInstance].canFilter = true;
         [self.filterTable reloadData];
         
-    }
+
     
 }
 
@@ -470,9 +488,9 @@
 
 - (IBAction)CheckAll:(id)sender {
     [GlobalVariables getInstance].canFilter = true;
-    
+
     self.view.userInteractionEnabled = false;
-    
+
     [UIView animateWithDuration:0.1 animations:^{
         self.checkAllImage.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
     } completion:^(BOOL finished) {
@@ -484,15 +502,15 @@
             }];
         }];
     }];
-    
-    
+
+
     if ([self.checkAllText.text isEqualToString:@"TOUT COCHER"]){
         self.checkAllText.text = @"TOUT DÉCOCHER";
         self.checkAllImage.image = [UIImage imageNamed:@"CheckBox.png"];
         for ( int i = 0 ; i < [GlobalVariables getInstance].arrayWithAnnotations.count;i++){
             for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++) {
                 [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] setValue:@"YES" forKey:@"isSelected"];
-                
+
             }
         }
     }
@@ -502,17 +520,17 @@
         for ( int i = 0 ; i < [GlobalVariables getInstance].arrayWithAnnotations.count;i++){
             for ( int j = 0 ; j < [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] count]; j ++) {
                 [[[GlobalVariables getInstance].arrayWithAnnotations[i] valueForKey:@"subcategories"] setValue:@"NO" forKey:@"isSelected"];
-                
+
             }
         }
-        
+
     }
     self.view.userInteractionEnabled = true;
     //  dispatch_async(dispatch_get_main_queue(), ^{
     [self.filterTable reloadData];
     //  });
-    
-    
+
+
     //  });}
 }
 - (IBAction)backToMap:(id)sender {
