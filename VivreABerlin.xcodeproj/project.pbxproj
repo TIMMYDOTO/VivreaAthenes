@@ -1399,19 +1399,17 @@
 					};
 					8D3D5ECC1EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 852A92XBHK;
+						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					8D3D5ED71EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 852A92XBHK;
+						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					F44D79DA1FA34BC50024FB17 = {
 						CreatedOnToolsVersion = 9.0.1;
-						DevelopmentTeam = HY6ZSGAUP6;
+						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -2096,7 +2094,7 @@
 				INFOPLIST_FILE = VivreABerlin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlinn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2122,7 +2120,7 @@
 				INFOPLIST_FILE = VivreABerlin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myfirstappforyou.vivreaberlinn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2133,13 +2131,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C4B814563A25352CE3211CC /* Pods-VivreABerlinTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 852A92XBHK;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VivreABerlin.app/VivreABerlin";
 			};
 			name = Debug;
 		};
@@ -2147,13 +2143,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C73F618EDD1464BF4ECE572 /* Pods-VivreABerlinTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 852A92XBHK;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VivreABerlin.app/VivreABerlin";
 			};
 			name = Release;
 		};
@@ -2161,12 +2155,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DA64EFFF69C62255BFE4A6F /* Pods-VivreABerlinUITests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 852A92XBHK;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				INFOPLIST_FILE = VivreABerlinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = VivreABerlin;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2174,12 +2168,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2797CBB7FA1B4C8EF4ACDDB9 /* Pods-VivreABerlinUITests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 852A92XBHK;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				INFOPLIST_FILE = VivreABerlinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = VivreABerlin;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -2192,7 +2186,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY6ZSGAUP6;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2213,7 +2207,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY6ZSGAUP6;
+				DEVELOPMENT_TEAM = GBTHA95GEH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
