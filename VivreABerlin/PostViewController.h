@@ -10,7 +10,7 @@
 #import <WebKit/WebKit.h>
 
 @import Mapbox;
-@interface PostViewController : UIViewController <MGLMapViewDelegate, WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UITextViewDelegate>
+@interface PostViewController : UIViewController <MGLMapViewDelegate, WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UITextViewDelegate,  UITextFieldDelegate>
 @property(retain, nonatomic) IBOutletCollection(UILabel) NSMutableArray *arrScheduleLabels;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MGLMapView *postMapView;

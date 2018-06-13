@@ -158,8 +158,10 @@
     [activityView startAnimating];
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-
+   
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     
+    [mainScrollView  addGestureRecognizer:tap];
     
     
     thumbnailArr = [[NSMutableArray alloc] init];
@@ -437,6 +439,9 @@
 - (IBAction)submit:(UIButton *)sender {
  
     if (textFieldForName.text.length == 0 || textFieldForEmail.text.length == 0 || textFieldForDates.text.length == 0 || textFieldForNumber.text.length == 0 || [self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForSubject.text.length == 0 || textFieldForMessage.text.length == 0 || !ckeckbox.on || !ckeckbox2.on) {
+
+        
+        
         if([self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForEmail.text.length == 0){
             
             
@@ -573,7 +578,8 @@
     
 }
 
-                                      
+
+
 -(void)getPost{
     NSLog(@"ne local");
  
@@ -940,12 +946,14 @@
             [viewForContactForm addSubview:yourName];
             
             textFieldForName = [[UITextField alloc]initWithFrame:CGRectMake(10, yourName.frame.origin.y+20, 200, 20)];
-            
+            [textFieldForName setTag:1];
+            textFieldForName.delegate = self;
             [textFieldForName setBackgroundColor:[UIColor whiteColor]];
             [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForName.layer setBorderWidth:1.0];
             [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             [textFieldForName.layer setCornerRadius:4.0f];
+            textFieldForName.returnKeyType = UIReturnKeyNext;
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForName setLeftViewMode:UITextFieldViewModeAlways];
             [textFieldForName setLeftView:spacerView];
@@ -960,12 +968,14 @@
             [yourEmail sizeToFit];
             [viewForContactForm addSubview:yourEmail];
             textFieldForEmail = [[UITextField alloc]initWithFrame:CGRectMake(10, yourEmail.frame.origin.y+20, 200, 20)];
+            textFieldForEmail.delegate = self;
             [textFieldForEmail setBackgroundColor:[UIColor whiteColor]];
             [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
-            
+            [textFieldForEmail setTag:2];
             textFieldForEmail.keyboardType = UIKeyboardTypeEmailAddress;
             [textFieldForEmail.layer setBorderWidth:1.0];
             [textFieldForEmail.layer setCornerRadius:4.0f];
+            textFieldForEmail.returnKeyType = UIReturnKeyNext;
             [textFieldForEmail  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForEmail setLeftViewMode:UITextFieldViewModeAlways];
@@ -981,10 +991,13 @@
             [yourDates sizeToFit];
             [viewForContactForm addSubview:yourDates];
             textFieldForDates = [[UITextField alloc]initWithFrame:CGRectMake(10, yourDates.frame.origin.y+20, 200, 20)];
+            textFieldForDates.delegate = self;
             [textFieldForDates setBackgroundColor:[UIColor whiteColor]];
             [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForDates.layer setBorderWidth:1.0];
             [textFieldForDates.layer setCornerRadius:4.0f];
+             textFieldForDates.returnKeyType = UIReturnKeyNext;
+             [textFieldForDates setTag:3];
             [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForDates setLeftViewMode:UITextFieldViewModeAlways];
@@ -1000,11 +1013,13 @@
             [yourNumber sizeToFit];
             [viewForContactForm addSubview:yourNumber];
             textFieldForNumber = [[UITextField alloc]initWithFrame:CGRectMake(10, yourNumber.frame.origin.y+20, 140, 20)];
+            textFieldForNumber.delegate = self;
             [textFieldForNumber setBackgroundColor:[UIColor whiteColor]];
             textFieldForNumber.keyboardType = UIKeyboardTypeNumberPad;
             [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForNumber.layer setBorderWidth:1.0];
             [textFieldForNumber.layer setCornerRadius:4.0f];
+            [textFieldForNumber setTag:4];
             [textFieldForNumber  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForNumber setLeftViewMode:UITextFieldViewModeAlways];
@@ -1020,6 +1035,9 @@
             [yourSubject sizeToFit];
             [viewForContactForm addSubview:yourSubject];
             textFieldForSubject = [[UITextField alloc]initWithFrame:CGRectMake(10, yourSubject.frame.origin.y+20, 250, 20)];
+            textFieldForSubject.delegate = self;
+            textFieldForSubject.returnKeyType = UIReturnKeyNext;
+            [textFieldForSubject setTag:5];
             [textFieldForSubject setBackgroundColor:[UIColor whiteColor]];
             [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForSubject.layer setBorderWidth:1.0];
@@ -1040,15 +1058,16 @@
             [yourMessage sizeToFit];
             [viewForContactForm addSubview:yourMessage];
             textFieldForMessage = [[UITextView alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
+            textFieldForMessage.delegate = self;
+            textFieldForMessage.returnKeyType = UIReturnKeyGo;
             [textFieldForMessage setBackgroundColor:[UIColor whiteColor]];
             [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForMessage.layer setBorderWidth:1.0];
             [textFieldForMessage.layer setCornerRadius:4.0f];
-//            textFieldForMessage.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+            [textFieldForMessage setTag:6];
+
             [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 4)];
-//        [textFieldForMessage setLeftViewMode:UITextFieldViewModeAlways];
-//            [textFieldForMessage setLeftView:spacerView];
+
             
             [viewForContactForm addSubview:textFieldForMessage];
             heightForObj = heightForObj + 235;
@@ -1110,6 +1129,34 @@
       
     }];
 }
+-(void)dismissKeyboard
+{
+   
+    
+    [textFieldForMessage resignFirstResponder];
+    [textFieldForSubject resignFirstResponder];
+    [textFieldForNumber resignFirstResponder];
+    [textFieldForDates resignFirstResponder];
+    [textFieldForEmail resignFirstResponder];
+    [textFieldForName resignFirstResponder];
+}
+
+    
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+    {
+        NSInteger nextTag = textField.tag + 1;
+        // Try to find next responder
+        UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+        if (nextResponder) {
+            // Found next responder, so set it.
+            [nextResponder becomeFirstResponder];
+        } else {
+            // Not found, so remove keyboard.
+            [textField resignFirstResponder];
+        }
+        return NO; // We do not want UITextField to insert line-breaks.
+    }
+
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
 //    blackCurtain = [[UIView alloc] init];
 //    [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
