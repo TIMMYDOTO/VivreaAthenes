@@ -44,6 +44,7 @@
 		9A5658FB203F01880092BCDA /* bigLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A5658FA203F01880092BCDA /* bigLogo.png */; };
 		9A5E483B20BEBCBC0086D628 /* openCredits.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A5E483A20BEBCBC0086D628 /* openCredits.css */; };
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
+		9A8ED64F20D155B4004216D4 /* Sechapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8ED64E20D155B1004216D4 /* Sechapper.png */; };
 		9A9C87532092227E00593596 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87522092227D00593596 /* style.css */; };
 		9AD32EFB20CA9A820062B80B /* contact-form.js in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32EFA20CA9A810062B80B /* contact-form.js */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
@@ -367,6 +368,7 @@
 		9A5658EE203EE7140092BCDA /* Grecs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grecs.png; sourceTree = "<group>"; };
 		9A5658FA203F01880092BCDA /* bigLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLogo.png; sourceTree = "<group>"; };
 		9A5E483A20BEBCBC0086D628 /* openCredits.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = openCredits.css; sourceTree = "<group>"; };
+		9A8ED64E20D155B1004216D4 /* Sechapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sechapper.png; path = "Assets.xcassets/menu icons/Sechapper.imageset/Sechapper.png"; sourceTree = "<group>"; };
 		9A9C87522092227D00593596 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		9A9C87542093339700593596 /* Gudea.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gudea.otf; sourceTree = "<group>"; };
 		9AD32EFA20CA9A810062B80B /* contact-form.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "contact-form.js"; sourceTree = "<group>"; };
@@ -1196,6 +1198,7 @@
 				F46616A71F486AB900EEF9CA /* AddImage.png */,
 				F4F1EF0E1EB0C7A500004114 /* agendaTabBarIcon.png */,
 				8DEB3A9B1EBDACBA00818DA9 /* agendaTabBarIconTouched.png */,
+				9A8ED64E20D155B1004216D4 /* Sechapper.png */,
 				F44D1D231EB9DB4F00D8E820 /* Alimentation.png */,
 				F4D266C01F445A7700CA1700 /* announcementAdd.png */,
 				F4D266C11F445A7700CA1700 /* announcementEdit.png */,
@@ -1460,6 +1463,7 @@
 				F439574E1ED2E61000CAE618 /* expandArrowColored.png in Resources */,
 				F4FEFE971EE96A6600C95381 /* Apprendre l'allemand.png in Resources */,
 				F4FEFE641EE968AB00C95381 /* Galeries.png in Resources */,
+				9A8ED64F20D155B4004216D4 /* Sechapper.png in Resources */,
 				F4FEFE631EE968AB00C95381 /* Expositions.png in Resources */,
 				F49C7AD71ECC5FA3000209D6 /* filters.png in Resources */,
 				F49C7AC41ECC5C61000209D6 /* Montserrat-ExtraLight.otf in Resources */,
