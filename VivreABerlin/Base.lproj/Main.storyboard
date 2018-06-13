@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Gudea.otf">
+            <string>Gudea</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue-Bold</string>
         </array>
@@ -1159,6 +1162,17 @@
                                             </imageView>
                                         </subviews>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TIq-rH-Kcc">
+                                        <rect key="frame" x="282" y="426" width="56" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Gudea" family="Gudea" pointSize="13"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submit:" destination="9qM-Uy-A3V" eventType="touchUpInside" id="NqF-4e-6Rs"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94509803921568625" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1227,6 +1241,7 @@
                         <outlet property="starImage4" destination="X2Y-mt-hf8" id="a5v-Rw-PlM"/>
                         <outlet property="starImage5" destination="IOF-YA-Khu" id="nOS-bQ-tfT"/>
                         <outlet property="starImageView" destination="pQS-EU-p4z" id="Ley-7Y-puZ"/>
+                        <outlet property="subm" destination="TIq-rH-Kcc" id="6KS-sb-Mak"/>
                         <outlet property="tableView" destination="iXV-fY-Mt5" id="F8E-NL-nnc"/>
                         <outlet property="vendrediSchedule" destination="sny-7L-EQi" id="9Hj-Jc-3DA"/>
                     </connections>
@@ -1433,7 +1448,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-780.5" y="-1174.5"/>
+            <point key="canvasLocation" x="-326.5" y="-445.5"/>
         </scene>
         <!--Pop Up Newsletter Controller-->
         <scene sceneID="uWw-hW-iGk">
@@ -4497,7 +4512,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                     <outlet property="delegate" destination="hS4-mT-I1F" id="9qG-od-mPU"/>
                                 </connections>
                             </scrollView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" id="3oh-ox-EXQ">
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" id="3oh-ox-EXQ">
                                 <rect key="frame" x="37" y="502" width="301" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

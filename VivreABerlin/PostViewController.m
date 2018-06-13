@@ -16,7 +16,7 @@
 #import "SuggestionsCell.h"
 #import "SimpleFilesCache.h"
 #import "OLGhostAlertView.h"
-
+#import "BEMCheckBox.h"
 #import "PostModel.h"
 
 @interface PostViewController (){
@@ -33,12 +33,13 @@
     __weak IBOutlet UILabel *mardiSchedule;
     UIButton *tag;
     __weak IBOutlet UILabel *mercrediSchedule;
+    __weak IBOutlet UIButton *subm;
     
     __weak IBOutlet UILabel *jeudiSchedule;
     
     __weak IBOutlet UILabel *vendrediSchedule;
     
-    
+    UIView *viewForContactForm;
     WKWebView *wkWebViewForm;
     __weak IBOutlet UILabel *samediSchedule;
     
@@ -48,7 +49,7 @@
     BOOL changeFrameOnce;
     BOOL changeFrameOnce1;
     __weak IBOutlet UIButton *menuButton;
-    
+    float heightForObj;
     __weak IBOutlet UIButton *backButton;
   
     NSString *finalString;
@@ -110,6 +111,35 @@
     UIActivityIndicatorView *activityView;
     UIView *blackCurtain;
     NSString *authorName;
+    
+    NSString *_wpcf7;
+    NSString *_wpcf7_version;
+    NSString *_wpcf7_locale;
+    NSString *_wpcf7_unit_tag;
+    NSString *_wpcf7_container_post;
+    
+    
+    
+    UILabel *yourName;
+    UILabel *yourEmail;
+    UILabel *yourDates;
+    UILabel *yourNumber;
+    UILabel *yourSubject;
+    UILabel *yourMessage;
+    BEMCheckBox *ckeckbox;
+    BEMCheckBox *ckeckbox2;
+    
+    
+    
+    
+    
+    UITextField *textFieldForName;
+    UITextField *textFieldForEmail;
+    UITextField *textFieldForDates;
+    UITextField *textFieldForNumber;
+    UITextField *textFieldForSubject;
+    UITextField *textFieldForMessage;
+    
 }
 
 @end
@@ -156,7 +186,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
+//    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
 
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -369,9 +399,15 @@
                 //                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
                 
                 [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.scrollView.contentSize.height)];
-                
-                [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 10, screenWidth, heightForPracticalInfos.size.height)];
-                
+               
+                [viewForContactForm setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 30, screenWidth, 810)];
+                if (viewForContactForm == nil) {
+                              [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 10, screenWidth, heightForPracticalInfos.size.height)];
+                }else{
+                     [practicalInfos setFrame:CGRectMake(0, viewForContactForm.frame.origin.y + viewForContactForm.frame.size.height + 30, screenWidth, heightForPracticalInfos.size.height)];
+                }
+       NSLog(@"height %f", viewForContactForm.frame.origin.y);
+            /////////////////
                 [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
                 
                 [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, viewForTags.frame.size.width, viewForTags.frame.size.height)];
@@ -401,6 +437,146 @@
     return nil;
 }
 
+- (IBAction)submit:(UIButton *)sender {
+ 
+    if (textFieldForName.text.length == 0 || textFieldForEmail.text.length == 0 || textFieldForDates.text.length == 0 || textFieldForNumber.text.length == 0 || [self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForSubject.text.length == 0 || textFieldForMessage.text.length == 0) {
+        if([self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForEmail.text.length == 0){
+            
+            
+            [textFieldForEmail.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForEmail.layer setBorderWidth:1.5f];
+            
+        }
+        else{
+            [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForEmail.layer setBorderWidth:1.0];
+        }
+        
+        if (textFieldForName.text.length == 0) {
+            [textFieldForName.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForName.layer setBorderWidth:1.5f];
+            
+        }
+        
+        else{
+            [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForName.layer setBorderWidth:1.0];
+        }
+        if (textFieldForDates.text.length == 0) {
+            [textFieldForDates.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForDates.layer setBorderWidth:1.5f];
+            
+        }
+        else{
+            [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForDates.layer setBorderWidth:1.0];
+        }
+        if (textFieldForNumber.text.length == 0) {
+            [textFieldForNumber.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForNumber.layer setBorderWidth:1.5f];
+            
+        }
+        else{
+            [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForNumber.layer setBorderWidth:1.0];
+        }
+        
+        if (textFieldForSubject.text.length == 0) {
+            [textFieldForSubject.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForSubject.layer setBorderWidth:1.5f];
+            
+        }
+        else{
+            [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForSubject.layer setBorderWidth:1.0];
+        }
+        if (textFieldForMessage.text.length == 0) {
+            [textFieldForMessage.layer setBorderColor:[UIColor redColor].CGColor];
+            [textFieldForMessage.layer setBorderWidth:1.5f];
+            
+        }
+        else{
+            [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForMessage.layer setBorderWidth:1.0];
+        }
+        if (!ckeckbox.on) {
+            ckeckbox.tintColor = [UIColor redColor];
+            
+        }
+        else{
+            ckeckbox.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+            
+        }
+        if (!ckeckbox2.on) {
+            ckeckbox2.tintColor = [UIColor redColor];
+        }else{
+            ckeckbox2.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+        }
+        return;
+    }
+    [subm setHidden:YES];
+    [activityView startAnimating];
+    activityView.frame = subm.frame;
+    [activityView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [mainScrollView addSubview:activityView];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+
+    NSURL *url = [NSURL URLWithString:@"https://vivreathenes.com/wp-json/contact-form-7/v1/contact-forms/33036/feedback"] ;
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    NSString *params = [NSString stringWithFormat:@"your-name=%@&your-email=%@&your-dates=%@&your-number=%@&your-subject=%@&your-message=%@&terms=%@&terms-2=%@", textFieldForName.text,textFieldForEmail.text,textFieldForDates.text,textFieldForNumber.text,textFieldForSubject,textFieldForMessage,@"1",@"1"];
+    NSLog(@"params %@", params);
+
+
+
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest addValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSString *string = [[NSString alloc] initWithData:urlRequest.HTTPBody encoding:NSUTF8StringEncoding];
+    NSLog(@"url body %@", string);
+
+    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"responce %@", response);
+        
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"responseDict %@", responseDict);
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ([httpResponse statusCode] == 200) {
+            [self showMessage:[responseDict valueForKey:@"message"]];
+            textFieldForName.text = @"";
+            textFieldForEmail.text = @"";
+            textFieldForDates.text = @"";
+            textFieldForNumber.text = @"";
+            textFieldForSubject.text = @"";
+            textFieldForMessage.text = @"";
+             [textFieldForEmail.layer setBorderWidth:1.f];
+            [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
+            
+            [textFieldForName.layer setBorderWidth:1.f];
+            [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForDates.layer setBorderWidth:1.f];
+            [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForNumber.layer setBorderWidth:1.f];
+            [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForSubject.layer setBorderWidth:1.f];
+            [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForMessage.layer setBorderWidth:1.f];
+            [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
+            ckeckbox2.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+            ckeckbox.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+        }
+        [activityView removeFromSuperview];
+        [subm setHidden:NO];
+    }];
+     [dataTask resume];
+    
+}
+
+                                      
 -(void)getPost{
     NSLog(@"ne local");
  
@@ -433,7 +609,7 @@
                 
                 [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postInfo] withName:[NSString stringWithFormat:@"%@map",[GlobalVariables getInstance].idOfPost]];
              
-//             [[GlobalVariables getInstance].idOfPost stringByAppendingString:@"map"]];
+
             }
      
             
@@ -468,15 +644,15 @@
                 [starImageArr[i] setImage:[UIImage imageNamed:@"starColour.png"]];
                 
             }
-            
+      
             if ([[responseObject objectForKey:@"practical_infos"] count] ){
                 [self settingPracticalInfos:nil arrayOfInfosImg:nil];
             }
-            
+           
          
             
             htmlString = [responseObject objectForKey:@"post_content"];
-            htmlString = [htmlString stringByAppendingString:[responseObject objectForKey:@"infos"]];
+
             [self settingWebView:htmlString];
             
          
@@ -603,9 +779,7 @@
 
 
 -(WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
-   
-   
-    NSLog(@"urll %@", navigationAction.request.URL);
+
 
     if (![navigationAction.request.URL.absoluteString containsString:@"http"]) {
         return nil;
@@ -674,7 +848,7 @@
     
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"<span class=\"editor-signature\">" withString:@"<editor-signature>"];
     
-  htmlStr = [@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></head>" stringByAppendingString:htmlStr];
+    htmlStr = [@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></head>" stringByAppendingString:htmlStr];
 
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
    
@@ -741,7 +915,222 @@
     }];
 }
 
+-(void)settingContactForm{
+    viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 30, screenWidth, 810)];
+    [mainScrollView addSubview:viewForContactForm];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
+    title.text = [[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"] valueForKey:@"title"];
+    
+     [title setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:15]];
+    [title sizeToFit];
+    
+     heightForObj = title.frame.size.height + title.frame.origin.y + 25;
+    
+    [viewForContactForm addSubview:title];
+    [[[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"]valueForKey:@"fields"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSLog(@"obj %@", obj);
+        if ([[obj valueForKey:@"type"]isEqualToString:@"hidden"]) {
+            
+            
+        }
 
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-name"]){
+            yourName = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourName.text = [obj valueForKey:@"label"];
+            [yourName setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourName sizeToFit];
+            [viewForContactForm addSubview:yourName];
+            
+            textFieldForName = [[UITextField alloc]initWithFrame:CGRectMake(10, yourName.frame.origin.y+20, 200, 20)];
+            
+            [textFieldForName setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForName.layer setBorderWidth:1.0];
+            [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            [textFieldForName.layer setCornerRadius:4.0f];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForName setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForName setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForName];
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-email"]){
+            yourEmail = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourEmail.text = [obj valueForKey:@"label"];
+            [yourEmail setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourEmail sizeToFit];
+            [viewForContactForm addSubview:yourEmail];
+            textFieldForEmail = [[UITextField alloc]initWithFrame:CGRectMake(10, yourEmail.frame.origin.y+20, 200, 20)];
+            [textFieldForEmail setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
+            
+            textFieldForEmail.keyboardType = UIKeyboardTypeEmailAddress;
+            [textFieldForEmail.layer setBorderWidth:1.0];
+            [textFieldForEmail.layer setCornerRadius:4.0f];
+            [textFieldForEmail  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForEmail setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForEmail setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForEmail];
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-dates"]){
+            yourDates = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourDates.text = [obj valueForKey:@"label"];
+            [yourDates setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourDates sizeToFit];
+            [viewForContactForm addSubview:yourDates];
+            textFieldForDates = [[UITextField alloc]initWithFrame:CGRectMake(10, yourDates.frame.origin.y+20, 200, 20)];
+            [textFieldForDates setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForDates.layer setBorderWidth:1.0];
+            [textFieldForDates.layer setCornerRadius:4.0f];
+            [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForDates setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForDates setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForDates];
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-number"]){
+            yourNumber = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourNumber.text = [obj valueForKey:@"label"];
+            [yourNumber setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourNumber sizeToFit];
+            [viewForContactForm addSubview:yourNumber];
+            textFieldForNumber = [[UITextField alloc]initWithFrame:CGRectMake(10, yourNumber.frame.origin.y+20, 140, 20)];
+            [textFieldForNumber setBackgroundColor:[UIColor whiteColor]];
+            textFieldForNumber.keyboardType = UIKeyboardTypeNumberPad;
+            [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForNumber.layer setBorderWidth:1.0];
+            [textFieldForNumber.layer setCornerRadius:4.0f];
+            [textFieldForNumber  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForNumber setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForNumber setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForNumber];
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-subject"]){
+            yourSubject = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourSubject.text = [obj valueForKey:@"label"];
+            [yourSubject setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourSubject sizeToFit];
+            [viewForContactForm addSubview:yourSubject];
+            textFieldForSubject = [[UITextField alloc]initWithFrame:CGRectMake(10, yourSubject.frame.origin.y+20, 250, 20)];
+            [textFieldForSubject setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForSubject.layer setBorderWidth:1.0];
+            [textFieldForSubject.layer setCornerRadius:4.0f];
+            
+            [textFieldForSubject  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForSubject setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForSubject setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForSubject];
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"your-message"]){
+            yourMessage = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            yourMessage.text = [obj valueForKey:@"label"];
+            [yourMessage setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [yourMessage sizeToFit];
+            [viewForContactForm addSubview:yourMessage];
+            textFieldForMessage = [[UITextField alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
+            [textFieldForMessage setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForMessage.layer setBorderWidth:1.0];
+            [textFieldForMessage.layer setCornerRadius:4.0f];
+            textFieldForMessage.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 4)];
+            [textFieldForMessage setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForMessage setLeftView:spacerView];
+            
+            [viewForContactForm addSubview:textFieldForMessage];
+            heightForObj = heightForObj + 235;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"terms"]){
+            ckeckbox = [[BEMCheckBox alloc]initWithFrame:CGRectMake(10, heightForObj+3, 15, 15)];
+            [ckeckbox addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [ckeckbox setBoxType:BEMBoxTypeSquare];
+            [ckeckbox setOnAnimationType:BEMAnimationTypeFill];
+            [viewForContactForm addSubview:ckeckbox];
+            
+            UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(30, heightForObj, screenWidth-25, 20)];
+            lbl.text = [obj valueForKey:@"label"];
+            [lbl setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            
+            
+            [lbl setNumberOfLines:0];
+            [lbl sizeToFit];
+            [viewForContactForm addSubview:lbl];
+            heightForObj = heightForObj + 50;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"terms-2"]){
+            ckeckbox2 = [[BEMCheckBox alloc]initWithFrame:CGRectMake(10, heightForObj+40, 15, 15)];
+            [ckeckbox2 setBoxType:BEMBoxTypeSquare];
+            [ckeckbox2 setOnAnimationType:BEMAnimationTypeFill];
+            [ckeckbox2 addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+         
+            [viewForContactForm addSubview:ckeckbox2];
+            
+            UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(30, heightForObj+30, screenWidth-25, 20)];
+            [textView setBackgroundColor:[UIColor clearColor]];
+            NSString *hString = [obj valueForKey:@"label"];
+            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[hString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            textView.attributedText = attrStr;
+            
+            [textView setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            
+            textView.delegate = self;
+            [textView setEditable:NO];
+            [textView sizeToFit];
+            
+            [viewForContactForm addSubview:textView];
+            heightForObj = heightForObj + 80;
+        }
+
+        else if([[obj valueForKey:@"type"] isEqualToString:@"submit"]){
+            heightForObj = heightForObj + 20;
+       
+            subm.layer.cornerRadius = 4;
+            subm.clipsToBounds = YES;
+            [subm.layer setBorderWidth:0.5f];
+            [subm.layer setBorderColor:[[UIColor blackColor] CGColor]];
+
+            [subm setFrame:CGRectMake(10, heightForObj, screenWidth - 20, 40)];
+            [subm setTitle:[obj valueForKey:@"value"] forState:UIControlStateNormal];
+ 
+            [viewForContactForm addSubview:subm];
+        }
+      
+    }];
+}
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+//    blackCurtain = [[UIView alloc] init];
+//    [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
+//    [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+//    [self.view addSubview:blackCurtain];
+//
+//
+//    activityView = [[UIActivityIndicatorView alloc]
+//                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    activityView.center = self.view.center;
+//    [activityView startAnimating];
+//    [self.view addSubview:activityView];
+     [[UIApplication sharedApplication] openURL:URL];
+    return YES; // Return NO if you don't want iOS to open the link
+}
+-(void)checkboxClicked:(UIButton *)sender{
+    sender.selected = !sender.selected;
+}
 -(void)settingPracticalInfos:(NSMutableArray *)arraOfInfosObj arrayOfInfosImg:(NSMutableArray *)arrayOfInfosImg{
 
     if (arraOfInfosObj && arrayOfInfosImg) {
@@ -1208,11 +1597,19 @@
     [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [[wkWebView scrollView]contentSize].height)];
         postModel.heightForWKWebView = @([[wkWebView scrollView]contentSize].height);
     }
+    if ([[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"]count]) {
+          [self settingContactForm];
+    }else{
+        heightForObj = wkWebView.frame.size.height + wkWebView.frame.origin.y;
+    }
+  
+   //40/////////////////////////////////400wkWebView.frame.size.height + wkWebView.frame.origin.y +
+    [practicalInfos setFrame:CGRectMake(0,  viewForContactForm.frame.origin.y+viewForContactForm.frame.size.height + 40, screenWidth, heightForPracticalInfos.size.height)];
+    NSLog(@"prac frame %@", NSStringFromCGRect(practicalInfos.frame));
 
     
-    [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, heightForPracticalInfos.size.height)];
-    NSLog(@"prac frame %@", NSStringFromCGRect(practicalInfos.frame));
     [mainScrollView addSubview:practicalInfos];
+//    [mainScrollView addSubview:subm];
     
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         [self settingPracticalInfos:postModel.arrayOfInfos arrayOfInfosImg:postModel.arrayOfInfosImg];
@@ -1736,5 +2133,13 @@ else{
 finish:
     return result;
 }
-
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 @end

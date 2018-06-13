@@ -52,21 +52,9 @@
         [GlobalVariables getInstance].zoomingImageClickedFromTagAgenda = NO;
         [GlobalVariables getInstance].urlOfImageClicked =  nil;
     }
-    else if([GlobalVariables getInstance].urlOfImageClicked == nil){
-        NSString *authorCaption = [[NSString alloc]init];
-        authorCaption = [[NSUserDefaults standardUserDefaults]objectForKey:@"authorLblTxt"];
-        
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[authorCaption dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        
-        self.authorOfImage.attributedText = attrStr;
-        [self.authorOfImage setTextColor:[UIColor whiteColor]];
-        [self.authorOfImage setFont:[UIFont fontWithName:@"Montserrat-Light" size:16]];
-        self.authorOfImage.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
-        [self.zoomingImage setImage:[SimpleFilesCache cachedImageWithName:@"imgHeader"]];
-    }
     else if([GlobalVariables getInstance].announcementImageUrl != nil)
     {
-       
+        
         
         NSString* webName = [[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].announcementImageUrl] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString* webStringURL = [webName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -79,6 +67,19 @@
         [GlobalVariables getInstance].announcementImageUrl = nil;
         
     }
+    else if([GlobalVariables getInstance].urlOfImageClicked == nil){
+        NSString *authorCaption = [[NSString alloc]init];
+        authorCaption = [[NSUserDefaults standardUserDefaults]objectForKey:@"authorLblTxt"];
+        
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[authorCaption dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        
+        self.authorOfImage.attributedText = attrStr;
+        [self.authorOfImage setTextColor:[UIColor whiteColor]];
+        [self.authorOfImage setFont:[UIFont fontWithName:@"Montserrat-Light" size:16]];
+        self.authorOfImage.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+        [self.zoomingImage setImage:[SimpleFilesCache cachedImageWithName:@"imgHeader"]];
+    }
+    
     if([GlobalVariables getInstance].zoomingImageClickedFromTagAgenda){
         
         

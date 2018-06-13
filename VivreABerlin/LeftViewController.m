@@ -1284,20 +1284,22 @@
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     
-    NSURL *url = [NSURL URLWithString:adminAjax];
+    NSURL *url = [NSURL URLWithString:adminAjax] ;
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    
+    [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     NSString *params = [NSString stringWithFormat:@"action=dgab_search_posts&search=%@&page=%@",searchedText,page];
     
+
     
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest addValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
+   
+    NSString *string = [[NSString alloc] initWithData:urlRequest.HTTPBody encoding:NSUTF8StringEncoding];
+    NSLog(@"url body %@", string);
     
       NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-      
+          NSLog(@"responce %@", response);
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
      
         
@@ -1332,6 +1334,12 @@
         }
         else if ([[responseDict valueForKey:@"results"] count] == 1){
             [filteredTableData addObject:[responseDict valueForKey:@"results"][0]];
+        }
+        else if ([[responseDict valueForKey:@"results"] count] == 8){
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][0]];
+             [filteredTableData addObject:[responseDict valueForKey:@"results"][1]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][2]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][3]];
         }
         else{
             filteredTableData = [[NSMutableArray alloc]init];

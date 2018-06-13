@@ -12,6 +12,7 @@ pod 'Google-Mobile-Ads-SDK'
 pod 'OneSignal', '>= 2.5.2', '< 3.0'
 pod 'SDWebImage', '~> 4.0'
 pod 'AFNetworking', '~> 3.0'
+pod 'BEMCheckBox'
 
   target 'VivreABerlinTests' do
     inherit! :search_paths
