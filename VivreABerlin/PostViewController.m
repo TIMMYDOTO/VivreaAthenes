@@ -1599,9 +1599,14 @@
     }else{
         heightForObj = wkWebView.frame.size.height + wkWebView.frame.origin.y;
     }
-  
+    if (viewForContactForm) {
+         [practicalInfos setFrame:CGRectMake(0,  viewForContactForm.frame.origin.y+viewForContactForm.frame.size.height + 40, screenWidth, heightForPracticalInfos.size.height)];
+    }
+    else{
+        [practicalInfos setFrame:CGRectMake(0,  heightForObj, screenWidth, heightForPracticalInfos.size.height)];
+    }
    //40/////////////////////////////////400wkWebView.frame.size.height + wkWebView.frame.origin.y +
-    [practicalInfos setFrame:CGRectMake(0,  viewForContactForm.frame.origin.y+viewForContactForm.frame.size.height + 40, screenWidth, heightForPracticalInfos.size.height)];
+    
     NSLog(@"prac frame %@", NSStringFromCGRect(practicalInfos.frame));
 
     
