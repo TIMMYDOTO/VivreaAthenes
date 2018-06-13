@@ -156,6 +156,7 @@
                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityView.center = self.view.center;
     [activityView startAnimating];
+    
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
    
@@ -520,14 +521,14 @@
     [activityView startAnimating];
     activityView.frame = subm.frame;
     [activityView setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [mainScrollView addSubview:activityView];
+    [viewForContactForm addSubview:activityView];
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
 
     NSURL *url = [NSURL URLWithString:@"https://vivreathenes.com/wp-json/contact-form-7/v1/contact-forms/33036/feedback"] ;
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    NSString *params = [NSString stringWithFormat:@"your-name=%@&your-email=%@&your-dates=%@&your-number=%@&your-subject=%@&your-message=%@&terms=%@&terms-2=%@", textFieldForName.text,textFieldForEmail.text,textFieldForDates.text,textFieldForNumber.text,textFieldForSubject,textFieldForMessage,@"1",@"1"];
+    NSString *params = [NSString stringWithFormat:@"_wpcf7=%@&_wpcf7_version=%@&_wpcf7_locale=%@&_wpcf7_unit_tag=%@&_wpcf7_container_post=%@&your-name=%@&your-email=%@&your-dates=%@&your-number=%@&your-subject=%@&your-message=%@&terms=%@&terms-2=%@",_wpcf7,_wpcf7_version,_wpcf7_locale,_wpcf7_unit_tag,_wpcf7_container_post, textFieldForName.text,textFieldForEmail.text,textFieldForDates.text,textFieldForNumber.text,textFieldForSubject,textFieldForMessage,@"1",@"1"];
     NSLog(@"params %@", params);
 
 
@@ -548,13 +549,14 @@
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ([httpResponse statusCode] == 200) {
+            [textFieldForMessage resignFirstResponder];
             [self showMessage:[responseDict valueForKey:@"message"]];
-            textFieldForName.text = @"";
-            textFieldForEmail.text = @"";
-            textFieldForDates.text = @"";
-            textFieldForNumber.text = @"";
-            textFieldForSubject.text = @"";
-            textFieldForMessage.text = @"";
+//            textFieldForName.text = @"";
+//            textFieldForEmail.text = @"";
+//            textFieldForDates.text = @"";
+//            textFieldForNumber.text = @"";
+//            textFieldForSubject.text = @"";
+//            textFieldForMessage.text = @"";
              [textFieldForEmail.layer setBorderWidth:1.f];
             [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
             
@@ -774,7 +776,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     //this is a 'new window action' (aka target="_blank") > open this URL externally. If we´re doing nothing here, WKWebView will also just do nothing. Maybe this will change in a later stage of the iOS 8 Beta
-   
+     [self.view addSubview:activityView];
     decisionHandler(WKNavigationActionPolicyAllow);
     [activityView setHidden:NO];
     [blackCurtain setHidden:NO];
@@ -856,7 +858,7 @@
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
    
     
-//    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"href=\"#" withString:@""];
+    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"href=\"#" withString:@""];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
     
     
@@ -934,6 +936,21 @@
         
         NSLog(@"obj %@", obj);
         if ([[obj valueForKey:@"type"]isEqualToString:@"hidden"]) {
+            if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7"]) {
+                _wpcf7 = [obj valueForKey:@"value"];
+            }
+            else if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7_version"]) {
+                _wpcf7_version = [obj valueForKey:@"value"];
+            }
+                else if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7_locale"]) {
+                    _wpcf7_locale = [obj valueForKey:@"value"];
+                }
+                    else if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7_unit_tag"]) {
+                        _wpcf7_unit_tag = [obj valueForKey:@"value"];
+                    }
+                        else if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7_container_post"]) {
+                            _wpcf7_container_post = [obj valueForKey:@"value"];
+                        }
             
             
         }
@@ -1141,7 +1158,7 @@
     [textFieldForName resignFirstResponder];
 }
 
-    
+
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
     {
         NSInteger nextTag = textField.tag + 1;
@@ -1158,17 +1175,7 @@
     }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-//    blackCurtain = [[UIView alloc] init];
-//    [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
-//    [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
-//    [self.view addSubview:blackCurtain];
-//
-//
-//    activityView = [[UIActivityIndicatorView alloc]
-//                    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    activityView.center = self.view.center;
-//    [activityView startAnimating];
-//    [self.view addSubview:activityView];
+
      [[UIApplication sharedApplication] openURL:URL];
     return YES; // Return NO if you don't want iOS to open the link
 }
