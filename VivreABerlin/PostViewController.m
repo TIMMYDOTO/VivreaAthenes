@@ -135,7 +135,7 @@
     UITextField *textFieldForDates;
     UITextField *textFieldForNumber;
     UITextField *textFieldForSubject;
-    UITextField *textFieldForMessage;
+    UITextView *textFieldForMessage;
     
 }
 
@@ -1039,16 +1039,16 @@
             [yourMessage setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourMessage sizeToFit];
             [viewForContactForm addSubview:yourMessage];
-            textFieldForMessage = [[UITextField alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
+            textFieldForMessage = [[UITextView alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
             [textFieldForMessage setBackgroundColor:[UIColor whiteColor]];
             [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForMessage.layer setBorderWidth:1.0];
             [textFieldForMessage.layer setCornerRadius:4.0f];
-            textFieldForMessage.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+//            textFieldForMessage.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
             [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 4)];
-            [textFieldForMessage setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForMessage setLeftView:spacerView];
+//        [textFieldForMessage setLeftViewMode:UITextFieldViewModeAlways];
+//            [textFieldForMessage setLeftView:spacerView];
             
             [viewForContactForm addSubview:textFieldForMessage];
             heightForObj = heightForObj + 235;
