@@ -128,10 +128,7 @@
     UILabel *yourMessage;
     BEMCheckBox *ckeckbox;
     BEMCheckBox *ckeckbox2;
-    
-    
-    
-    
+
     
     UITextField *textFieldForName;
     UITextField *textFieldForEmail;
@@ -439,7 +436,7 @@
 
 - (IBAction)submit:(UIButton *)sender {
  
-    if (textFieldForName.text.length == 0 || textFieldForEmail.text.length == 0 || textFieldForDates.text.length == 0 || textFieldForNumber.text.length == 0 || [self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForSubject.text.length == 0 || textFieldForMessage.text.length == 0) {
+    if (textFieldForName.text.length == 0 || textFieldForEmail.text.length == 0 || textFieldForDates.text.length == 0 || textFieldForNumber.text.length == 0 || [self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForSubject.text.length == 0 || textFieldForMessage.text.length == 0 || !ckeckbox.on || !ckeckbox2.on) {
         if([self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForEmail.text.length == 0){
             
             
