@@ -18,6 +18,9 @@
 #import "OLGhostAlertView.h"
 #import "BEMCheckBox.h"
 #import "PostModel.h"
+#import "TextFieldWithID.h"
+#import "TextViewWithID.h"
+
 
 @interface PostViewController (){
     OLGhostAlertView *demo;
@@ -40,7 +43,7 @@
     __weak IBOutlet UILabel *vendrediSchedule;
     
     UIView *viewForContactForm;
-    WKWebView *wkWebViewForm;
+ 
     __weak IBOutlet UILabel *samediSchedule;
     
     __weak IBOutlet UILabel *dimancheSchedule;
@@ -117,26 +120,33 @@
     NSString *_wpcf7_locale;
     NSString *_wpcf7_unit_tag;
     NSString *_wpcf7_container_post;
-    
+   
     
     
     UILabel *yourName;
     UILabel *yourEmail;
+    UILabel *date149;
+    UILabel *date150;
     UILabel *yourDates;
     UILabel *yourNumber;
     UILabel *yourSubject;
     UILabel *yourMessage;
+    
     BEMCheckBox *ckeckbox;
     BEMCheckBox *ckeckbox2;
 
     
-    UITextField *textFieldForName;
-    UITextField *textFieldForEmail;
-    UITextField *textFieldForDates;
-    UITextField *textFieldForNumber;
-    UITextField *textFieldForSubject;
-    UITextView *textFieldForMessage;
+    TextFieldWithID *textFieldForName;
+    TextFieldWithID *textFieldForEmail;
+    TextFieldWithID *textFieldForDate149;
+    TextFieldWithID *textFieldForDate150;
+    TextFieldWithID *textFieldForDates;
+    TextFieldWithID *textFieldForNumber;
+    TextFieldWithID *textFieldForSubject;
+    TextViewWithID *textFieldForMessage;
     
+    NSString *path;
+    NSMutableArray *arrOfFormFields;
 }
 
 @end
@@ -145,13 +155,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//Hello world
+
     blackCurtain = [[UIView alloc] init];
     [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
     [blackCurtain setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
     [self.view addSubview:blackCurtain];
     
-    
+   
     activityView = [[UIActivityIndicatorView alloc]
                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityView.center = self.view.center;
@@ -173,9 +183,9 @@
         self.arrOfId = [[NSMutableArray alloc] init];
     }
     
-//    arrOfId = [[NSUserDefaults standardUserDefaults]objectForKey:@"arrOfId"];
+
     
-    
+    arrOfFormFields = [NSMutableArray array];
     numberOfTags = [[NSNumber alloc]init];
     arrayOfSchedule = [[NSMutableArray alloc] init];
     arrayUsedInTable = [[NSMutableArray alloc] init];
@@ -186,7 +196,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-//    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
+//    [[GlobalVariables getInstance] setIdOfPost:@"36379"];
 
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -225,7 +235,7 @@
     changeFrameOnce1 = true;
     
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    double delayInSeconds = 7;
+    double delayInSeconds = 8;
    
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -388,19 +398,17 @@
 
 -(void)zoomingWKWebView:(UIPinchGestureRecognizer *)recongizer{
   NSLog(@"wkWebView.scrollView.frame.size.heighte %f", wkWebView.scrollView.contentSize.height);
-    if (recongizer.scale <= 2.0f) {
+
  
-        if (recongizer.scale > 1.0 && percent < 130) {
-            percent = percent + 1;
+        if (recongizer.scale > 1.0 && percent < 125) {
+            percent = percent + 0.6;
             NSString *javaStr = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.fontSize='%f%%'", percent];
 
             [wkWebView evaluateJavaScript:javaStr completionHandler:^(id _Nullable f, NSError * _Nullable error) {
-              
-                //                [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [height floatValue]-20)];
                 
                 [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, wkWebView.scrollView.contentSize.height)];
                
-                [viewForContactForm setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 30, screenWidth, 810)];
+                [viewForContactForm setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 40, screenWidth, heightForObj + 30)];
                 if (viewForContactForm == nil) {
                               [practicalInfos setFrame:CGRectMake(0, wkWebView.frame.origin.y + wkWebView.frame.size.height + 10, screenWidth, heightForPracticalInfos.size.height)];
                 }else{
@@ -421,10 +429,10 @@
                 contentRect.size.width = screenWidth;
                 contentRect.size.height = contentRect.size.height+40;
                 mainScrollView.contentSize = contentRect.size;
+        
             }];
             }
- 
-        }
+
  
     }
 
@@ -432,91 +440,64 @@
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return TRUE;
 }
+-(void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
+    [scrollView.pinchGestureRecognizer setEnabled:NO];
+}
 - (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    
+
     return nil;
 }
 
 - (IBAction)submit:(UIButton *)sender {
- 
-    if (textFieldForName.text.length == 0 || textFieldForEmail.text.length == 0 || textFieldForDates.text.length == 0 || textFieldForNumber.text.length == 0 || [self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForSubject.text.length == 0 || textFieldForMessage.text.length == 0 || !ckeckbox.on || !ckeckbox2.on) {
-
+    __block bool filledInCorrectly = true;
+    [arrOfFormFields enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UITextField *textField = (UITextField *)obj;
         
         
-        if([self NSStringIsValidEmail:textFieldForEmail.text] == NO || textFieldForEmail.text.length == 0){
-            
-            
-            [textFieldForEmail.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForEmail.layer setBorderWidth:1.5f];
-            
-        }
-        else{
-            [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForEmail.layer setBorderWidth:1.0];
-        }
-        
-        if (textFieldForName.text.length == 0) {
-            [textFieldForName.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForName.layer setBorderWidth:1.5f];
-            
-        }
-        
-        else{
-            [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForName.layer setBorderWidth:1.0];
-        }
-        if (textFieldForDates.text.length == 0) {
-            [textFieldForDates.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForDates.layer setBorderWidth:1.5f];
+        if (textField.text.length == 0 ) {
+           
+            [textField.layer setBorderColor:[UIColor redColor].CGColor];
+            [textField.layer setBorderWidth:1.5f];
+            filledInCorrectly = false;
             
         }
         else{
-            [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForDates.layer setBorderWidth:1.0];
+            [textField.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textField.layer setBorderWidth:1.0];
         }
-        if (textFieldForNumber.text.length == 0) {
-            [textFieldForNumber.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForNumber.layer setBorderWidth:1.5f];
-            
-        }
-        else{
-            [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForNumber.layer setBorderWidth:1.0];
-        }
-        
-        if (textFieldForSubject.text.length == 0) {
-            [textFieldForSubject.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForSubject.layer setBorderWidth:1.5f];
-            
-        }
-        else{
-            [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForSubject.layer setBorderWidth:1.0];
-        }
-        if (textFieldForMessage.text.length == 0) {
-            [textFieldForMessage.layer setBorderColor:[UIColor redColor].CGColor];
-            [textFieldForMessage.layer setBorderWidth:1.5f];
-            
-        }
-        else{
-            [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForMessage.layer setBorderWidth:1.0];
+        if (obj == textFieldForEmail) {
+            if ([self NSStringIsValidEmail:textFieldForEmail.text]) {
+                [textField.layer setBorderColor:[UIColor grayColor].CGColor];
+                [textField.layer setBorderWidth:1.0];
+                
+            }
+            else{
+                [textField.layer setBorderColor:[UIColor redColor].CGColor];
+                [textField.layer setBorderWidth:1.5f];
+                filledInCorrectly = false;
+            }
         }
         if (!ckeckbox.on) {
             ckeckbox.tintColor = [UIColor redColor];
-            
+            filledInCorrectly = false;
         }
         else{
-            ckeckbox.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
-            
+              ckeckbox.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
         }
         if (!ckeckbox2.on) {
             ckeckbox2.tintColor = [UIColor redColor];
-        }else{
-            ckeckbox2.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+            
+            filledInCorrectly = false;
         }
-        return;
-    }
+        else{
+              ckeckbox2.tintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
+        }
+        
+    }];
+
+    if (filledInCorrectly) {
+        
+    
     [subm setHidden:YES];
     [activityView startAnimating];
     activityView.frame = subm.frame;
@@ -525,10 +506,23 @@
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
 
-    NSURL *url = [NSURL URLWithString:@"https://vivreathenes.com/wp-json/contact-form-7/v1/contact-forms/33036/feedback"] ;
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [host stringByAppendingString:path]]];
+    
+    
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    NSString *params = [NSString stringWithFormat:@"_wpcf7=%@&_wpcf7_version=%@&_wpcf7_locale=%@&_wpcf7_unit_tag=%@&_wpcf7_container_post=%@&your-name=%@&your-email=%@&your-dates=%@&your-number=%@&your-subject=%@&your-message=%@&terms=%@&terms-2=%@",_wpcf7,_wpcf7_version,_wpcf7_locale,_wpcf7_unit_tag,_wpcf7_container_post, textFieldForName.text,textFieldForEmail.text,textFieldForDates.text,textFieldForNumber.text,textFieldForSubject,textFieldForMessage,@"1",@"1"];
+        
+    __block NSString *params = [NSString stringWithFormat:@"_wpcf7=%@&_wpcf7_version=%@&_wpcf7_locale=%@&_wpcf7_unit_tag=%@&_wpcf7_container_post=%@&",_wpcf7,_wpcf7_version,_wpcf7_locale,_wpcf7_unit_tag,_wpcf7_container_post];
+        [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+        
+        [arrOfFormFields enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            TextFieldWithID *textField = (TextFieldWithID *)obj;
+            NSLog(@"obj %@", obj);
+            params = [params stringByAppendingString:[NSString stringWithFormat:@"%@=%@&", textField.nameID,textField.text]];
+            
+            
+        }];
+        params = [params stringByAppendingString:@"terms=1&terms-2=1"];
     NSLog(@"params %@", params);
 
 
@@ -537,8 +531,6 @@
     [urlRequest addValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
     [urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
 
-    NSString *string = [[NSString alloc] initWithData:urlRequest.HTTPBody encoding:NSUTF8StringEncoding];
-    NSLog(@"url body %@", string);
 
     NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSLog(@"responce %@", response);
@@ -551,12 +543,14 @@
         if ([httpResponse statusCode] == 200) {
             [textFieldForMessage resignFirstResponder];
             [self showMessage:[responseDict valueForKey:@"message"]];
-//            textFieldForName.text = @"";
-//            textFieldForEmail.text = @"";
-//            textFieldForDates.text = @"";
-//            textFieldForNumber.text = @"";
-//            textFieldForSubject.text = @"";
-//            textFieldForMessage.text = @"";
+            
+            [arrOfFormFields enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                UITextField *textField = (UITextField *)obj;
+                textField.text = @"";
+            }];
+ 
+            [ckeckbox setOn:NO];
+            [ckeckbox2 setOn:NO];
              [textFieldForEmail.layer setBorderWidth:1.f];
             [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
             
@@ -578,8 +572,11 @@
     }];
      [dataTask resume];
     
+    }
+    else{
+        [self showMessage:@"Remplir touts les champs"];
+    }
 }
-
 
 
 -(void)getPost{
@@ -691,7 +688,8 @@
         }
     }];
     [dataTask resume];
-}
+    }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
      if(scrollView == mainScrollView){
@@ -921,17 +919,18 @@
 }
 
 -(void)settingContactForm{
-    viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 30, screenWidth, 810)];
+    viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, 0)];
     [mainScrollView addSubview:viewForContactForm];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
     title.text = [[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"] valueForKey:@"title"];
     
-     [title setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:15]];
+    [title setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:15]];
     [title sizeToFit];
     
      heightForObj = title.frame.size.height + title.frame.origin.y + 25;
     
     [viewForContactForm addSubview:title];
+    path = [[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"]valueForKey:@"route"];
     [[[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"]valueForKey:@"fields"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSLog(@"obj %@", obj);
@@ -962,19 +961,22 @@
             [yourName sizeToFit];
             [viewForContactForm addSubview:yourName];
             
-            textFieldForName = [[UITextField alloc]initWithFrame:CGRectMake(10, yourName.frame.origin.y+20, 200, 20)];
-            [textFieldForName setTag:1];
+            textFieldForName = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, yourName.frame.origin.y+20, 200, 20)];
+            [textFieldForName setTag:idx];
             textFieldForName.delegate = self;
             [textFieldForName setBackgroundColor:[UIColor whiteColor]];
             [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForName.layer setBorderWidth:1.0];
             [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            
+            [textFieldForName setNameID: [obj valueForKey:@"name"]];
+
             [textFieldForName.layer setCornerRadius:4.0f];
             textFieldForName.returnKeyType = UIReturnKeyNext;
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForName setLeftViewMode:UITextFieldViewModeAlways];
             [textFieldForName setLeftView:spacerView];
-            
+            [arrOfFormFields addObject:textFieldForName];
             [viewForContactForm addSubview:textFieldForName];
             heightForObj = heightForObj + 70;
         }
@@ -984,11 +986,14 @@
             [yourEmail setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourEmail sizeToFit];
             [viewForContactForm addSubview:yourEmail];
-            textFieldForEmail = [[UITextField alloc]initWithFrame:CGRectMake(10, yourEmail.frame.origin.y+20, 200, 20)];
+            textFieldForEmail = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, yourEmail.frame.origin.y+20, 200, 20)];
             textFieldForEmail.delegate = self;
             [textFieldForEmail setBackgroundColor:[UIColor whiteColor]];
             [textFieldForEmail.layer setBorderColor:[UIColor grayColor].CGColor];
-            [textFieldForEmail setTag:2];
+            [textFieldForEmail setTag:idx];
+            
+            [textFieldForEmail setNameID: [obj valueForKey:@"name"]];
+            
             textFieldForEmail.keyboardType = UIKeyboardTypeEmailAddress;
             [textFieldForEmail.layer setBorderWidth:1.0];
             [textFieldForEmail.layer setCornerRadius:4.0f];
@@ -997,30 +1002,104 @@
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForEmail setLeftViewMode:UITextFieldViewModeAlways];
             [textFieldForEmail setLeftView:spacerView];
-            
+            [arrOfFormFields addObject:textFieldForEmail];
             [viewForContactForm addSubview:textFieldForEmail];
             heightForObj = heightForObj + 70;
         }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"date-149"]){
+            date149 = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            date149.text = [obj valueForKey:@"label"];
+            [date149 setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [date149 sizeToFit];
+            [viewForContactForm addSubview:date149];
+            textFieldForDate149 = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, date149.frame.origin.y+20, 200, 20)];
+            textFieldForDate149.delegate = self;
+            [textFieldForDate149 setNameID: [obj valueForKey:@"name"]];
+            [textFieldForDate149 setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForDate149.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForDate149.layer setBorderWidth:1.0];
+            [textFieldForDate149.layer setCornerRadius:4.0f];
+            [textFieldForDate149 setTag:idx];
+             [textFieldForDate149  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForDate149 setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForDate149 setLeftView:spacerView];
+              [arrOfFormFields addObject:textFieldForDate149];
+            [viewForContactForm addSubview:textFieldForDate149];
+            if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
+                UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                [datePicker setDate:[NSDate date]];
+                   [datePicker setTag:2];
+                datePicker.datePickerMode = UIDatePickerModeDate;
+                [datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
+                [textFieldForDate149 setInputView:datePicker];
+            }
+            heightForObj = heightForObj + 70;
+        }
+        else if([[obj valueForKey:@"name"] isEqualToString:@"date-150"]){
+            date150 = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
+            date150.text = [obj valueForKey:@"label"];
+            [date150 setFont:[UIFont fontWithName:@"Gudea" size:15]];
+            [date150 sizeToFit];
+            [viewForContactForm addSubview:date150];
+            textFieldForDate150 = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, date150.frame.origin.y+20, 200, 20)];
+            textFieldForDate150.delegate = self;
+            [textFieldForDate150 setBackgroundColor:[UIColor whiteColor]];
+            [textFieldForDate150.layer setBorderColor:[UIColor grayColor].CGColor];
+            [textFieldForDate150.layer setBorderWidth:1.0];
+            [textFieldForDate150.layer setCornerRadius:4.0f];
+            [textFieldForDate150 setTag:idx];
+            
+            [textFieldForDate150 setNameID: [obj valueForKey:@"name"]];
+            
+            [textFieldForDate150  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
+            [textFieldForDate150 setLeftViewMode:UITextFieldViewModeAlways];
+            [textFieldForDate150 setLeftView:spacerView];
+            [arrOfFormFields addObject:textFieldForDate150];
+            [viewForContactForm addSubview:textFieldForDate150];
+            if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
+                UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                [datePicker setDate:[NSDate date]];
+                [datePicker setTag:3];
+                datePicker.datePickerMode = UIDatePickerModeDate;
+                [datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
+                [textFieldForDate150 setInputView:datePicker];
+            }
+            heightForObj = heightForObj + 70;
+        }
+        
         else if([[obj valueForKey:@"name"] isEqualToString:@"your-dates"]){
             yourDates = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
             yourDates.text = [obj valueForKey:@"label"];
             [yourDates setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourDates sizeToFit];
             [viewForContactForm addSubview:yourDates];
-            textFieldForDates = [[UITextField alloc]initWithFrame:CGRectMake(10, yourDates.frame.origin.y+20, 200, 20)];
+            textFieldForDates = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, yourDates.frame.origin.y+20, 200, 20)];
             textFieldForDates.delegate = self;
             [textFieldForDates setBackgroundColor:[UIColor whiteColor]];
             [textFieldForDates.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForDates.layer setBorderWidth:1.0];
             [textFieldForDates.layer setCornerRadius:4.0f];
+            [textFieldForDates setNameID: [obj valueForKey:@"name"]];
+            
              textFieldForDates.returnKeyType = UIReturnKeyNext;
-             [textFieldForDates setTag:3];
+             [textFieldForDates setTag:idx];
             [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            [arrOfFormFields addObject:textFieldForDates];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForDates setLeftViewMode:UITextFieldViewModeAlways];
             [textFieldForDates setLeftView:spacerView];
             
             [viewForContactForm addSubview:textFieldForDates];
+            if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
+                UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                [datePicker setDate:[NSDate date]];
+                datePicker.datePickerMode = UIDatePickerModeDate;
+            [datePicker setTag:1];
+                [datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
+                [textFieldForDates setInputView:datePicker];
+            }
             heightForObj = heightForObj + 70;
         }
         else if([[obj valueForKey:@"name"] isEqualToString:@"your-number"]){
@@ -1029,19 +1108,22 @@
             [yourNumber setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourNumber sizeToFit];
             [viewForContactForm addSubview:yourNumber];
-            textFieldForNumber = [[UITextField alloc]initWithFrame:CGRectMake(10, yourNumber.frame.origin.y+20, 140, 20)];
+            textFieldForNumber = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, yourNumber.frame.origin.y+20, 140, 20)];
             textFieldForNumber.delegate = self;
             [textFieldForNumber setBackgroundColor:[UIColor whiteColor]];
             textFieldForNumber.keyboardType = UIKeyboardTypeNumberPad;
             [textFieldForNumber.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForNumber.layer setBorderWidth:1.0];
             [textFieldForNumber.layer setCornerRadius:4.0f];
-            [textFieldForNumber setTag:4];
+            [textFieldForNumber setTag:idx];
+            
+            [textFieldForNumber setNameID: [obj valueForKey:@"name"]];
+            
             [textFieldForNumber  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForNumber setLeftViewMode:UITextFieldViewModeAlways];
             [textFieldForNumber setLeftView:spacerView];
-            
+            [arrOfFormFields addObject:textFieldForNumber];
             [viewForContactForm addSubview:textFieldForNumber];
             heightForObj = heightForObj + 70;
         }
@@ -1051,15 +1133,17 @@
             [yourSubject setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourSubject sizeToFit];
             [viewForContactForm addSubview:yourSubject];
-            textFieldForSubject = [[UITextField alloc]initWithFrame:CGRectMake(10, yourSubject.frame.origin.y+20, 250, 20)];
+            textFieldForSubject = [[TextFieldWithID alloc]initWithFrame:CGRectMake(10, yourSubject.frame.origin.y+20, 250, 20)];
             textFieldForSubject.delegate = self;
             textFieldForSubject.returnKeyType = UIReturnKeyNext;
-            [textFieldForSubject setTag:5];
+            [textFieldForSubject setTag:idx];
+            [textFieldForSubject setNameID: [obj valueForKey:@"name"]];
+            
             [textFieldForSubject setBackgroundColor:[UIColor whiteColor]];
             [textFieldForSubject.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForSubject.layer setBorderWidth:1.0];
             [textFieldForSubject.layer setCornerRadius:4.0f];
-            
+             [arrOfFormFields addObject:textFieldForSubject];
             [textFieldForSubject  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
             [textFieldForSubject setLeftViewMode:UITextFieldViewModeAlways];
@@ -1074,15 +1158,16 @@
             [yourMessage setFont:[UIFont fontWithName:@"Gudea" size:15]];
             [yourMessage sizeToFit];
             [viewForContactForm addSubview:yourMessage];
-            textFieldForMessage = [[UITextView alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
+            textFieldForMessage = [[TextViewWithID alloc]initWithFrame:CGRectMake(10, yourMessage.frame.origin.y+20, 250, 200)];
             textFieldForMessage.delegate = self;
+            [textFieldForMessage setNameID: [obj valueForKey:@"name"]];
             textFieldForMessage.returnKeyType = UIReturnKeyGo;
             [textFieldForMessage setBackgroundColor:[UIColor whiteColor]];
             [textFieldForMessage.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForMessage.layer setBorderWidth:1.0];
             [textFieldForMessage.layer setCornerRadius:4.0f];
-            [textFieldForMessage setTag:6];
-
+            [textFieldForMessage setTag:idx];
+            [arrOfFormFields addObject:textFieldForMessage];
             [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
 
             
@@ -1143,8 +1228,40 @@
  
             [viewForContactForm addSubview:subm];
         }
-      
+//      NSLog(@"heightForObj %f",heightForObj);
     }];
+    
+    [viewForContactForm setFrame:CGRectMake(viewForContactForm.frame.origin.x, viewForContactForm.frame.origin.y, viewForContactForm.frame.size.width, heightForObj+30)];
+}
+-(void) dateTextField:(id)sender
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+      [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    if ([sender tag] == 1) {
+        
+        UIDatePicker *picker = (UIDatePicker*)textFieldForDates.inputView;
+        NSDate *eventDate = picker.date;
+        NSString *dateString = [dateFormat stringFromDate:eventDate];
+        textFieldForDates.text = [NSString stringWithFormat:@"%@",dateString];
+    }
+    else if ([sender tag] == 2){
+        UIDatePicker *picker = (UIDatePicker*)textFieldForDate149.inputView;
+        
+        NSDate *eventDate = picker.date;
+     
+        NSString *dateString = [dateFormat stringFromDate:eventDate];
+        textFieldForDate149.text = [NSString stringWithFormat:@"%@",dateString];
+    }
+    else if ([sender tag] == 3){
+        UIDatePicker *picker = (UIDatePicker*)textFieldForDate150.inputView;
+        
+        NSDate *eventDate = picker.date;
+        
+        NSString *dateString = [dateFormat stringFromDate:eventDate];
+        textFieldForDate150.text = [NSString stringWithFormat:@"%@",dateString];
+    }
+    
+
 }
 -(void)dismissKeyboard
 {

@@ -11,7 +11,7 @@
 
 
 // CHANGE EVERYTHING THAT HAS BERLIN IN IT. KEEP THE FORMAT . EX: Berlin.png -> Munich.png
-
+#define host @"https://vivreathenes.com"
 
 // SIDEBAR
 #define sideMenuLink  @"https://vivreathenes.com/wp-json/wp-api-menus/v2/menu-locations/primary"

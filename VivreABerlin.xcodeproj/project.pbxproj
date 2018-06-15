@@ -46,6 +46,8 @@
 		9A6BCD662074F670008DCFD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3D5EC31EA7864900DA4778 /* Assets.xcassets */; };
 		9A8ED64F20D155B4004216D4 /* Sechapper.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8ED64E20D155B1004216D4 /* Sechapper.png */; };
 		9A9C87532092227E00593596 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C87522092227D00593596 /* style.css */; };
+		9AAA616A20D3CD0300C2DD81 /* TextFieldWithID.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAA616920D3CD0300C2DD81 /* TextFieldWithID.m */; };
+		9AAA616D20D3CE7900C2DD81 /* TextViewWithID.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AAA616C20D3CE7900C2DD81 /* TextViewWithID.m */; };
 		9AD32EFB20CA9A820062B80B /* contact-form.js in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32EFA20CA9A810062B80B /* contact-form.js */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
 		9AEADF3E2091D21000854061 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF3D2091D21000854061 /* PostViewController.m */; };
@@ -371,6 +373,10 @@
 		9A8ED64E20D155B1004216D4 /* Sechapper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sechapper.png; path = "Assets.xcassets/menu icons/Sechapper.imageset/Sechapper.png"; sourceTree = "<group>"; };
 		9A9C87522092227D00593596 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		9A9C87542093339700593596 /* Gudea.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gudea.otf; sourceTree = "<group>"; };
+		9AAA616820D3CD0200C2DD81 /* TextFieldWithID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextFieldWithID.h; sourceTree = "<group>"; };
+		9AAA616920D3CD0300C2DD81 /* TextFieldWithID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFieldWithID.m; sourceTree = "<group>"; };
+		9AAA616B20D3CE7900C2DD81 /* TextViewWithID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewWithID.h; sourceTree = "<group>"; };
+		9AAA616C20D3CE7900C2DD81 /* TextViewWithID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewWithID.m; sourceTree = "<group>"; };
 		9AD32EFA20CA9A810062B80B /* contact-form.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "contact-form.js"; sourceTree = "<group>"; };
 		9AEADF38208CA55100854061 /* AstuceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AstuceVC.h; sourceTree = "<group>"; };
 		9AEADF39208CA55100854061 /* AstuceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AstuceVC.m; sourceTree = "<group>"; };
@@ -736,6 +742,10 @@
 				9A4369AA20A069570062B098 /* PostModel.m */,
 				9AEADF3C2091D21000854061 /* PostViewController.h */,
 				9AEADF3D2091D21000854061 /* PostViewController.m */,
+				9AAA616B20D3CE7900C2DD81 /* TextViewWithID.h */,
+				9AAA616C20D3CE7900C2DD81 /* TextViewWithID.m */,
+				9AAA616820D3CD0200C2DD81 /* TextFieldWithID.h */,
+				9AAA616920D3CD0300C2DD81 /* TextFieldWithID.m */,
 				9A278656209B248A00DB0FC3 /* SuggestionsCell.h */,
 				9A278657209B248A00DB0FC3 /* SuggestionsCell.m */,
 				F45D38321F95FE0E00048225 /* MainIPad.storyboard */,
@@ -1885,6 +1895,7 @@
 				F4F1EEFF1EB0A8F200004114 /* MenuCell.m in Sources */,
 				F460C1D21F0CDEDE0050CAA6 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				F482A3C81ECB2BB80095FA39 /* SimpleFilesCache.m in Sources */,
+				9AAA616D20D3CE7900C2DD81 /* TextViewWithID.m in Sources */,
 				F4D266BE1F44579000CA1700 /* AnnouncementCell.m in Sources */,
 				F49C7ADB1ECC6F69000209D6 /* DistrictsViewController.m in Sources */,
 				F49DCF321F2256BB007DB5BE /* MapCreditsController.m in Sources */,
@@ -1905,6 +1916,7 @@
 				8D3D5EB91EA7864900DA4778 /* main.m in Sources */,
 				F47F395B1F2DBE7B0035C48F /* AgendaArticlePopUp.m in Sources */,
 				F4D051661EB343E000011B0D /* lastPostCellHomeView.m in Sources */,
+				9AAA616A20D3CD0300C2DD81 /* TextFieldWithID.m in Sources */,
 				9A278658209B248A00DB0FC3 /* SuggestionsCell.m in Sources */,
 				F482A3C51ECB2BB10095FA39 /* DMCircularScrollView.m in Sources */,
 				F4B262D51F18E410002F9770 /* CatsSubCatsController.m in Sources */,
