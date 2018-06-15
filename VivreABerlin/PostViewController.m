@@ -196,7 +196,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-//    [[GlobalVariables getInstance] setIdOfPost:@"29015"];
+//    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
 
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -431,7 +431,7 @@
                 mainScrollView.contentSize = contentRect.size;
         
             }];
-            }
+        }
 
  
     }
@@ -789,7 +789,7 @@
     }
     NSLog(@"%@", navigationAction.request.URL.absoluteString);
     NSLog(@"%@", [NSString stringWithFormat:@"%@/tag/",host]);
-    if ([navigationAction.request.URL.absoluteString containsString:[NSString stringWithFormat:@"%@/tag/",httpHost]]) {
+    if ([navigationAction.request.URL.absoluteString containsString:[NSString stringWithFormat:@"%@/tag/",httpHost]] || [navigationAction.request.URL.absoluteString containsString:[NSString stringWithFormat:@"%@/tag/",host]] ) {
        
         NSString *tagStr = [navigationAction.request.URL.absoluteString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/tag/",httpHost] withString:@""];
         NSLog(@"%@", tagStr);
