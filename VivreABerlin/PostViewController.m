@@ -196,7 +196,7 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-//    [[GlobalVariables getInstance] setIdOfPost:@"36379"];
+//    [[GlobalVariables getInstance] setIdOfPost:@"29015"];
 
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         NSLog(@"local");
@@ -787,7 +787,24 @@
     if (![navigationAction.request.URL.absoluteString containsString:@"http"]) {
         return nil;
     }
-  
+    NSLog(@"%@", navigationAction.request.URL.absoluteString);
+    NSLog(@"%@", [NSString stringWithFormat:@"%@/tag/",host]);
+    if ([navigationAction.request.URL.absoluteString containsString:[NSString stringWithFormat:@"%@/tag/",httpHost]]) {
+       
+        NSString *tagStr = [navigationAction.request.URL.absoluteString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@/tag/",httpHost] withString:@""];
+        NSLog(@"%@", tagStr);
+                [GlobalVariables getInstance].slugName = tagStr;
+        
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ComingFromAgendaTag"];
+                [GlobalVariables getInstance].backGroundImageTag = nil;
+        
+                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",tagStr] forKey:@"ComingFromPostTag"];
+        
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"CatsSubCatsController"]];
+        return nil;
+    }
+    
+    
     if (!navigationAction.targetFrame.isMainFrame) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSError *error = nil;
@@ -797,7 +814,7 @@
                                                          usedEncoding:&encoding
                                                                 error:&error];
         
-        
+       
         NSArray *listItems = [my_string componentsSeparatedByString:@"<link rel='shortlink' href='https://vivreathenes.com/?p="];
         if ([navigationAction.request.URL.absoluteString containsString:@"vivreathenes.com"] == false) {
 
@@ -809,6 +826,9 @@
 
             return nil;
         }
+//
+
+        
         NSArray *listItems2 = [listItems[1] componentsSeparatedByString:@"' />"];
          NSString *foundedId = listItems2[0];
         
