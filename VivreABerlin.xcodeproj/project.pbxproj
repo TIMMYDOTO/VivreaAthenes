@@ -1412,13 +1412,14 @@
 					};
 					8D3D5ECC1EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					8D3D5ED71EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = GBTHA95GEH;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					F44D79DA1FA34BC50024FB17 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -2147,11 +2148,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C4B814563A25352CE3211CC /* Pods-VivreABerlinTests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VivreABerlin.app/VivreABerlin";
 			};
 			name = Debug;
 		};
@@ -2159,11 +2161,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C73F618EDD1464BF4ECE572 /* Pods-VivreABerlinTests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VivreABerlin.app/VivreABerlin";
 			};
 			name = Release;
 		};
@@ -2177,6 +2180,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = VivreABerlin;
 			};
 			name = Debug;
 		};
@@ -2190,6 +2194,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = VivreABerlin;
 			};
 			name = Release;
 		};
