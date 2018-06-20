@@ -633,7 +633,7 @@ finish: return result;
     static NSString *CellIdentifier = @"CatsSubCatsCell";
     
     CatsSubCatsCell *cell = [self.ticketTable dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    NSLog(@"fds%@", [NSURL URLWithString:[arrayUsedInTable[indexPath.row ] valueForKey:@"thumbnail_url"]]);
     
     [cell.articleImage loadImageFromURL: [NSURL URLWithString:[arrayUsedInTable[indexPath.row ] valueForKey:@"thumbnail_url"]] placeholderImage: [UIImage imageNamed:@"PlaceHolderImage.png"] cachingKey:[NSString stringWithFormat:@"%@Thumbnail",[arrayUsedInTable[indexPath.row ] valueForKey:@"id"]]];
     

@@ -144,7 +144,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="iGf-X6-XHe">
+                                    <view hidden="YES" contentMode="scaleToFill" id="iGf-X6-XHe">
                                         <rect key="frame" x="48" y="572" width="275" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -169,7 +169,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c3W-0S-bp3">
                                                 <rect key="frame" x="221" y="21" width="46" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="arrow down gray"/>
+                                                <state key="normal" backgroundImage="arrow up gray"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4699,7 +4699,6 @@ gestion de votre annonce sera expédié à cette adresse.</string>
         <image name="announcementLogo.png" width="45" height="57"/>
         <image name="announcementSearch.png" width="60" height="60"/>
         <image name="arrow down" width="225" height="225"/>
-        <image name="arrow down gray" width="225" height="225"/>
         <image name="arrow up" width="225" height="225"/>
         <image name="arrow up gray" width="225" height="225"/>
         <image name="backButtonImage.png" width="74" height="66"/>

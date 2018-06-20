@@ -136,7 +136,7 @@
     
     
     offlineHomeDictonary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"homeDictionary"];
-    
+    NSLog(@"offlineHomeDictonary %@", offlineHomeDictonary);
     sliderContentText = [[NSMutableArray alloc]init];
     sliderPostTitles = [[NSMutableArray alloc] init];
     sliderImagesUrls = [[NSMutableArray alloc]init];
@@ -792,7 +792,7 @@
         NSString *stringWithoutSpaces = [lastPostsColors[indexPath.row]
                                          stringByReplacingOccurrencesOfString:@"#" withString:@""];
         cell.cellBackground.backgroundColor = [self colorWithHexString:stringWithoutSpaces];
-        
+        NSLog(@"image url%@", [NSURL URLWithString: lastPostsUrlImages[indexPath.row]]);
         [cell.lastPostPicutreTable loadImageFromURL: [NSURL URLWithString: lastPostsUrlImages[indexPath.row]] placeholderImage: [UIImage imageNamed:@"PlaceHolderImage.png"] cachingKey: [NSString stringWithFormat:@"%@Thumbnail",[[[offlineHomeDictonary valueForKey:@"categories"] valueForKey:@"latest_post"]valueForKey:@"ID"][indexPath.row]]];
         
         

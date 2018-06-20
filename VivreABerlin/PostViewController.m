@@ -1634,6 +1634,7 @@
     
 }
 
+
 -(void)tapedOnAddress:(UITapGestureRecognizer *)sender {
     UIView *view = sender.view;
    UITextView *clickedView =  (UITextView *)view;
@@ -1966,7 +1967,7 @@ else{
  
         [mainScrollView addSubview:self.tableView];
         
-        
+   
         [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5*suggestionsCount)];
         [self.tableView setScrollEnabled:NO];
 
@@ -2154,35 +2155,38 @@ else{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ZoomMapPage"]];
     }
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
-
-        [GlobalVariables getInstance].idOfPost = [NSString stringWithFormat:@"%@", postModel.identifier[indexPath.row]];
-        [GlobalVariables getInstance].comingFrom = @"Posts";
-        [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
-        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-    }
-    else{
-    NSInteger tag = indexPath.row;
-    NSLog(@"%lu", tag);
-    [GlobalVariables getInstance].idOfPost = [[postInfo valueForKey:@"suggested_posts"] valueForKey:@"id"][tag];
-    NSLog(@"[GlobalVariables getInstance].idOfPost %@ ", [GlobalVariables getInstance].idOfPost);
-    [GlobalVariables getInstance].comingFrom = @"Posts";
-    [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
-    [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-    }
+    NSLog(@"gfidok45");
 }
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+//
+//        [GlobalVariables getInstance].idOfPost = [NSString stringWithFormat:@"%@", postModel.identifier[indexPath.row]];
+//        [GlobalVariables getInstance].comingFrom = @"Posts";
+//        [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
+//        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+//    }
+//    else{
+//    NSInteger tag = indexPath.row;
+//    NSLog(@"%lu", tag);
+//    [GlobalVariables getInstance].idOfPost = [[postInfo valueForKey:@"suggested_posts"] valueForKey:@"id"][tag];
+//    NSLog(@"[GlobalVariables getInstance].idOfPost %@ ", [GlobalVariables getInstance].idOfPost);
+//    [GlobalVariables getInstance].comingFrom = @"Posts";
+//    [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
+//    [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
+//    }
+//}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
-        return [postModel.suggestionsCount integerValue];
+        return postModel.suggestionsCount.integerValue;
     }
     return suggestionsCount;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SuggestionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
         cell.thumbnail.image = postModel.thumbnail[indexPath.row];
         cell.title.text = postModel.title[indexPath.row];

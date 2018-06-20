@@ -264,11 +264,12 @@
                 
                 arrayForTable = [[NSMutableArray alloc] init];
                 NSLog(@"count: %lu", [[offlineMenuArray valueForKey:@"parent"]count]);
+                  NSLog(@"arrayForTable %@", arrayForTable);
                 for ( int i = 0 ; i<=8;i ++) {
                     if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0)
                     {
                         [arrayForTable addObject:offlineMenuArray[i]];
-                        NSLog(@"arrayForTable %@", arrayForTable);
+                      
                     }
                     
                 }
@@ -839,6 +840,7 @@
     NSURLResponse *response = NULL;
     NSError *requestError = NULL;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&requestError];
+
     NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     
     

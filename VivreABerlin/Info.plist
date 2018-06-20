@@ -31,7 +31,7 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.4.4</string>
+	<string>1.4.7</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -44,7 +44,7 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string></string>
+	<string>Please provide calendar</string>
 	<key>NSCameraUsageDescription</key>
 	<string>En autorisant l’app à utiliser l’appareil photo, vous pourrez prendre des photos ou en choisir dans votre photothèque</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

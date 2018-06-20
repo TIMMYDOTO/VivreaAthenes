@@ -521,7 +521,13 @@ JTMaterialSpinner * spinnerView;
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    [astuceView setFrame:CGRectMake(screenWidth/2 - 137, screenHeight - astuceView.frame.size.height - 10, 275, 87)];
+    if (spinnerView.isAnimating) {
+        [astuceView setHidden:YES];
+      }
+    else{
+        [astuceView setHidden:NO];
+    }
+      [astuceView setFrame:CGRectMake(screenWidth/2 - 137, screenHeight - astuceView.frame.size.height - 10, 275, 87)];
     astuceView.layer.cornerRadius = 13;
     astuceView.clipsToBounds = true;
 }

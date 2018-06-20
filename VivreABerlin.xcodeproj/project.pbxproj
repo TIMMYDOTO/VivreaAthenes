@@ -1396,7 +1396,7 @@
 				TargetAttributes = {
 					8D3D5EB31EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GBTHA95GEH;
+						DevelopmentTeam = HY6ZSGAUP6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1412,18 +1412,19 @@
 					};
 					8D3D5ECC1EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HY6ZSGAUP6;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					8D3D5ED71EA7864900DA4778 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GBTHA95GEH;
+						DevelopmentTeam = HY6ZSGAUP6;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8D3D5EB31EA7864900DA4778;
 					};
 					F44D79DA1FA34BC50024FB17 = {
 						CreatedOnToolsVersion = 9.0.1;
-						DevelopmentTeam = GBTHA95GEH;
+						DevelopmentTeam = HY6ZSGAUP6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -2101,7 +2102,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2127,7 +2128,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2148,7 +2149,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C4B814563A25352CE3211CC /* Pods-VivreABerlinTests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
@@ -2161,7 +2162,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C73F618EDD1464BF4ECE572 /* Pods-VivreABerlinTests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				INFOPLIST_FILE = VivreABerlinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinTests;
@@ -2174,7 +2175,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DA64EFFF69C62255BFE4A6F /* Pods-VivreABerlinUITests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				INFOPLIST_FILE = VivreABerlinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
@@ -2188,7 +2189,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2797CBB7FA1B4C8EF4ACDDB9 /* Pods-VivreABerlinUITests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				INFOPLIST_FILE = VivreABerlinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MindsBox.VivreABerlinUITests;
@@ -2207,7 +2208,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2228,7 +2229,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GBTHA95GEH;
+				DEVELOPMENT_TEAM = HY6ZSGAUP6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
