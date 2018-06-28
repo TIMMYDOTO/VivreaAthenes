@@ -587,27 +587,7 @@ finish: return result;
         if(scrollView.contentOffset.y < 0)
             [scrollView setContentOffset:CGPointMake(0, 0)];
     }
-    //        else if(changeFrameOnce ==  false && scrollView.contentOffset.y  < returnBtn.frame.origin.y - originOfMenuButton - returnBtn.frame.size.height * 1.5){
-    //
-    //            [UIView animateWithDuration:0.3 animations:^{
-    //
-    //                self.openSideMenu.alpha = 1;
-    //
-    //            }completion:^(BOOL finished) {
-    //
-    //                [UIView animateWithDuration:0.2 animations:^{
-    //
-    //                    self.bigButton.hidden = NO;
-    //
-    //
-    //
-    //                }];
-    //
-    //            }];
-    //            changeFrameOnce = true;
-    //        }
-    //
-    //    }
+
     
 }
 

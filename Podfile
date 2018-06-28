@@ -13,6 +13,8 @@ pod 'OneSignal', '>= 2.5.2', '< 3.0'
 pod 'SDWebImage', '~> 4.0'
 pod 'AFNetworking', '~> 3.0'
 pod 'BEMCheckBox'
+pod 'Fabric'
+pod 'Crashlytics'
 
   target 'VivreABerlinTests' do
     inherit! :search_paths

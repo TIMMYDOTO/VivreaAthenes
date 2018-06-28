@@ -22,6 +22,7 @@
 #import "TextViewWithID.h"
 
 
+
 @interface PostViewController (){
     OLGhostAlertView *demo;
     __weak IBOutlet UILabel *practicalInfosLabel;
@@ -155,6 +156,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+    
+
 
     blackCurtain = [[UIView alloc] init];
     [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
@@ -169,11 +173,7 @@
     
     [self.view addSubview:activityView];
     unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
-   
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    
-    [mainScrollView  addGestureRecognizer:tap];
-    
+
     
     thumbnailArr = [[NSMutableArray alloc] init];
     titleArr = [[NSMutableArray alloc] init];
@@ -196,11 +196,11 @@
     starImageArr = [[NSMutableArray alloc] initWithObjects:starImage1, starImage2, starImage3, starImage4, starImage5, nil];
     
     NSLog(@"%@ id OF POST",[GlobalVariables getInstance].idOfPost);
-//    [[GlobalVariables getInstance] setIdOfPost:@"33023"];
 
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
         NSLog(@"local");
-        postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]];
+        postModel = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]];
         
         for (int i = 0; i < [postModel.numberOfStars intValue]; i++) {
             [starImageArr[i] setImage:[UIImage imageNamed:@"starColour.png"]];
@@ -235,13 +235,13 @@
     changeFrameOnce1 = true;
     
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    double delayInSeconds = 8;
+    double delayInSeconds = 9;
    
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         NSString *idOFPost = [GlobalVariables getInstance].idOfPost;
         [SimpleFilesCache saveToCacheDirectory:[NSKeyedArchiver archivedDataWithRootObject:postModel] withName:[NSString stringWithFormat:@"%@", idOFPost]];
-        NSLog(@"model is saved");
+        
         [self showMessage:@"Article enregistré!"];
         [self.view addSubview:demo];
         demo.center = self.view.center;
@@ -310,11 +310,10 @@
     
     [mainScrollView addSubview:wkWebView];
   
-
 }
 - (IBAction)tapOnHeader:(UITapGestureRecognizer *)sender {
     
- if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+ if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
      [SimpleFilesCache saveImageToCacheDirectory:postModel.imageHeader withName:@"imgHeader"];
      
       [[NSUserDefaults standardUserDefaults]setObject:postModel.authorName forKey:@"authorLblTxt"];
@@ -425,6 +424,7 @@
                 CGRect contentRect = CGRectZero;
                 for (UIView *view in mainScrollView.subviews) {
                     contentRect = CGRectUnion(contentRect, view.frame);
+                   
                 }
                 contentRect.size.width = screenWidth;
                 contentRect.size.height = contentRect.size.height+40;
@@ -818,23 +818,18 @@
         NSArray *listItems = [my_string componentsSeparatedByString:@"<link rel='shortlink' href='https://vivreathenes.com/?p="];
         if ([navigationAction.request.URL.absoluteString containsString:@"vivreathenes.com"] == false) {
 
-           
-            
-     
             [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
             
 
             return nil;
         }
-//
-
         
         NSArray *listItems2 = [listItems[1] componentsSeparatedByString:@"' />"];
          NSString *foundedId = listItems2[0];
         
     
         [self.arrOfId addObject:[GlobalVariables getInstance].idOfPost];
-//        [[NSUserDefaults standardUserDefaults]setObject:arrOfId forKey:@"arrOfId"];
+
         NSLog(@"foundedId %@", foundedId);
         NSDictionary *dict = [NSDictionary dictionaryWithObject:self.arrOfId forKey:@"arrOfId"];
         
@@ -875,18 +870,19 @@
 
     htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
    
+
     
-    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"href=\"#" withString:@""];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
-    
-    
+
     NSString *cssString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-   finalString = [cssString stringByAppendingString:htmlStr];
     
-   
+    
+    
+   finalString = [cssString stringByAppendingString:htmlStr];
+
+    finalString = [finalString stringByReplacingOccurrencesOfString:@"<link-style><a target=\"_blank\" href=\"#" withString:@"<a target=\"_blank\" =\"#"];
+    
     NSLog(@"finalString %@", finalString);
-
-
       [wkWebView loadHTMLString:finalString baseURL:[NSBundle mainBundle].bundleURL];
 
    
@@ -896,7 +892,7 @@
     [activityView setHidden:YES];
     [blackCurtain setHidden:YES];
 
-    [self performSelector:@selector(finishedLoading) withObject:nil afterDelay:0.2];
+   [self performSelector:@selector(finishedLoading) withObject:nil afterDelay:0.2];
     
 }
 - (IBAction)getBack:(UIButton *)sender {
@@ -940,7 +936,14 @@
 
 -(void)settingContactForm{
     viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, 0)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    //
+
+        [viewForContactForm  addGestureRecognizer:tap];
+    
+    [viewForContactForm setUserInteractionEnabled:YES];
     [mainScrollView addSubview:viewForContactForm];
+   
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
     title.text = [[[postInfo valueForKey:@"practical_infos"]valueForKey:@"contact_form"] valueForKey:@"title"];
     
@@ -1283,10 +1286,10 @@
     
 
 }
+
 -(void)dismissKeyboard
 {
    
-    
     [textFieldForMessage resignFirstResponder];
     [textFieldForSubject resignFirstResponder];
     [textFieldForNumber resignFirstResponder];
@@ -1322,10 +1325,10 @@
 -(void)settingPracticalInfos:(NSMutableArray *)arraOfInfosObj arrayOfInfosImg:(NSMutableArray *)arrayOfInfosImg{
 
     if (arraOfInfosObj && arrayOfInfosImg) {
-        heightOfObj = 70;
+        heightOfObj = 60;
         [arraOfInfosObj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:arrayOfInfosImg[idx]]];
-//            practicalInfosLabel.text =  @"Infos Pratiques";
+
             if ([obj isKindOfClass:[UIView class]]) {
                 [self setttingSchedule:postModel.arrayOfSchedule];
                 
@@ -1342,19 +1345,36 @@
                     lbl.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
                     
                 }
+                if ([obj containsString:@"adrs"]) {
+                    
+                    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]init];
+                    //from local
+                    [tapGesture addTarget:self action:@selector(tapedOnAddress:) ];
+                   
+                    
+                    [lbl setUserInteractionEnabled:YES];
+                    [lbl addGestureRecognizer:tapGesture];
+                    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:[lbl.text substringFromIndex:4]];
+                    [attributeString addAttribute:NSUnderlineStyleAttributeName
+                                            value:[NSNumber numberWithInt:1]
+                                            range:(NSRange){0,[attributeString length]}];
+                    lbl.attributedText = attributeString;
+  
+               
+                }
                 lbl.textContainer.maximumNumberOfLines = 2;
                 lbl.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
                 [imgView setFrame:CGRectMake(10, heightOfObj, 22, 25)];
                 
                 if ([arrayOfInfosImg[idx] isEqualToString:@"phone"]) {
-                    [imgView setFrame:CGRectMake(14, heightOfObj, 20, 25)];
+                [imgView setFrame:CGRectMake(14, heightOfObj, 15, 25)];
 //
                 }
                 if ([arrayOfInfosImg[idx] isEqualToString:@"location"]) {
-                    [imgView setFrame:CGRectMake(14, heightOfObj, 23, 27.5)];
+                   [imgView setFrame:CGRectMake(14, heightOfObj, 17, 27.5)];
                 }
                 if ([arraOfInfosObj[idx] isEqualToString:@"quartier"]) {
-                    [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
+                   [imgView setFrame:CGRectMake(14, heightOfObj, 20, 15)];
                 }
                 
                 if([[arraOfInfosObj objectAtIndex:idx] containsString:@"XYZ"]) {
@@ -1387,11 +1407,11 @@
 
                 [practicalInfos addSubview:imgView];
                 [practicalInfos addSubview:lbl];
-                [practicalInfos bringSubviewToFront:imgView];
-                [practicalInfos bringSubviewToFront:lbl];
+         
                 
                 heightForPracticalInfos = practicalInfos.frame;
                 heightForPracticalInfos.size.height = lbl.frame.origin.y+lbl.frame.size.height;
+                 [practicalInfos setFrame:CGRectMake(0,  wkWebView.frame.size.height + wkWebView.frame.origin.y, screenWidth, heightForPracticalInfos.size.height)];
                 NSLog(@"1heightForPracticalInfos.size.height %f", heightForPracticalInfos.size.height);
             }
             
@@ -1564,10 +1584,12 @@
                 }
             if ([obj containsString:@"adrs"]) {
                 UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]init];
+                //from back end
                 [gesture addTarget:self action:@selector(tapedOnAddress:) ];
-//                gesture.delegate = self;
+
                 [lbl setUserInteractionEnabled:YES];
                 [lbl addGestureRecognizer:gesture];
+           
                 NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:[lbl.text substringFromIndex:4]];
                 [attributeString addAttribute:NSUnderlineStyleAttributeName
                                         value:[NSNumber numberWithInt:1]
@@ -1634,22 +1656,15 @@
     
 }
 
-
 -(void)tapedOnAddress:(UITapGestureRecognizer *)sender {
     UIView *view = sender.view;
    UITextView *clickedView =  (UITextView *)view;
-    NSLog(@"tapedOnAddress %@", clickedView.text);
+  
     NSString *url = [NSString stringWithFormat: @"https://www.google.com/maps/search/?api=1&query=%@",
                      [clickedView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
-
-//- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-//    // Do whatever you want here
-//    NSLog(@"%@", URL); // URL is an instance of NSURL of the tapped link
-//    return NO; // Return NO if you don't want iOS to open the link
-//}
 -(void)setttingSchedule:(NSMutableArray *)arrOfSchedule{
      bool opened = false;
     self.arrScheduleLabels = [[NSMutableArray alloc]initWithObjects:lundiSchedule, mardiSchedule, mercrediSchedule, jeudiSchedule, vendrediSchedule, samediSchedule, dimancheSchedule, nil];
@@ -1779,7 +1794,7 @@
 
 -(void)finishedLoading{
 
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]){
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName: [NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]){
         [wkWebView setFrame:CGRectMake(0, wkWebView.frame.origin.y, screenWidth, [postModel.heightForWKWebView floatValue])];
     }
     else{
@@ -1793,35 +1808,38 @@
     }
     if (viewForContactForm) {
          [practicalInfos setFrame:CGRectMake(0,  viewForContactForm.frame.origin.y+viewForContactForm.frame.size.height + 40, screenWidth, heightForPracticalInfos.size.height)];
+     
     }
     else{
-        [practicalInfos setFrame:CGRectMake(0,  heightForObj, screenWidth, heightForPracticalInfos.size.height)];
+        [practicalInfos setFrame:CGRectMake(0,  wkWebView.frame.size.height + wkWebView.frame.origin.y, screenWidth, heightForPracticalInfos.size.height)];
+
     }
-   //40/////////////////////////////////400wkWebView.frame.size.height + wkWebView.frame.origin.y +
-    
+ 
+    practicalInfos.layer.zPosition = 100.0;
     NSLog(@"prac frame %@", NSStringFromCGRect(practicalInfos.frame));
 
+     [mainScrollView addSubview:practicalInfos];
+
+
     
-    [mainScrollView addSubview:practicalInfos];
-//    [mainScrollView addSubview:subm];
-    
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
         [self settingPracticalInfos:postModel.arrayOfInfos arrayOfInfosImg:postModel.arrayOfInfosImg];
     }
+    
 
-  
     [self settingMap:postModel.postMapView];
-    if ([[postInfo valueForKey:@"location"] count] || (unlockedIAP == YES && [SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost] && postModel.postMapView)) {
+    if ([[postInfo valueForKey:@"location"] count] || (unlockedIAP == YES && [SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]] && postModel.postMapView)) {
         [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + heightForPracticalInfos.size.height + 30, self.view.frame.size.width, self.view.frame.size.height/2.5)];
         
 
-
+   
         
         [mainScrollView addSubview:self.postMapView];
 
     }
     else{
          [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 30, self.view.frame.size.width, 0)];
+   
     }
 
     longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(openMapPage:)];
@@ -1842,7 +1860,7 @@
     float buttonXpos = tagsL.frame.origin.x + tagsL.frame.size.width;
       viewForTags = [[UIView alloc]init];
        int yForNewTag = 0;
-        if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+        if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
     for (int i = 0; i <= [postModel.tagsCount intValue]; i++) {
         if ([postModel.tagsCount intValue] == 0) {
                 [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
@@ -1862,7 +1880,7 @@
         //
         
         tag.layer.cornerRadius = tag.frame.size.height/5;
-        tag.titleLabel.font = [UIFont fontWithName:@"Montserrat-Light" size:16];
+        tag.titleLabel.font = [UIFont fontWithName:@"Montserrat-Light" size:14];
         
         tag.titleLabel.textAlignment = NSTextAlignmentCenter;
         tag.titleLabel.adjustsFontSizeToFitWidth = true;
@@ -1881,10 +1899,6 @@
         buttonXpos = tag.frame.origin.x;
         
         [tag setTag:i];
-        
-        
-        
-        
         
       
         [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, screenWidth, 100)];
@@ -1952,7 +1966,7 @@ else{
 
     }
 }
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
          [mainScrollView addSubview:self.tableView];
          [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5 * [postModel.suggestionsCount doubleValue])];
         [self.tableView setScrollEnabled:NO];
@@ -1970,7 +1984,7 @@ else{
    
         [self.tableView setFrame:CGRectMake(0, viewForTags.frame.origin.y + 150, screenWidth, self.view.frame.size.width/3.5*suggestionsCount)];
         [self.tableView setScrollEnabled:NO];
-
+//     [self.tableView removeGestureRecognizer:[]];
 
         [articlesSuggestions setFrame:CGRectMake(0, self.tableView.frame.origin.y - 50, screenWidth, 40)];
         [articlesSuggestions setHidden:NO];
@@ -1982,17 +1996,17 @@ else{
     
     for (UIView *view in mainScrollView.subviews) {
         contentRect = CGRectUnion(contentRect, view.frame);
+        
     }
     contentRect.size.width = screenWidth;
     contentRect.size.height = contentRect.size.height+40;
     mainScrollView.contentSize = contentRect.size;
-    
-   
+
 }
 -(void)tagPressed :(UIButton *)button{
     [GlobalVariables getInstance].backToPostHasToBeHidden = YES;
     NSInteger index = button.tag;
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
         NSLog(@"local");
         NSLog(@"TAG CLICKED SLUG IS : %@",postModel.allTagsSlugs[index]);
         [GlobalVariables getInstance].slugName = postModel.allTagsName[index];
@@ -2023,7 +2037,7 @@ else{
 
 - (UIView *)mapView:(MGLMapView *)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation>)annotation
 {
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
          UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75.f, 70.f)];
         imageview.image = postModel.imageHeader;
         if(!imageview.image){
@@ -2054,7 +2068,7 @@ else{
     __block NSMutableDictionary *maxLongDict =  [[NSMutableDictionary alloc]initWithObjectsAndKeys:@0, @"long" , nil];
     __block NSMutableDictionary *minLongDict =  [[NSMutableDictionary alloc]initWithObjectsAndKeys:@180, @"long", nil];
     mapView.showsUserLocation = YES;
-     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
          if (postModel.annotations.count > 1) {
               MGLCoordinateBounds bounds;
              bounds.sw = CLLocationCoordinate2DMake((CLLocationDegrees)[[postModel.bounds valueForKey:@"sw.latitude"] doubleValue], (CLLocationDegrees)[[postModel.bounds valueForKey:@"sw.longitude"] doubleValue]);
@@ -2155,31 +2169,34 @@ else{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ZoomMapPage"]];
     }
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"gfidok45");
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
+        
+        [self.arrOfId addObject:[GlobalVariables getInstance].idOfPost];
+         NSDictionary *dict = [NSDictionary dictionaryWithObject:self.arrOfId forKey:@"arrOfId"];
+        
+        [GlobalVariables getInstance].idOfPost = [NSString stringWithFormat:@"%@", postModel.identifier[indexPath.row]];
+
+      
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"] userInfo:dict];
+    }
+    else{
+    NSInteger tag = indexPath.row;
+    NSLog(@"%lu", tag);
+        
+           [self.arrOfId addObject:[GlobalVariables getInstance].idOfPost];
+          NSDictionary *dict = [NSDictionary dictionaryWithObject:self.arrOfId forKey:@"arrOfId"];
+    [GlobalVariables getInstance].idOfPost = [[postInfo valueForKey:@"suggested_posts"] valueForKey:@"id"][tag];
+
+
+    [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]userInfo:dict];
+    }
 }
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
-//
-//        [GlobalVariables getInstance].idOfPost = [NSString stringWithFormat:@"%@", postModel.identifier[indexPath.row]];
-//        [GlobalVariables getInstance].comingFrom = @"Posts";
-//        [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
-//        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-//    }
-//    else{
-//    NSInteger tag = indexPath.row;
-//    NSLog(@"%lu", tag);
-//    [GlobalVariables getInstance].idOfPost = [[postInfo valueForKey:@"suggested_posts"] valueForKey:@"id"][tag];
-//    NSLog(@"[GlobalVariables getInstance].idOfPost %@ ", [GlobalVariables getInstance].idOfPost);
-//    [GlobalVariables getInstance].comingFrom = @"Posts";
-//    [GlobalVariables getInstance].comingFromViewController = @"PostViewController";
-//    [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"CanAddObjectToCarousel"];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PostViewController"]];
-//    }
-//}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
         return postModel.suggestionsCount.integerValue;
     }
     return suggestionsCount;
@@ -2187,7 +2204,7 @@ else{
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SuggestionsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
 
-    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[GlobalVariables getInstance].idOfPost]]) {
+    if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
         cell.thumbnail.image = postModel.thumbnail[indexPath.row];
         cell.title.text = postModel.title[indexPath.row];
         cell.fragment.text = postModel.fragment[indexPath.row];
@@ -2340,3 +2357,4 @@ finish:
     return [emailTest evaluateWithObject:checkString];
 }
 @end
+//

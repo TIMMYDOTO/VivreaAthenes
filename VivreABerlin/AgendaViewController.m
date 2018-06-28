@@ -24,6 +24,7 @@
 
 @implementation AgendaViewController
 {
+    __weak IBOutlet UIView *brownView;
     __weak IBOutlet UIImageView *didSelectImage;
     __weak IBOutlet UILabel *enenemLabel;
     BOOL changeFrameOnce;
@@ -695,7 +696,10 @@
     }
     else {
         static NSString *CellIdentifier = @"CatsSubCatsCell";
-        
+        [brownView setHidden:NO];
+        [brownView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 18, 49)];
+        brownView.layer.cornerRadius = 5;
+        brownView.layer.masksToBounds = true;
         CatsSubCatsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (agendaInfosArray.count == 0) {
             
@@ -704,12 +708,13 @@
             enenemLabel.text  = @"";
             didSelectImage.image = [UIImage imageNamed:@""];
            
-            self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, 50, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
+            self.dossiersTable.frame = CGRectMake(self.dossiersTable.frame.origin.x, brownView.frame.origin.y + 120, self.dossiersTable.frame.size.width, self.dossiersTable.frame.size.height);
             self.agendaScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.dossiersView.frame.origin.y + self.dossiersTable.frame.size.height + self.noArticle.frame.size.height * 0.5 + self.dossiersHeaderView.frame.size.height);
            
-            
+//            [brownView setFrame:CGRectMake(0, _nosDossires.frame.origin.y-10, [UIScreen mainScreen].bounds.size.width-20, 0)];
             self.agendaScrollView.frame = CGRectMake(self.agendaScrollView.frame.origin.x, self.agendaScrollView.frame.origin.y, self.agendaScrollView.frame.size.width, self.agendaScrollView.frame.size.height);
-            self.nosDossires.frame = CGRectMake(self.nosDossires.frame.origin.x, self.nosDossires.frame.origin.y - 12, self.nosDossires.frame.size.width, self.nosDossires.frame.size.height);
+            
+            self.nosDossires.frame = CGRectMake(self.nosDossires.frame.origin.x, brownView.frame.origin.y + 70, self.nosDossires.frame.size.width, 32);
               [[self view]bringSubviewToFront:self.nosDossires];
             
             self.dossiersView.frame = CGRectMake(self.dossiersView.frame.origin.x, self.dossiersView.frame.origin.y, self.dossiersView.frame.size.width, self.dossiersView.frame.size.height);

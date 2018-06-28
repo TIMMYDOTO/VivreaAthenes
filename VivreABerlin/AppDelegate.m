@@ -1,4 +1,4 @@
-//
+
 //  AppDelegate.m
 //  VivreABerlin
 //
@@ -13,6 +13,8 @@
 #import "GlobalVariables.h"
 #import <OneSignal/OneSignal.h>
 #import "Header.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @import GoogleMobileAds;
 
 @interface AppDelegate ()
@@ -26,7 +28,7 @@
 //    [FBAdSettings addTestDevice:[FBAdSettings testDeviceHash]];
   // [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"didUserPurchasedIap"];
 //     NSLog(@"Puchased status : %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]);
-    
+        [Fabric with:@[[Crashlytics class]]];
     [GlobalVariables getInstance].myLaunchOptions = launchOptions;
     
 //    NSLog(@"[GlobalVariables getInstance].myLaunchOptions %@",[GlobalVariables getInstance].myLaunchOptions);

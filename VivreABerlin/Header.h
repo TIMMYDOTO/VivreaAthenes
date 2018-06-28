@@ -22,7 +22,7 @@
 
 
 // IF THE APP DOESN"T HAVE ONE OF THIS SOCIAL JUST LEAVE THE @"" EMPTY
-#define facebookSocial @"https://www.facebook.com/Vivre%C3%80Berlincom-156287077733704/?ref=ts"
+#define facebookSocial @"https://www.facebook.com/VivreAthenescom-1399507073414117"
 #define twitterSocial @"https://twitter.com/VivreaBERLIN"
 #define instagramSocial @"https://www.instagram.com/vivre.a.berlin/"
 #define tumblrSocial @"https://vivreaberlin.tumblr.com/"

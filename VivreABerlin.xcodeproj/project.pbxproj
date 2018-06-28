@@ -1313,6 +1313,7 @@
 				D8F9D6D59F88A7532341E7BE /* [CP] Embed Pods Frameworks */,
 				CC14190D129EF95AE55BCFAC /* [CP] Copy Pods Resources */,
 				F44D79E71FA34BC50024FB17 /* Embed App Extensions */,
+				9A25E8EC20DD414900BA9784 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1738,6 +1739,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VivreABerlinUITests/Pods-VivreABerlinUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9A25E8EC20DD414900BA9784 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" daaccfa6ff2f0ad93340474a05ce5fa8f17cb9b4 5a19f3f864e0ce16e8850f8f10abeda47c5dc9b13ee9584c88ee5525a29ed1f8";
 		};
 		BBDA5D80040814837143BFCC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

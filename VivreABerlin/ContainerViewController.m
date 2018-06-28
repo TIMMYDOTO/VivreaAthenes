@@ -1005,8 +1005,11 @@ JTMaterialSpinner * spinnerView;
         [GlobalVariables getInstance].currentViewController = @"AgendaViewController";
         
         AgendaViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaViewController"];
-        
+       
         child2.view.frame = self.containerviewcontroller.bounds;
+        
+      
+        
         
         [UIView transitionWithView:self.containerviewcontroller duration:0.3
                            options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -1014,6 +1017,7 @@ JTMaterialSpinner * spinnerView;
                                [child2 didMoveToParentViewController:self];
                                child2.view.frame = self.containerviewcontroller.bounds;
                                [self.containerviewcontroller addSubview:child2.view];
+                               
                            } completion:nil];
         
     }

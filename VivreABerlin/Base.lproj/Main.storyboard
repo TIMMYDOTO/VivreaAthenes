@@ -1057,7 +1057,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="cO2-G7-AkZ">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="cO2-G7-AkZ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
@@ -3411,41 +3411,6 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                         <rect key="frame" x="8" y="230" width="359" height="436"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view hidden="YES" contentMode="scaleToFill" id="HgO-lf-VIl">
-                                                <rect key="frame" x="4" y="8" width="351" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Événements à venir" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="GXt-hg-h2V">
-                                                        <rect key="frame" x="12" y="9" width="285" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="didSelectCellImage.png" id="YFB-CY-CKn">
-                                                        <rect key="frame" x="311" y="12" width="26" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CBK-RI-doH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="49"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
-                                                        <state key="normal">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="closeDossiers:" destination="eQ1-AD-zcC" eventType="touchUpInside" id="Dt9-Nj-ezl"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.61653047800064087" green="0.38954544067382812" blue="0.17878168821334839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="321" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNb-fz-pXa">
                                                 <rect key="frame" x="4" y="92" width="355" height="344"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -3459,7 +3424,7 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="321"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Jxu-LH-DVa">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Jxu-LH-DVa">
                                                                     <rect key="frame" x="15" y="6" width="327" height="214"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
@@ -3504,14 +3469,49 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                                                     <outlet property="delegate" destination="eQ1-AD-zcC" id="XPo-IP-yZU"/>
                                                 </connections>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nos dossiers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="p7t-Rm-Yfy">
-                                                <rect key="frame" x="4" y="82" width="355" height="32"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nos dossiers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="p7t-Rm-Yfy">
+                                                <rect key="frame" x="4" y="71" width="355" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="21"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view hidden="YES" contentMode="scaleToFill" id="HgO-lf-VIl">
+                                                <rect key="frame" x="4" y="8" width="351" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CBK-RI-doH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="49"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="closeDossiers:" destination="eQ1-AD-zcC" eventType="touchUpInside" id="Oe9-Y6-2Dn"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Événements à venir" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="GXt-hg-h2V">
+                                                        <rect key="frame" x="12" y="9" width="285" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="didSelectCellImage.png" id="YFB-CY-CKn">
+                                                        <rect key="frame" x="311" y="12" width="26" height="26"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F2z-WE-ond">
                                         <rect key="frame" x="1" y="187" width="156" height="39"/>
@@ -3560,13 +3560,10 @@ gestion de votre annonce sera expédié à cette adresse.</string>
                         <outlet property="agendaPreviewContent" destination="26j-0o-DaH" id="ywJ-5a-Yom"/>
                         <outlet property="agendaScrollView" destination="rnz-g1-up8" id="Npl-aC-jBe"/>
                         <outlet property="agendaTable" destination="etg-2d-Q0u" id="3t1-xA-sbS"/>
+                        <outlet property="brownView" destination="HgO-lf-VIl" id="6QA-51-9d8"/>
                         <outlet property="changeableBg" destination="1Pi-p0-NtE" id="N7l-RG-hyb"/>
-                        <outlet property="closeDossiersView" destination="CBK-RI-doH" id="qxA-0m-rpF"/>
-                        <outlet property="didSelectImage" destination="YFB-CY-CKn" id="XY5-vu-K1B"/>
-                        <outlet property="dossiersHeaderView" destination="HgO-lf-VIl" id="dtL-yr-I7f"/>
                         <outlet property="dossiersTable" destination="mNb-fz-pXa" id="Bqc-8Y-kHj"/>
                         <outlet property="dossiersView" destination="5lN-Dm-yb6" id="jho-mf-efB"/>
-                        <outlet property="enenemLabel" destination="GXt-hg-h2V" id="34j-WE-Vaa"/>
                         <outlet property="logo" destination="kCn-yc-vSW" id="uTZ-V5-wdv"/>
                         <outlet property="noArticle" destination="Wer-5X-VPt" id="d8L-yr-FD2"/>
                         <outlet property="nosDossires" destination="p7t-Rm-Yfy" id="Aua-gl-qmB"/>

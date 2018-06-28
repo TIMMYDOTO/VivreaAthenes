@@ -31,7 +31,21 @@
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.4.7</string>
+	<string>1.5.1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>daaccfa6ff2f0ad93340474a05ce5fa8f17cb9b4</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

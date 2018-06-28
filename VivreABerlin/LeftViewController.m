@@ -18,6 +18,7 @@
 #import "MenuCell.h"
 #import "SubMenuCell.h"
 #import "JTMaterialSpinner.h"
+#import "AgendaViewController.h"
 #import "ContainerViewController.h"
 @interface LeftViewController (){
     
@@ -454,7 +455,7 @@
         if (indexPath.row == arrayForTable.count-1) {
             cell.separator.backgroundColor = [UIColor clearColor];
         }
-            cell.categoriesName.text =[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
+            cell.categoriesName.text = [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
  
         cell.indentationWidth = 20;
         [cell setIndentationLevel:[[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"level"] intValue]];
@@ -462,7 +463,7 @@
         if (cell.indentationLevel == 0) {
             
             
-            if([[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"CanBeExpanded"] boolValue] == YES && indexPath.row != 0){
+            if([[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"CanBeExpanded"] boolValue] == YES){
                 
                 cell.expandCell.image =  [UIImage imageNamed:@"sideBarArrowww.png"];
                 
@@ -701,7 +702,7 @@
             
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             
-            NSDictionary *d=[arrayForTable objectAtIndex:indexPath.row];
+            NSDictionary *d = [arrayForTable objectAtIndex:indexPath.row];
             
             if([[d valueForKey:@"level"] isEqualToString:@"0"])
             [GlobalVariables getInstance].categoryColor = [colorsInSideBar objectAtIndex:indexPath.row];
@@ -736,6 +737,10 @@
                     else if([[d valueForKey:@"title"] isEqualToString:@"Agenda de Berlin"]){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AgendaViewController"]];
                         [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
+                    }
+                    else if([[d valueForKey:@"title"] isEqualToString:@"Agenda d'Athènes"]){
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"AgendaViewController"]];
+                    [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
                     }
                     else{
                         [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];

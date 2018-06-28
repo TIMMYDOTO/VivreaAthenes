@@ -1022,27 +1022,9 @@ finish:
 
 - (IBAction)openNewsletter:(id)sender {
     NSLog(@"newLter");
-//    if(offlineModeOn == false){
-//
-//    [UIView animateWithDuration:0.1 animations:^{
-//        self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1 , 1.1);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.15 animations:^{
-//            self.newsLetter.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.15 animations:^{
-//                self.newsLetter.transform = CGAffineTransformIdentity;
-//
-//
-//            }];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"PopUpNewsletterController"]];
-//        }];
-//
-//    }];
-//    }
-//    else{
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"IAPViewController"]];
-//    }
+
 
 }
 
