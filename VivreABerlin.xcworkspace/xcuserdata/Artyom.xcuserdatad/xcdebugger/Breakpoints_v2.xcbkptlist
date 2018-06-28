@@ -388,7 +388,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/ContainerViewController.m"
-            timestampString = "551872197.7913131"
+            timestampString = "551872954.5200419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "718"
@@ -436,7 +436,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/ContainerViewController.m"
-            timestampString = "551872197.792243"
+            timestampString = "551872954.5212851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "524"
@@ -836,11 +836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.793501"
+            timestampString = "551872954.522858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "858"
-            endingLineNumber = "858"
+            startingLineNumber = "859"
+            endingLineNumber = "859"
             landmarkName = "-sendingAnHTTGETTRequestAgenda:"
             landmarkType = "7">
          </BreakpointContent>
@@ -852,11 +852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.794751"
+            timestampString = "551872954.524328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747"
+            startingLineNumber = "748"
+            endingLineNumber = "748"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -868,7 +868,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.795455"
+            timestampString = "551872954.525198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "425"
@@ -884,11 +884,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.7961"
+            timestampString = "551872954.525888"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "861"
-            endingLineNumber = "861"
+            startingLineNumber = "862"
+            endingLineNumber = "862"
             landmarkName = "-sendingAnHTTGETTRequestAgenda:"
             landmarkType = "7">
          </BreakpointContent>
@@ -900,7 +900,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.797088"
+            timestampString = "551872954.52669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
@@ -916,11 +916,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.798458"
+            timestampString = "551872954.527404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "728"
-            endingLineNumber = "728"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -932,11 +932,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.799561"
+            timestampString = "551872954.528205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "645"
-            endingLineNumber = "645"
+            startingLineNumber = "646"
+            endingLineNumber = "646"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -948,11 +948,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.8007081"
+            timestampString = "551872954.528897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
+            startingLineNumber = "756"
+            endingLineNumber = "756"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1028,7 +1028,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.801826"
+            timestampString = "551872954.5298131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1043"
+            endingLineNumber = "1043"
+            landmarkName = "-stringByDecodingXMLEntities:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/AgendaViewController.m"
+            timestampString = "551872954.530779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1042"
@@ -1043,24 +1059,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.802506"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1041"
-            endingLineNumber = "1041"
-            landmarkName = "-stringByDecodingXMLEntities:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "VivreABerlin/ContainerViewController.m"
-            timestampString = "551872197.803102"
+            timestampString = "551872954.531936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "995"
@@ -1076,7 +1076,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/ContainerViewController.m"
-            timestampString = "551872197.80345"
+            timestampString = "551872954.532941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1008"
@@ -1092,11 +1092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.803774"
+            timestampString = "551872954.533811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "966"
-            endingLineNumber = "966"
+            startingLineNumber = "967"
+            endingLineNumber = "967"
             landmarkName = "-closeDossiers:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1108,11 +1108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.804361"
+            timestampString = "551872954.5346971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "973"
-            endingLineNumber = "973"
+            startingLineNumber = "974"
+            endingLineNumber = "974"
             landmarkName = "-closeDossiers:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,11 +1124,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.8049459"
+            timestampString = "551872954.535478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "676"
-            endingLineNumber = "676"
+            startingLineNumber = "677"
+            endingLineNumber = "677"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1140,11 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.8055691"
+            timestampString = "551872954.5360841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "649"
-            endingLineNumber = "649"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1156,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.806213"
+            timestampString = "551872954.536652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1172,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.806792"
+            timestampString = "551872954.537232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "632"
-            endingLineNumber = "632"
+            startingLineNumber = "633"
+            endingLineNumber = "633"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,7 +1188,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.8075171"
+            timestampString = "551872954.537856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -1204,11 +1204,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.808067"
+            timestampString = "551872954.538494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1149"
-            endingLineNumber = "1149">
+            startingLineNumber = "1150"
+            endingLineNumber = "1150">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1218,11 +1218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.808581"
+            timestampString = "551872954.539178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1149"
-            endingLineNumber = "1149">
+            startingLineNumber = "1150"
+            endingLineNumber = "1150">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1232,11 +1232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.809081"
+            timestampString = "551872954.5398279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "621"
-            endingLineNumber = "621"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1248,11 +1248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.809622"
+            timestampString = "551872954.5406359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "626"
-            endingLineNumber = "626"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1264,11 +1264,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.8101701"
+            timestampString = "551872954.541406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "699"
-            endingLineNumber = "699"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/AgendaViewController.m"
+            timestampString = "551872954.542076"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/AgendaViewController.m"
+            timestampString = "551872954.542551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "753"
+            endingLineNumber = "753"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1280,44 +1312,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.810901"
+            timestampString = "551872954.543214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "704"
-            endingLineNumber = "704"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.811592"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "752"
-            endingLineNumber = "752"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VivreABerlin/AgendaViewController.m"
-            timestampString = "551872197.812181"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "831"
-            endingLineNumber = "831"
+            startingLineNumber = "832"
+            endingLineNumber = "832"
             landmarkName = "-openSideMenu:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/AgendaViewController.m"
+            timestampString = "551872954.543946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "764"
+            endingLineNumber = "764"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
