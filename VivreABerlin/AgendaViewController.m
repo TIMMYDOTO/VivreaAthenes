@@ -714,7 +714,7 @@
 //            [brownView setFrame:CGRectMake(0, _nosDossires.frame.origin.y-10, [UIScreen mainScreen].bounds.size.width-20, 0)];
             self.agendaScrollView.frame = CGRectMake(self.agendaScrollView.frame.origin.x, self.agendaScrollView.frame.origin.y, self.agendaScrollView.frame.size.width, self.agendaScrollView.frame.size.height);
             
-            self.nosDossires.frame = CGRectMake(self.nosDossires.frame.origin.x, brownView.frame.origin.y + 70, self.nosDossires.frame.size.width, 32);
+            self.nosDossires.frame = CGRectMake(self.nosDossires.frame.origin.x, brownView.frame.origin.y + 75, self.nosDossires.frame.size.width, 32);
               [[self view]bringSubviewToFront:self.nosDossires];
             
             self.dossiersView.frame = CGRectMake(self.dossiersView.frame.origin.x, self.dossiersView.frame.origin.y, self.dossiersView.frame.size.width, self.dossiersView.frame.size.height);
