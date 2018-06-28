@@ -265,8 +265,8 @@
                 
                 arrayForTable = [[NSMutableArray alloc] init];
                 NSLog(@"count: %lu", [[offlineMenuArray valueForKey:@"parent"]count]);
-                  NSLog(@"arrayForTable %@", arrayForTable);
-                for ( int i = 0 ; i<=8;i ++) {
+              
+                for ( int i = 0 ; i<=7;i ++) {
                     if([[offlineMenuArray valueForKey:@"parent"][i] integerValue] == 0)
                     {
                         [arrayForTable addObject:offlineMenuArray[i]];
@@ -275,7 +275,7 @@
                     
                 }
                 
-                for ( int i = 0 ; i<=8;i ++) {
+                for ( int i = 0 ; i<=7;i ++) {
                     if([[arrayForTable valueForKey:@"parent"][i] integerValue] == 0)
                     {
                         
@@ -456,7 +456,7 @@
             cell.separator.backgroundColor = [UIColor clearColor];
         }
             cell.categoriesName.text = [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
- 
+        NSLog(@"cell title %@", cell.textLabel.text);
         cell.indentationWidth = 20;
         [cell setIndentationLevel:[[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"level"] intValue]];
         
