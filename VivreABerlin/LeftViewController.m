@@ -191,7 +191,7 @@
                 
                 
                 if([[arrayForTable[i] valueForKey:@"children"] count] > 0)
-                    [arrayForTable setValue:@"YES" forKey:@"CanBeExpanded"];
+                    [arrayForTable[i] setValue:@"YES" forKey:@"CanBeExpanded"];
                 
                 
                 
@@ -452,11 +452,10 @@
 
   
     if(tableView == self.catAndSubcatsTable){
-        if (indexPath.row == arrayForTable.count-1) {
-            cell.separator.backgroundColor = [UIColor clearColor];
-        }
+
             cell.categoriesName.text = [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"];
-        NSLog(@"cell title %@", cell.textLabel.text);
+    
+        
         cell.indentationWidth = 20;
         [cell setIndentationLevel:[[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"level"] intValue]];
         
@@ -494,6 +493,8 @@
             if([[[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"] isEqualToString:@"S'échapper"] ){
                 cell.descriptivePicture.image = [UIImage imageNamed:@"Sechapper"];
             }
+       
+            
             NSLog(@"title %@", [[arrayForTable objectAtIndex:indexPath.row] valueForKey:@"title"]);
             
             cell.descriptivePicture.contentMode = UIViewContentModeScaleAspectFit;
@@ -705,7 +706,7 @@
             NSDictionary *d = [arrayForTable objectAtIndex:indexPath.row];
             
             if([[d valueForKey:@"level"] isEqualToString:@"0"])
-            [GlobalVariables getInstance].categoryColor = [colorsInSideBar objectAtIndex:indexPath.row];
+            [GlobalVariables getInstance].categoryColor = [colorsInSideBar objectAtIndex:arc4random_uniform(15)];
             
             if([[GlobalVariables getInstance].allCategoriesName containsObject:[d valueForKey:@"title"]]){
                 
