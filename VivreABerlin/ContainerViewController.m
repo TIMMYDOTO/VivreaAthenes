@@ -1007,8 +1007,11 @@ JTMaterialSpinner * spinnerView;
         AgendaViewController * child2 = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaViewController"];
        
         child2.view.frame = self.containerviewcontroller.bounds;
-        
-      
+        self.firstTabBarImg.image = [UIImage imageNamed:@"agendaTabBarIconTouched"];
+        self.secondTabBarImg.image = [UIImage imageNamed:@"deselectedHearth"];
+        self.thirdTabBarImg.image = [UIImage imageNamed:@"homeTabBarIcon"];
+        self.forthTabBarImg.image = [UIImage imageNamed:@"mapTabBarIcon"];
+        self.fifthTabBarImg.image = [UIImage imageNamed:@"announcementsTabBarIcon"];
         
         
         [UIView transitionWithView:self.containerviewcontroller duration:0.3

@@ -937,7 +937,7 @@
 -(void)settingContactForm{
     viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, 0)];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    //
+
 
         [viewForContactForm  addGestureRecognizer:tap];
     
@@ -1051,6 +1051,7 @@
             [viewForContactForm addSubview:textFieldForDate149];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
                 UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                 [datePicker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
                 [datePicker setDate:[NSDate date]];
                    [datePicker setTag:2];
                 datePicker.datePickerMode = UIDatePickerModeDate;
@@ -1083,6 +1084,7 @@
             [viewForContactForm addSubview:textFieldForDate150];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
                 UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                 [datePicker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
                 [datePicker setDate:[NSDate date]];
                 [datePicker setTag:3];
                 datePicker.datePickerMode = UIDatePickerModeDate;
@@ -1117,6 +1119,7 @@
             [viewForContactForm addSubview:textFieldForDates];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
                 UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+                 [datePicker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
                 [datePicker setDate:[NSDate date]];
                 datePicker.datePickerMode = UIDatePickerModeDate;
             [datePicker setTag:1];
@@ -1207,7 +1210,9 @@
             UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(30, heightForObj, screenWidth-25, 20)];
             lbl.text = [obj valueForKey:@"label"];
             [lbl setFont:[UIFont fontWithName:@"Gudea" size:15]];
-            
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(label1Clicked:)];
+ [lbl setUserInteractionEnabled:YES];
+            [lbl addGestureRecognizer:tap];
             
             [lbl setNumberOfLines:0];
             [lbl sizeToFit];
@@ -1227,7 +1232,9 @@
             NSString *hString = [obj valueForKey:@"label"];
             NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[hString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             textView.attributedText = attrStr;
-            
+              UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(label2Clicked:)];
+            [textView setUserInteractionEnabled:YES];
+            [textView addGestureRecognizer:tap];
             [textView setFont:[UIFont fontWithName:@"Gudea" size:15]];
             
             textView.delegate = self;
@@ -1263,13 +1270,14 @@
     if ([sender tag] == 1) {
         
         UIDatePicker *picker = (UIDatePicker*)textFieldForDates.inputView;
+        [picker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
         NSDate *eventDate = picker.date;
         NSString *dateString = [dateFormat stringFromDate:eventDate];
         textFieldForDates.text = [NSString stringWithFormat:@"%@",dateString];
     }
     else if ([sender tag] == 2){
         UIDatePicker *picker = (UIDatePicker*)textFieldForDate149.inputView;
-        
+        [picker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
         NSDate *eventDate = picker.date;
      
         NSString *dateString = [dateFormat stringFromDate:eventDate];
@@ -1277,7 +1285,7 @@
     }
     else if ([sender tag] == 3){
         UIDatePicker *picker = (UIDatePicker*)textFieldForDate150.inputView;
-        
+        [picker setLocale: [NSLocale localeWithLocaleIdentifier:@"fr"]];
         NSDate *eventDate = picker.date;
         
         NSString *dateString = [dateFormat stringFromDate:eventDate];
@@ -1317,7 +1325,27 @@
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
 
      [[UIApplication sharedApplication] openURL:URL];
-    return YES; // Return NO if you don't want iOS to open the link
+    return YES; 
+}
+-(void)label1Clicked:(UILabel *)sender{
+    if (ckeckbox.on) {
+        [ckeckbox setOn:NO];
+    }
+    else{
+        [ckeckbox setOn:YES];
+    }
+   
+ 
+}
+-(void)label2Clicked:(UILabel *)sender{
+    if (ckeckbox2.on) {
+        [ckeckbox2 setOn:NO];
+    }
+    else  {
+        [ckeckbox2 setOn:YES];
+    }
+
+    
 }
 -(void)checkboxClicked:(UIButton *)sender{
     sender.selected = !sender.selected;
@@ -1572,6 +1600,7 @@
         }
         else{
         UITextView *lbl = [[UITextView alloc]init];
+//            [lbl setUserInteractionEnabled:NO];
         lbl.text = obj;
         lbl.editable = false;
             lbl.backgroundColor = [UIColor clearColor];
@@ -1625,7 +1654,7 @@
                 NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:[[[arrayUsedInTable objectAtIndex:idx] componentsSeparatedByString:@"title"] objectAtIndex:0]];
                 [attributedString addAttribute: NSLinkAttributeName value: [[[arrayUsedInTable objectAtIndex:idx] componentsSeparatedByString:@"title"] objectAtIndex:1] range: NSMakeRange(0, attributedString.length)];
                 lbl.attributedText = attributedString;
-    
+                [lbl setUserInteractionEnabled:NO];
                 [lbl setFont:[UIFont fontWithName:@"Verdana-Bold" size:21]];
                
                 lbl.dataDetectorTypes = UIDataDetectorTypeLink;

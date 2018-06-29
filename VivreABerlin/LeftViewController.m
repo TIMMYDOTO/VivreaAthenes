@@ -706,7 +706,7 @@
             NSDictionary *d = [arrayForTable objectAtIndex:indexPath.row];
             
             if([[d valueForKey:@"level"] isEqualToString:@"0"])
-            [GlobalVariables getInstance].categoryColor = [colorsInSideBar objectAtIndex:arc4random_uniform(15)];
+            [GlobalVariables getInstance].categoryColor = [colorsInSideBar objectAtIndex:indexPath.row];
             
             if([[GlobalVariables getInstance].allCategoriesName containsObject:[d valueForKey:@"title"]]){
                 
@@ -1317,7 +1317,7 @@
         if(pages > 1){
             
             self.noArticlesFound.hidden = YES;
-            
+            NSLog(@"%lu", [[responseDict valueForKey:@"results"] count]);
         for(int i = 0 ; i < 4; i++){
          //   NSLog(@"%@",[responseDict valueForKey:@"results"][i]);
             if([responseDict valueForKey:@"results"][i] != nil)
@@ -1348,6 +1348,34 @@
              [filteredTableData addObject:[responseDict valueForKey:@"results"][1]];
             [filteredTableData addObject:[responseDict valueForKey:@"results"][2]];
             [filteredTableData addObject:[responseDict valueForKey:@"results"][3]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][4]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][5]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][6]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][7]];
+        }
+        else if ([[responseDict valueForKey:@"results"] count] == 7){
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][0]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][1]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][2]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][3]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][4]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][5]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][6]];
+        }
+        else if ([[responseDict valueForKey:@"results"] count] == 6){
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][0]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][1]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][2]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][3]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][4]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][5]];
+        }
+        else if ([[responseDict valueForKey:@"results"] count] == 5){
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][0]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][1]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][2]];
+            [filteredTableData addObject:[responseDict valueForKey:@"results"][3]];
+             [filteredTableData addObject:[responseDict valueForKey:@"results"][4]];
         }
         else{
             filteredTableData = [[NSMutableArray alloc]init];
