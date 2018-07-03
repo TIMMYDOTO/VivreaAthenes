@@ -17,5 +17,9 @@
     // Drawing code
 }
 */
-
+-(id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    return self;
+}
 @end

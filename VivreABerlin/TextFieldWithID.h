@@ -10,4 +10,8 @@
 
 @interface TextFieldWithID : UITextField
 @property (nonatomic, retain) NSString *nameID;
+
+-(id)initWithFrame:(CGRect)frame;
+    
+
 @end

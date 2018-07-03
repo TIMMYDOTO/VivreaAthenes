@@ -59,6 +59,7 @@
     NSMutableArray *allTitles;
     BOOL offlineModeOn;
     
+    
 }
 
 
