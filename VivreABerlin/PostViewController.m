@@ -121,7 +121,7 @@
     NSString *_wpcf7_locale;
     NSString *_wpcf7_unit_tag;
     NSString *_wpcf7_container_post;
-   
+    NSString *token;
     
     
     UILabel *yourName;
@@ -512,7 +512,7 @@
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         
-    __block NSString *params = [NSString stringWithFormat:@"_wpcf7=%@&_wpcf7_version=%@&_wpcf7_locale=%@&_wpcf7_unit_tag=%@&_wpcf7_container_post=%@&",_wpcf7,_wpcf7_version,_wpcf7_locale,_wpcf7_unit_tag,_wpcf7_container_post];
+    __block NSString *params = [NSString stringWithFormat:@"_wpcf7=%@&_wpcf7_version=%@&_wpcf7_locale=%@&_wpcf7_unit_tag=%@&_wpcf7_container_post=%@&251fd5a3b120e5c812bfdbc218c1ff5d=%@&",_wpcf7,_wpcf7_version,_wpcf7_locale,_wpcf7_unit_tag,_wpcf7_container_post, token];
         [urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
         
         [arrOfFormFields enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -972,7 +972,9 @@
             else if ([[obj valueForKey:@"name"]isEqualToString:@"_wpcf7_container_post"]) {
                 _wpcf7_container_post = [obj valueForKey:@"value"];
             }
-            
+            else if ([[obj valueForKey:@"name"]isEqualToString:@"251fd5a3b120e5c812bfdbc218c1ff5d"]) {
+                token = [obj valueForKey:@"value"];
+            }
             
         }
         

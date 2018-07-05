@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.961437"
+            timestampString = "552490442.8025841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1290"
-            endingLineNumber = "1290"
+            startingLineNumber = "1292"
+            endingLineNumber = "1292"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.962523"
+            timestampString = "552490442.803782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1286"
-            endingLineNumber = "1286"
+            startingLineNumber = "1288"
+            endingLineNumber = "1288"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9632601"
+            timestampString = "552490442.8045731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1559"
-            endingLineNumber = "1559"
+            startingLineNumber = "1561"
+            endingLineNumber = "1561"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.964298"
+            timestampString = "552490442.805232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1540"
-            endingLineNumber = "1540"
+            startingLineNumber = "1542"
+            endingLineNumber = "1542"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.965517"
+            timestampString = "552490442.806215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1541"
-            endingLineNumber = "1541"
+            startingLineNumber = "1543"
+            endingLineNumber = "1543"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9664249"
+            timestampString = "552490442.806929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1569"
-            endingLineNumber = "1569"
+            startingLineNumber = "1571"
+            endingLineNumber = "1571"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.967303"
+            timestampString = "552490442.807758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1592"
-            endingLineNumber = "1592"
+            startingLineNumber = "1594"
+            endingLineNumber = "1594"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,7 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.967998"
+            timestampString = "552490442.808383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "528"
@@ -196,7 +196,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.968691"
+            timestampString = "552490442.809015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "778"
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9693789"
+            timestampString = "552490442.809635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1293"
-            endingLineNumber = "1293"
+            startingLineNumber = "1295"
+            endingLineNumber = "1295"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
             <Locations>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.970076"
+            timestampString = "552490442.810256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1598"
-            endingLineNumber = "1598"
+            startingLineNumber = "1600"
+            endingLineNumber = "1600"
             landmarkName = "-dateTextField:"
             landmarkType = "7">
          </BreakpointContent>
@@ -276,7 +276,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.970762"
+            timestampString = "552490442.810879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "502"
@@ -292,7 +292,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9714479"
+            timestampString = "552490442.811496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "499"
@@ -308,7 +308,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.972268"
+            timestampString = "552490442.812117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "577"
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9734679"
+            timestampString = "552490442.813079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1332"
-            endingLineNumber = "1332"
+            startingLineNumber = "1334"
+            endingLineNumber = "1334"
             landmarkName = "-settingContactForm"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,7 +340,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.974514"
+            timestampString = "552490442.813784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "520"
@@ -356,7 +356,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.975565"
+            timestampString = "552490442.814406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "531"
@@ -372,7 +372,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.9762681"
+            timestampString = "552490442.8150229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "812"
@@ -404,7 +404,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.977035"
+            timestampString = "552490442.815703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "796"
@@ -612,7 +612,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.978145"
+            timestampString = "552490442.816752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -628,11 +628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.978881"
+            timestampString = "552490442.817647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2358"
-            endingLineNumber = "2358"
+            startingLineNumber = "2360"
+            endingLineNumber = "2360"
             landmarkName = "-finishedLoading"
             landmarkType = "7">
          </BreakpointContent>
@@ -644,11 +644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.979839"
+            timestampString = "552490442.81897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2550"
-            endingLineNumber = "2550"
+            startingLineNumber = "2552"
+            endingLineNumber = "2552"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -660,11 +660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.981063"
+            timestampString = "552490442.819896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2540"
-            endingLineNumber = "2540"
+            startingLineNumber = "2542"
+            endingLineNumber = "2542"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -676,11 +676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.981908"
+            timestampString = "552490442.820816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2019"
-            endingLineNumber = "2019"
+            startingLineNumber = "2021"
+            endingLineNumber = "2021"
             landmarkName = "-tapedOnAddress:"
             landmarkType = "7">
          </BreakpointContent>
@@ -692,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.982637"
+            timestampString = "552490442.821721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2365"
-            endingLineNumber = "2365"
+            startingLineNumber = "2367"
+            endingLineNumber = "2367"
             landmarkName = "-finishedLoading"
             landmarkType = "7">
             <Locations>
@@ -740,11 +740,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.984107"
+            timestampString = "552490442.822615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1710"
-            endingLineNumber = "1710"
+            startingLineNumber = "1712"
+            endingLineNumber = "1712"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -756,11 +756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.985662"
+            timestampString = "552490442.823439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1706"
-            endingLineNumber = "1706"
+            startingLineNumber = "1708"
+            endingLineNumber = "1708"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -772,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.986533"
+            timestampString = "552490442.8241971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2370"
-            endingLineNumber = "2370"
+            startingLineNumber = "2372"
+            endingLineNumber = "2372"
             landmarkName = "-finishedLoading"
             landmarkType = "7">
          </BreakpointContent>
@@ -788,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.987347"
+            timestampString = "552490442.824965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2174"
-            endingLineNumber = "2174"
+            startingLineNumber = "2176"
+            endingLineNumber = "2176"
             landmarkName = "-finishedLoading"
             landmarkType = "7">
          </BreakpointContent>
@@ -804,7 +804,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.98829"
+            timestampString = "552490442.825718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "411"
@@ -820,7 +820,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.989818"
+            timestampString = "552490442.826481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "819"
@@ -1600,11 +1600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.993757"
+            timestampString = "552490442.829918"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1600"
-            endingLineNumber = "1600"
+            startingLineNumber = "1602"
+            endingLineNumber = "1602"
             landmarkName = "-dateTextField:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1612,59 +1612,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.994899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
-            landmarkName = "-submit:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29-[PostViewController submit:]_block_invoke.385"
-                  moduleName = "VivreABerlin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Artyom/Downloads/VivreABerlin/VivreABerlin/PostViewController.m"
-                  timestampString = "552305883.430198"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "547"
-                  endingLineNumber = "547"
-                  offsetFromSymbolStart = "508">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29-[PostViewController submit:]_block_invoke_2"
-                  moduleName = "VivreABerlin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Artyom/Downloads/VivreABerlin/VivreABerlin/PostViewController.m"
-                  timestampString = "552305883.434157"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "548"
-                  endingLineNumber = "548"
-                  offsetFromSymbolStart = "72">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.995717"
+            timestampString = "552490442.8307689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "530"
@@ -1680,11 +1632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.997263"
+            timestampString = "552490442.831472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1681"
-            endingLineNumber = "1681"
+            startingLineNumber = "1683"
+            endingLineNumber = "1683"
             landmarkName = "-checkboxClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1696,11 +1648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305882.999016"
+            timestampString = "552490442.832163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1681"
-            endingLineNumber = "1681"
+            startingLineNumber = "1683"
+            endingLineNumber = "1683"
             landmarkName = "-checkboxClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1724,15 +1676,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.0003639"
+            timestampString = "552490442.832913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1661"
-            endingLineNumber = "1661"
+            startingLineNumber = "1663"
+            endingLineNumber = "1663"
             landmarkName = "-label1Clicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1744,11 +1696,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.002037"
+            timestampString = "552490442.8336231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1687"
-            endingLineNumber = "1687"
+            startingLineNumber = "1689"
+            endingLineNumber = "1689"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
             <Locations>
@@ -1807,11 +1759,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.0037659"
+            timestampString = "552490442.834242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1685"
-            endingLineNumber = "1685"
+            startingLineNumber = "1687"
+            endingLineNumber = "1687"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1823,11 +1775,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.006041"
+            timestampString = "552490442.834859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1924"
-            endingLineNumber = "1924"
+            startingLineNumber = "1926"
+            endingLineNumber = "1926"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
             <Locations>
@@ -1886,11 +1838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.006941"
+            timestampString = "552490442.8354779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1932"
-            endingLineNumber = "1932"
+            startingLineNumber = "1934"
+            endingLineNumber = "1934"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1902,11 +1854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.007643"
+            timestampString = "552490442.836094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1934"
-            endingLineNumber = "1934"
+            startingLineNumber = "1936"
+            endingLineNumber = "1936"
             landmarkName = "-settingPracticalInfos:arrayOfInfosImg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1934,7 +1886,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.008394"
+            timestampString = "552490442.836759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "954"
@@ -1946,15 +1898,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VivreABerlin/PostViewController.m"
-            timestampString = "552305883.009037"
+            timestampString = "552490442.837388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "993"
-            endingLineNumber = "993"
+            startingLineNumber = "995"
+            endingLineNumber = "995"
+            landmarkName = "-settingPostContactForm"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/PostViewController.m"
+            timestampString = "552490442.838004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "977"
+            endingLineNumber = "977"
+            landmarkName = "-settingPostContactForm"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VivreABerlin/PostViewController.m"
+            timestampString = "552490442.83874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "976"
+            endingLineNumber = "976"
             landmarkName = "-settingPostContactForm"
             landmarkType = "7">
          </BreakpointContent>
