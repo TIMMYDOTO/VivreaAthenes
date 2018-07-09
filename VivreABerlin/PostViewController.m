@@ -156,9 +156,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-    
-
 
     blackCurtain = [[UIView alloc] init];
     [blackCurtain setFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*0.93)];
@@ -172,7 +169,7 @@
     [activityView startAnimating];
     
     [self.view addSubview:activityView];
-    unlockedIAP = [[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"];
+    unlockedIAP = [[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]boolValue];
 
     
     thumbnailArr = [[NSMutableArray alloc] init];
@@ -256,7 +253,10 @@
      screenHeight = screenRect.size.height;
 
     [mainScrollView setFrame:CGRectMake(0, 0, screenWidth, screenHeight*0.92)];
-   
+    
+    [mainScrollView setDelegate:self];
+    
+    
     [imageViewHeader setFrame:CGRectMake(0, 0, screenWidth, 236)];
     [blueSeparatorView setFrame:CGRectMake(0, imageViewHeader.frame.size.height - 29, screenWidth, 29)];
     [rainbow setFrame:CGRectMake(screenWidth/2-35, imageViewHeader.frame.size.height-40, 69, 79)];
@@ -310,6 +310,12 @@
     
     [mainScrollView addSubview:wkWebView];
   
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if ([textFieldForMessage isFirstResponder]) {
+        [self.view endEditing:YES];
+    }
 }
 - (IBAction)tapOnHeader:(UITapGestureRecognizer *)sender {
     
@@ -661,9 +667,7 @@
             NSString *urlStringHeadImg = [responseObject objectForKey:@"post_thumbnail_url"];
             [imageViewHeader sd_setImageWithURL:[NSURL URLWithString:urlStringHeadImg]
                                placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                                   
-                                 
-//
+  
                                        postModel = [[PostModel alloc]initPostWithImageHeader:image authorName:authorName htmlString:finalString numberOfStars:[NSNumber numberWithInt: numberOfStars] passageText:passage.text postTitleText:postsBigTitle.text];
                                        postModel.arrayOfInfos = arrayUsedInTable;
                                        postModel.arrayOfInfosImg = arrayWithImagesUsedInTable;
@@ -941,7 +945,7 @@
 -(void)settingPostContactForm{
     viewForContactForm = [[UIView alloc]initWithFrame:CGRectMake(0, wkWebView.frame.size.height + wkWebView.frame.origin.y + 40, screenWidth, 0)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-       [viewForContactForm  addGestureRecognizer:tap];
+       [self.view  addGestureRecognizer:tap];
     [viewForContactForm setUserInteractionEnabled:YES];
     [mainScrollView addSubview:viewForContactForm];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 50, 20)];
@@ -991,15 +995,13 @@
             [textFieldForName setBackgroundColor:[UIColor whiteColor]];
             [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForName.layer setBorderWidth:1.0];
-            [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:30]];
             [textFieldForName setText:[obj valueForKey:@"value"]];
             [textFieldForName setNameID: [obj valueForKey:@"name"]];
             
             [textFieldForName.layer setCornerRadius:4.0f];
             textFieldForName.returnKeyType = UIReturnKeyNext;
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForName setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForName setLeftView:spacerView];
+         
             [arrOfFormFields addObject:textFieldForName];
             [viewForContactForm addSubview:textFieldForName];
             heightForObj = heightForObj + 70;
@@ -1024,10 +1026,8 @@
             [textFieldForEmail.layer setBorderWidth:1.0];
             [textFieldForEmail.layer setCornerRadius:4.0f];
             textFieldForEmail.returnKeyType = UIReturnKeyNext;
-            [textFieldForEmail  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForEmail setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForEmail setLeftView:spacerView];
+          
+   
             [arrOfFormFields addObject:textFieldForEmail];
             [viewForContactForm addSubview:textFieldForEmail];
             heightForObj = heightForObj + 70;
@@ -1047,10 +1047,8 @@
             [textFieldForDate149.layer setBorderWidth:1.0];
             [textFieldForDate149.layer setCornerRadius:4.0f];
             [textFieldForDate149 setTag:idx];
-            [textFieldForDate149  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDate149 setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDate149 setLeftView:spacerView];
+
+     
             [arrOfFormFields addObject:textFieldForDate149];
             [viewForContactForm addSubview:textFieldForDate149];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1079,11 +1077,8 @@
             [textFieldForDate150 setTag:idx];
             [textFieldForDate150 setText:[obj valueForKey:@"value"]];
             [textFieldForDate150 setNameID: [obj valueForKey:@"name"]];
-            
-            [textFieldForDate150  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDate150 setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDate150 setLeftView:spacerView];
+
+
             [arrOfFormFields addObject:textFieldForDate150];
             [viewForContactForm addSubview:textFieldForDate150];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1114,11 +1109,9 @@
             [textFieldForDates setText:[obj valueForKey:@"value"]];
             textFieldForDates.returnKeyType = UIReturnKeyNext;
             [textFieldForDates setTag:idx];
-            [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+     
             [arrOfFormFields addObject:textFieldForDates];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDates setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDates setLeftView:spacerView];
+
             
             [viewForContactForm addSubview:textFieldForDates];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1149,10 +1142,7 @@
             [textFieldForNumber setText:[obj valueForKey:@"value"]];
             [textFieldForNumber setNameID: [obj valueForKey:@"name"]];
             
-            [textFieldForNumber  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForNumber setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForNumber setLeftView:spacerView];
+
             [arrOfFormFields addObject:textFieldForNumber];
             [viewForContactForm addSubview:textFieldForNumber];
             heightForObj = heightForObj + 70;
@@ -1174,10 +1164,8 @@
             [textFieldForSubject.layer setBorderWidth:1.0];
             [textFieldForSubject.layer setCornerRadius:4.0f];
             [arrOfFormFields addObject:textFieldForSubject];
-            [textFieldForSubject  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForSubject setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForSubject setLeftView:spacerView];
+
+            [textFieldForSubject setText:[obj valueForKey:@"value"]];
             
             [viewForContactForm addSubview:textFieldForSubject];
             heightForObj = heightForObj + 70;
@@ -1198,7 +1186,7 @@
             [textFieldForMessage.layer setCornerRadius:4.0f];
             [textFieldForMessage setTag:idx];
             [arrOfFormFields addObject:textFieldForMessage];
-            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:18]];
             [textFieldForMessage setText:[obj valueForKey:@"value"]];
             
             [viewForContactForm addSubview:textFieldForMessage];
@@ -1271,7 +1259,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
 
 
-        [viewForContactForm  addGestureRecognizer:tap];
+        [self.view  addGestureRecognizer:tap];
     
     [viewForContactForm setUserInteractionEnabled:YES];
     [mainScrollView addSubview:viewForContactForm];
@@ -1322,15 +1310,13 @@
             [textFieldForName setBackgroundColor:[UIColor whiteColor]];
             [textFieldForName.layer setBorderColor:[UIColor grayColor].CGColor];
             [textFieldForName.layer setBorderWidth:1.0];
-            [textFieldForName  setFont: [UIFont fontWithName:@"Gudea" size:15]];
+
             
             [textFieldForName setNameID: [obj valueForKey:@"name"]];
 
             [textFieldForName.layer setCornerRadius:4.0f];
             textFieldForName.returnKeyType = UIReturnKeyNext;
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForName setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForName setLeftView:spacerView];
+
             [arrOfFormFields addObject:textFieldForName];
             [viewForContactForm addSubview:textFieldForName];
             heightForObj = heightForObj + 70;
@@ -1353,10 +1339,8 @@
             [textFieldForEmail.layer setBorderWidth:1.0];
             [textFieldForEmail.layer setCornerRadius:4.0f];
             textFieldForEmail.returnKeyType = UIReturnKeyNext;
-            [textFieldForEmail  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForEmail setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForEmail setLeftView:spacerView];
+        
+   
             [arrOfFormFields addObject:textFieldForEmail];
             [viewForContactForm addSubview:textFieldForEmail];
             heightForObj = heightForObj + 70;
@@ -1375,10 +1359,9 @@
             [textFieldForDate149.layer setBorderWidth:1.0];
             [textFieldForDate149.layer setCornerRadius:4.0f];
             [textFieldForDate149 setTag:idx];
-             [textFieldForDate149  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDate149 setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDate149 setLeftView:spacerView];
+   
+
+            
               [arrOfFormFields addObject:textFieldForDate149];
             [viewForContactForm addSubview:textFieldForDate149];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1405,13 +1388,11 @@
             [textFieldForDate150.layer setBorderWidth:1.0];
             [textFieldForDate150.layer setCornerRadius:4.0f];
             [textFieldForDate150 setTag:idx];
+         
             
             [textFieldForDate150 setNameID: [obj valueForKey:@"name"]];
             
-            [textFieldForDate150  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDate150 setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDate150 setLeftView:spacerView];
+         
             [arrOfFormFields addObject:textFieldForDate150];
             [viewForContactForm addSubview:textFieldForDate150];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1444,9 +1425,7 @@
              [textFieldForDates setTag:idx];
             [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:15]];
             [arrOfFormFields addObject:textFieldForDates];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForDates setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForDates setLeftView:spacerView];
+  
             
             [viewForContactForm addSubview:textFieldForDates];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1476,11 +1455,8 @@
             [textFieldForNumber setTag:idx];
             
             [textFieldForNumber setNameID: [obj valueForKey:@"name"]];
-            
-            [textFieldForNumber  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForNumber setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForNumber setLeftView:spacerView];
+         
+
             [arrOfFormFields addObject:textFieldForNumber];
             [viewForContactForm addSubview:textFieldForNumber];
             heightForObj = heightForObj + 70;
@@ -1502,10 +1478,8 @@
             [textFieldForSubject.layer setBorderWidth:1.0];
             [textFieldForSubject.layer setCornerRadius:4.0f];
              [arrOfFormFields addObject:textFieldForSubject];
-            [textFieldForSubject  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-            UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 3)];
-            [textFieldForSubject setLeftViewMode:UITextFieldViewModeAlways];
-            [textFieldForSubject setLeftView:spacerView];
+
+ 
             
             [viewForContactForm addSubview:textFieldForSubject];
             heightForObj = heightForObj + 70;
@@ -1526,8 +1500,8 @@
             [textFieldForMessage.layer setCornerRadius:4.0f];
             [textFieldForMessage setTag:idx];
             [arrOfFormFields addObject:textFieldForMessage];
-            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:15]];
-
+            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:18]];
+            [textFieldForMessage setText:[obj valueForKey:@"value"]];
             
             [viewForContactForm addSubview:textFieldForMessage];
             heightForObj = heightForObj + 235;
@@ -1606,6 +1580,7 @@
         NSDate *eventDate = picker.date;
         NSString *dateString = [dateFormat stringFromDate:eventDate];
         textFieldForDates.text = [NSString stringWithFormat:@"%@",dateString];
+         [textFieldForDates  setFont: [UIFont fontWithName:@"Gudea" size:28]];
     }
     else if ([sender tag] == 2){
         UIDatePicker *picker = (UIDatePicker*)textFieldForDate149.inputView;
@@ -1614,6 +1589,7 @@
      
         NSString *dateString = [dateFormat stringFromDate:eventDate];
         textFieldForDate149.text = [NSString stringWithFormat:@"%@",dateString];
+          [textFieldForDate149  setFont: [UIFont fontWithName:@"Gudea" size:28]];
     }
     else if ([sender tag] == 3){
         UIDatePicker *picker = (UIDatePicker*)textFieldForDate150.inputView;
@@ -1622,20 +1598,27 @@
         
         NSString *dateString = [dateFormat stringFromDate:eventDate];
         textFieldForDate150.text = [NSString stringWithFormat:@"%@",dateString];
+        [textFieldForDate150  setFont: [UIFont fontWithName:@"Gudea" size:28]];
     }
     
-
+   
 }
 
 -(void)dismissKeyboard
 {
+    
+
+    [self.view endEditing:YES];
+        
+    
+    
    
-    [textFieldForMessage resignFirstResponder];
-    [textFieldForSubject resignFirstResponder];
-    [textFieldForNumber resignFirstResponder];
-    [textFieldForDates resignFirstResponder];
-    [textFieldForEmail resignFirstResponder];
-    [textFieldForName resignFirstResponder];
+//    [textFieldForMessage resignFirstResponder];
+//    [textFieldForSubject resignFirstResponder];
+//    [textFieldForNumber resignFirstResponder];
+//    [textFieldForDates resignFirstResponder];
+//    [textFieldForEmail resignFirstResponder];
+//    [textFieldForName resignFirstResponder];
 }
 
 

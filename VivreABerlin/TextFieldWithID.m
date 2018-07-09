@@ -20,6 +20,11 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    [self  setFont: [UIFont fontWithName:@"Gudea" size:25]];
+    
+    [self setLeftViewMode:UITextFieldViewModeAlways];
+    [self setLeftView:[[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, 0)]];
+    [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     return self;
 }
 @end
