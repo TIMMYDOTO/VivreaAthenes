@@ -170,6 +170,7 @@
             }
             else if([[NSUserDefaults standardUserDefaults] objectForKey:@"ComingFromAgendaTag"]) {
                 [self sendingAnHTTGETTRequestCategoryClicked:[NSString stringWithFormat:postsFromTag,[[NSUserDefaults standardUserDefaults] objectForKey:@"ComingFromAgendaTag"],[NSString stringWithFormat:@"%d",Page]]];
+                NSLog(@"post from tag %@", [NSString stringWithFormat:postsFromTag,[[NSUserDefaults standardUserDefaults] objectForKey:@"ComingFromAgendaTag"],[NSString stringWithFormat:@"%d",Page]]);
             }
             else {
                 NSLog(@"%@", [NSString stringWithFormat:categoryLink,[GlobalVariables getInstance].idOfcatSubCat,[NSString stringWithFormat:@"%d",Page]]);

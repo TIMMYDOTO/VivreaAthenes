@@ -30,5 +30,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *centerLocation;
 - (IBAction)backToDistrict:(id)sender;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
+-(UIColor*)colorWithHexString:(NSString*)hex;
 @end

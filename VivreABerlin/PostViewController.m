@@ -20,7 +20,7 @@
 #import "PostModel.h"
 #import "TextFieldWithID.h"
 #import "TextViewWithID.h"
-
+#import "MapViewController.h"
 
 
 @interface PostViewController (){
@@ -38,7 +38,7 @@
     UIButton *tag;
     __weak IBOutlet UILabel *mercrediSchedule;
     __weak IBOutlet UIButton *subm;
-    
+    UIButton *openMapCredits;
     __weak IBOutlet UILabel *jeudiSchedule;
     
     __weak IBOutlet UILabel *vendrediSchedule;
@@ -343,8 +343,8 @@
         self.postMapView.styleURL = url;
         self.postMapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.postMapView.delegate = self;
-        self.postMapView.logoView.alpha = 0.f;
-        self.postMapView.attributionButton.alpha = 0.f;
+
+
         self.postMapView.compassView.hidden = false;
         self.postMapView.compassView.alpha = 0.f;
         self.postMapView.rotateEnabled = false;
@@ -362,12 +362,15 @@
         
         self.postMapView.delegate = self;
 
-        
-        self.postMapView.logoView.alpha = 0.f;
-        self.postMapView.attributionButton.alpha = 0.f;
+
         self.postMapView.compassView.hidden = false;
         self.postMapView.compassView.alpha = 0.f;
         self.postMapView.rotateEnabled = false;
+        
+       
+        
+        
+        
         
         pointArr = [[NSMutableArray alloc]init];
         
@@ -382,16 +385,13 @@
             point.title = [obj objectForKey:@"title"];
             NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[[obj objectForKey:@"description"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
              point.subtitle = [attrStr string];
-//            point.subtitle = [obj objectForKey:@"description"];
-         
+
             [pointArr addObject:point];
             [self.postMapView addAnnotation:point];
             [postModel.annotations addObject:point];
 
         }];
         [[GlobalVariables getInstance].DictionaryWithAllPosts setObject:postInfo forKey:[GlobalVariables getInstance].idOfPost];
-        
-//        postModel.point = point;
 
     }
     else{
@@ -419,8 +419,7 @@
                 }else{
                      [practicalInfos setFrame:CGRectMake(0, viewForContactForm.frame.origin.y + viewForContactForm.frame.size.height + 30, screenWidth, heightForPracticalInfos.size.height)];
                 }
-       NSLog(@"height %f", viewForContactForm.frame.origin.y);
-            /////////////////
+   
                 [self.postMapView setFrame:CGRectMake(0, practicalInfos.frame.origin.y + practicalInfos.frame.size.height + 49, screenWidth, self.postMapView.frame.size.height)];
                 
                 [viewForTags setFrame:CGRectMake(4, _postMapView.frame.origin.y + _postMapView.frame.size.height + 14, viewForTags.frame.size.width, viewForTags.frame.size.height)];
@@ -635,8 +634,6 @@
                 passage.text = [NSString stringWithFormat:@"%@ > %@",[[postInfo valueForKey:@"category"]valueForKey:@"category_parent_name"],[[postInfo valueForKey:@"category"]valueForKey:@"name"]];
             }
           
-        
-      
             authorName = [responseObject objectForKey:@"post_thumbnail_caption"];
            NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[authorName dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             
@@ -1186,9 +1183,9 @@
             [textFieldForMessage.layer setCornerRadius:4.0f];
             [textFieldForMessage setTag:idx];
             [arrOfFormFields addObject:textFieldForMessage];
-            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:18]];
+            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:20]];
             [textFieldForMessage setText:[obj valueForKey:@"value"]];
-            
+
             [viewForContactForm addSubview:textFieldForMessage];
             heightForObj = heightForObj + 235;
         }
@@ -1375,6 +1372,7 @@
             }
             heightForObj = heightForObj + 70;
         }
+        
         else if([[obj valueForKey:@"name"] isEqualToString:@"date-150"]){
             date150 = [[UILabel alloc]initWithFrame:CGRectMake(10, heightForObj, 50, 20)];
             date150.text = [obj valueForKey:@"label"];
@@ -1388,11 +1386,9 @@
             [textFieldForDate150.layer setBorderWidth:1.0];
             [textFieldForDate150.layer setCornerRadius:4.0f];
             [textFieldForDate150 setTag:idx];
-         
-            
+  
             [textFieldForDate150 setNameID: [obj valueForKey:@"name"]];
             
-         
             [arrOfFormFields addObject:textFieldForDate150];
             [viewForContactForm addSubview:textFieldForDate150];
             if ([[obj valueForKey:@"type"]isEqualToString:@"date"]) {
@@ -1500,9 +1496,9 @@
             [textFieldForMessage.layer setCornerRadius:4.0f];
             [textFieldForMessage setTag:idx];
             [arrOfFormFields addObject:textFieldForMessage];
-            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:18]];
+            [textFieldForMessage  setFont: [UIFont fontWithName:@"Gudea" size:20]];
             [textFieldForMessage setText:[obj valueForKey:@"value"]];
-            
+          
             [viewForContactForm addSubview:textFieldForMessage];
             heightForObj = heightForObj + 235;
         }
@@ -1517,7 +1513,7 @@
             lbl.text = [obj valueForKey:@"label"];
             [lbl setFont:[UIFont fontWithName:@"Gudea" size:15]];
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(label1Clicked:)];
- [lbl setUserInteractionEnabled:YES];
+            [lbl setUserInteractionEnabled:YES];
             [lbl addGestureRecognizer:tap];
             
             [lbl setNumberOfLines:0];
@@ -1606,19 +1602,7 @@
 
 -(void)dismissKeyboard
 {
-    
-
     [self.view endEditing:YES];
-        
-    
-    
-   
-//    [textFieldForMessage resignFirstResponder];
-//    [textFieldForSubject resignFirstResponder];
-//    [textFieldForNumber resignFirstResponder];
-//    [textFieldForDates resignFirstResponder];
-//    [textFieldForEmail resignFirstResponder];
-//    [textFieldForName resignFirstResponder];
 }
 
 
@@ -2130,11 +2114,8 @@
          [scheduleView setFrame:CGRectMake(scheduleView.frame.origin.x, heightOfObj, scheduleView.frame.size.width, 0)];
          heightOfObj = scheduleView.frame.origin.y;
     }
-   
-    
-   
-}
 
+}
 
 -(void)finishedLoading{
 
@@ -2383,8 +2364,6 @@ else{
     return true;
 }
 
-
-
 - (UIView *)mapView:(MGLMapView *)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation>)annotation
 {
     if (unlockedIAP && [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:[NSString stringWithFormat:@"%@", [GlobalVariables getInstance].idOfPost]]]) {
@@ -2411,6 +2390,24 @@ else{
 }
 
 - (void) mapViewDidFinishLoadingMap:(MGLMapView *)mapView {
+    
+    openMapCredits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    
+    [openMapCredits setFrame:CGRectMake(self.postMapView.attributionButton.frame.origin.x - self.postMapView.attributionButton.frame.size.width - 5, self.postMapView.attributionButton.frame.origin.y, self.postMapView.attributionButton.frame.size.width, self.postMapView.attributionButton.frame.size.height)];
+    [openMapCredits setTitle:@"©" forState:UIControlStateNormal];
+    [openMapCredits.titleLabel setFont:[UIFont fontWithName:@"Montserrat-Light" size:20]];
+    MapViewController *mapVC = MapViewController.new;
+    
+    [openMapCredits.titleLabel setTextColor:[mapVC colorWithHexString:@"569CCA"]];
+    [openMapCredits.layer setBorderColor:[mapVC colorWithHexString:@"569CCA"].CGColor];
+    [openMapCredits.layer setBorderWidth:1];
+    [openMapCredits.layer setCornerRadius:openMapCredits.frame.size.width/2];
+    openMapCredits.clipsToBounds = true;
+    [openMapCredits addTarget:self action:@selector(openMapCredits) forControlEvents:UIControlEventTouchDown];
+    [self.postMapView addSubview:openMapCredits];
+    [self.postMapView bringSubviewToFront:openMapCredits];
+    
     __block NSMutableDictionary *maxLatDict = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@0 , @"lat", nil];
     __block NSMutableDictionary *minLatDict =   [[NSMutableDictionary alloc]initWithObjectsAndKeys:@180, @"lat", nil];
     
@@ -2493,7 +2490,21 @@ else{
     
 
 }
-
+- (void) openMapCredits {
+    MapViewController *mapVC = MapViewController.new;
+    
+    [openMapCredits.layer setBorderColor:[mapVC colorWithHexString:@"CDE7F0"].CGColor];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [openMapCredits.layer setBorderColor:[mapVC colorWithHexString:@"569CCA"].CGColor];
+        
+    });
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"MapCreditsController"]];
+    
+    
+}
 -(void)showMessage: (NSString *)content{
     
     demo = [[OLGhostAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@", content] message:nil timeout:2.1 dismissible:YES];
