@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
                BuildableName = "VivreABerlin.app"
                BlueprintName = "VivreABerlin"
-               ReferencedContainer = "container:VivreABerlin.xcodeproj">
+               ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -36,7 +35,7 @@
                BlueprintIdentifier = "8D3D5ECC1EA7864900DA4778"
                BuildableName = "VivreABerlinTests.xctest"
                BlueprintName = "VivreABerlinTests"
-               ReferencedContainer = "container:VivreABerlin.xcodeproj">
+               ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,7 +45,7 @@
                BlueprintIdentifier = "8D3D5ED71EA7864900DA4778"
                BuildableName = "VivreABerlinUITests.xctest"
                BlueprintName = "VivreABerlinUITests"
-               ReferencedContainer = "container:VivreABerlin.xcodeproj">
+               ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,7 +55,7 @@
             BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
             BuildableName = "VivreABerlin.app"
             BlueprintName = "VivreABerlin"
-            ReferencedContainer = "container:VivreABerlin.xcodeproj">
+            ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,7 +79,7 @@
             BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
             BuildableName = "VivreABerlin.app"
             BlueprintName = "VivreABerlin"
-            ReferencedContainer = "container:VivreABerlin.xcodeproj">
+            ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,7 +98,7 @@
             BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
             BuildableName = "VivreABerlin.app"
             BlueprintName = "VivreABerlin"
-            ReferencedContainer = "container:VivreABerlin.xcodeproj">
+            ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
