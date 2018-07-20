@@ -306,7 +306,7 @@
 		8D16D16A1FF4EB95003DD13B /* InfoPratiquesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoPratiquesTableViewCell.h; sourceTree = "<group>"; };
 		8D16D16B1FF4EB95003DD13B /* InfoPratiquesTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoPratiquesTableViewCell.m; sourceTree = "<group>"; };
 		8D16D16C1FF4EB95003DD13B /* InfoPratiquesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPratiquesTableViewCell.xib; sourceTree = "<group>"; };
-		8D3D5EB41EA7864900DA4778 /* VivreABerlin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VivreABerlin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D3D5EB41EA7864900DA4778 /* Athènes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Athènes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3D5EB81EA7864900DA4778 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D3D5EBA1EA7864900DA4778 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8D3D5EBB1EA7864900DA4778 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -699,7 +699,7 @@
 		8D3D5EB51EA7864900DA4778 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D3D5EB41EA7864900DA4778 /* VivreABerlin.app */,
+				8D3D5EB41EA7864900DA4778 /* Athènes.app */,
 				8D3D5ECD1EA7864900DA4778 /* VivreABerlinTests.xctest */,
 				8D3D5ED81EA7864900DA4778 /* VivreABerlinUITests.xctest */,
 				F44D79DB1FA34BC50024FB17 /* OneSignalNotificationServiceExtension.appex */,
@@ -1301,9 +1301,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D3D5EB31EA7864900DA4778 /* VivreABerlin */ = {
+		8D3D5EB31EA7864900DA4778 /* Athènes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D3D5EE11EA7864900DA4778 /* Build configuration list for PBXNativeTarget "VivreABerlin" */;
+			buildConfigurationList = 8D3D5EE11EA7864900DA4778 /* Build configuration list for PBXNativeTarget "Athènes" */;
 			buildPhases = (
 				04B672B93309444AF84ECC9C /* [CP] Check Pods Manifest.lock */,
 				8D3D5EB01EA7864900DA4778 /* Sources */,
@@ -1320,9 +1320,9 @@
 			dependencies = (
 				F44D79E21FA34BC50024FB17 /* PBXTargetDependency */,
 			);
-			name = VivreABerlin;
+			name = "Athènes";
 			productName = VivreABerlin;
-			productReference = 8D3D5EB41EA7864900DA4778 /* VivreABerlin.app */;
+			productReference = 8D3D5EB41EA7864900DA4778 /* Athènes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8D3D5ECC1EA7864900DA4778 /* VivreABerlinTests */ = {
@@ -1448,7 +1448,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D3D5EB31EA7864900DA4778 /* VivreABerlin */,
+				8D3D5EB31EA7864900DA4778 /* Athènes */,
 				8D3D5ECC1EA7864900DA4778 /* VivreABerlinTests */,
 				8D3D5ED71EA7864900DA4778 /* VivreABerlinUITests */,
 				F44D79DA1FA34BC50024FB17 /* OneSignalNotificationServiceExtension */,
@@ -1968,12 +1968,12 @@
 /* Begin PBXTargetDependency section */
 		8D3D5ECF1EA7864900DA4778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D3D5EB31EA7864900DA4778 /* VivreABerlin */;
+			target = 8D3D5EB31EA7864900DA4778 /* Athènes */;
 			targetProxy = 8D3D5ECE1EA7864900DA4778 /* PBXContainerItemProxy */;
 		};
 		8D3D5EDA1EA7864900DA4778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D3D5EB31EA7864900DA4778 /* VivreABerlin */;
+			target = 8D3D5EB31EA7864900DA4778 /* Athènes */;
 			targetProxy = 8D3D5ED91EA7864900DA4778 /* PBXContainerItemProxy */;
 		};
 		F44D79E21FA34BC50024FB17 /* PBXTargetDependency */ = {
@@ -2267,7 +2267,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D3D5EE11EA7864900DA4778 /* Build configuration list for PBXNativeTarget "VivreABerlin" */ = {
+		8D3D5EE11EA7864900DA4778 /* Build configuration list for PBXNativeTarget "Athènes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D3D5EE21EA7864900DA4778 /* Debug */,

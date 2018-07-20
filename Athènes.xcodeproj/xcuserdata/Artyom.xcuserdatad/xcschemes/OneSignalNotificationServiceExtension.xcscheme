@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
-               BuildableName = "VivreABerlin.app"
-               BlueprintName = "VivreABerlin"
+               BuildableName = "Athe&#x300;nes.app"
+               BlueprintName = "Ath&#xe8;nes"
                ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -72,8 +72,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
-            BuildableName = "VivreABerlin.app"
-            BlueprintName = "VivreABerlin"
+            BuildableName = "Athe&#x300;nes.app"
+            BlueprintName = "Ath&#xe8;nes"
             ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -92,8 +92,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D3D5EB31EA7864900DA4778"
-            BuildableName = "VivreABerlin.app"
-            BlueprintName = "VivreABerlin"
+            BuildableName = "Athe&#x300;nes.app"
+            BlueprintName = "Ath&#xe8;nes"
             ReferencedContainer = "container:Athe&#x300;nes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
