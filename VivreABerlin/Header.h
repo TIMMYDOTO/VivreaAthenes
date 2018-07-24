@@ -16,7 +16,7 @@
 #define httpHost @"http://vivreathenes.com"
 
 // SIDEBAR
-#define sideMenuLink  @"https://vivreathenes.com/wp-json/wp-api-menus/v2/menu-locations/primary"
+#define sideMenuLink  @"https://vivreathenes.com/wp-json/wp/v2/menu-locations/primary"
 #define colorsInSideBar  [NSArray arrayWithObjects:@"LeaveThisOneAndEditTheOthers",@"F18D12",@"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"B4CA35", @"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",@"F18D12",@"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"B4CA35", @"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",@"A2601D",@"829B00",@"B4CA35", @"B4CA35", @"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"FAC925",@"F1638B",@"A2601D",@"829B00",@"B4CA35", @"69B7DC",@"ADBBE3",@"FAC925",@"F1638B",@"A2601D", @"69B7DC",@"ADBBE3",nil]
 #define adminAjax @"https://vivreathenes.com/wp-admin/admin-ajax.php"
 

@@ -25,9 +25,6 @@
  
 }
 
-
-
-
 @property (strong, nonatomic) NSArray *titlesArray;
 
 @end
@@ -147,7 +144,7 @@
     
     
     
-    if(offlineMenuArray.count != 0) {
+    if(offlineMenuArray.count != 0 )  {
         arrayForTable = [[NSMutableArray alloc] init];
         [offlineMenuArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([[obj valueForKey:@"order"]integerValue] >= 92)  {
@@ -637,13 +634,8 @@
 }
 
 - (void) ClickCategory: (UIButton*) button {
-    if(button.tag == 0){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object: [NSString stringWithFormat:@"ViewController"]];
-        [kMainViewController hideLeftViewAnimated:YES completionHandler:nil];
-        
-        
-    }
-    else if([self.searchArticles isFirstResponder]){
+
+        if([self.searchArticles isFirstResponder]){
         [self.searchArticles resignFirstResponder];
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
         [UIView animateWithDuration:0.2

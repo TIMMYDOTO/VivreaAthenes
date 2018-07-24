@@ -1261,7 +1261,7 @@ JTMaterialSpinner * spinnerView;
 }
 
 - (IBAction)firstTabBarItem:(id)sender {
-    
+
     if(canShowAdd && [GlobalVariables getInstance].canDisplayInterstitials){
         self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:facebookInterstitialID];
         self.interstitialAd.delegate = self;
