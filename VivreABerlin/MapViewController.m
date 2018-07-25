@@ -20,6 +20,9 @@
 #import "MapCreditsController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ContainerViewController.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface MapViewController (){
 
     NSMutableArray *coordinates;
@@ -212,12 +215,16 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-  
+    NSString *name = @"Map Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
     // If it's a relatively recent event, turn off updates to save power.
+    
     CLLocation* location = [locations lastObject];
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];

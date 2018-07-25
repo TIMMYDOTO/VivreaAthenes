@@ -13,7 +13,9 @@
 #import "CatsSubCatsCell.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 #import "UIImageView+Network.h"
-
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface TicketsViewController ()
 
 @end
@@ -326,6 +328,10 @@
     
 }
 -(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"Tickets Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     [self Spin];
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)requestURL navigationType:(UIWebViewNavigationType)navigationType {

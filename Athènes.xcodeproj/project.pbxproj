@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1487780BA41A3DDFC4B43A81 /* libPods-Athènes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31FDDCA54FB5CEA2472AEEDC /* libPods-Athènes.a */; };
 		64DAB05F059C8DA6F61958F5 /* libPods-VivreABerlinUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */; };
-		7A10ADE1C83AA6DB54A82189 /* libPods-VivreABerlin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AB2DB0DBF433AE991F59F3 /* libPods-VivreABerlin.a */; };
-		830461BE534EF66D4974ECD6 /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B3F086E95041EC5729D0F4D /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a */; };
 		8D16D16D1FF4EB95003DD13B /* InfoPratiquesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D16D16B1FF4EB95003DD13B /* InfoPratiquesTableViewCell.m */; };
 		8D16D16E1FF4EB95003DD13B /* InfoPratiquesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D16D16C1FF4EB95003DD13B /* InfoPratiquesTableViewCell.xib */; };
 		8D3D5EB91EA7864900DA4778 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D5EB81EA7864900DA4778 /* main.m */; };
@@ -51,6 +50,7 @@
 		9AD32EFB20CA9A820062B80B /* contact-form.js in Resources */ = {isa = PBXBuildFile; fileRef = 9AD32EFA20CA9A810062B80B /* contact-form.js */; };
 		9AEADF3A208CA55200854061 /* AstuceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF39208CA55100854061 /* AstuceVC.m */; };
 		9AEADF3E2091D21000854061 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEADF3D2091D21000854061 /* PostViewController.m */; };
+		B8E3F342BC4011AB4FB85282 /* libPods-Athènes-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 018985F52A6D22966A644314 /* libPods-Athènes-OneSignalNotificationServiceExtension.a */; };
 		EDE7ECC8446D47CD4860FDDE /* libPods-VivreABerlinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */; };
 		F40EEF0F1F447EFF00BCC8DE /* AddAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF0E1F447EFF00BCC8DE /* AddAnnouncement.m */; };
 		F40EEF121F447F0C00BCC8DE /* EditAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EEF111F447F0C00BCC8DE /* EditAnnouncement.m */; };
@@ -296,11 +296,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		018985F52A6D22966A644314 /* libPods-Athènes-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Athènes-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0939CC9990E5430AC24EEFDF /* Pods-Athènes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athènes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Athènes/Pods-Athènes.release.xcconfig"; sourceTree = "<group>"; };
 		0C4B814563A25352CE3211CC /* Pods-VivreABerlinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlinTests/Pods-VivreABerlinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2797CBB7FA1B4C8EF4ACDDB9 /* Pods-VivreABerlinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlinUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlinUITests/Pods-VivreABerlinUITests.release.xcconfig"; sourceTree = "<group>"; };
+		31FDDCA54FB5CEA2472AEEDC /* libPods-Athènes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Athènes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3F086E95041EC5729D0F4D /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlin-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448325E038C8DDBF52D9CC92 /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		4C73F618EDD1464BF4ECE572 /* Pods-VivreABerlinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlinTests/Pods-VivreABerlinTests.release.xcconfig"; sourceTree = "<group>"; };
+		4E5700E0B6550A29ED6CB08E /* Pods-Athènes-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athènes-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Athènes-OneSignalNotificationServiceExtension/Pods-Athènes-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		545CEF379F0364D9437FE6B6 /* Pods-Athènes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athènes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Athènes/Pods-Athènes.debug.xcconfig"; sourceTree = "<group>"; };
 		87CDED12AAE5AD6B6EC4AA8A /* Pods-VivreABerlin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VivreABerlin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin.debug.xcconfig"; sourceTree = "<group>"; };
 		88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VivreABerlinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D16D16A1FF4EB95003DD13B /* InfoPratiquesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoPratiquesTableViewCell.h; sourceTree = "<group>"; };
@@ -623,6 +628,7 @@
 		F4FEFE931EE96A6600C95381 /* Entretenir &amp; Réparer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Entretenir &amp; Réparer.png"; sourceTree = "<group>"; };
 		F4FEFE941EE96A6600C95381 /* Etudier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Etudier.png; sourceTree = "<group>"; };
 		F4FEFE951EE96A6600C95381 /* Medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medicine.png; sourceTree = "<group>"; };
+		FD66E8027A02B6C2CBAD8AF0 /* Pods-Athènes-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athènes-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Athènes-OneSignalNotificationServiceExtension/Pods-Athènes-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,7 +642,7 @@
 				F40EEF441F45845F00BCC8DE /* MobileCoreServices.framework in Frameworks */,
 				F460C1D51F0CDF310050CAA6 /* QuartzCore.framework in Frameworks */,
 				F4B4BD611F06614E00E313CF /* StoreKit.framework in Frameworks */,
-				7A10ADE1C83AA6DB54A82189 /* libPods-VivreABerlin.a in Frameworks */,
+				1487780BA41A3DDFC4B43A81 /* libPods-Athènes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D3FF0801FF90F6700E321B3 /* Social.framework in Frameworks */,
-				830461BE534EF66D4974ECD6 /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a in Frameworks */,
+				B8E3F342BC4011AB4FB85282 /* libPods-Athènes-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +685,10 @@
 				2797CBB7FA1B4C8EF4ACDDB9 /* Pods-VivreABerlinUITests.release.xcconfig */,
 				C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */,
 				448325E038C8DDBF52D9CC92 /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.release.xcconfig */,
+				545CEF379F0364D9437FE6B6 /* Pods-Athènes.debug.xcconfig */,
+				0939CC9990E5430AC24EEFDF /* Pods-Athènes.release.xcconfig */,
+				FD66E8027A02B6C2CBAD8AF0 /* Pods-Athènes-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				4E5700E0B6550A29ED6CB08E /* Pods-Athènes-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -803,6 +813,8 @@
 				88E8485848D370F8A56CFA89 /* libPods-VivreABerlinTests.a */,
 				925AA88A7E63059F89CEE673 /* libPods-VivreABerlinUITests.a */,
 				3B3F086E95041EC5729D0F4D /* libPods-VivreABerlin-OneSignalNotificationServiceExtension.a */,
+				31FDDCA54FB5CEA2472AEEDC /* libPods-Athènes.a */,
+				018985F52A6D22966A644314 /* libPods-Athènes-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1673,7 +1685,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VivreABerlin-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Athènes-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1783,7 +1795,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Athènes/Pods-Athènes-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D8F9D6D59F88A7532341E7BE /* [CP] Embed Pods Frameworks */ = {
@@ -1792,7 +1804,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Athènes/Pods-Athènes-frameworks.sh",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 			);
@@ -1803,7 +1815,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VivreABerlin/Pods-VivreABerlin-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Athènes/Pods-Athènes-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E65227D3B8A5E72A7E2F025F /* [CP] Check Pods Manifest.lock */ = {
@@ -1817,7 +1829,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VivreABerlin-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Athènes-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1867,7 +1879,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VivreABerlin-OneSignalNotificationServiceExtension/Pods-VivreABerlin-OneSignalNotificationServiceExtension-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Athènes-OneSignalNotificationServiceExtension/Pods-Athènes-OneSignalNotificationServiceExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2109,7 +2121,7 @@
 		};
 		8D3D5EE21EA7864900DA4778 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87CDED12AAE5AD6B6EC4AA8A /* Pods-VivreABerlin.debug.xcconfig */;
+			baseConfigurationReference = 545CEF379F0364D9437FE6B6 /* Pods-Athènes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VivreABerlin/VivreABerlin.entitlements;
@@ -2135,7 +2147,7 @@
 		};
 		8D3D5EE31EA7864900DA4778 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8DCB8B477732E33E4DF3468 /* Pods-VivreABerlin.release.xcconfig */;
+			baseConfigurationReference = 0939CC9990E5430AC24EEFDF /* Pods-Athènes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VivreABerlin/VivreABerlin.entitlements;
@@ -2215,7 +2227,7 @@
 		};
 		F44D79E41FA34BC50024FB17 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C260AAA695841016EEB9E91E /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = FD66E8027A02B6C2CBAD8AF0 /* Pods-Athènes-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2236,7 +2248,7 @@
 		};
 		F44D79E51FA34BC50024FB17 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 448325E038C8DDBF52D9CC92 /* Pods-VivreABerlin-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = 4E5700E0B6550A29ED6CB08E /* Pods-Athènes-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

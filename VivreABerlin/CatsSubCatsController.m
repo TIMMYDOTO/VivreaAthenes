@@ -17,6 +17,9 @@
 #import "UIImageView+Network.h"
 #import "CatsSubCatsCell.h"
 #import "UIImage+animatedGIF.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface CatsSubCatsController ()
 
 @end
@@ -527,6 +530,10 @@
     
 }
 -(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"Categories and Sub Categories Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     [self Spin];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

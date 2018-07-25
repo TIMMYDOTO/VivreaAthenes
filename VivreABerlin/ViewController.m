@@ -21,6 +21,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "OnboardinInitialViewController.h"
 #import "ContainerViewController.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 #define IS_IPHONE ( [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] )
 #define IS_HEIGHT_GTE_568 [[UIScreen mainScreen ] bounds].size.height <= 568.0f
 #define IS_IPHONE_5 ( IS_IPHONE && IS_HEIGHT_GTE_568 )
@@ -493,6 +496,10 @@
     return 5;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"Home Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     [self Spin];
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

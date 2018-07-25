@@ -15,6 +15,8 @@
 #import "Header.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
 @import GoogleMobileAds;
 
 @interface AppDelegate ()
@@ -28,6 +30,15 @@
 //    [FBAdSettings addTestDevice:[FBAdSettings testDeviceHash]];
   // [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"didUserPurchasedIap"];
 //     NSLog(@"Puchased status : %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"didUserPurchasedIap"]);
+    GAI *gai = [GAI sharedInstance];
+    [gai trackerWithTrackingId:@"UA-93554417-1"];
+    
+    // Optional: automatically report uncaught exceptions.
+    gai.trackUncaughtExceptions = YES;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    // Remove before app release.
+    gai.logger.logLevel = kGAILogLevelVerbose;
         [Fabric with:@[[Crashlytics class]]];
     [GlobalVariables getInstance].myLaunchOptions = launchOptions;
     

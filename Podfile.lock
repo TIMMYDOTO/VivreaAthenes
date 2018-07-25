@@ -21,6 +21,7 @@ PODS:
   - FBAudienceNetwork (4.26.0):
     - KVOController
   - Google-Mobile-Ads-SDK (7.24.1)
+  - GoogleAnalytics (3.17.0)
   - KVOController (1.2.0)
   - Mapbox-iOS-SDK (3.6.4)
   - OneSignal (2.5.6)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - Fabric
   - FBAudienceNetwork
   - Google-Mobile-Ads-SDK
+  - GoogleAnalytics
   - Mapbox-iOS-SDK (~> 3.6)
   - OneSignal (< 3.0, >= 2.5.2)
   - SDWebImage (~> 4.0)
@@ -46,11 +48,12 @@ SPEC CHECKSUMS:
   Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
   FBAudienceNetwork: c3488041a9aa3f716d2edb3ceec8929e54c8f95a
   Google-Mobile-Ads-SDK: ed8004a7265b424568dc84f3d2bbe3ea3fff958f
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   Mapbox-iOS-SDK: 47847dd44285477e0dfffd0130f65c8a52823ada
   OneSignal: 9ec286d9156b86b3975f45d928e70f46c74ef4b7
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
 
-PODFILE CHECKSUM: 3e620633c16ccca0ed4dc0b3c485099d796e82d9
+PODFILE CHECKSUM: 0a07ce717624a60ccbf27468a8eb312fb32f3fe2
 
 COCOAPODS: 1.3.1

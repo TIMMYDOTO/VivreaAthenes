@@ -10,6 +10,9 @@
 #import "GlobalVariables.h"
 #import "SimpleFilesCache.h"
 #import "AFNetworking.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 
 @interface MapCreditsController (){
     WKWebView *wkWebView;
@@ -41,7 +44,13 @@
     self.creditsTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"Map Credits Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+  
+}
 -(void)getCreditsPhotos{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

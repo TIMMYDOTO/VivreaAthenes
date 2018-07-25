@@ -17,7 +17,9 @@
 #import "UIScrollView+SVInfiniteScrolling.h"
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 
 
 
@@ -164,6 +166,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"List of Posts Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     [self Spin];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

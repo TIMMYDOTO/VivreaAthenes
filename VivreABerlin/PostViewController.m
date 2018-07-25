@@ -21,7 +21,9 @@
 #import "TextFieldWithID.h"
 #import "TextViewWithID.h"
 #import "MapViewController.h"
-
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 
 @interface PostViewController (){
     OLGhostAlertView *demo;
@@ -246,7 +248,13 @@
     });
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSString *name = @"Posts Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
 -(void)settingDesign{
     CGRect screenRect = [[UIScreen mainScreen] bounds];
      screenWidth = screenRect.size.width;

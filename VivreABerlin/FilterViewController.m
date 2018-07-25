@@ -14,6 +14,9 @@
 #import "UIImageView+Network.h"
 #import "Reachability.h"
 #import "SimpleFilesCache.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface FilterViewController ()
 
 @end
@@ -108,7 +111,10 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-  
+    NSString *name = @"Filets for map Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 

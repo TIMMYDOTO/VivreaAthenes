@@ -20,6 +20,9 @@
 #import "JTMaterialSpinner.h"
 #import "AgendaViewController.h"
 #import "ContainerViewController.h"
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface LeftViewController (){
     
  
@@ -138,7 +141,13 @@
     
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    NSString *name = @"Menu Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 
+}
 -(void)newLoad {
     offlineMenuArray = [NSKeyedUnarchiver unarchiveObjectWithData:[SimpleFilesCache cachedDataWithName:@"menuDictionary"]];
     

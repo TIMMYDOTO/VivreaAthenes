@@ -17,7 +17,9 @@
 #import "CatsSubCatsCell.h"
 #import "OLGhostAlertView.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
-
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics/GAIFields.h>
 @interface AgendaViewController ()
 
 @end
@@ -465,7 +467,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-   
+    NSString *name = @"Agenda Screen";
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    [tracker set:kGAIScreenName value:name];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     [self Spin];
 }
 -(void)textFieldDidChange :(UITextField *)theTextField{
